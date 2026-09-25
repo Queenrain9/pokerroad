@@ -48,3 +48,25 @@ def test_saebom_micro_navigation_preserves_canonical_anchor_authority():
     assert rules["zones_do_not_complete_scenes"] is True
     assert rules["zones_do_not_change_current_anchor"] is True
     assert rules["final_building_footprints_not_defined"] is True
+
+
+def test_saebom_physical_paths_bend_without_changing_anchor_graph():
+    data = _load(MICRO)
+    spatial = _load(SPATIAL)
+    region = data["regions"]["01"]
+    paths = region["physical_paths"]
+    assert len(paths) == 4
+    expected = {("P0","P1"),("P1","P2"),("P2","P3"),("P3","P5")}
+    assert {(p["from"],p["to"]) for p in paths} == expected
+    anchors = spatial["regions"]["01"]["anchors"]
+    for path in paths:
+        assert path["points"][0] == anchors[path["from"]]
+        assert path["points"][-1] == anchors[path["to"]]
+        assert len(path["points"]) >= 4
+        assert path["half_width"] == 96
+    p3_p5 = next(p for p in paths if p["id"] == "R_P3_P5")
+    direct_y = (anchors["P3"][1] + anchors["P5"][1]) / 2
+    assert max(abs(point[1] - direct_y) for point in p3_p5["points"][1:-1]) >= 80
+    rules = data["rules"]
+    assert rules["physical_paths_preserve_anchor_endpoints"] is True
+    assert rules["physical_paths_do_not_change_story_graph"] is True
