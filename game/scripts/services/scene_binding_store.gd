@@ -90,6 +90,9 @@ static func validate_catalog() -> Array[String]:
 		for interaction in binding.get("interactions", []):
 			for choice in interaction.get("choices", []):
 				var requested_mode: String = str(choice.get("requested_mode", open_mode))
+				for required_anchor in choice.get("requires_anchor", []):
+					if not anchors_by_region.get(region_id, []).has(required_anchor):
+						errors.append(scene_id + ": choice requires unknown anchor " + str(required_anchor))
 				if requested_mode != open_mode and not PresentationContract.can_transition(open_mode, requested_mode):
 					errors.append(scene_id + ": illegal mode request " + open_mode + " -> " + requested_mode)
 				for effect in choice.get("effects", []):
