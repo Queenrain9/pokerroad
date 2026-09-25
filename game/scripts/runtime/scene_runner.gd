@@ -77,6 +77,9 @@ func choose(interaction_id: String, choice_id: String) -> Dictionary:
 	for requirement in choice.get("requires", []):
 		if state.story_flags.get(str(requirement.get("key", ""))) != requirement.get("value"):
 			return {"error":"choice requirements not met"}
+	var required_anchors: Array = choice.get("requires_anchor", [])
+	if not required_anchors.is_empty() and not required_anchors.has(state.current_anchor):
+		return {"error":"choice requires another physical anchor"}
 	var requests: Array[Dictionary] = []
 	for effect in choice.get("effects", []):
 		var result: Dictionary = _apply_effect(effect)
@@ -152,6 +155,11 @@ func ready_to_complete() -> bool:
 		"FLAG_IN":
 			var value = state.story_flags.get(str(completion.get("key", "")))
 			return completion.get("values", []).has(value)
+		"FLAGS_ALL":
+			for requirement in completion.get("requirements", []):
+				if state.story_flags.get(str(requirement.get("key", ""))) != requirement.get("value"):
+					return false
+			return true
 	return false
 
 func commit_completion() -> Dictionary:
