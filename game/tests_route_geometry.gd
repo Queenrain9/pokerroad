@@ -36,7 +36,10 @@ func _initialize() -> void:
 					corridor_wall_count += 1
 				must(child.get_child(0) is CollisionShape2D, id + " boundary or gate has an engine collision shape")
 		must(wall_count == 4 + int(mounted.get("portal_count", 0)) + corridor_wall_count, id + " has bounds, corridor and gate collision")
-		must(corridor_wall_count >= 6, id + " has physical corridor side walls")
+		if int(mounted.get("micro_navigation_zone_count", 0)) > 0:
+			must(corridor_wall_count == 0, id + " local walkable zones are not sealed by corridor side walls")
+		else:
+			must(corridor_wall_count >= 6, id + " has physical corridor side walls")
 		for anchor in region.get("anchors", []):
 			var source: String = str(anchor)
 			total_anchors += 1
