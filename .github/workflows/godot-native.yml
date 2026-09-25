@@ -55,6 +55,8 @@ jobs:
         run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_saebom_first_space_visual.gd
       - name: Run Saebom micro-navigation geometry
         run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_saebom_micro_navigation.gd
+      - name: Run Saebom level geometry
+        run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_saebom_level_geometry.gd
       - name: Run first-eight physical story E2E
         run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_first_eight_e2e.gd
       - name: Run first-eight tournament and save E2E
