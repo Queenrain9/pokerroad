@@ -12,18 +12,27 @@ func _init(p_state, p_runtime, p_region_host, p_player) -> void:
 	region_host = p_region_host
 	player = p_player
 
+func _effective_context(context: Dictionary) -> Dictionary:
+	var result: Dictionary = context.duplicate(true)
+	if not result.has("tide"):
+		var tide: String = str(state.story_flags.get("R04_TIDE", "")) if state != null else ""
+		if ["LOW","HIGH"].has(tide):
+			result["tide"] = tide
+	return result
+
 func inspect_nearby(context: Dictionary = {}) -> Dictionary:
 	if state == null or runtime == null or region_host == null or player == null:
 		return {"error":"world interaction controller is not fully bound"}
 	if region_host.current_region_world == null or region_host.current_region_id != state.current_region:
 		return {"error":"mounted region does not match world state"}
+	var effective_context: Dictionary = _effective_context(context)
 	if not region_host.current_region_world.can_walk_from(state.current_anchor, player.global_position):
 		return {"kind":"BLOCKED","from":state.current_anchor,
 			"reason":"player is outside the current physical route"}
 	var portal_target: String = region_host.current_region_world.nearest_portal(
 		state.current_anchor, player.global_position, player.interaction_radius)
 	if not portal_target.is_empty():
-		return _preview_target(portal_target, context)
+		return _preview_target(portal_target, effective_context)
 	var anchor_id: String = player.nearest_interactable_anchor()
 	if anchor_id.is_empty():
 		return {"kind":"NONE","current_anchor":state.current_anchor}
@@ -36,7 +45,7 @@ func inspect_nearby(context: Dictionary = {}) -> Dictionary:
 	if region_host.current_region_world.is_portal(state.current_anchor, anchor_id):
 		return {"kind":"BLOCKED","from":state.current_anchor,"to":anchor_id,
 			"reason":"transit destination requires its entrance portal"}
-	return _preview_target(anchor_id, context)
+	return _preview_target(anchor_id, effective_context)
 
 func _preview_target(anchor_id: String, context: Dictionary) -> Dictionary:
 	var graph: Dictionary = TraversalService.load_graph()
@@ -82,7 +91,7 @@ func enter_nearby_anchor(selected_route: String = "", context: Dictionary = {}) 
 	var target := str(nearby.get("to", ""))
 	if target.is_empty():
 		return {"error":"nearby anchor target missing"}
-	var plan: Dictionary = runtime.world_runtime.travel_to_anchor(target, selected_route, context)
+	var plan: Dictionary = runtime.world_runtime.travel_to_anchor(target, selected_route, _effective_context(context))
 	if plan.has("error"):
 		return plan
 	if region_host.current_region_world.is_portal(str(plan.get("from", "")), target):
