@@ -103,6 +103,18 @@ func _label(pos: Vector2, value: String, size: int = 18) -> void:
 		return
 	draw_string(ThemeDB.fallback_font, pos, value, HORIZONTAL_ALIGNMENT_LEFT, -1.0, size, C_LABEL)
 
+func _path_map(micro_region: Dictionary) -> Dictionary:
+	var result: Dictionary = {}
+	for raw_path in micro_region.get("physical_paths", []):
+		var source: String = str(raw_path.get("from", ""))
+		var destination: String = str(raw_path.get("to", ""))
+		var points: PackedVector2Array = _points(raw_path.get("points", []))
+		if source.is_empty() or destination.is_empty() or points.size() < 2:
+			continue
+		var key: String = source + ":" + destination if source < destination else destination + ":" + source
+		result[key] = {"from":source, "to":destination, "points":points}
+	return result
+
 func _region_graph(graph: Dictionary) -> Dictionary:
 	for region in graph.get("regions", []):
 		if str(region.get("id", "")) == "01":
@@ -129,6 +141,8 @@ func _draw() -> void:
 	draw_rect(bounds, Color("#ead9ad"), false, 8.0)
 
 	var graph_region: Dictionary = _region_graph(graph)
+	var micro_region: Dictionary = micro.get("regions", {}).get("01", {})
+	var paths: Dictionary = _path_map(micro_region)
 	if show_walkable:
 		var seen: Dictionary = {}
 		for edge in graph_region.get("edges", []):
@@ -142,13 +156,19 @@ func _draw() -> void:
 			if seen.has(key):
 				continue
 			seen[key] = true
-			var a_raw: Array = anchors[source]
-			var b_raw: Array = anchors[destination]
-			var a := Vector2(float(a_raw[0]), float(a_raw[1]))
-			var b := Vector2(float(b_raw[0]), float(b_raw[1]))
-			draw_colored_polygon(_corridor(a, b, 96.0), C_ROUTE)
+			var route_points := PackedVector2Array()
+			if paths.has(key):
+				route_points = paths[key].get("points", PackedVector2Array())
+			else:
+				var a_raw: Array = anchors[source]
+				var b_raw: Array = anchors[destination]
+				route_points = PackedVector2Array([
+					Vector2(float(a_raw[0]), float(a_raw[1])),
+					Vector2(float(b_raw[0]), float(b_raw[1]))
+				])
+			for i in range(route_points.size() - 1):
+				draw_colored_polygon(_corridor(route_points[i], route_points[i + 1], 96.0), C_ROUTE)
 
-		var micro_region: Dictionary = micro.get("regions", {}).get("01", {})
 		for zone in micro_region.get("zones", []):
 			var polygon := _points(zone.get("polygon", []))
 			if polygon.size() >= 3:
