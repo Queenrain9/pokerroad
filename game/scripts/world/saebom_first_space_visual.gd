@@ -157,18 +157,19 @@ func _marker(position: Vector2) -> Node2D:
 
 func _build_backdrop() -> void:
 	_rect(Vector2(1800,950), Vector2(3600,1900), C_SKY, -40)
-	# distant river / haze band
-	_rect(Vector2(1800,470), Vector2(3600,190), Color("#70898e"), -38)
+	# distant river / haze band. These sit high in the initial camera but remain
+	# inside the world coordinates, so they read as a true background layer.
+	_rect(Vector2(1800,790), Vector2(3600,210), Color("#70898e"), -38)
 	# distant city silhouette around the canonical P4 tower direction
-	for x in range(60, 1660, 92):
-		var h := 65.0 + float((x * 37) % 130)
-		_rect(Vector2(float(x), 420.0 - h * 0.5), Vector2(58,h), C_FAR, -35)
+	for x in range(40, 1680, 92):
+		var h: float = 70.0 + float((x * 37) % 150)
+		_rect(Vector2(float(x), 815.0 - h * 0.5), Vector2(58,h), C_FAR, -35)
 	# distant tower landmark, intentionally schematic
-	_rect(Vector2(1480,270), Vector2(88,280), Color("#344b55"), -34)
-	_poly([Vector2(1436,132),Vector2(1480,66),Vector2(1524,132)], Color("#344b55"), -34)
-	_circle(Vector2(1480,196), 15, C_GOLD, -33, self, 4)
+	_rect(Vector2(1480,690), Vector2(88,300), Color("#344b55"), -34)
+	_poly([Vector2(1436,548),Vector2(1480,485),Vector2(1524,548)], Color("#344b55"), -34)
+	_circle(Vector2(1480,625), 15, C_GOLD, -33, self, 4)
 	# hills
-	_poly([Vector2(0,360),Vector2(260,260),Vector2(520,348),Vector2(790,220),Vector2(1040,335),Vector2(1280,245),Vector2(1620,345),Vector2(1620,520),Vector2(0,520)], Color("#48646a"), -36)
+	_poly([Vector2(0,790),Vector2(260,690),Vector2(520,778),Vector2(790,650),Vector2(1040,765),Vector2(1280,675),Vector2(1620,775),Vector2(1620,900),Vector2(0,900)], Color("#48646a"), -36)
 
 func _build_first_space() -> void:
 	var p0: Vector2 = region_world.anchor_position("P0")
