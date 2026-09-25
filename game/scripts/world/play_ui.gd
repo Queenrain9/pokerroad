@@ -131,6 +131,12 @@ func _refresh() -> void:
 	var mode: String = root.runtime.mode
 	panel.visible = mode != "WORLD"
 	if mode == "DIALOGUE":
+		if not root.runtime.pending_paid_event.is_empty():
+			var pending: Dictionary = root.runtime.pending_paid_event
+			_label("공식 경기 참가비 " + str(pending.get("fee", 0)) + "칩을 지불하고 참가할까요?")
+			_button("참가비 지불하고 입장", _confirm_paid_event)
+			_button("이번엔 참가하지 않기", _cancel_paid_event)
+			return
 		var view: Dictionary = root.runtime.scene_runner.view_model()
 		_label(str(view.get("scene_id", "")) + "  " + str(view.get("target", "")))
 		if view.get("completed", false):
@@ -223,6 +229,16 @@ func _choose(interaction: String, option: String) -> void:
 	message = str(result.get("error", ""))
 	if root.runtime.mode == "WORLD" and root.runtime.scene_runner.ready_to_complete():
 		_commit()
+	_refresh()
+
+func _confirm_paid_event() -> void:
+	var result: Dictionary = root.runtime.confirm_pending_event()
+	message = str(result.get("error", ""))
+	_refresh()
+
+func _cancel_paid_event() -> void:
+	var result: Dictionary = root.runtime.cancel_pending_event()
+	message = str(result.get("error", ""))
 	_refresh()
 
 func _finish_observation() -> void:
