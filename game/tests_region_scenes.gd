@@ -40,8 +40,12 @@ func _initialize() -> void:
 		must(int(mounted.get("route_edge_count", 0)) > 0, region_id + " has traversable route edges")
 		if region_id == "01":
 			must(mounted.get("visual_asset_status", "") == "FIRST_SPACE_3_4_PROTOTYPE", "01 reports first-space visual prototype honestly")
+			must(mounted.get("micro_navigation_status", "") == "LOCAL_WALKABLE_ZONES_ACTIVE", "01 reports active local micro-navigation")
+			must(int(mounted.get("micro_navigation_zone_count", 0)) == 12, "01 exposes the authored 12 local walkable zones")
 		else:
 			must(mounted.get("visual_asset_status", "") == "NOT_STARTED", region_id + " does not claim visual assets")
+			must(mounted.get("micro_navigation_status", "") == "NONE", region_id + " does not claim unauthored local micro-navigation")
+			must(int(mounted.get("micro_navigation_zone_count", 0)) == 0, region_id + " has no unauthored local zones")
 		var marker_count := 0
 		var route_count := 0
 		var visual_count := 0
