@@ -2,7 +2,7 @@ from pathlib import Path
 ROOT=Path(__file__).parents[2]
 def test_no_disposable_poker_table_as_world_entrypoint():
     main=(ROOT/'game/scenes/main.tscn').read_text(encoding='utf-8');root=(ROOT/'game/scripts/world/game_root.gd').read_text(encoding='utf-8')
-    assert 'PokerTable' not in main and 'PokerRoadGameRoot' in main and 'GameState.validate_world_manifest' in root
+    assert 'PokerTable' not in main and 'PokerRoadGameRoot' in main and 'validate_world_manifest()' in root and 'Runtime.new(state)' in root
 def test_persistent_main_cursor_never_skips_original_scene_import():
     world=(ROOT/'game/scripts/services/game_state.gd').read_text(encoding='utf-8')
     assert 'scene_is_implemented(scene_id)' in world and 'if scene_id != main_cursor or not scene_is_implemented(scene_id):' in world and 'rewards_paid.has(reward_id)' in world
