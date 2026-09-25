@@ -16,10 +16,11 @@ Godot mobile poker RPG production repository.
 - Production runtime bindings authored against canonical source: **4/88** (`01-M01`, `01-M02`, `05-M03`, `08-M03`). These are semantic bindings, not claims that physical scenes are finished.
 - Production region PackedScene containers: **8/8 registered and mountable** from the actual main entrypoint.
 - P5 spatial baseline: **8/8 region bounds + 60/60 canonical anchor coordinates**, shared CharacterBody2D player runtime, Camera2D limits/smoothing, nonvisual interaction markers, and mobile virtual-move input API are connected to the real main boot.
+- P5 world interaction baseline: physical proximity is now required before anchor travel or source-scene opening; direct-route validation, explicit forest/tide/bus/city gate choices, safe-return behavior and no-teleport guards are wired through the existing TraversalService.
 - Final physical environment geometry/collision/art: **0/8 complete**. The committed spatial layer is a navigation engineering baseline, not a claim that finished maps or visuals exist.
 - Playable fully implemented story scenes: **0/88**. Source capture/runtime binding is not the same as physical scene implementation.
-- GitHub Core QA: **101 passed** + exact **2,598,960** five-card exhaustive classification.
-- Godot 4.4.1 Linux headless: production main boot PASS; core **31**, P3 regression **48**, P4 system-contract **37**, P5 world-runtime **56**, eight-region scene **186**, spatial-runtime **153** checks PASS.
+- GitHub Core QA: **104 passed** + exact **2,598,960** five-card exhaustive classification.
+- Godot 4.4.1 Linux headless: production main boot PASS; core **31**, P3 regression **48**, P4 system-contract **37**, P5 world-runtime **56**, eight-region scene **186**, spatial-runtime **153**, world-interaction **28** checks PASS.
 - **Windows/iPhone/Android: NOT TESTED**. Final map geometry/collision, final art, final per-NPC AI tuning, complete 88-scene bindings and mobile builds remain incomplete.
 
 The canonical script files live under `source/original_notion_v4_2`. Runtime bindings live in `game/data/scene_bindings_v1.json` and are rejected if the stored source hash no longer matches the canonical imported scene.
