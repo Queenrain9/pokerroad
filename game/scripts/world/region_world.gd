@@ -10,6 +10,7 @@ var spatial_layout: Dictionary = {}
 var anchor_markers: Dictionary = {}
 var route_geometry: RouteGeometry
 var portal_markers: Dictionary = {}
+var level_geometry_collision_count := 0
 var visual_layer
 
 func initialize_from_state(p_state) -> Dictionary:
@@ -38,6 +39,7 @@ func initialize_from_state(p_state) -> Dictionary:
 		return {"error":"level geometry invalid: " + "; ".join(level_errors)}
 	_build_anchor_markers()
 	_build_route_geometry()
+	_build_level_geometry_collisions()
 	if region_id == "01":
 		var Visual = preload("res://scripts/world/saebom_first_space_visual.gd")
 		visual_layer = Visual.new()
@@ -97,9 +99,10 @@ func descriptor() -> Dictionary:
 		"level_building_count":int(level_summary.get("building_count", 0)),
 		"level_interaction_slot_count":int(level_summary.get("interaction_slot_count", 0)),
 		"level_occlusion_candidate_count":int(level_summary.get("occlusion_candidate_count", 0)),
+		"level_collision_count":level_geometry_collision_count,
 		"route_edge_count":route_geometry.edges.size(),
 		"portal_count":portal_markers.size(),
-		"visual_asset_status":"FIRST_SPACE_3_4_PROTOTYPE" if region_id == "01" else "NOT_STARTED"
+		"visual_asset_status":"SAEBOM_DATA_DRIVEN_3_4_BLOCKOUT" if region_id == "01" else "NOT_STARTED"
 	}
 
 func anchor_ids() -> Array[String]:
@@ -160,6 +163,35 @@ func _build_anchor_markers() -> void:
 		marker.set_meta("runtime_role", "NON_VISUAL_INTERACTION_ANCHOR")
 		add_child(marker)
 		anchor_markers[anchor_id] = marker
+
+func _build_level_geometry_collisions() -> void:
+	level_geometry_collision_count = 0
+	var region: Dictionary = LevelGeometryRegistry.region_geometry(region_id)
+	if region.is_empty():
+		return
+	var physical := Node2D.new()
+	physical.name = "PhysicalLevelGeometry"
+	physical.set_meta("runtime_role", "VALIDATED_BUILDING_FOOTPRINT_COLLISION")
+	add_child(physical)
+	for record in region.get("building_footprints", []):
+		var raw = record.get("polygon", [])
+		if typeof(raw) != TYPE_ARRAY or raw.size() < 3:
+			continue
+		var points := PackedVector2Array()
+		for item in raw:
+			if typeof(item) == TYPE_ARRAY and item.size() == 2:
+				points.append(Vector2(float(item[0]), float(item[1])))
+		if points.size() < 3:
+			continue
+		var body := StaticBody2D.new()
+		body.name = "BuildingCollision_" + str(record.get("id", ""))
+		body.set_meta("footprint_id", str(record.get("id", "")))
+		body.set_meta("runtime_role", "BUILDING_FOOTPRINT_COLLISION")
+		var polygon := CollisionPolygon2D.new()
+		polygon.polygon = points
+		body.add_child(polygon)
+		physical.add_child(body)
+		level_geometry_collision_count += 1
 
 func _build_route_geometry() -> void:
 	var physical: Node2D = Node2D.new()
