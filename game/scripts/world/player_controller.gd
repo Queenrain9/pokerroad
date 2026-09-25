@@ -56,6 +56,7 @@ func bind_region(region_world, p_state) -> Dictionary:
 		return {"error":"current anchor has no physical position"}
 	global_position = spawn
 	velocity = Vector2.ZERO
+	_update_depth_sort()
 	return {"position":global_position,"anchor":state.current_anchor}
 
 func set_virtual_move_vector(value: Vector2) -> void:
@@ -93,3 +94,12 @@ func _physics_process(_delta: float) -> void:
 		var r: float = float(SpatialRegistry.player_metrics().get("collision_radius", 18))
 		global_position.x = clampf(global_position.x, world_bounds.position.x + r, world_bounds.end.x - r)
 		global_position.y = clampf(global_position.y, world_bounds.position.y + r, world_bounds.end.y - r)
+	_update_depth_sort()
+
+func _update_depth_sort() -> void:
+	if active_region != null and str(active_region.region_id) == "01":
+		# Region 01 blockout uses the player's world Y as the depth key so
+		# validated building/prop masses can sort in front of or behind them.
+		z_index = clampi(int(global_position.y), -4096, 4096)
+	else:
+		z_index = 20
