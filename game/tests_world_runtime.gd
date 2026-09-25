@@ -5,6 +5,7 @@ const BindingStore = preload("res://scripts/services/scene_binding_store.gd")
 
 var checked := 0
 var errors: Array[String] = []
+var state
 var gs
 
 func must(ok: bool, label: String) -> void:
