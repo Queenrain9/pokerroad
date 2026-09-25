@@ -1,0 +1,323 @@
+{
+  "schema_version": 1,
+  "authority": "Region 01 physical micro-navigation engineering blockout. Story anchors and traversal graph remain canonical; these zones only expand local walkable space around them.",
+  "status": "PROVISIONAL_LEVEL_GEOMETRY_NOT_FINAL_ART",
+  "rules": {
+    "player_collision_radius": 18,
+    "interaction_radius": 82,
+    "canonical_corridor_half_width": 96,
+    "canonical_anchor_plaza_radius": 138,
+    "story_anchor_positions_unchanged": true,
+    "zones_do_not_complete_scenes": true,
+    "zones_do_not_change_current_anchor": true,
+    "final_building_footprints_not_defined": true
+  },
+  "regions": {
+    "01": {
+      "name": "새봄동",
+      "zones": [
+        {
+          "id": "P0_START_COURT",
+          "owners": [
+            "P0"
+          ],
+          "purpose": "아파트 밖 시작 골목·게시판·첫 자유 이동",
+          "polygon": [
+            [
+              180,
+              990
+            ],
+            [
+              540,
+              990
+            ],
+            [
+              540,
+              1235
+            ],
+            [
+              180,
+              1235
+            ]
+          ]
+        },
+        {
+          "id": "P0_PLAYGROUND",
+          "owners": [
+            "P0"
+          ],
+          "purpose": "원고의 놀이터·동네 자유 산책 공간",
+          "polygon": [
+            [
+              160,
+              1220
+            ],
+            [
+              610,
+              1220
+            ],
+            [
+              610,
+              1510
+            ],
+            [
+              160,
+              1510
+            ]
+          ]
+        },
+        {
+          "id": "P0_PLAYGROUND_NECK",
+          "owners": [
+            "P0"
+          ],
+          "purpose": "시작 골목과 놀이터를 잇는 생활 골목",
+          "polygon": [
+            [
+              260,
+              1160
+            ],
+            [
+              470,
+              1160
+            ],
+            [
+              470,
+              1310
+            ],
+            [
+              260,
+              1310
+            ]
+          ]
+        },
+        {
+          "id": "P0_ENDHOUSE_LANE",
+          "owners": [
+            "P0"
+          ],
+          "purpose": "01-S02 김밥 배달의 아파트 끝집 P0-2 접근 골목",
+          "polygon": [
+            [
+              40,
+              1300
+            ],
+            [
+              240,
+              1300
+            ],
+            [
+              240,
+              1540
+            ],
+            [
+              40,
+              1540
+            ]
+          ]
+        },
+        {
+          "id": "P1_SUPER_COURT",
+          "owners": [
+            "P1"
+          ],
+          "purpose": "슈퍼 앞 통행·복례 평상·주민·무료 연습판 접근",
+          "polygon": [
+            [
+              620,
+              900
+            ],
+            [
+              1050,
+              900
+            ],
+            [
+              1050,
+              1190
+            ],
+            [
+              620,
+              1190
+            ]
+          ]
+        },
+        {
+          "id": "P1_RESIDENT_POCKET",
+          "owners": [
+            "P1"
+          ],
+          "purpose": "슈퍼 주변 주민과 손님이 머무는 생활 포켓",
+          "polygon": [
+            [
+              690,
+              1160
+            ],
+            [
+              1020,
+              1160
+            ],
+            [
+              1020,
+              1300
+            ],
+            [
+              690,
+              1300
+            ]
+          ]
+        },
+        {
+          "id": "P2_SHOP_COURT",
+          "owners": [
+            "P2"
+          ],
+          "purpose": "문방구와 분식집 개별 접근·보미 일감·사이드 조사",
+          "polygon": [
+            [
+              1080,
+              830
+            ],
+            [
+              1600,
+              830
+            ],
+            [
+              1600,
+              1140
+            ],
+            [
+              1080,
+              1140
+            ]
+          ]
+        },
+        {
+          "id": "P3_EVENT_FRONT",
+          "owners": [
+            "P3"
+          ],
+          "purpose": "오락실 정면·접수·등록줄·공개전 천막 활동 구역",
+          "polygon": [
+            [
+              1660,
+              760
+            ],
+            [
+              2140,
+              760
+            ],
+            [
+              2140,
+              1120
+            ],
+            [
+              1660,
+              1120
+            ]
+          ]
+        },
+        {
+          "id": "P3_BACK_ALLEY",
+          "owners": [
+            "P3"
+          ],
+          "purpose": "01-M05 이안 뒷골목·P4 선택형 진입 접근",
+          "polygon": [
+            [
+              1880,
+              650
+            ],
+            [
+              2180,
+              650
+            ],
+            [
+              2180,
+              870
+            ],
+            [
+              1880,
+              870
+            ]
+          ]
+        },
+        {
+          "id": "P4_TOWER_PLAZA",
+          "owners": [
+            "P4"
+          ],
+          "purpose": "별도 대형 카지노 외부 입구·무료 로비 진입 전 공간",
+          "polygon": [
+            [
+              2280,
+              400
+            ],
+            [
+              2780,
+              400
+            ],
+            [
+              2780,
+              760
+            ],
+            [
+              2280,
+              760
+            ]
+          ]
+        },
+        {
+          "id": "P5_APPROACH",
+          "owners": [
+            "P3",
+            "P5"
+          ],
+          "purpose": "P3→P5 공공 이동로 주변 편의점·강변 홍보 접근 여유 공간",
+          "polygon": [
+            [
+              2800,
+              790
+            ],
+            [
+              3150,
+              790
+            ],
+            [
+              3150,
+              1060
+            ],
+            [
+              2800,
+              1060
+            ]
+          ]
+        },
+        {
+          "id": "P5_BUS_PLAZA",
+          "owners": [
+            "P5"
+          ],
+          "purpose": "다온·정류장·강변행 정기 버스 실제 승차 공간",
+          "polygon": [
+            [
+              3000,
+              760
+            ],
+            [
+              3520,
+              760
+            ],
+            [
+              3520,
+              1120
+            ],
+            [
+              3000,
+              1120
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}
