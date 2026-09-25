@@ -5,12 +5,15 @@ signal world_changed
 
 const MANIFEST_PATH = "res://data/world_manifest.json"
 const SAVE_PATH = "user://poker_road_save_v1.json"
-const SAVE_SCHEMA = 1\nconst SESSION_SAVE_PATH = "user://poker_road_save_v2.json"
+const SAVE_SCHEMA = 1
+const SESSION_SAVE_PATH = "user://poker_road_save_v2.json"
 
 var manifest: Dictionary = {}
 var main_cursor := "01-M01"
 var current_region := "01"
-var current_anchor := "P0"\nvar world_layer := 0\nvar return_anchor := "P0"
+var current_anchor := "P0"
+var world_layer := 0
+var return_anchor := "P0"
 var unlocked_regions: Dictionary = {"01": true}
 var finished_main: Dictionary = {}
 var finished_optional: Dictionary = {}

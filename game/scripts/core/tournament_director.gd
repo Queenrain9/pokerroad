@@ -13,7 +13,8 @@ var dealer := 0
 var active_hand: HoldemHand
 var finished := false
 var final_ranks: Dictionary = {}
-var hand_results: Array[Dictionary] = []\nvar initial_start_stack := 0
+var hand_results: Array[Dictionary] = []
+var initial_start_stack: int = 0
 
 func _init(p_event_id: String, p_names: Array, start_stack: int, p_sb: int, p_bb: int, p_blind_level_hands: int = 6) -> void:
 	event_id = p_event_id; initial_sb=p_sb; initial_bb=p_bb; blind_level_hands=maxi(p_blind_level_hands,1); initial_start_stack=start_stack
