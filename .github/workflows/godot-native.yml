@@ -55,3 +55,7 @@ jobs:
         run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_first_eight_e2e.gd
       - name: Run first-eight tournament and save E2E
         run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_first_eight_poker.gd
+      - name: Run main 09-16 physical story E2E
+        run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_main_09_16_e2e.gd
+      - name: Run main 09-16 tournament and save E2E
+        run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_main_09_16_poker.gd
