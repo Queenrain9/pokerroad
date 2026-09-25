@@ -1,0 +1,996 @@
+{
+  "schema_version": 1,
+  "authority": "Region 01 engineering blockout for safe 3/4 level construction. Canonical story anchors/traversal and micro-navigation remain authoritative; this file fixes buildable footprints, interaction slots and visual occlusion candidates without claiming final art.",
+  "status": "PROVISIONAL_BLOCKOUT_GEOMETRY_VALIDATED_NOT_FINAL_ART",
+  "rules": {
+    "player_collision_radius": 18,
+    "interaction_radius": 82,
+    "minimum_walkable_clearance": 28,
+    "portal_clearance_radius": 100,
+    "building_footprints_must_not_overlap_walkable": true,
+    "building_footprints_must_respect_clearance": true,
+    "interaction_slots_do_not_change_story_state": true,
+    "interaction_slots_do_not_change_current_anchor": true,
+    "occlusion_zones_have_no_collision": true,
+    "final_art_dimensions_not_claimed": true
+  },
+  "regions": {
+    "01": {
+      "name": "새봄동",
+      "no_build_rules": [
+        {
+          "id": "WALKABLE_CLEARANCE",
+          "kind": "DERIVED_WALKABLE_BUFFER",
+          "sources": [
+            "CANONICAL_ANCHOR_PLAZAS",
+            "CANONICAL_NON_PORTAL_CORRIDORS",
+            "MICRO_NAVIGATION_ZONES"
+          ],
+          "clearance": 28
+        },
+        {
+          "id": "P3_P4_PORTAL_CLEARANCE",
+          "kind": "PORTAL_RADIUS",
+          "source_anchor": "P3",
+          "destination_anchor": "P4",
+          "radius": 100
+        }
+      ],
+      "building_footprints": [
+        {
+          "id": "B_APARTMENT_START",
+          "kind": "APARTMENT",
+          "label": "새봄아파트 시작동",
+          "polygon": [
+            [
+              140,
+              650
+            ],
+            [
+              520,
+              650
+            ],
+            [
+              520,
+              940
+            ],
+            [
+              140,
+              940
+            ]
+          ]
+        },
+        {
+          "id": "B_ENDHOUSE_GROUP",
+          "kind": "HOUSING",
+          "label": "아파트 끝집·주택군",
+          "polygon": [
+            [
+              5,
+              1570
+            ],
+            [
+              235,
+              1570
+            ],
+            [
+              235,
+              1860
+            ],
+            [
+              5,
+              1860
+            ]
+          ]
+        },
+        {
+          "id": "B_SUPER",
+          "kind": "SHOP",
+          "label": "새봄 슈퍼",
+          "polygon": [
+            [
+              650,
+              600
+            ],
+            [
+              1020,
+              600
+            ],
+            [
+              1020,
+              860
+            ],
+            [
+              650,
+              860
+            ]
+          ]
+        },
+        {
+          "id": "B_STATIONERY",
+          "kind": "SHOP",
+          "label": "문방구",
+          "polygon": [
+            [
+              1090,
+              500
+            ],
+            [
+              1315,
+              500
+            ],
+            [
+              1315,
+              785
+            ],
+            [
+              1090,
+              785
+            ]
+          ]
+        },
+        {
+          "id": "B_SNACK_BAR",
+          "kind": "SHOP",
+          "label": "분식집",
+          "polygon": [
+            [
+              1370,
+              500
+            ],
+            [
+              1595,
+              500
+            ],
+            [
+              1595,
+              785
+            ],
+            [
+              1370,
+              785
+            ]
+          ]
+        },
+        {
+          "id": "B_ARCADE",
+          "kind": "ARCADE",
+          "label": "오락실·예선 운영 건물",
+          "polygon": [
+            [
+              1690,
+              1160
+            ],
+            [
+              2070,
+              1160
+            ],
+            [
+              2070,
+              1430
+            ],
+            [
+              1690,
+              1430
+            ]
+          ]
+        },
+        {
+          "id": "B_TOWER",
+          "kind": "CASINO_TOWER",
+          "label": "새봄 카지노 타워",
+          "polygon": [
+            [
+              2300,
+              60
+            ],
+            [
+              2760,
+              60
+            ],
+            [
+              2760,
+              350
+            ],
+            [
+              2300,
+              350
+            ]
+          ]
+        },
+        {
+          "id": "B_CONVENIENCE",
+          "kind": "SHOP",
+          "label": "강변 편의점",
+          "polygon": [
+            [
+              2810,
+              520
+            ],
+            [
+              3050,
+              520
+            ],
+            [
+              3050,
+              730
+            ],
+            [
+              2810,
+              730
+            ]
+          ]
+        }
+      ],
+      "prop_function_zones": [
+        {
+          "id": "F_PLAYGROUND",
+          "label": "놀이터",
+          "owner_anchor": "P0",
+          "polygon": [
+            [
+              280,
+              1280
+            ],
+            [
+              560,
+              1280
+            ],
+            [
+              560,
+              1480
+            ],
+            [
+              280,
+              1480
+            ]
+          ]
+        },
+        {
+          "id": "F_SUPER_PLATFORM",
+          "label": "복례 평상",
+          "owner_anchor": "P1",
+          "polygon": [
+            [
+              835,
+              915
+            ],
+            [
+              970,
+              915
+            ],
+            [
+              970,
+              985
+            ],
+            [
+              835,
+              985
+            ]
+          ]
+        },
+        {
+          "id": "F_PUBLIC_MATCH_TENT",
+          "label": "공개전 천막",
+          "owner_anchor": "P3",
+          "polygon": [
+            [
+              1910,
+              975
+            ],
+            [
+              2075,
+              975
+            ],
+            [
+              2075,
+              1080
+            ],
+            [
+              1910,
+              1080
+            ]
+          ]
+        },
+        {
+          "id": "F_BUS_SHELTER",
+          "label": "강변행 버스 정류장",
+          "owner_anchor": "P5",
+          "polygon": [
+            [
+              3190,
+              790
+            ],
+            [
+              3400,
+              790
+            ],
+            [
+              3400,
+              875
+            ],
+            [
+              3190,
+              875
+            ]
+          ]
+        }
+      ],
+      "interaction_slots": [
+        {
+          "id": "I_M01_BOARD",
+          "anchor_id": "P0",
+          "scene_ids": [
+            "01-M01"
+          ],
+          "target_kind": "PROP",
+          "target": "골목 게시판",
+          "stand_zone": [
+            [
+              420,
+              1010
+            ],
+            [
+              465,
+              1010
+            ],
+            [
+              465,
+              1045
+            ],
+            [
+              420,
+              1045
+            ]
+          ],
+          "approach_zone": [
+            [
+              380,
+              1050
+            ],
+            [
+              500,
+              1050
+            ],
+            [
+              500,
+              1140
+            ],
+            [
+              380,
+              1140
+            ]
+          ]
+        },
+        {
+          "id": "I_M01_GUIDE_RESIDENT",
+          "anchor_id": "P0",
+          "scene_ids": [
+            "01-M01"
+          ],
+          "target_kind": "NPC",
+          "target": "슈퍼 손님·안내 주민",
+          "stand_zone": [
+            [
+              500,
+              1010
+            ],
+            [
+              535,
+              1010
+            ],
+            [
+              535,
+              1050
+            ],
+            [
+              500,
+              1050
+            ]
+          ],
+          "approach_zone": [
+            [
+              450,
+              1060
+            ],
+            [
+              540,
+              1060
+            ],
+            [
+              540,
+              1160
+            ],
+            [
+              450,
+              1160
+            ]
+          ]
+        },
+        {
+          "id": "I_M02_BOKRYE",
+          "anchor_id": "P1",
+          "scene_ids": [
+            "01-M02",
+            "01-R02"
+          ],
+          "target_kind": "NPC",
+          "target": "복례",
+          "stand_zone": [
+            [
+              860,
+              930
+            ],
+            [
+              905,
+              930
+            ],
+            [
+              905,
+              975
+            ],
+            [
+              860,
+              975
+            ]
+          ],
+          "approach_zone": [
+            [
+              810,
+              990
+            ],
+            [
+              950,
+              990
+            ],
+            [
+              950,
+              1080
+            ],
+            [
+              810,
+              1080
+            ]
+          ]
+        },
+        {
+          "id": "I_S02_ENDHOUSE",
+          "anchor_id": "P0",
+          "scene_ids": [
+            "01-S02"
+          ],
+          "target_kind": "FACADE",
+          "target": "아파트 끝집 P0-2",
+          "stand_zone": [
+            [
+              75,
+              1545
+            ],
+            [
+              135,
+              1545
+            ],
+            [
+              135,
+              1570
+            ],
+            [
+              75,
+              1570
+            ]
+          ],
+          "approach_zone": [
+            [
+              70,
+              1450
+            ],
+            [
+              200,
+              1450
+            ],
+            [
+              200,
+              1540
+            ],
+            [
+              70,
+              1540
+            ]
+          ]
+        },
+        {
+          "id": "I_S01_STATIONERY",
+          "anchor_id": "P2",
+          "scene_ids": [
+            "01-S01"
+          ],
+          "target_kind": "FACADE",
+          "target": "문방구 접수표 조사",
+          "stand_zone": [
+            [
+              1160,
+              785
+            ],
+            [
+              1225,
+              785
+            ],
+            [
+              1225,
+              810
+            ],
+            [
+              1160,
+              810
+            ]
+          ],
+          "approach_zone": [
+            [
+              1130,
+              830
+            ],
+            [
+              1260,
+              830
+            ],
+            [
+              1260,
+              910
+            ],
+            [
+              1130,
+              910
+            ]
+          ]
+        },
+        {
+          "id": "I_S02_BOMI",
+          "anchor_id": "P2",
+          "scene_ids": [
+            "01-S02",
+            "01-R02"
+          ],
+          "target_kind": "NPC",
+          "target": "보미·분식집",
+          "stand_zone": [
+            [
+              1430,
+              840
+            ],
+            [
+              1495,
+              840
+            ],
+            [
+              1495,
+              885
+            ],
+            [
+              1430,
+              885
+            ]
+          ],
+          "approach_zone": [
+            [
+              1390,
+              900
+            ],
+            [
+              1530,
+              900
+            ],
+            [
+              1530,
+              980
+            ],
+            [
+              1390,
+              980
+            ]
+          ]
+        },
+        {
+          "id": "I_M03_HAECHAN",
+          "anchor_id": "P3",
+          "scene_ids": [
+            "01-M03",
+            "01-S01",
+            "01-R01"
+          ],
+          "target_kind": "NPC",
+          "target": "해찬·오락실 접수대",
+          "stand_zone": [
+            [
+              1780,
+              790
+            ],
+            [
+              1845,
+              790
+            ],
+            [
+              1845,
+              830
+            ],
+            [
+              1780,
+              830
+            ]
+          ],
+          "approach_zone": [
+            [
+              1740,
+              840
+            ],
+            [
+              1900,
+              840
+            ],
+            [
+              1900,
+              930
+            ],
+            [
+              1740,
+              930
+            ]
+          ]
+        },
+        {
+          "id": "I_M04_MATCH_TENT",
+          "anchor_id": "P3",
+          "scene_ids": [
+            "01-M04",
+            "01-R01"
+          ],
+          "target_kind": "PROP",
+          "target": "공개전 천막·결과판",
+          "stand_zone": [
+            [
+              1940,
+              1000
+            ],
+            [
+              2045,
+              1000
+            ],
+            [
+              2045,
+              1040
+            ],
+            [
+              1940,
+              1040
+            ]
+          ],
+          "approach_zone": [
+            [
+              1880,
+              920
+            ],
+            [
+              2100,
+              920
+            ],
+            [
+              2100,
+              990
+            ],
+            [
+              1880,
+              990
+            ]
+          ]
+        },
+        {
+          "id": "I_M05_IAN",
+          "anchor_id": "P3",
+          "scene_ids": [
+            "01-M05"
+          ],
+          "target_kind": "NPC",
+          "target": "이안·오락실 뒷골목",
+          "stand_zone": [
+            [
+              2040,
+              690
+            ],
+            [
+              2100,
+              690
+            ],
+            [
+              2100,
+              735
+            ],
+            [
+              2040,
+              735
+            ]
+          ],
+          "approach_zone": [
+            [
+              1960,
+              750
+            ],
+            [
+              2160,
+              750
+            ],
+            [
+              2160,
+              830
+            ],
+            [
+              1960,
+              830
+            ]
+          ]
+        },
+        {
+          "id": "I_M06_TOWER_STAFF",
+          "anchor_id": "P4",
+          "scene_ids": [
+            "01-M06",
+            "01-T01"
+          ],
+          "target_kind": "NPC",
+          "target": "타워 직원·카지노 입구",
+          "stand_zone": [
+            [
+              2480,
+              375
+            ],
+            [
+              2560,
+              375
+            ],
+            [
+              2560,
+              400
+            ],
+            [
+              2480,
+              400
+            ]
+          ],
+          "approach_zone": [
+            [
+              2420,
+              430
+            ],
+            [
+              2620,
+              430
+            ],
+            [
+              2620,
+              520
+            ],
+            [
+              2420,
+              520
+            ]
+          ]
+        },
+        {
+          "id": "I_M07_POSTER",
+          "anchor_id": "P5",
+          "scene_ids": [
+            "01-M07"
+          ],
+          "target_kind": "FACADE",
+          "target": "편의점·강변 홍보 포스터",
+          "stand_zone": [
+            [
+              2910,
+              735
+            ],
+            [
+              2980,
+              735
+            ],
+            [
+              2980,
+              760
+            ],
+            [
+              2910,
+              760
+            ]
+          ],
+          "approach_zone": [
+            [
+              2870,
+              790
+            ],
+            [
+              3030,
+              790
+            ],
+            [
+              3030,
+              870
+            ],
+            [
+              2870,
+              870
+            ]
+          ]
+        },
+        {
+          "id": "I_M07_DAON_BUS",
+          "anchor_id": "P5",
+          "scene_ids": [
+            "01-M07"
+          ],
+          "target_kind": "NPC",
+          "target": "다온·강변행 정기 버스",
+          "stand_zone": [
+            [
+              3230,
+              800
+            ],
+            [
+              3300,
+              800
+            ],
+            [
+              3300,
+              850
+            ],
+            [
+              3230,
+              850
+            ]
+          ],
+          "approach_zone": [
+            [
+              3160,
+              880
+            ],
+            [
+              3360,
+              880
+            ],
+            [
+              3360,
+              980
+            ],
+            [
+              3160,
+              980
+            ]
+          ]
+        }
+      ],
+      "occlusion_candidates": [
+        {
+          "id": "O_P0_FOREGROUND_HEDGE",
+          "owner_anchor": "P0",
+          "kind": "FOREGROUND_PROP",
+          "polygon": [
+            [
+              170,
+              1470
+            ],
+            [
+              600,
+              1470
+            ],
+            [
+              600,
+              1545
+            ],
+            [
+              170,
+              1545
+            ]
+          ],
+          "collision": false,
+          "fade_when_player_behind": true
+        },
+        {
+          "id": "O_P1_FOREGROUND_WALL",
+          "owner_anchor": "P1",
+          "kind": "FOREGROUND_WALL",
+          "polygon": [
+            [
+              680,
+              1260
+            ],
+            [
+              1030,
+              1260
+            ],
+            [
+              1030,
+              1325
+            ],
+            [
+              680,
+              1325
+            ]
+          ],
+          "collision": false,
+          "fade_when_player_behind": true
+        },
+        {
+          "id": "O_P2_SHOP_AWNINGS",
+          "owner_anchor": "P2",
+          "kind": "AWNING",
+          "polygon": [
+            [
+              1100,
+              805
+            ],
+            [
+              1580,
+              805
+            ],
+            [
+              1580,
+              850
+            ],
+            [
+              1100,
+              850
+            ]
+          ],
+          "collision": false,
+          "fade_when_player_behind": true
+        },
+        {
+          "id": "O_P3_EVENT_FOREGROUND",
+          "owner_anchor": "P3",
+          "kind": "TENT_EDGE",
+          "polygon": [
+            [
+              1680,
+              1080
+            ],
+            [
+              2120,
+              1080
+            ],
+            [
+              2120,
+              1150
+            ],
+            [
+              1680,
+              1150
+            ]
+          ],
+          "collision": false,
+          "fade_when_player_behind": true
+        },
+        {
+          "id": "O_P5_BUS_CANOPY",
+          "owner_anchor": "P5",
+          "kind": "CANOPY",
+          "polygon": [
+            [
+              3170,
+              790
+            ],
+            [
+              3410,
+              790
+            ],
+            [
+              3410,
+              860
+            ],
+            [
+              3170,
+              860
+            ]
+          ],
+          "collision": false,
+          "fade_when_player_behind": true
+        }
+      ]
+    }
+  }
+}
