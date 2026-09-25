@@ -13,7 +13,7 @@ def test_eight_regions_have_safe_free_non_tower_logical_paths():
         assert region['public_exit_anchor'] in found,region['id']
 def test_station_late_night_bus_is_explicit_not_an_arbitrary_route_string():
     station=next(r for r in GRAPH['regions'] if r['id']=='05')
-    assert {e['to']:e['choices'] for e in station['edges'] if e['from']=='E3' and e['kind'] in ('LAST_TRAIN_ONLY','FREE_NIGHT_BUS')}=={'E4':['TAKE_LAST_TRAIN'],'E3B':['BOARD_FREE_NIGHT_BUS']}
+    assert {e['to']:e['choices'] for e in station['edges'] if e['from']=='E3' and e['kind'] in ('LAST_TRAIN_ONLY','FREE_NIGHT_BUS')}=={'E4':['TAKE_LAST_TRAIN','B_LINE_WALK'],'E3B':['BOARD_FREE_NIGHT_BUS']}
     ride=next(e for e in station['edges'] if e['from']=='E3B' and e['to']=='E4');assert ride['choices']==['RIDE_FREE_NIGHT_BUS_TO_EVENT'] and ride['fee']==0
 def test_p3_events_cover_separate_ian_broadcast_and_eunsol_without_forced_win():
     e=json.loads((ROOT/'game/data/event_catalog_dev.json').read_text(encoding='utf8'))['events'];assert len(e)==29 and len({v['event_id'] for v in e})==29
