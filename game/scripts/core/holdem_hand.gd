@@ -221,7 +221,14 @@ static func from_snapshot(snapshot: Dictionary):
 	restored.current_actor = int(snapshot.get("current_actor", -1))
 	restored.finished = bool(snapshot.get("finished", false))
 	restored.settlement = snapshot.get("settlement", {}).duplicate(true)
-	restored.history = snapshot.get("history", []).duplicate(true)
+	restored.history.clear()
+	var raw_history = snapshot.get("history", [])
+	if typeof(raw_history) != TYPE_ARRAY:
+		return null
+	for value in raw_history:
+		if typeof(value) != TYPE_DICTIONARY:
+			return null
+		restored.history.append(value.duplicate(true))
 	ints = []
 	for value in snapshot.get("dealt_seats", []): ints.append(int(value))
 	restored.dealt_seats = ints
