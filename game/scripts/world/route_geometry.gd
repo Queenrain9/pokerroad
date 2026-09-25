@@ -7,10 +7,12 @@ extends RefCounted
 const CORRIDOR_HALF_WIDTH = 96.0
 const ANCHOR_PLAZA_RADIUS = 138.0
 const PORTAL_OFFSET = 118.0
+const MICRO_NAV_PATH = "res://data/micro_navigation_v1.json"
 
 var region_id: String
 var edges: Array = []
 var portal_pairs: Dictionary = {}
+var local_walkable_zones: Array = []
 
 func _init(p_region_id: String) -> void:
 	region_id = p_region_id
@@ -22,6 +24,7 @@ func _init(p_region_id: String) -> void:
 	for edge in edges:
 		if bool(edge.get("requires_player_route_choice", false)):
 			portal_pairs[_pair_key(str(edge.get("from", "")), str(edge.get("to", "")))] = true
+	_load_local_walkable_zones()
 
 func _pair_key(a: String, b: String) -> String:
 	return a + ":" + b if a < b else b + ":" + a
@@ -65,11 +68,59 @@ func nearest_portal(source: String, position: Vector2, radius: float) -> String:
 			best_distance = distance
 	return best
 
+func local_zone_count() -> int:
+	return local_walkable_zones.size()
+
+func local_zone_ids_for(source: String) -> Array[String]:
+	var result: Array[String] = []
+	for zone in local_walkable_zones:
+		var owners: Array = zone.get("owners", [])
+		if owners.has(source):
+			result.append(str(zone.get("id", "")))
+	return result
+
+func _load_local_walkable_zones() -> void:
+	local_walkable_zones.clear()
+	if not FileAccess.file_exists(MICRO_NAV_PATH):
+		return
+	var file: FileAccess = FileAccess.open(MICRO_NAV_PATH, FileAccess.READ)
+	if file == null:
+		return
+	var parsed = JSON.parse_string(file.get_as_text())
+	if typeof(parsed) != TYPE_DICTIONARY:
+		return
+	var region: Dictionary = parsed.get("regions", {}).get(region_id, {})
+	for raw_zone in region.get("zones", []):
+		if typeof(raw_zone) != TYPE_DICTIONARY:
+			continue
+		var points: PackedVector2Array = PackedVector2Array()
+		for raw_point in raw_zone.get("polygon", []):
+			if typeof(raw_point) != TYPE_ARRAY or raw_point.size() != 2:
+				continue
+			points.append(Vector2(float(raw_point[0]), float(raw_point[1])))
+		if points.size() < 3:
+			continue
+		var zone: Dictionary = raw_zone.duplicate(true)
+		zone["_polygon_points"] = points
+		local_walkable_zones.append(zone)
+
+func _inside_local_zone(source: String, position: Vector2) -> bool:
+	for zone in local_walkable_zones:
+		var owners: Array = zone.get("owners", [])
+		if not owners.has(source):
+			continue
+		var points: PackedVector2Array = zone.get("_polygon_points", PackedVector2Array())
+		if points.size() >= 3 and Geometry2D.is_point_in_polygon(position, points):
+			return true
+	return false
+
 func is_walkable(source: String, position: Vector2) -> bool:
 	var start: Vector2 = SpatialRegistry.anchor_position(region_id, source)
 	if start == Vector2.INF:
 		return false
 	if start.distance_to(position) <= ANCHOR_PLAZA_RADIUS:
+		return true
+	if _inside_local_zone(source, position):
 		return true
 	for edge in outgoing(source):
 		var destination: String = str(edge.get("to", ""))
