@@ -68,12 +68,40 @@ def point_in_rect(p,r):
     return r[0] <= p[0] <= r[2] and r[1] <= p[1] <= r[3]
 
 
+def point_in_poly(point, poly):
+    x,y=point
+    inside=False
+    j=len(poly)-1
+    for i in range(len(poly)):
+        xi,yi=poly[i]; xj,yj=poly[j]
+        crosses=((yi>y)!=(yj>y))
+        if crosses:
+            x_at_y=(xj-xi)*(y-yi)/(yj-yi)+xi
+            if x < x_at_y:
+                inside=not inside
+        j=i
+    return inside
+
+
 anchors={k:tuple(v) for k,v in SPATIAL["regions"][RID]["anchors"].items()}
 zones=MICRO["regions"][RID]["zones"]
 zone_rects={z["id"]:rect(z["polygon"]) for z in zones}
+zone_polys={z["id"]:[tuple(p) for p in z["polygon"]] for z in zones}
 owners={z["id"]:set(z["owners"]) for z in zones}
+path_by_pair={tuple(sorted((p["from"],p["to"]))):[tuple(q) for q in p["points"]]
+              for p in MICRO["regions"][RID].get("physical_paths",[])}
 region=LEVEL["regions"][RID]
 graph_region=next(x for x in GRAPH["regions"] if x["id"]==RID)
+
+
+def path_points(source,destination):
+    key=tuple(sorted((source,destination)))
+    if key not in path_by_pair:
+        return [anchors[source],anchors[destination]]
+    pts=path_by_pair[key]
+    if pts[0] == anchors[source]:
+        return pts
+    return list(reversed(pts))
 
 
 def nonportal_segments_for(source):
@@ -85,14 +113,15 @@ def nonportal_segments_for(source):
         key=tuple(sorted((e["from"],e["to"])))
         if key in seen: continue
         seen.add(key)
-        out.append((anchors[e["from"]],anchors[e["to"]]))
+        pts=path_points(e["from"],e["to"])
+        out.extend(zip(pts,pts[1:]))
     return out
 
 
 def walkable(source,p):
     if math.dist(p,anchors[source]) <= PLAZA_R: return True
-    for zid,r in zone_rects.items():
-        if source in owners[zid] and point_in_rect(p,r): return True
+    for zid,poly in zone_polys.items():
+        if source in owners[zid] and point_in_poly(p,poly): return True
     for a,b in nonportal_segments_for(source):
         if point_segment_distance(p,a,b) <= CORRIDOR_HALF: return True
     return False
@@ -111,12 +140,14 @@ def test_level_geometry_counts_and_scope():
 def test_buildings_respect_bounds_walkable_clearance_and_routes():
     bx,by,bw,bh=SPATIAL["regions"][RID]["bounds"]
     world=(bx,by,bx+bw,by+bh)
-    # Unique canonical non-portal segments.
+    # Unique authored physical segments, falling back to straight canonical edges.
     unique={}
     for e in graph_region["edges"]:
         if e.get("requires_player_route_choice",False): continue
         key=tuple(sorted((e["from"],e["to"])))
-        unique[key]=(anchors[e["from"]],anchors[e["to"]])
+        if key in unique: continue
+        pts=path_points(e["from"],e["to"])
+        unique[key]=list(zip(pts,pts[1:]))
     for b in region["building_footprints"]:
         r=rect(b["polygon"])
         assert world[0] <= r[0] <= r[2] <= world[2], b["id"]
@@ -125,8 +156,9 @@ def test_buildings_respect_bounds_walkable_clearance_and_routes():
             assert rect_distance(r,rect(z["polygon"])) >= CLEARANCE, (b["id"],z["id"])
         for aid,p in anchors.items():
             assert rect_point_distance(r,p) >= PLAZA_R+CLEARANCE, (b["id"],aid)
-        for key,(a,c) in unique.items():
-            assert rect_segment_distance(r,a,c) >= CORRIDOR_HALF+CLEARANCE, (b["id"],key)
+        for key,segments in unique.items():
+            for a,c in segments:
+                assert rect_segment_distance(r,a,c) >= CORRIDOR_HALF+CLEARANCE, (b["id"],key,a,c)
 
 
 def test_portal_clearance_is_free_of_buildings_and_npcs():
