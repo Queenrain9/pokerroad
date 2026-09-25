@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "authority": "Notion 15 v4.2 verbatim source; bindings encode runtime semantics only and never rewrite dialogue",
-  "binding_status": "FIRST_SIXTEEN_MAIN_PLAYABLE_BINDINGS",
+  "binding_status": "FIRST_TWENTY_FOUR_MAIN_PLAYABLE_BINDINGS",
   "supported_effects": [
     "SET_FLAG",
     "SET_OBSERVATION",
@@ -1770,6 +1770,1191 @@
       },
       "npc_event": "r03_doyun_showcase",
       "replay_dialogue": "프로와 직접 겨루려면 F3 연습 테이블이에요."
+    },
+    {
+      "scene_id": "03-M04",
+      "region_id": "03",
+      "kind": "MAIN",
+      "source_section_sha256": "f827374e09528af58db82a024aaaf9df20664c05eaf430205da47004a560858d",
+      "entry_anchors": [
+        "F3",
+        "F5"
+      ],
+      "target": "도윤·솔개 / 공동 식당과 거목 타워 로비",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "도윤",
+          "text": "지금 붙을래요, 아니면 솔개 타워부터 볼래요?"
+        },
+        {
+          "speaker": "솔개",
+          "text": "수레는 후원으로 고쳤지만 다리는 마을 사람들이 고쳐야죠. 공개판은 식당에도 있어요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "DOYUN_SOLGAE_INTRO",
+          "choices": [
+            {
+              "choice_id": "DIRECT",
+              "label": "도윤과 지금 붙을게",
+              "requested_mode": "POKER",
+              "requires_anchor": [
+                "F3"
+              ],
+              "effects": [
+                {
+                  "type": "REQUEST_EVENT",
+                  "event_id": "r03_doyun_practice",
+                  "participants": [
+                    "PLAYER",
+                    "NPC_DOYUN"
+                  ],
+                  "registered_official": false
+                }
+              ]
+            },
+            {
+              "choice_id": "TOWER_FIRST",
+              "label": "타워 구경부터",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F3"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "DOYUN_DIRECT_03",
+                  "value": "NOT_ENTERED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "SOLGAE_INTRO",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "DOYUN_M04_DECIDED",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "F5_LOBBY_PUBLIC",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "LATER",
+              "label": "경기는 나중에",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F3"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "DOYUN_DIRECT_03",
+                  "value": "NOT_ENTERED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "SOLGAE_INTRO",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "DOYUN_M04_DECIDED",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "SOLGAE_LOBBY",
+          "choices": [
+            {
+              "choice_id": "LOOK",
+              "label": "솔개 타워 로비 둘러보기",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F5"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "SOLGAE_INTRO",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "F5_LOBBY_PUBLIC",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "external_results": {
+        "r03_doyun_practice": {
+          "WIN": [
+            {
+              "type": "SET_FLAG",
+              "key": "DOYUN_DIRECT_03",
+              "value": "WIN"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "SOLGAE_INTRO",
+              "value": true
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "DOYUN_M04_DECIDED",
+              "value": true
+            }
+          ],
+          "LOSS": [
+            {
+              "type": "SET_FLAG",
+              "key": "DOYUN_DIRECT_03",
+              "value": "LOSS"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "SOLGAE_INTRO",
+              "value": true
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "DOYUN_M04_DECIDED",
+              "value": true
+            }
+          ],
+          "WITHDRAW": [
+            {
+              "type": "SET_FLAG",
+              "key": "DOYUN_DIRECT_03",
+              "value": "WITHDRAW"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "SOLGAE_INTRO",
+              "value": true
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "DOYUN_M04_DECIDED",
+              "value": true
+            }
+          ]
+        }
+      },
+      "completion": {
+        "policy": "FLAGS_ALL",
+        "requirements": [
+          {
+            "key": "SOLGAE_INTRO",
+            "value": true
+          },
+          {
+            "key": "DOYUN_M04_DECIDED",
+            "value": true
+          }
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "항구 초청전에서 두 선수가 만날지도 모른대요."
+    },
+    {
+      "scene_id": "03-M05",
+      "region_id": "03",
+      "kind": "MAIN",
+      "source_section_sha256": "c6bc2412b185ec6bd1046e81d988b65dd46731f5dc36768acf9922026fd6a379",
+      "entry_anchors": [
+        "F6",
+        "F4"
+      ],
+      "target": "다온·미루 / 항구 초청전 포스터와 정기 교통",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "다온",
+          "text": "갈매기항 초청전 — 이안·도윤 같은 행사 출연. 물때 맞는 배는 오후에도 있어요."
+        },
+        {
+          "speaker": "미루",
+          "text": "같은 행사라고만 나왔어요. 가서 확인해요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "HARBOR_POSTER",
+          "choices": [
+            {
+              "choice_id": "READ",
+              "label": "F4 대진표 확인",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F4"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_POSTER_SEEN",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "HARBOR_TRANSIT",
+          "choices": [
+            {
+              "choice_id": "WATCH_MATCH",
+              "label": "그 둘 경기 보러 갈래",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F6"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_MOTIVE",
+                  "value": "MATCH"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_DEPART_READY",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "COAST",
+              "label": "해안도 구경하고 싶어",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F6"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_MOTIVE",
+                  "value": "COAST"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_DEPART_READY",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "STAY",
+              "label": "숲에서 더 놀래",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F6"
+              ],
+              "effects": []
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R04_DEPART_READY",
+        "values": [
+          true
+        ],
+        "advance_main": true,
+        "travel_to": {
+          "region_id": "04",
+          "entry_anchor": "H0"
+        }
+      },
+      "replay_dialogue": "항구 소식은 바깥 공고판에도 남아 있어요."
+    },
+    {
+      "scene_id": "04-M01",
+      "region_id": "04",
+      "kind": "MAIN",
+      "source_section_sha256": "f558a3d5362f32a40b5bc99fef2b908a084bff044c640fa5f5bd5e8fdcbd8c72",
+      "entry_anchors": [
+        "H1"
+      ],
+      "target": "나래·어시장 상인 / 조수표와 안전 표식",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "상인",
+          "text": "지금 물 빠졌을 때 길은 넓어도 아무 데로나 가면 안 돼."
+        },
+        {
+          "speaker": "나래",
+          "text": "선원들 연락은 돼요. 등대 전망대에서 신호 같이 확인할래요?"
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "NARAE_SAFETY_BRIEF",
+          "choices": [
+            {
+              "choice_id": "JOIN",
+              "label": "같이 갈게요",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_SAFETY_GUIDE",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "MATCH_FIRST",
+              "label": "나 여기 경기 보러 왔는데…",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_SAFETY_GUIDE",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "ALONE",
+              "label": "혼자 다녀올게요",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_SAFETY_GUIDE",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "NARAE_SAFETY_GUIDE",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "안전 표식은 지도에 표시했어요. 연락은 계속 되고 있어요."
+    },
+    {
+      "scene_id": "04-M02",
+      "region_id": "04",
+      "kind": "MAIN",
+      "source_section_sha256": "b1eb7c83cb891f2c46eb2d1a3f35857e9b42437f71762b1ff8863864d1a43304",
+      "entry_anchors": [
+        "H1",
+        "H2",
+        "H3",
+        "H4"
+      ],
+      "target": "나래·구조선 / 갯벌 안전 길·등대·연락부두",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "나래",
+          "text": "현재 물때에 맞는 안전 길을 다시 표시할게요."
+        },
+        {
+          "speaker": "선장",
+          "text": "전망대 관측과 연락부두 보고를 연결하겠습니다."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "TIDE_BOARD",
+          "choices": [
+            {
+              "choice_id": "LOW",
+              "label": "간조 표식 확인",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "H1"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_TIDE",
+                  "value": "LOW"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_TIDE_BOARD_SEEN",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "HIGH",
+              "label": "만조 안전길 확인",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "H1"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_TIDE",
+                  "value": "HIGH"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_TIDE_BOARD_SEEN",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "SAFE_MARKERS",
+          "choices": [
+            {
+              "choice_id": "PAIR",
+              "label": "안전 표식 두 개 연결",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "H2"
+              ],
+              "requires": [
+                {
+                  "key": "R04_TIDE_BOARD_SEEN",
+                  "value": true
+                }
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_SEARCH_ROUTE_CHECKED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "WRONG",
+              "label": "지난 물때 표식 확인",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "H2"
+              ],
+              "requires": [
+                {
+                  "key": "R04_TIDE_BOARD_SEEN",
+                  "value": true
+                }
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_SEARCH_ROUTE_CHECKED",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_USED_DRY_DETOUR",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "SHUTTLE",
+              "label": "무료 구조선 셔틀 이용",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "H2"
+              ],
+              "requires": [
+                {
+                  "key": "R04_TIDE_BOARD_SEEN",
+                  "value": true
+                }
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_SEARCH_ROUTE_CHECKED",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "BOAT_FOUND_BY_PLAYER",
+                  "value": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "LIGHTHOUSE",
+          "choices": [
+            {
+              "choice_id": "FIND_FLAG",
+              "label": "노란 부표 쪽 깃발 확인",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "H3"
+              ],
+              "requires": [
+                {
+                  "key": "R04_SEARCH_ROUTE_CHECKED",
+                  "value": true
+                }
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "BOAT_FOUND",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "BOAT_FOUND_BY_PLAYER",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "TEAM_FINISH",
+              "label": "구조팀 관측에 맡기기",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "H3"
+              ],
+              "requires": [
+                {
+                  "key": "R04_SEARCH_ROUTE_CHECKED",
+                  "value": true
+                }
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "BOAT_FOUND_BY_PLAYER",
+                  "value": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "SAFE_REPORT",
+          "choices": [
+            {
+              "choice_id": "READ",
+              "label": "전원 안전 귀환 보고 확인",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "H4"
+              ],
+              "requires": [
+                {
+                  "key": "R04_SEARCH_ROUTE_CHECKED",
+                  "value": true
+                }
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "CREW_SAFE",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_SAFE_REPORT_READ",
+                  "value": true
+                },
+                {
+                  "type": "GRANT_REWARD",
+                  "reward_id": "R04_CREW_SAFE_FIRST",
+                  "amount": 10
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAGS_ALL",
+        "requirements": [
+          {
+            "key": "CREW_SAFE",
+            "value": true
+          },
+          {
+            "key": "R04_SAFE_REPORT_READ",
+            "value": true
+          }
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "모두 돌아왔어요. 이제 카페로 가요."
+    },
+    {
+      "scene_id": "04-M03",
+      "region_id": "04",
+      "kind": "MAIN",
+      "source_section_sha256": "a8aae076b4a6a23e395917fa96cb1723c55aa4c3a418dc03a6cc9957f7817ec5",
+      "entry_anchors": [
+        "H5"
+      ],
+      "target": "나래·접수원 / 카페와 지역 공식 예선",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "접수원",
+          "text": "나래 선수 경기, 당신 공식 경기, 카페 연습판은 별도 기록입니다."
+        },
+        {
+          "speaker": "나래",
+          "text": "카페 판과 예선 결과는 섞지 말아요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "NARAE_CAFE",
+          "choices": [
+            {
+              "choice_id": "PLAY",
+              "label": "나래와 카페에서 한 판",
+              "requested_mode": "POKER",
+              "effects": [
+                {
+                  "type": "REQUEST_EVENT",
+                  "event_id": "r04_narae_cafe_practice",
+                  "participants": [
+                    "PLAYER",
+                    "NPC_NARAE"
+                  ],
+                  "registered_official": false
+                }
+              ]
+            },
+            {
+              "choice_id": "WATCH",
+              "label": "카페 판은 구경만",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_PLAYER_MATCH_RESULT",
+                  "value": "WATCH"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_CAFE_DECIDED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "SKIP",
+              "label": "카페 경기는 안 할게",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_PLAYER_MATCH_RESULT",
+                  "value": "NOT_ENTERED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_CAFE_DECIDED",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "OFFICIAL_OPTION",
+          "choices": [
+            {
+              "choice_id": "ENTER",
+              "label": "내 공식 지역 공개전 참가",
+              "requested_mode": "POKER",
+              "effects": [
+                {
+                  "type": "REQUEST_EVENT",
+                  "event_id": "r04_player_qualifier",
+                  "participants": [
+                    "PLAYER",
+                    "NPC_Q_A",
+                    "NPC_Q_B",
+                    "NPC_Q_C"
+                  ],
+                  "registered_official": true
+                }
+              ]
+            },
+            {
+              "choice_id": "WATCH_RESULTS",
+              "label": "나래 공식 예선과 결과판 관전",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r04_narae_qualifier",
+                  "status": "VIEWED_RESULT"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_OFFICIAL_DECISION",
+                  "value": "WATCH"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_OFFICIAL_DECIDED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "SKIP_OFFICIAL",
+              "label": "공식전은 이번엔 미참여",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_OFFICIAL_DECISION",
+                  "value": "NOT_ENTERED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_OFFICIAL_DECIDED",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "external_results": {
+        "r04_narae_cafe_practice": {
+          "WIN": [
+            {
+              "type": "SET_FLAG",
+              "key": "NARAE_PLAYER_MATCH_RESULT",
+              "value": "WIN"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R04_CAFE_DECIDED",
+              "value": true
+            }
+          ],
+          "LOSS": [
+            {
+              "type": "SET_FLAG",
+              "key": "NARAE_PLAYER_MATCH_RESULT",
+              "value": "LOSS"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R04_CAFE_DECIDED",
+              "value": true
+            }
+          ],
+          "WITHDRAW": [
+            {
+              "type": "SET_FLAG",
+              "key": "NARAE_PLAYER_MATCH_RESULT",
+              "value": "WITHDRAW"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R04_CAFE_DECIDED",
+              "value": true
+            }
+          ]
+        },
+        "r04_player_qualifier": {
+          "WIN": [
+            {
+              "type": "SET_FLAG",
+              "key": "R04_PLAYER_OFFICIAL_RESULT",
+              "value": "WIN"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R04_OFFICIAL_DECISION",
+              "value": "PLAYER_MATCH"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R04_OFFICIAL_DECIDED",
+              "value": true
+            }
+          ],
+          "LOSS": [
+            {
+              "type": "SET_FLAG",
+              "key": "R04_PLAYER_OFFICIAL_RESULT",
+              "value": "LOSS"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R04_OFFICIAL_DECISION",
+              "value": "PLAYER_MATCH"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R04_OFFICIAL_DECIDED",
+              "value": true
+            }
+          ],
+          "WITHDRAW": [
+            {
+              "type": "SET_FLAG",
+              "key": "R04_PLAYER_OFFICIAL_RESULT",
+              "value": "WITHDRAW"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R04_OFFICIAL_DECISION",
+              "value": "WITHDRAW"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R04_OFFICIAL_DECIDED",
+              "value": true
+            }
+          ]
+        }
+      },
+      "completion": {
+        "policy": "FLAGS_ALL",
+        "requirements": [
+          {
+            "key": "R04_CAFE_DECIDED",
+            "value": true
+          },
+          {
+            "key": "R04_OFFICIAL_DECIDED",
+            "value": true
+          }
+        ],
+        "advance_main": true
+      },
+      "npc_event": "r04_narae_qualifier",
+      "npc_event_effects": [
+        {
+          "type": "SET_FLAG",
+          "key": "NARAE_NPC_QUALIFIED",
+          "value": true
+        }
+      ],
+      "replay_dialogue": "나래 선수 결과와 당신 경기 기록은 각각 따로 열람할 수 있어요."
+    },
+    {
+      "scene_id": "04-M04",
+      "region_id": "04",
+      "kind": "MAIN",
+      "source_section_sha256": "dcc8a830abb88896f154b9f0a878de97f67b5f68e1f6b5efc52160b576760c3b",
+      "entry_anchors": [
+        "H6"
+      ],
+      "target": "이안·도윤·진행자 / 초청전 공개 관람석",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "진행자",
+          "text": "지금 이안과 도윤의 대결이 시작됩니다."
+        },
+        {
+          "speaker": "도윤",
+          "text": "지난 영상에서 봤던 그대로 할 거라 생각했어?"
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "IAN_DOYUN_VIEW",
+          "choices": [
+            {
+              "choice_id": "CALL",
+              "label": "이안의 콜을 예상",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r04_doyun_ian_invite",
+                  "status": "PREDICT_CALL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_INVITE_REACTION",
+                  "value": "CALL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_INVITE_DECIDED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "FOLD",
+              "label": "이안의 폴드를 예상",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r04_doyun_ian_invite",
+                  "status": "PREDICT_FOLD"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_INVITE_REACTION",
+                  "value": "FOLD"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_INVITE_DECIDED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "WATCH",
+              "label": "그냥 지켜봄",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r04_doyun_ian_invite",
+                  "status": "WATCHED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_INVITE_REACTION",
+                  "value": "WATCH"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_INVITE_DECIDED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "BOARD",
+              "label": "결과 전광판만 확인",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r04_doyun_ian_invite",
+                  "status": "RESULT_BOARD"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_INVITE_REACTION",
+                  "value": "SKIPPED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R04_INVITE_DECIDED",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R04_INVITE_DECIDED",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "npc_event": "r04_doyun_ian_invite",
+      "npc_event_effects": [
+        {
+          "type": "SET_FLAG",
+          "key": "IAN_DOYUN_NPC_04_RESULT",
+          "value": "DOYUN_WIN"
+        }
+      ],
+      "replay_dialogue": "이안은 마지막 역에서 계속 복기할 거예요."
+    },
+    {
+      "scene_id": "04-M05",
+      "region_id": "04",
+      "kind": "MAIN",
+      "source_section_sha256": "7d0a295a9c247e845f448f44f87947e451d3dff499ef4a4572cc18fd1a1e255e",
+      "entry_anchors": [
+        "H5"
+      ],
+      "target": "나래 / 지역 예선 결과판과 계정 통지",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "나래",
+          "text": "아버지한테 연락해야겠네. 오늘은 해냈어요."
+        },
+        {
+          "speaker": "알림",
+          "text": "최종 좌석 예약은 계정 기준 배정입니다."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "NARAE_NOTICE",
+          "choices": [
+            {
+              "choice_id": "MEANING",
+              "label": "이게 무슨 말이에요?",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_NOTICE_04",
+                  "value": "RECEIVED"
+                }
+              ]
+            },
+            {
+              "choice_id": "TOGETHER",
+              "label": "같이 가요",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_NOTICE_04",
+                  "value": "RECEIVED"
+                }
+              ]
+            },
+            {
+              "choice_id": "CONGRATS",
+              "label": "오늘 경기 축하해요",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_NOTICE_04",
+                  "value": "RECEIVED"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "NARAE_NOTICE_04",
+        "values": [
+          "RECEIVED"
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "역 등록대에서 제 이름으로 문의할 거예요."
+    },
+    {
+      "scene_id": "04-M06",
+      "region_id": "04",
+      "kind": "MAIN",
+      "source_section_sha256": "19c6f60486610d6b09183b7ec5ca6782f770ac9eea6d7601551d22a57ce49fb8",
+      "entry_anchors": [
+        "H8"
+      ],
+      "target": "도해·나래 / 마지막 역행 정기 철도",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "도해",
+          "text": "마지막 역은 정기편이에요. 심야 공개 경기장도 유명해요."
+        },
+        {
+          "speaker": "나래",
+          "text": "등록대에서 제가 질문할게요. 함께 오셔도 좋아요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "LAST_STATION_TRAIN",
+          "choices": [
+            {
+              "choice_id": "IAN",
+              "label": "이안의 다음 경기 보러",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_MOTIVE",
+                  "value": "IAN"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_DEPART_READY",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "NARAE",
+              "label": "나래 기록이 궁금해서",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_MOTIVE",
+                  "value": "NARAE"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_DEPART_READY",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "STAY",
+              "label": "항구 더 둘러볼래",
+              "requested_mode": "WORLD",
+              "effects": []
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R05_DEPART_READY",
+        "values": [
+          true
+        ],
+        "advance_main": true,
+        "travel_to": {
+          "region_id": "05",
+          "entry_anchor": "E0"
+        }
+      },
+      "replay_dialogue": "돌아오셨네요. 마지막 역행 정기편은 계속 다녀요."
     },
     {
       "scene_id": "05-M03",
