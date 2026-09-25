@@ -3292,7 +3292,7 @@
             {
               "choice_id": "READ_BOARD",
               "label": "전광판만 확인",
-              "requested_mode": "WORLD",
+              "requested_mode": "OBSERVE",
               "effects": [
                 {
                   "type": "SET_OBSERVATION",
