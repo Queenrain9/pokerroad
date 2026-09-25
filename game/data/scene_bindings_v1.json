@@ -1537,6 +1537,11 @@
                   "type": "SET_FLAG",
                   "key": "R03_ASCENT_ROUTE",
                   "value": "WORK_LIFT"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_ASCENT_ROUTE_SET",
+                  "value": true
                 }
               ]
             },
@@ -1552,6 +1557,11 @@
                   "type": "SET_FLAG",
                   "key": "R03_ASCENT_ROUTE",
                   "value": "EXTERNAL_STAIRS"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_ASCENT_ROUTE_SET",
+                  "value": true
                 }
               ]
             }
@@ -1581,6 +1591,10 @@
       "completion": {
         "policy": "FLAGS_ALL",
         "requirements": [
+          {
+            "key": "R03_ASCENT_ROUTE_SET",
+            "value": true
+          },
           {
             "key": "R03_ASCENT_DONE",
             "value": true
@@ -1695,6 +1709,11 @@
                   "type": "SET_FLAG",
                   "key": "R03_SHOWCASE_READ",
                   "value": "BLUFF"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_SHOWCASE_READ_DONE",
+                  "value": true
                 }
               ]
             },
@@ -1707,6 +1726,11 @@
                   "type": "SET_FLAG",
                   "key": "R03_SHOWCASE_READ",
                   "value": "STRONG"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_SHOWCASE_READ_DONE",
+                  "value": true
                 }
               ]
             },
@@ -1719,6 +1743,11 @@
                   "type": "SET_FLAG",
                   "key": "R03_SHOWCASE_READ",
                   "value": "WATCH"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_SHOWCASE_READ_DONE",
+                  "value": true
                 }
               ]
             }
@@ -1733,8 +1762,8 @@
             "value": true
           },
           {
-            "key": "R03_SHOWCASE_READ",
-            "value": "WATCH"
+            "key": "R03_SHOWCASE_READ_DONE",
+            "value": true
           }
         ],
         "advance_main": true
