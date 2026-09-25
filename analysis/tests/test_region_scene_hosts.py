@@ -34,5 +34,8 @@ def test_region_host_registers_every_region_and_game_root_mounts_it():
 def test_region_world_keeps_physical_and_visual_status_honest():
     script=(ROOT/'game/scripts/world/region_world.gd').read_text(encoding='utf8')
     assert '"physical_map_status":"ROUTE_GEOMETRY_ACTIVE"' in script
-    assert '"visual_asset_status":"NOT_STARTED"' in script
+    assert '"visual_asset_status":"FIRST_SPACE_3_4_PROTOTYPE"' in script
+    assert 'else "NOT_STARTED"' in script
+    visual=(ROOT/'game/scripts/world/saebom_first_space_visual.gd').read_text(encoding='utf8')
+    assert 'ForegroundOcclusion' in visual and 'P0' in visual and 'P1' in visual
     assert 'world_coordinates' not in script
