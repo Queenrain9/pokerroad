@@ -239,8 +239,8 @@
       "kind": "NPC_PUBLIC_EVENT",
       "seat_count_dev": 4,
       "start_big_blind_dev": 2,
-      "start_tournament_stack_dev": 60,
-      "blind_level_every_completed_hands_dev": 6,
+      "start_tournament_stack_dev": 20,
+      "blind_level_every_completed_hands_dev": 4,
       "wallet_entry_fee_dev": 0,
       "wallet_and_tournament_chips_are_separate": true,
       "sanction_status": "EXHIBITION",
@@ -248,7 +248,13 @@
       "qualifying_places_dev": 0,
       "record_owner": "NPC_EUNSOL",
       "npc_narrative_result": "ACTUAL_INDEPENDENT_MATCH_RESULT_NOT_PRESET",
-      "npc_card_action_replay_status": "NOT_IMPLEMENTED"
+      "npc_card_action_replay_status": "ENGINE_REPLAY",
+      "npc_participants_dev": [
+        "NPC_EUNSOL",
+        "NPC_RECOMMENDED_MASTER",
+        "NPC_LOCAL_A",
+        "NPC_LOCAL_B"
+      ]
     },
     {
       "event_id": "r07_market_public",
