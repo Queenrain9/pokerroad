@@ -171,8 +171,8 @@ func _build_backdrop() -> void:
 	_poly([Vector2(0,360),Vector2(260,260),Vector2(520,348),Vector2(790,220),Vector2(1040,335),Vector2(1280,245),Vector2(1620,345),Vector2(1620,520),Vector2(0,520)], Color("#48646a"), -36)
 
 func _build_first_space() -> void:
-	var p0 := region_world.anchor_position("P0")
-	var p1 := region_world.anchor_position("P1")
+	var p0: Vector2 = region_world.anchor_position("P0")
+	var p1: Vector2 = region_world.anchor_position("P1")
 	# lower P0 plaza
 	_poly([
 		p0 + Vector2(-260,-110), p0 + Vector2(210,-145),
@@ -188,13 +188,13 @@ func _build_first_space() -> void:
 		p1 + Vector2(325,170), p1 + Vector2(-215,195)
 	], C_STONE_DARK, -3)
 	# canonical P0->P1 path rendered as a stair/ramp corridor
-	var v := p1 - p0
-	var normal := v.orthogonal().normalized()
+	var v: Vector2 = p1 - p0
+	var normal: Vector2 = v.orthogonal().normalized()
 	var w := 88.0
 	_poly([p0-normal*w,p0+normal*w,p1+normal*w,p1-normal*w], C_ROAD.lightened(0.08), -2)
 	for i in range(1,9):
 		var t := float(i)/9.0
-		var c := p0.lerp(p1,t)
+		var c: Vector2 = p0.lerp(p1,t)
 		_poly([c-normal*w,c+normal*w,c+normal*w+Vector2(0,8),c-normal*w+Vector2(0,8)], C_ROAD_EDGE, -1)
 	# low walls / railings that frame but do not block corridor
 	for x in [470.0, 560.0, 650.0]:
@@ -226,7 +226,7 @@ func _build_first_space() -> void:
 	for x in [-125.0,-55.0,15.0,85.0]:
 		_poly([Vector2(x,-12),Vector2(x+30,-12),Vector2(x+20,30),Vector2(x-10,30)],C_CREAM,9,market)
 	# P1 평상
-	var deck_pos := p1 + Vector2(80,-36)
+	var deck_pos: Vector2 = p1 + Vector2(80,-36)
 	_rect(deck_pos, Vector2(210,72), Color("#6b5148"), 8)
 	for dx in [-88.0,88.0]:
 		_rect(deck_pos+Vector2(dx,52),Vector2(14,82),Color("#55413b"),7)
