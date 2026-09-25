@@ -1,0 +1,30 @@
+name: Core QA
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  python-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+          cache-dependency-path: analysis/requirements-dev.txt
+      - name: Install test dependencies
+        run: python -m pip install -r analysis/requirements-dev.txt
+      - name: Rebuild registries from source contracts
+        run: |
+          python tools/generate_manifest.py
+          python tools/generate_event_catalog.py
+          python tools/build_traversal_graph.py
+          python tools/import_original_scenes.py --commit-source-status
+      - name: Run structural, source-import, data, and exhaustive poker QA
+        run: python analysis/run_qa.py --exhaustive

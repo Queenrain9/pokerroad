@@ -1,0 +1,15 @@
+{
+  "audit_date":"2026-09-25",
+  "source":"Direct fetch of eight original Notion 15-01..15-08 v4.2 pages",
+  "counts":{"main":48,"side":16,"tower":8,"revisit":16,"total_unique_scene_ids":88},
+  "regions":[
+    {"id":"01","source_page_id":"3e5fc392-d5b4-8105-8eab-c72ff9412b5d","source_utf8_bytes":22834,"fnv32":"5a748797","unique_scene_ids":12},
+    {"id":"02","source_page_id":"3e5fc392-d5b4-81e5-85c6-c3e597640b18","source_utf8_bytes":17355,"fnv32":"1f22a5c4","unique_scene_ids":11},
+    {"id":"03","source_page_id":"3e5fc392-d5b4-8180-8a4b-ee1b4c7bd976","source_utf8_bytes":15993,"fnv32":"7b481b3f","unique_scene_ids":10},
+    {"id":"04","source_page_id":"3e5fc392-d5b4-814a-afcd-f6bdcc64eab7","source_utf8_bytes":25619,"fnv32":"362ea7b6","unique_scene_ids":11},
+    {"id":"05","source_page_id":"3e5fc392-d5b4-81cb-8387-c5e88f38a391","source_utf8_bytes":16803,"fnv32":"e55f963f","unique_scene_ids":10},
+    {"id":"06","source_page_id":"3e5fc392-d5b4-8122-842c-ea65f35245e6","source_utf8_bytes":17372,"fnv32":"77592538","unique_scene_ids":10},
+    {"id":"07","source_page_id":"3e5fc392-d5b4-81a5-bea8-c48d4c2ee0cb","source_utf8_bytes":31030,"fnv32":"cc605521","unique_scene_ids":11},
+    {"id":"08","source_page_id":"3e5fc392-d5b4-8187-bdf3-e91b84c28713","source_utf8_bytes":29281,"fnv32":"c6ea8def","unique_scene_ids":13}
+  ]
+}

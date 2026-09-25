@@ -1,0 +1,61 @@
+name: Sync Notion v4.2 scene data
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'source/original_notion_v4_2/*.md'
+      - 'tools/generate_manifest.py'
+      - 'tools/generate_event_catalog.py'
+      - 'tools/build_traversal_graph.py'
+      - 'tools/import_original_scenes.py'
+      - 'docs/NOTION_SOURCE_REMOTE_AUDIT.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild base registries
+        run: |
+          python tools/generate_manifest.py
+          python tools/generate_event_catalog.py
+          python tools/build_traversal_graph.py
+      - name: Import all 88 original scenes atomically
+        run: python tools/import_original_scenes.py --commit-source-status
+      - name: Verify exact generated source count
+        shell: bash
+        run: |
+          test "$(find game/data/original_scenes -maxdepth 1 -name '*.json' | wc -l)" -eq 88
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          m=json.loads(Path('game/data/world_manifest.json').read_text(encoding='utf-8'))
+          assert len(m['regions'])==8 and len(m['scenes'])==88
+          assert all(s['source_import_status']=='IMPORTED' for s in m['scenes'])
+          assert all(s['game_implementation_status']=='NOT_IMPLEMENTED' for s in m['scenes'])
+          print('SOURCE_SYNC_OK: 8 regions / 88 source records / 0 playable scene implementations')
+          PY
+      - name: Commit generated source data if changed
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add game/data/world_manifest.json game/data/event_catalog_dev.json game/data/traversal_graph_dev.json                   game/data/original_scenes game/data/source_pages_verbatim game/data/source_import_audit.json
+          if git diff --cached --quiet; then
+            echo "Generated source data already in sync."
+            exit 0
+          fi
+          git commit -m "data: import 88 Notion v4.2 source scenes [skip source-sync]"
+          git push
