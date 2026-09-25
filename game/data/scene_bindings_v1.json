@@ -2349,6 +2349,11 @@
               "effects": [
                 {
                   "type": "SET_FLAG",
+                  "key": "BOAT_FOUND",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
                   "key": "BOAT_FOUND_BY_PLAYER",
                   "value": false
                 }
