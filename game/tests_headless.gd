@@ -66,7 +66,7 @@ func _initialize() -> void:
 			implemented += 1
 			if scene.player_action_bindings.is_empty() or scene.qa_status != "PASS":
 				invalid = true
-	must(not invalid and implemented == 8, "only eight QA-backed scenes marked implemented")
+	must(not invalid and implemented == 16, "first sixteen QA-backed scenes marked implemented")
 	if not failures.is_empty():
 		for problem in failures:
 			push_error(problem)
