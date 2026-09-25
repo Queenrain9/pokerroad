@@ -239,7 +239,8 @@ func save_runtime() -> bool:
 	if mode == "POKER":
 		if active_tournament == null:
 			return false
-		mode_state = SessionSaveService.tournament_mode_state(active_event_instance_id, active_tournament)
+		mode_state = SessionSaveService.tournament_mode_state(active_event_instance_id, active_tournament,
+			active_registered_official, scene_runner.snapshot() if scene_runner.has_active_scene() else {})
 	elif mode == "DIALOGUE":
 		mode_state = scene_runner.snapshot()
 	elif mode == "OBSERVE" or mode == "RESULT":
@@ -258,9 +259,15 @@ func restore_runtime() -> Dictionary:
 		if active_tournament == null:
 			return {"error":"saved tournament could not be restored"}
 		active_event_instance_id = str(state.get("event_instance_id", ""))
+		active_registered_official = bool(state.get("registered_official", false))
 		active_event_rule = EventRegistry.event_by_id(str(state.get("event_id", "")))
 		if active_event_rule.is_empty():
 			return {"error":"saved event rule missing"}
+		var source_snapshot = state.get("source_scene_snapshot", {})
+		if typeof(source_snapshot) == TYPE_DICTIONARY and not source_snapshot.is_empty():
+			var restored_source := scene_runner.restore(source_snapshot)
+			if restored_source.has("error"):
+				return restored_source
 		mode = "POKER"
 	elif loaded_mode == "DIALOGUE":
 		var restored_scene := scene_runner.restore(state)
@@ -269,6 +276,14 @@ func restore_runtime() -> Dictionary:
 		mode = "DIALOGUE"
 	elif loaded_mode == "WORLD":
 		mode = "WORLD"
+	elif loaded_mode == "OBSERVE" or loaded_mode == "RESULT":
+		var source_snapshot = state.get("active_scene", {})
+		if typeof(source_snapshot) == TYPE_DICTIONARY and not source_snapshot.is_empty():
+			var restored_source := scene_runner.restore(source_snapshot)
+			if restored_source.has("error"):
+				return restored_source
+		current_result = state.get("runtime_result", {}).duplicate(true)
+		mode = loaded_mode
 	else:
 		return {"error":"resume mode not yet supported by runtime"}
 	return {"mode":mode}
