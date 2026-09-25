@@ -1027,11 +1027,20 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "DOYUN_SOLGAE_INTRO",
+          "target": "도윤·솔개 / 공동 식당과 거목 타워 로비"
+        },
+        {
+          "interaction_id": "SOLGAE_LOBBY",
+          "target": "도윤·솔개 / 공동 식당과 거목 타워 로비"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "F3",
       "next_main_scene_id": "03-M05"
     },
     {
@@ -1042,11 +1051,20 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "HARBOR_POSTER",
+          "target": "다온·미루 / 항구 초청전 포스터와 정기 교통"
+        },
+        {
+          "interaction_id": "HARBOR_TRANSIT",
+          "target": "다온·미루 / 항구 초청전 포스터와 정기 교통"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "F6",
       "next_main_scene_id": "04-M01"
     },
     {
@@ -1127,11 +1145,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "NARAE_SAFETY_BRIEF",
+          "target": "나래·어시장 상인 / 조수표와 안전 표식"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "H1",
       "next_main_scene_id": "04-M02"
     },
     {
@@ -1142,11 +1165,28 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "TIDE_BOARD",
+          "target": "나래·구조선 / 갯벌 안전 길·등대·연락부두"
+        },
+        {
+          "interaction_id": "SAFE_MARKERS",
+          "target": "나래·구조선 / 갯벌 안전 길·등대·연락부두"
+        },
+        {
+          "interaction_id": "LIGHTHOUSE",
+          "target": "나래·구조선 / 갯벌 안전 길·등대·연락부두"
+        },
+        {
+          "interaction_id": "SAFE_REPORT",
+          "target": "나래·구조선 / 갯벌 안전 길·등대·연락부두"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "H1",
       "next_main_scene_id": "04-M03"
     },
     {
@@ -1157,11 +1197,22 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
-      "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "NARAE_CAFE",
+          "target": "나래·접수원 / 카페와 지역 공식 예선"
+        },
+        {
+          "interaction_id": "OFFICIAL_OPTION",
+          "target": "나래·접수원 / 카페와 지역 공식 예선"
+        }
+      ],
+      "npc_independent_event_ids": [
+        "r04_narae_qualifier"
+      ],
+      "location_anchor_id": "H5",
       "next_main_scene_id": "04-M04"
     },
     {
@@ -1172,11 +1223,18 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
-      "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "IAN_DOYUN_VIEW",
+          "target": "이안·도윤·진행자 / 초청전 공개 관람석"
+        }
+      ],
+      "npc_independent_event_ids": [
+        "r04_doyun_ian_invite"
+      ],
+      "location_anchor_id": "H6",
       "next_main_scene_id": "04-M05"
     },
     {
@@ -1187,11 +1245,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "NARAE_NOTICE",
+          "target": "나래 / 지역 예선 결과판과 계정 통지"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "H5",
       "next_main_scene_id": "04-M06"
     },
     {
@@ -1202,11 +1265,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "LAST_STATION_TRAIN",
+          "target": "도해·나래 / 마지막 역행 정기 철도"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "H8",
       "next_main_scene_id": "05-M01"
     },
     {
