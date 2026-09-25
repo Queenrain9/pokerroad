@@ -1,0 +1,39 @@
+name: Godot Native QA
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  godot-native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rebuild source-backed data
+        run: |
+          python tools/generate_manifest.py
+          python tools/generate_event_catalog.py
+          python tools/build_traversal_graph.py
+          python tools/import_original_scenes.py --commit-source-status
+      - name: Download Godot 4.4.1
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 -o godot.zip             https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_linux.x86_64.zip
+          unzip -q godot.zip
+          chmod +x Godot_v4.4.1-stable_linux.x86_64
+          ./Godot_v4.4.1-stable_linux.x86_64 --version
+      - name: Import project and parse scripts
+        run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --editor --path game --quit
+      - name: Run core native suite
+        run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_headless.gd
+      - name: Run P3 regression native suite
+        run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_p1_headless.gd
