@@ -119,12 +119,26 @@ static func from_snapshot(snapshot: Dictionary):
 	var ints: Array[int] = []
 	for value in raw_stacks: ints.append(int(value))
 	restored.stacks = ints
-	restored.eliminations = snapshot.get("eliminations", []).duplicate(true)
+	restored.eliminations.clear()
+	var raw_eliminations = snapshot.get("eliminations", [])
+	if typeof(raw_eliminations) != TYPE_ARRAY:
+		return null
+	for value in raw_eliminations:
+		if typeof(value) != TYPE_DICTIONARY:
+			return null
+		restored.eliminations.append(value.duplicate(true))
 	restored.completed_hands = int(snapshot.get("completed_hands", 0))
 	restored.dealer = int(snapshot.get("dealer", 0))
 	restored.finished = bool(snapshot.get("finished", false))
 	restored.final_ranks = snapshot.get("final_ranks", {}).duplicate(true)
-	restored.hand_results = snapshot.get("hand_results", []).duplicate(true)
+	restored.hand_results.clear()
+	var raw_results = snapshot.get("hand_results", [])
+	if typeof(raw_results) != TYPE_ARRAY:
+		return null
+	for value in raw_results:
+		if typeof(value) != TYPE_DICTIONARY:
+			return null
+		restored.hand_results.append(value.duplicate(true))
 	var hand_snapshot = snapshot.get("active_hand", {})
 	if typeof(hand_snapshot) != TYPE_DICTIONARY:
 		return null
