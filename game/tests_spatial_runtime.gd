@@ -20,9 +20,9 @@ func _initialize() -> void:
 	must(spatial_errors.is_empty(), "spatial metrics match all eight manifest regions and anchors")
 	var host = Host.new()
 	get_root().add_child(host)
-	var seen_total := 0
+	var seen_total: int = 0
 	for i in range(1, 9):
-		var region_id := "%02d" % i
+		var region_id: String = "%02d" % i
 		var mounted: Dictionary = host.mount_region(region_id, gs)
 		must(not mounted.has("error"), region_id + " spatial region mounts")
 		if mounted.has("error"):
@@ -30,11 +30,11 @@ func _initialize() -> void:
 		var world = host.current_region_world
 		var bounds: Rect2 = world.world_bounds()
 		must(bounds.size.x > 1280.0 and bounds.size.y > 720.0, region_id + " bounds exceed reference viewport")
-		var local_seen := {}
+		var local_seen: Dictionary = {}
 		for anchor_id in world.anchor_ids():
 			var pos: Vector2 = world.anchor_position(anchor_id)
 			must(pos != Vector2.INF and bounds.has_point(pos), region_id + "/" + anchor_id + " positioned inside bounds")
-			var key := "%d,%d" % [int(pos.x), int(pos.y)]
+			var key: String = "%d,%d" % [int(pos.x), int(pos.y)]
 			must(not local_seen.has(key), region_id + "/" + anchor_id + " does not overlap another anchor")
 			local_seen[key] = true
 			seen_total += 1

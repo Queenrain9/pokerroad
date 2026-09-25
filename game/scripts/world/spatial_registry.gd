@@ -4,7 +4,7 @@ extends RefCounted
 const PATH = "res://data/spatial_metrics_v1.json"
 
 static func data() -> Dictionary:
-	var f := FileAccess.open(PATH, FileAccess.READ)
+	var f: FileAccess = FileAccess.open(PATH, FileAccess.READ)
 	if f == null:
 		return {"error":"spatial metrics missing"}
 	var parsed = JSON.parse_string(f.get_as_text())
@@ -13,7 +13,7 @@ static func data() -> Dictionary:
 	return parsed
 
 static func region_layout(region_id: String) -> Dictionary:
-	var d := data()
+	var d: Dictionary = data()
 	if d.has("error"):
 		return d
 	var region = d.get("regions", {}).get(region_id, {})
@@ -22,7 +22,7 @@ static func region_layout(region_id: String) -> Dictionary:
 	return region.duplicate(true)
 
 static func world_bounds(region_id: String) -> Rect2:
-	var r := region_layout(region_id)
+	var r: Dictionary = region_layout(region_id)
 	if r.has("error"):
 		return Rect2()
 	var b: Array = r.get("bounds", [])
@@ -31,7 +31,7 @@ static func world_bounds(region_id: String) -> Rect2:
 	return Rect2(float(b[0]), float(b[1]), float(b[2]), float(b[3]))
 
 static func anchor_position(region_id: String, anchor_id: String) -> Vector2:
-	var r := region_layout(region_id)
+	var r: Dictionary = region_layout(region_id)
 	if r.has("error"):
 		return Vector2.INF
 	var raw = r.get("anchors", {}).get(anchor_id)
@@ -40,16 +40,16 @@ static func anchor_position(region_id: String, anchor_id: String) -> Vector2:
 	return Vector2(float(raw[0]), float(raw[1]))
 
 static func player_metrics() -> Dictionary:
-	var d := data()
+	var d: Dictionary = data()
 	return {} if d.has("error") else d.get("player", {}).duplicate(true)
 
 static func camera_metrics() -> Dictionary:
-	var d := data()
+	var d: Dictionary = data()
 	return {} if d.has("error") else d.get("camera", {}).duplicate(true)
 
 static func validate_against_manifest(manifest: Dictionary) -> Array[String]:
 	var errors: Array[String] = []
-	var d := data()
+	var d: Dictionary = data()
 	if d.has("error"):
 		errors.append(str(d.error))
 		return errors
@@ -57,26 +57,26 @@ static func validate_against_manifest(manifest: Dictionary) -> Array[String]:
 	if layouts.size() != 8:
 		errors.append("spatial metrics must cover exactly eight regions")
 	for region in manifest.get("regions", []):
-		var id := str(region.get("id", ""))
+		var id: String = str(region.get("id", ""))
 		if not layouts.has(id):
 			errors.append(id + ": missing spatial layout")
 			continue
-		var bounds := world_bounds(id)
+		var bounds: Rect2 = world_bounds(id)
 		if bounds.size.x <= 1280.0 or bounds.size.y <= 720.0:
 			errors.append(id + ": world bounds too small for production viewport")
-		var seen_positions := {}
+		var seen_positions: Dictionary = {}
 		var layout_anchors: Dictionary = layouts[id].get("anchors", {})
-		var manifest_ids := []
+		var manifest_ids: Array[String] = []
 		for anchor in region.get("anchors", []):
-			var anchor_id := str(anchor.get("id", ""))
+			var anchor_id: String = str(anchor.get("id", ""))
 			manifest_ids.append(anchor_id)
 			if not layout_anchors.has(anchor_id):
 				errors.append(id + ": missing anchor position " + anchor_id)
 				continue
-			var pos := anchor_position(id, anchor_id)
+			var pos: Vector2 = anchor_position(id, anchor_id)
 			if not bounds.has_point(pos):
 				errors.append(id + ": anchor outside world bounds " + anchor_id)
-			var key := "%0.2f,%0.2f" % [pos.x, pos.y]
+			var key: String = "%0.2f,%0.2f" % [pos.x, pos.y]
 			if seen_positions.has(key):
 				errors.append(id + ": overlapping anchor positions " + anchor_id)
 			seen_positions[key] = true

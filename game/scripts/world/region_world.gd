@@ -66,13 +66,13 @@ func anchor_position(anchor_id: String) -> Vector2:
 	return SpatialRegistry.anchor_position(region_id, anchor_id)
 
 func nearest_anchor(world_position: Vector2, radius: float) -> String:
-	var best := ""
-	var best_distance := radius
+	var best: String = ""
+	var best_distance: float = radius
 	for anchor_id in anchor_ids():
-		var pos := anchor_position(anchor_id)
+		var pos: Vector2 = anchor_position(anchor_id)
 		if pos == Vector2.INF:
 			continue
-		var distance := world_position.distance_to(pos)
+		var distance: float = world_position.distance_to(pos)
 		if distance <= best_distance:
 			best = anchor_id
 			best_distance = distance
@@ -84,10 +84,10 @@ func _build_anchor_markers() -> void:
 			marker.queue_free()
 	anchor_markers.clear()
 	for anchor_id in anchor_ids():
-		var pos := anchor_position(anchor_id)
+		var pos: Vector2 = anchor_position(anchor_id)
 		if pos == Vector2.INF:
 			continue
-		var marker := Marker2D.new()
+		var marker: Marker2D = Marker2D.new()
 		marker.name = "Anchor_" + anchor_id
 		marker.position = pos
 		marker.set_meta("anchor_id", anchor_id)
