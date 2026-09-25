@@ -44,7 +44,7 @@ static func plan_step(graph: Dictionary, region_id: String, source: String, dest
 			if chosen_route != required:
 				return {"error": "current tide makes selected route unsafe", "safe_return_anchor": source,
 					"allowed_route": required}
-		if kind == "LAST_TRAIN_ONLY" and not world.get("last_train_available", false):
+		if kind == "LAST_TRAIN_ONLY" and chosen_route == "TAKE_LAST_TRAIN" and not world.get("last_train_available", false):
 			return {"error": "last train missed; use the free night bus", "safe_return_anchor": source,
 				"alternative_anchor": "E3B"}
 		if chosen_route == "REGISTERED_PLAYER_ONLY":
