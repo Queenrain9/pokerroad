@@ -81,7 +81,7 @@ func _initialize() -> void:
 	var loaded := Save.read_payload(path)
 	must(not loaded.has("error") and loaded.mode == "POKER", "saved payload reads and validates")
 	var loaded_tour = Save.restore_tournament(loaded.mode_state if not loaded.has("error") else {})
-	var persisted_exact := loaded_tour != null \
+	var persisted_exact: bool = loaded_tour != null \
 		and loaded_tour.event_id == restored.event_id \
 		and loaded_tour.stacks == restored.stacks \
 		and loaded_tour.completed_hands == restored.completed_hands \
