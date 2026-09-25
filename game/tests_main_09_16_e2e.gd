@@ -119,7 +119,6 @@ func run_suite() -> void:
 	complete("02-M05", "02-M06")
 	must(state.story_flags.get("R02_IAN_DIRECT_RESULT", "") == "NOT_ENTERED", "Ian practice remains optional")
 
-	await reach("K4")
 	await reach("K5")
 	print("M09-16 STEP: 02-M06")
 	open_current("02-M06")
