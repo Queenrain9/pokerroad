@@ -147,7 +147,7 @@ func _process(_delta: float) -> void:
 		last_actor = actor_now
 		last_hand_count = hands_now
 		_refresh()
-	var region_name := root.state.current_region
+	var region_name: String = str(root.state.current_region)
 	for region in root.state.manifest.get("regions", []):
 		if str(region.get("id", "")) == root.state.current_region:
 			region_name = str(region.get("name", root.state.current_region))
