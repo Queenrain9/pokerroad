@@ -51,3 +51,5 @@ jobs:
         run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_region_scenes.gd
       - name: Run spatial-runtime native suite
         run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_spatial_runtime.gd
+      - name: Run world-interaction native suite
+        run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_world_interactions.gd
