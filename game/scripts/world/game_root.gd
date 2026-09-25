@@ -16,7 +16,7 @@ func _ready() -> void:
 		for problem in runtime_problems:
 			push_error("PokerRoad runtime: " + problem)
 		return
-	var world := runtime.world_runtime.current_world()
+	var world: Dictionary = runtime.world_runtime.current_world()
 	if world.has("error"):
 		push_error("PokerRoad current world: " + str(world.error))
 		return

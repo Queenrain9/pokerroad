@@ -13,7 +13,7 @@ func active_scene_id() -> String:
 	return str(active_binding.get("scene_id", ""))
 
 func open_scene(scene_id: String, anchor_id: String) -> Dictionary:
-	var binding := SceneBindingStore.binding_by_id(scene_id)
+	var binding: Dictionary = SceneBindingStore.binding_by_id(scene_id)
 	if binding.is_empty():
 		return {"error":"scene has no authored runtime binding"}
 	if binding.get("region_id", "") != GameState.current_region:
@@ -22,7 +22,7 @@ func open_scene(scene_id: String, anchor_id: String) -> Dictionary:
 		return {"error":"scene cannot start at this anchor"}
 	if binding.get("kind", "") == "MAIN" and GameState.main_cursor != scene_id and not GameState.finished_main.has(scene_id):
 		return {"error":"main scene is not the current cursor"}
-	var source := GameState.scene_source_record(scene_id)
+	var source: Dictionary = GameState.scene_source_record(scene_id)
 	if source.has("error"):
 		return source
 	if source.get("source_section_sha256", "") != binding.get("source_section_sha256", ""):
@@ -66,7 +66,7 @@ func choose(interaction_id: String, choice_id: String) -> Dictionary:
 		return {"error":"unknown choice"}
 	var requests: Array[Dictionary] = []
 	for effect in choice.get("effects", []):
-		var result := _apply_effect(effect)
+		var result: Dictionary = _apply_effect(effect)
 		if result.has("error"):
 			return result
 		if result.has("request"):
@@ -91,7 +91,7 @@ func _apply_effect(effect: Dictionary) -> Dictionary:
 			if not GameState.record_observation(str(effect.get("event_id", "")), str(effect.get("status", ""))):
 				return {"error":"failed to record observation"}
 		"SET_REGISTRATION_INTENT":
-			var value := str(effect.get("value", ""))
+			var value: String = str(effect.get("value", ""))
 			if not ["VIEW","OFFICIAL"].has(value):
 				return {"error":"invalid registration intent"}
 			GameState.registration_intent = value
@@ -118,7 +118,7 @@ func apply_external_result(event_id: String, outcome: String) -> Dictionary:
 	if not by_outcome.has(outcome):
 		return {"error":"unmapped external event outcome"}
 	for effect in by_outcome[outcome]:
-		var result := _apply_effect(effect)
+		var result: Dictionary = _apply_effect(effect)
 		if result.has("error"):
 			return result
 	return {"ready_to_complete":ready_to_complete()}
@@ -141,7 +141,7 @@ func commit_completion() -> Dictionary:
 	if active_binding.get("completion", {}).get("advance_main", false):
 		if not GameState.complete_main_scene(active_scene_id()):
 			return {"error":"physical scene implementation gate not satisfied","ready":true}
-		var completed := active_scene_id()
+		var completed: String = active_scene_id()
 		clear()
 		return {"completed":completed,"main_cursor":GameState.main_cursor}
 	return {"error":"binding has no completion transition"}
@@ -158,10 +158,10 @@ func snapshot() -> Dictionary:
 	}
 
 func restore(snapshot: Dictionary) -> Dictionary:
-	var scene_id := str(snapshot.get("active_scene_id", ""))
+	var scene_id: String = str(snapshot.get("active_scene_id", ""))
 	if scene_id.is_empty():
 		return {"error":"dialogue save has no active scene"}
-	var opened := open_scene(scene_id, GameState.current_anchor)
+	var opened: Dictionary = open_scene(scene_id, GameState.current_anchor)
 	if opened.has("error"):
 		return opened
 	selected_interaction = str(snapshot.get("selected_interaction", ""))

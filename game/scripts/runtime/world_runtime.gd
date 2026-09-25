@@ -20,10 +20,10 @@ func region_descriptor(region_id: String) -> Dictionary:
 	return {"error":"unknown region"}
 
 func current_world() -> Dictionary:
-	var descriptor := region_descriptor(GameState.current_region)
+	var descriptor: Dictionary = region_descriptor(GameState.current_region)
 	if descriptor.has("error"):
 		return descriptor
-	var anchor_known := false
+	var anchor_known: bool = false
 	for anchor in descriptor.anchors:
 		if anchor.get("id", "") == GameState.current_anchor:
 			anchor_known = true
@@ -50,13 +50,13 @@ func open_scene(scene_id: String) -> Dictionary:
 	return scene_runner.open_scene(scene_id, GameState.current_anchor)
 
 func travel_to_anchor(destination: String, selected_route: String = "", context: Dictionary = {}) -> Dictionary:
-	var plan := GameState.step_to_anchor(destination, selected_route, context)
+	var plan: Dictionary = GameState.step_to_anchor(destination, selected_route, context)
 	if not plan.has("error"):
 		GameState.return_anchor = destination
 	return plan
 
 func move_to_next_region(region_id: String, entry_anchor: String) -> bool:
-	var changed := GameState.change_region(region_id, entry_anchor)
+	var changed: bool = GameState.change_region(region_id, entry_anchor)
 	if changed:
 		GameState.return_anchor = entry_anchor
 	return changed

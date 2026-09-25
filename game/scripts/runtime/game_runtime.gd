@@ -19,9 +19,9 @@ func _init() -> void:
 	world_runtime = WorldRuntime.new(scene_runner)
 
 func validate_runtime() -> Array[String]:
-	var errors := SceneBindingStore.validate_catalog()
+	var errors: Array[String] = SceneBindingStore.validate_catalog()
 	errors.append_array(PresentationContract.validate_all_regions())
-	var descriptors := world_runtime.all_region_descriptors()
+	var descriptors: Array[Dictionary] = world_runtime.all_region_descriptors()
 	if descriptors.size() != 8:
 		errors.append("runtime must expose all eight regions")
 	for descriptor in descriptors:
@@ -32,10 +32,10 @@ func validate_runtime() -> Array[String]:
 func open_scene(scene_id: String) -> Dictionary:
 	if mode != "WORLD":
 		return {"error":"world interaction requires WORLD mode"}
-	var opened := world_runtime.open_scene(scene_id)
+	var opened: Dictionary = world_runtime.open_scene(scene_id)
 	if opened.has("error"):
 		return opened
-	var target := str(opened.get("open_mode", "DIALOGUE"))
+	var target: String = str(opened.get("open_mode", "DIALOGUE"))
 	if not _transition(target):
 		return {"error":"illegal world-to-scene mode transition"}
 	return opened
@@ -43,19 +43,19 @@ func open_scene(scene_id: String) -> Dictionary:
 func select_scene_choice(interaction_id: String, choice_id: String) -> Dictionary:
 	if mode != "DIALOGUE":
 		return {"error":"scene choice requires DIALOGUE mode"}
-	var result := scene_runner.choose(interaction_id, choice_id)
+	var result: Dictionary = scene_runner.choose(interaction_id, choice_id)
 	if result.has("error"):
 		return result
 	var requests: Array = result.get("external_requests", [])
 	if requests.size() > 1:
 		return {"error":"one choice cannot start multiple external activities"}
 	if requests.size() == 1:
-		var started := _handle_external_request(requests[0])
+		var started: Dictionary = _handle_external_request(requests[0])
 		if started.has("error") or started.get("requires_confirmation", false):
 			return started
 		result["event_start"] = started
 		return result
-	var target := str(result.get("requested_mode", mode))
+	var target: String = str(result.get("requested_mode", mode))
 	if target != mode and not _transition(target):
 		return {"error":"choice requested illegal presentation mode"}
 	return result
@@ -70,38 +70,38 @@ func start_event(event_id: String, participants: Array, registered_official: boo
 		cost_confirmed: bool = false) -> Dictionary:
 	if not ["WORLD","DIALOGUE"].has(mode):
 		return {"error":"event can only start from world/dialogue"}
-	var event := EventRegistry.event_by_id(event_id)
+	var event: Dictionary = EventRegistry.event_by_id(event_id)
 	if event.is_empty():
 		return {"error":"unknown event"}
-	var expected_seats := int(event.get("seat_count_dev", 0))
+	var expected_seats: int = int(event.get("seat_count_dev", 0))
 	if participants.size() != expected_seats or expected_seats < 2:
 		return {"error":"participant count does not match event contract"}
 	var names: Array[String] = []
 	for value in participants:
-		var name := str(value)
+		var name: String = str(value)
 		if name.is_empty() or names.has(name):
 			return {"error":"participant identities must be unique"}
 		names.append(name)
 	if event.get("record_owner", "") == "PLAYER" and not names.has("PLAYER"):
 		return {"error":"player-owned event requires PLAYER seat"}
-	var fee := int(event.get("wallet_entry_fee_dev", 0))
+	var fee: int = int(event.get("wallet_entry_fee_dev", 0))
 	if fee > 0 and not cost_confirmed:
 		pending_paid_event = {"event_id":event_id,"participants":participants.duplicate(),
 			"registered_official":registered_official,"fee":fee}
 		return {"requires_confirmation":true,"event_id":event_id,"fee":fee}
 	if fee > 0 and not GameState.pay_entry_fee(fee):
 		return {"error":"insufficient wallet for confirmed entry fee"}
-	var instance_id := GameState.allocate_event_instance_id(event_id)
-	var bb := int(event.get("start_big_blind_dev", 0))
-	var stack := int(event.get("start_tournament_stack_dev", 0))
-	var blind_hands := int(event.get("blind_level_every_completed_hands_dev", 6))
+	var instance_id: String = GameState.allocate_event_instance_id(event_id)
+	var bb: int = int(event.get("start_big_blind_dev", 0))
+	var stack: int = int(event.get("start_tournament_stack_dev", 0))
+	var blind_hands: int = int(event.get("blind_level_every_completed_hands_dev", 6))
 	if bb < 1 or stack < 1:
 		return {"error":"event has invalid tournament defaults"}
-	var sb := maxi(1, int(floor(float(bb) / 2.0)))
+	var sb: int = maxi(1, int(floor(float(bb) / 2.0)))
 	var tournament = Tournament.new(event_id, names, stack, sb, bb, blind_hands)
 	if tournament.finished and tournament.final_ranks.is_empty():
 		return {"error":"tournament construction failed"}
-	var previous_mode := mode
+	var previous_mode: String = mode
 	if previous_mode != "POKER" and not _transition("POKER"):
 		return {"error":"presentation contract blocks poker transition"}
 	active_tournament = tournament
@@ -109,7 +109,7 @@ func start_event(event_id: String, participants: Array, registered_official: boo
 	active_event_instance_id = instance_id
 	active_registered_official = registered_official
 	pending_paid_event.clear()
-	var first_hand := active_tournament.begin_hand()
+	var first_hand: Dictionary = active_tournament.begin_hand()
 	if first_hand.has("error"):
 		active_tournament = null
 		active_event_rule.clear()
@@ -121,7 +121,7 @@ func start_event(event_id: String, participants: Array, registered_official: boo
 func confirm_pending_event() -> Dictionary:
 	if pending_paid_event.is_empty():
 		return {"error":"no paid event awaiting confirmation"}
-	var request := pending_paid_event.duplicate(true)
+	var request: Dictionary = pending_paid_event.duplicate(true)
 	return start_event(str(request.event_id), request.participants,
 		bool(request.registered_official), true)
 
@@ -132,7 +132,7 @@ func begin_next_hand(seed: int = -1) -> Dictionary:
 		return {"error":"tournament already finished"}
 	if active_tournament.active_hand != null:
 		return {"error":"current hand still active"}
-	var started := active_tournament.begin_hand(seed)
+	var started: Dictionary = active_tournament.begin_hand(seed)
 	if active_tournament.finished:
 		_finalize_event("FINISHED")
 	return started
@@ -151,8 +151,8 @@ func submit_ai_action(profile: String, strength_hint: float, seed: int) -> Dicti
 		return {"error":"no active poker hand"}
 	var hand = active_tournament.active_hand
 	var seat: int = hand.current_actor
-	var legal := hand.current_options()
-	var context := {
+	var legal: Dictionary = hand.current_options()
+	var context: Dictionary = {
 		"own_hole_cards":hand.holes[seat].duplicate(),
 		"public_board":hand.board.duplicate(),
 		"public_bets":hand.round.street_committed.duplicate(),
@@ -163,7 +163,7 @@ func submit_ai_action(profile: String, strength_hint: float, seed: int) -> Dicti
 		"legal_actions":legal.duplicate(true),
 		"strength_hint":strength_hint
 	}
-	var action := AI.choose_action(legal, context, profile, seed)
+	var action: Dictionary = AI.choose_action(legal, context, profile, seed)
 	if action.has("error"):
 		return action
 	return submit_action(seat, str(action.get("choice", "")), int(action.get("total_bet", -1)))
@@ -178,12 +178,12 @@ func _finalize_event(status: String) -> Dictionary:
 		return {"error":"no tournament to finalize"}
 	if status == "FINISHED" and not active_tournament.finished:
 		return {"error":"cannot finalize unfinished tournament"}
-	var has_player := active_tournament.seat_names.has("PLAYER")
-	var rank := int(active_tournament.final_ranks.get("PLAYER", 0)) if has_player else 0
-	var outcome := "WITHDRAW"
+	var has_player: bool = active_tournament.seat_names.has("PLAYER")
+	var rank: int = int(active_tournament.final_ranks.get("PLAYER", 0)) if has_player else 0
+	var outcome: String = "WITHDRAW"
 	if status == "FINISHED" and has_player:
 		outcome = "WIN" if rank == 1 else "LOSS"
-	var result := {
+	var result: Dictionary = {
 		"event_instance_id":active_event_instance_id,
 		"event_id":active_event_rule.get("event_id", ""),
 		"owner_id":"PLAYER" if has_player else active_event_rule.get("record_owner", ""),
@@ -200,7 +200,7 @@ func _finalize_event(status: String) -> Dictionary:
 	else:
 		GameState.record_npc_event(active_event_instance_id, result)
 	if scene_runner.has_active_scene():
-		var consumed := scene_runner.apply_external_result(str(active_event_rule.get("event_id", "")), outcome)
+		var consumed: Dictionary = scene_runner.apply_external_result(str(active_event_rule.get("event_id", "")), outcome)
 		if consumed.has("error") and status != "WITHDRAW":
 			result["scene_result_warning"] = consumed.error
 	current_result = result.duplicate(true)
@@ -223,7 +223,7 @@ func finish_observation() -> Dictionary:
 func acknowledge_result() -> Dictionary:
 	if mode != "RESULT":
 		return {"error":"no result to acknowledge"}
-	var result := current_result.duplicate(true)
+	var result: Dictionary = current_result.duplicate(true)
 	if not _transition("WORLD"):
 		return {"error":"result cannot return to world"}
 	current_result.clear()
@@ -248,10 +248,10 @@ func save_runtime() -> bool:
 	return GameState.save_session_v2(mode, mode_state)
 
 func restore_runtime() -> Dictionary:
-	var loaded := GameState.load_session_v2()
+	var loaded: Dictionary = GameState.load_session_v2()
 	if loaded.has("error"):
 		return loaded
-	var loaded_mode := str(loaded.get("mode", "WORLD"))
+	var loaded_mode: String = str(loaded.get("mode", "WORLD"))
 	var state: Dictionary = loaded.get("mode_state", {})
 	mode = "WORLD"
 	if loaded_mode == "POKER":
@@ -265,12 +265,12 @@ func restore_runtime() -> Dictionary:
 			return {"error":"saved event rule missing"}
 		var source_snapshot = state.get("source_scene_snapshot", {})
 		if typeof(source_snapshot) == TYPE_DICTIONARY and not source_snapshot.is_empty():
-			var restored_source := scene_runner.restore(source_snapshot)
+			var restored_source: Dictionary = scene_runner.restore(source_snapshot)
 			if restored_source.has("error"):
 				return restored_source
 		mode = "POKER"
 	elif loaded_mode == "DIALOGUE":
-		var restored_scene := scene_runner.restore(state)
+		var restored_scene: Dictionary = scene_runner.restore(state)
 		if restored_scene.has("error"):
 			return restored_scene
 		mode = "DIALOGUE"
@@ -279,7 +279,7 @@ func restore_runtime() -> Dictionary:
 	elif loaded_mode == "OBSERVE" or loaded_mode == "RESULT":
 		var source_snapshot = state.get("active_scene", {})
 		if typeof(source_snapshot) == TYPE_DICTIONARY and not source_snapshot.is_empty():
-			var restored_source := scene_runner.restore(source_snapshot)
+			var restored_source: Dictionary = scene_runner.restore(source_snapshot)
 			if restored_source.has("error"):
 				return restored_source
 		current_result = state.get("runtime_result", {}).duplicate(true)
