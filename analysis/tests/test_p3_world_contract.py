@@ -16,5 +16,5 @@ def test_station_late_night_bus_is_explicit_not_an_arbitrary_route_string():
     assert {e['to']:e['choices'] for e in station['edges'] if e['from']=='E3' and e['kind'] in ('LAST_TRAIN_ONLY','FREE_NIGHT_BUS')}=={'E4':['TAKE_LAST_TRAIN'],'E3B':['BOARD_FREE_NIGHT_BUS']}
     ride=next(e for e in station['edges'] if e['from']=='E3B' and e['to']=='E4');assert ride['choices']==['RIDE_FREE_NIGHT_BUS_TO_EVENT'] and ride['fee']==0
 def test_p3_events_cover_separate_ian_broadcast_and_eunsol_without_forced_win():
-    e=json.loads((ROOT/'game/data/event_catalog_dev.json').read_text(encoding='utf8'))['events'];assert len(e)==26 and len({v['event_id'] for v in e})==26
+    e=json.loads((ROOT/'game/data/event_catalog_dev.json').read_text(encoding='utf8'))['events'];assert len(e)==29 and len({v['event_id'] for v in e})==29
     assert {v['event_id']:v['record_owner'] for v in e if v['event_id'] in {'r01_ian_separate_local','r02_ian_river_broadcast','r06_eunsol_independent'}}=={'r01_ian_separate_local':'NPC_IAN','r02_ian_river_broadcast':'NPC_IAN','r06_eunsol_independent':'NPC_EUNSOL'}
