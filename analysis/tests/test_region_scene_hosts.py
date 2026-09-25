@@ -37,5 +37,5 @@ def test_region_world_keeps_physical_and_visual_status_honest():
     assert '"visual_asset_status":"SAEBOM_DATA_DRIVEN_3_4_BLOCKOUT"' in script
     assert 'else "NOT_STARTED"' in script
     visual=(ROOT/'game/scripts/world/saebom_first_space_visual.gd').read_text(encoding='utf8')
-    assert 'ForegroundOcclusion' in visual and 'P0' in visual and 'P1' in visual
+    assert 'ForegroundOcclusion' in visual and 'BlockoutBuildings' in visual and 'InteractionSlots' in visual
     assert 'world_coordinates' not in script
