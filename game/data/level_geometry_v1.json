@@ -12,7 +12,9 @@
     "interaction_slots_do_not_change_story_state": true,
     "interaction_slots_do_not_change_current_anchor": true,
     "occlusion_zones_have_no_collision": true,
-    "final_art_dimensions_not_claimed": true
+    "final_art_dimensions_not_claimed": true,
+    "blockout_visual_height_is_not_final_art": true,
+    "blockout_roof_projection_is_visual_only": true
   },
   "regions": {
     "01": {
@@ -58,7 +60,9 @@
               140,
               940
             ]
-          ]
+          ],
+          "blockout_visual_height": 180,
+          "blockout_roof_shift_x": 42
         },
         {
           "id": "B_ENDHOUSE_GROUP",
@@ -81,7 +85,9 @@
               5,
               1860
             ]
-          ]
+          ],
+          "blockout_visual_height": 135,
+          "blockout_roof_shift_x": 30
         },
         {
           "id": "B_SUPER",
@@ -104,7 +110,9 @@
               650,
               860
             ]
-          ]
+          ],
+          "blockout_visual_height": 125,
+          "blockout_roof_shift_x": 34
         },
         {
           "id": "B_STATIONERY",
@@ -127,7 +135,9 @@
               1090,
               785
             ]
-          ]
+          ],
+          "blockout_visual_height": 110,
+          "blockout_roof_shift_x": 28
         },
         {
           "id": "B_SNACK_BAR",
@@ -150,7 +160,9 @@
               1370,
               785
             ]
-          ]
+          ],
+          "blockout_visual_height": 110,
+          "blockout_roof_shift_x": 28
         },
         {
           "id": "B_ARCADE",
@@ -173,7 +185,9 @@
               1690,
               1430
             ]
-          ]
+          ],
+          "blockout_visual_height": 155,
+          "blockout_roof_shift_x": 38
         },
         {
           "id": "B_TOWER",
@@ -196,7 +210,9 @@
               2300,
               350
             ]
-          ]
+          ],
+          "blockout_visual_height": 430,
+          "blockout_roof_shift_x": 72
         },
         {
           "id": "B_CONVENIENCE",
@@ -219,7 +235,9 @@
               2810,
               730
             ]
-          ]
+          ],
+          "blockout_visual_height": 105,
+          "blockout_roof_shift_x": 26
         }
       ],
       "prop_function_zones": [
