@@ -87,7 +87,7 @@ func run_suite() -> void:
 	must(state.story_flags.get("R04_PLAYER_OFFICIAL_RESULT", "") in ["WIN","LOSS"], "official whole-match result consumed")
 	must(not resumed.acknowledge_result().has("error"), "official result returns to world")
 	must(not resumed.commit_active_scene().has("error") and state.main_cursor == "04-M04", "04-M03 completes")
-	var narae := state.npc_events.values().filter(func(v): return v.get("event_id", "") == "r04_narae_qualifier")
+	var narae: Array = state.npc_events.values().filter(func(v): return v.get("event_id", "") == "r04_narae_qualifier")
 	must(narae.size() == 1 and int(narae[0].get("final_rank", 0)) == 1
 		and narae[0].get("owner_id", "") == "NPC_NARAE", "Narae qualifier is independent canonical NPC evidence")
 	must(state.story_flags.get("NARAE_NPC_QUALIFIED", false), "Narae qualification story flag follows her NPC event")
@@ -97,7 +97,7 @@ func run_suite() -> void:
 	var board: Dictionary = resumed.select_scene_choice("IAN_DOYUN_VIEW", "BOARD")
 	must(not board.has("error") and resumed.mode == "WORLD", "invite result board can be read without player seat")
 	must(not resumed.commit_active_scene().has("error") and state.main_cursor == "04-M05", "04-M04 completes")
-	var invite := state.npc_events.values().filter(func(v): return v.get("event_id", "") == "r04_doyun_ian_invite")
+	var invite: Array = state.npc_events.values().filter(func(v): return v.get("event_id", "") == "r04_doyun_ian_invite")
 	must(invite.size() == 1 and invite[0].get("owner_id", "") == "NPC_DOYUN"
 		and int(invite[0].get("final_rank", 0)) == 1
 		and invite[0].get("participants", []).has("NPC_IAN"), "Doyun-Ian replay preserves canonical participants and winner")
