@@ -62,6 +62,8 @@ func open_scene(scene_id: String) -> Dictionary:
 func select_scene_choice(interaction_id: String, choice_id: String) -> Dictionary:
 	if mode != "DIALOGUE":
 		return {"error":"scene choice requires DIALOGUE mode"}
+	if not pending_paid_event.is_empty():
+		return {"error":"paid event confirmation pending"}
 	var result: Dictionary = scene_runner.choose(interaction_id, choice_id)
 	if result.has("error"):
 		return result
@@ -151,6 +153,13 @@ func confirm_pending_event() -> Dictionary:
 	return start_event(str(request.event_id), request.participants,
 		bool(request.registered_official), true)
 
+func cancel_pending_event() -> Dictionary:
+	if pending_paid_event.is_empty():
+		return {"error":"no paid event awaiting confirmation"}
+	var cancelled: Dictionary = pending_paid_event.duplicate(true)
+	pending_paid_event.clear()
+	return {"cancelled":cancelled}
+
 func begin_next_hand(seed: int = -1) -> Dictionary:
 	if mode != "POKER" or active_tournament == null:
 		return {"error":"no active tournament"}
@@ -223,6 +232,16 @@ func _finalize_event(status: String) -> Dictionary:
 	}
 	if has_player:
 		state.record_player_event(active_event_instance_id, result)
+		if active_event_rule.get("sanction_status", "") == "OFFICIAL" and active_event_rule.get("national_qualifier", false):
+			var qualification_rules: Dictionary = {
+				"event_id":active_event_rule.get("event_id", ""),
+				"owner_id":active_event_rule.get("record_owner", ""),
+				"sanction_status":active_event_rule.get("sanction_status", ""),
+				"national_qualifier":active_event_rule.get("national_qualifier", false),
+				"qualifying_rank_cutoff":active_event_rule.get("qualifying_places_dev", 0)
+			}
+			state.player_q = Qualification.qualify_from_result(result, qualification_rules)
+			state.world_changed.emit()
 	else:
 		state.record_npc_event(active_event_instance_id, result)
 	if scene_runner.has_active_scene():
@@ -263,6 +282,11 @@ func commit_active_scene() -> Dictionary:
 		var replay: Dictionary = run_independent_npc_event(npc_event)
 		if replay.has("error"):
 			return replay
+		var npc_effects: Array = scene_runner.active_binding.get("npc_event_effects", [])
+		if not npc_effects.is_empty():
+			var applied: Dictionary = scene_runner.apply_effect_list(npc_effects)
+			if applied.has("error"):
+				return applied
 	return scene_runner.commit_completion()
 
 func close_completed_scene() -> Dictionary:
@@ -281,45 +305,62 @@ func run_independent_npc_event(event_id: String) -> Dictionary:
 	var rule: Dictionary = EventRegistry.event_by_id(event_id)
 	if rule.is_empty() or str(rule.get("record_owner", "")).begins_with("PLAYER"):
 		return {"error":"independent NPC event rule missing"}
-	var names: Array[String] = [str(rule.get("record_owner", ""))]
-	for index in range(1, int(rule.get("seat_count_dev", 0))):
-		names.append("NPC_LOCAL_%d" % index)
+	var owner: String = str(rule.get("record_owner", ""))
+	var names: Array[String] = []
+	var authored_names: Array = rule.get("npc_participants_dev", [])
+	if authored_names.size() == int(rule.get("seat_count_dev", 0)) and authored_names.has(owner):
+		for value in authored_names:
+			names.append(str(value))
+	else:
+		names = [owner]
+		for index in range(1, int(rule.get("seat_count_dev", 0))):
+			names.append("NPC_LOCAL_%d" % index)
 	var bb: int = int(rule.get("start_big_blind_dev", 0))
-	var tournament = Tournament.new(event_id, names, int(rule.get("start_tournament_stack_dev", 0)),
-		maxi(1, int(bb / 2)), bb, int(rule.get("blind_level_every_completed_hands_dev", 6)))
-	var actions := 0
-	while not tournament.finished and actions < 20000:
-		if tournament.active_hand == null:
-			var started: Dictionary = tournament.begin_hand(10000 + tournament.completed_hands)
-			if started.has("error"):
-				return started
-			continue
-		var hand = tournament.active_hand
-		var seat: int = hand.current_actor
-		if seat < 0:
-			return {"error":"NPC replay has no current actor"}
-		var legal: Dictionary = hand.current_options()
-		var context: Dictionary = {
-			"own_hole_cards":hand.holes[seat].duplicate(), "public_board":hand.board.duplicate(),
-			"public_bets":hand.round.street_committed.duplicate(),
-			"public_stacks":hand.round.stacks.duplicate(), "seat_position":seat,
-			"blind_level":int(floor(float(tournament.completed_hands) / float(tournament.blind_level_hands))),
-			"prior_public_actions":hand.history.duplicate(true), "legal_actions":legal.duplicate(true),
-			"strength_hint":0.5
-		}
-		var action: Dictionary = AI.choose_action(legal, context, "BALANCED", 20000 + actions)
-		if action.has("error") or not tournament.act(seat, str(action.get("choice", "")), int(action.get("total_bet", -1))):
-			return {"error":"NPC replay action failed"}
-		actions += 1
-	if not tournament.finished:
-		return {"error":"NPC replay exceeded action limit"}
+	var required_rank: int = int(rule.get("npc_required_final_rank_dev", 0))
+	var selected_tournament = null
+	var attempt_limit: int = 1 if required_rank <= 0 else 32
+	for attempt in range(attempt_limit):
+		var tournament = Tournament.new(event_id, names, int(rule.get("start_tournament_stack_dev", 0)),
+			maxi(1, int(bb / 2)), bb, int(rule.get("blind_level_every_completed_hands_dev", 6)))
+		var actions := 0
+		while not tournament.finished and actions < 20000:
+			if tournament.active_hand == null:
+				var started: Dictionary = tournament.begin_hand(10000 + attempt * 100000 + tournament.completed_hands)
+				if started.has("error"):
+					return started
+				continue
+			var hand = tournament.active_hand
+			var seat: int = hand.current_actor
+			if seat < 0:
+				return {"error":"NPC replay has no current actor"}
+			var legal: Dictionary = hand.current_options()
+			var context: Dictionary = {
+				"own_hole_cards":hand.holes[seat].duplicate(), "public_board":hand.board.duplicate(),
+				"public_bets":hand.round.street_committed.duplicate(),
+				"public_stacks":hand.round.stacks.duplicate(), "seat_position":seat,
+				"blind_level":int(floor(float(tournament.completed_hands) / float(tournament.blind_level_hands))),
+				"prior_public_actions":hand.history.duplicate(true), "legal_actions":legal.duplicate(true),
+				"strength_hint":0.5
+			}
+			var action: Dictionary = AI.choose_action(legal, context, "BALANCED", 20000 + attempt * 100000 + actions)
+			if action.has("error") or not tournament.act(seat, str(action.get("choice", "")), int(action.get("total_bet", -1))):
+				return {"error":"NPC replay action failed"}
+			actions += 1
+		if not tournament.finished:
+			return {"error":"NPC replay exceeded action limit"}
+		if required_rank <= 0 or int(tournament.final_ranks.get(owner, 0)) == required_rank:
+			selected_tournament = tournament
+			break
+	if selected_tournament == null:
+		return {"error":"NPC replay could not satisfy canonical outcome constraint"}
 	var instance_id: String = state.allocate_event_instance_id(event_id)
 	var result: Dictionary = {
 		"event_id":event_id,"event_instance_id":instance_id,
-		"source_scene_id":scene_runner.active_scene_id(),"owner_id":str(rule.get("record_owner", "")),
+		"source_scene_id":scene_runner.active_scene_id(),"owner_id":owner,
+		"participants":names.duplicate(),
 		"actually_participated":true,"match_status":"FINISHED",
-		"final_rank":int(tournament.final_ranks.get(str(rule.get("record_owner", "")), 0)),
-		"review_status":"ENGINE_RANK_ONLY", "hand_count":tournament.completed_hands,
+		"final_rank":int(selected_tournament.final_ranks.get(owner, 0)),
+		"review_status":"ENGINE_RANK_ONLY", "hand_count":selected_tournament.completed_hands,
 		"engine_verified":true
 	}
 	if not state.record_npc_event(instance_id, result):
