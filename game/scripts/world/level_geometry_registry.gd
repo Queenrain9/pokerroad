@@ -115,6 +115,7 @@ static func _micro_zones(region_id: String) -> Array:
 static func _unique_non_portal_segments(region_id: String) -> Array:
 	var result: Array = []
 	var graph: Dictionary = TraversalService.load_graph()
+	var geometry := RouteGeometry.new(region_id)
 	var seen: Dictionary = {}
 	for region in graph.get("regions", []):
 		if str(region.get("id", "")) != region_id:
@@ -122,16 +123,15 @@ static func _unique_non_portal_segments(region_id: String) -> Array:
 		for edge in region.get("edges", []):
 			if bool(edge.get("requires_player_route_choice", false)):
 				continue
-			var source := str(edge.get("from", ""))
-			var destination := str(edge.get("to", ""))
-			var key := source + ":" + destination if source < destination else destination + ":" + source
+			var source: String = str(edge.get("from", ""))
+			var destination: String = str(edge.get("to", ""))
+			var key: String = source + ":" + destination if source < destination else destination + ":" + source
 			if seen.has(key):
 				continue
 			seen[key] = true
-			var a := SpatialRegistry.anchor_position(region_id, source)
-			var b := SpatialRegistry.anchor_position(region_id, destination)
-			if a != Vector2.INF and b != Vector2.INF:
-				result.append({"a":a,"b":b})
+			var path: PackedVector2Array = geometry.corridor_points(source, destination)
+			for i in range(path.size() - 1):
+				result.append({"a":path[i],"b":path[i + 1]})
 	return result
 
 static func validate_region(region_id: String) -> Array[String]:
