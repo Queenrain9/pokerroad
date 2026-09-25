@@ -26,6 +26,13 @@ func _initialize() -> void:
 	var geometry = world.route_geometry
 
 	must(geometry.local_zone_count() == 12, "Saebom exposes all 12 authored local walkable zones")
+	must(geometry.physical_path_count() == 4, "Saebom exposes four authored bent physical route centerlines")
+	var p3_p5: PackedVector2Array = geometry.corridor_points("P3", "P5")
+	must(p3_p5.size() == 7, "P3 to P5 uses the authored seven-point public path")
+	must(p3_p5[0] == world.anchor_position("P3") and p3_p5[p3_p5.size() - 1] == world.anchor_position("P5"),
+		"P3 to P5 preserves both canonical anchor endpoints")
+	must(absf(p3_p5[3].y - ((world.anchor_position("P3").y + world.anchor_position("P5").y) / 2.0)) >= 50.0,
+		"P3 to P5 is meaningfully bent instead of a long straight strip")
 	must(mounted.get("micro_navigation_status", "") == "LOCAL_WALKABLE_ZONES_ACTIVE", "descriptor reports active local walkable zones")
 	must(int(mounted.get("micro_navigation_zone_count", 0)) == 12, "descriptor reports exact local zone count")
 
