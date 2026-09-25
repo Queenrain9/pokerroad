@@ -81,7 +81,19 @@ func _initialize() -> void:
 	var loaded := Save.read_payload(path)
 	must(not loaded.has("error") and loaded.mode == "POKER", "saved payload reads and validates")
 	var loaded_tour = Save.restore_tournament(loaded.mode_state if not loaded.has("error") else {})
-	must(loaded_tour != null and JSON.stringify(loaded_tour.to_snapshot()) == JSON.stringify(restored.to_snapshot()), "saved tournament restores exactly")
+	var persisted_exact := loaded_tour != null \
+		and loaded_tour.event_id == restored.event_id \
+		and loaded_tour.stacks == restored.stacks \
+		and loaded_tour.completed_hands == restored.completed_hands \
+		and loaded_tour.dealer == restored.dealer \
+		and loaded_tour.active_hand != null \
+		and restored.active_hand != null \
+		and loaded_tour.active_hand.deck == restored.active_hand.deck \
+		and loaded_tour.active_hand.board == restored.active_hand.board \
+		and loaded_tour.active_hand.holes == restored.active_hand.holes \
+		and loaded_tour.active_hand.current_actor == restored.active_hand.current_actor \
+		and loaded_tour.active_hand.round.to_snapshot() == restored.active_hand.round.to_snapshot()
+	must(persisted_exact, "saved tournament restores exact execution state")
 	if FileAccess.file_exists(path):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
 
