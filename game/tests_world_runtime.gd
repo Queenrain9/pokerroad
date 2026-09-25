@@ -34,7 +34,7 @@ func reset_world(region: String, anchor: String, cursor: String) -> void:
 	gs.event_serial = 0
 
 func fresh_runtime():
-	var runtime = Runtime.new()
+	var runtime = Runtime.new(gs)
 	get_root().add_child(runtime)
 	return runtime
 
