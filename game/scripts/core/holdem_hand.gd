@@ -192,7 +192,7 @@ static func from_snapshot(snapshot: Dictionary):
 	var round_restored = Betting.from_snapshot(snapshot.get("round", {}))
 	if round_restored == null:
 		return null
-	var count := starting.size()
+	var count: int = starting.size()
 	var raw_stacks = snapshot.get("stacks", [])
 	var raw_holes = snapshot.get("holes", [])
 	if typeof(raw_stacks) != TYPE_ARRAY or raw_stacks.size() != count or typeof(raw_holes) != TYPE_ARRAY or raw_holes.size() != count:

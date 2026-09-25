@@ -33,8 +33,8 @@ static func choose_action(legal: Dictionary, context: Dictionary, profile: Strin
 	var to_call: int = int(legal.get("to_call", 0))
 	var max_total: int = int(legal.get("max_total_bet", 0))
 	var min_total: int = int(legal.get("min_total_bet", 0))
-	var aggression := {"BEGINNER":0.30,"BALANCED":0.50,"STRONG":0.58}[profile]
-	var mistake := {"BEGINNER":0.22,"BALANCED":0.08,"STRONG":0.02}[profile]
+	var aggression: float = float({"BEGINNER":0.30,"BALANCED":0.50,"STRONG":0.58}[profile])
+	var mistake: float = float({"BEGINNER":0.22,"BALANCED":0.08,"STRONG":0.02}[profile])
 	var roll := rng.randf()
 
 	# Legal-action-first baseline. Skill tuning may change thresholds, never legality.

@@ -143,7 +143,7 @@ static func from_snapshot(snapshot: Dictionary):
 	if bb < 1:
 		return null
 	var restored := BettingRound.new(raw_stacks, bb)
-	var size := raw_stacks.size()
+	var size: int = raw_stacks.size()
 	for key in ["street_committed","hand_committed","folded","last_acted_bet"]:
 		var value = snapshot.get(key, [])
 		if typeof(value) != TYPE_ARRAY or value.size() != size:
