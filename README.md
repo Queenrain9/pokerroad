@@ -14,16 +14,17 @@ Godot mobile poker RPG production repository.
 - Structural contracts are implemented for **competition/tournament/Q/AI**, **save/interruption recovery**, and **8-region camera/space/control/poker-UI semantics**.
 - **P5 common runtime now boots in Godot**: source-backed SceneRunner, WorldRuntime, poker-event→RESULT→WORLD flow, observation flow, and runtime save/resume are connected.
 - Production runtime bindings authored against canonical source: **4/88** (`01-M01`, `01-M02`, `05-M03`, `08-M03`). These are semantic bindings, not claims that physical scenes are finished.
-- Production region PackedScene containers: **8/8 registered and mountable** from the actual main entrypoint. They intentionally contain no placeholder art/geometry.
-- Physical explorable maps: **0/8**.
+- Production region PackedScene containers: **8/8 registered and mountable** from the actual main entrypoint.
+- P5 spatial baseline: **8/8 region bounds + 60/60 canonical anchor coordinates**, shared CharacterBody2D player runtime, Camera2D limits/smoothing, nonvisual interaction markers, and mobile virtual-move input API are connected to the real main boot.
+- Final physical environment geometry/collision/art: **0/8 complete**. The committed spatial layer is a navigation engineering baseline, not a claim that finished maps or visuals exist.
 - Playable fully implemented story scenes: **0/88**. Source capture/runtime binding is not the same as physical scene implementation.
-- GitHub Core QA: **97 passed** + exact **2,598,960** five-card exhaustive classification.
-- Godot 4.4.1 Linux headless: production main boot PASS; core **31**, P3 regression **48**, P4 system-contract **37**, P5 world-runtime **56**, eight-region scene **58** checks PASS.
+- GitHub Core QA: **101 passed** + exact **2,598,960** five-card exhaustive classification.
+- Godot 4.4.1 Linux headless: production main boot PASS; core **31**, P3 regression **48**, P4 system-contract **37**, P5 world-runtime **56**, eight-region scene **186**, spatial-runtime **153** checks PASS.
 - **Windows/iPhone/Android: NOT TESTED**. Final map geometry/collision, final art, final per-NPC AI tuning, complete 88-scene bindings and mobile builds remain incomplete.
 
 The canonical script files live under `source/original_notion_v4_2`. Runtime bindings live in `game/data/scene_bindings_v1.json` and are rejected if the stored source hash no longer matches the canonical imported scene.
 
-The eight production region scene containers live under `game/scenes/regions/`. They are architecture containers only: no invented coordinates, disposable placeholder art, or fake map-completion status is committed.
+The eight production region scene containers live under `game/scenes/regions/`. They still contain no disposable placeholder art. Navigation coordinates are now centralized in `game/data/spatial_metrics_v1.json`; source-manifest `world_coordinates` remain untouched, and final art composition is still explicitly unclaimed.
 
 Use `tools/run_godot_qa_windows.ps1` on a Windows machine with Godot 4 installed for the next native environment gate.
 
