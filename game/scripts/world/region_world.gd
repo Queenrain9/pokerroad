@@ -10,6 +10,7 @@ var spatial_layout: Dictionary = {}
 var anchor_markers: Dictionary = {}
 var route_geometry: RouteGeometry
 var portal_markers: Dictionary = {}
+var visual_layer
 
 func initialize_from_state(p_state) -> Dictionary:
 	state = p_state
@@ -34,11 +35,17 @@ func initialize_from_state(p_state) -> Dictionary:
 		return {"error":"region has no physical route geometry"}
 	_build_anchor_markers()
 	_build_route_geometry()
-	_build_wayfinding()
+	if region_id == "01":
+		var Visual = preload("res://scripts/world/saebom_first_space_visual.gd")
+		visual_layer = Visual.new()
+		add_child(visual_layer)
+		visual_layer.setup(self, state)
+	else:
+		_build_wayfinding()
 	return descriptor()
 
 func _draw() -> void:
-	if route_geometry == null:
+	if route_geometry == null or region_id == "01":
 		return
 	for source in anchor_ids():
 		for edge in route_geometry.outgoing(source):
@@ -82,7 +89,7 @@ func descriptor() -> Dictionary:
 		"physical_map_status":"ROUTE_GEOMETRY_ACTIVE",
 		"route_edge_count":route_geometry.edges.size(),
 		"portal_count":portal_markers.size(),
-		"visual_asset_status":"NOT_STARTED"
+		"visual_asset_status":"FIRST_SPACE_3_4_PROTOTYPE" if region_id == "01" else "NOT_STARTED"
 	}
 
 func anchor_ids() -> Array[String]:
