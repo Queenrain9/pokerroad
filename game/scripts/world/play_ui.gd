@@ -9,6 +9,7 @@ var panel: PanelContainer
 var body: VBoxContainer
 var world_label: Label
 var hint_label: Label
+var prompt_label: Label
 var move_vector := Vector2.ZERO
 var last_mode := ""
 var last_scene := ""
@@ -24,46 +25,97 @@ func _ready() -> void:
 	layer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	layer.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(layer)
+
+	var world_card := PanelContainer.new()
+	world_card.position = Vector2(18, 18)
+	world_card.custom_minimum_size = Vector2(500, 90)
+	var world_style := StyleBoxFlat.new()
+	world_style.bg_color = Color(0.06, 0.12, 0.14, 0.86)
+	world_style.corner_radius_top_left = 10
+	world_style.corner_radius_top_right = 10
+	world_style.corner_radius_bottom_left = 10
+	world_style.corner_radius_bottom_right = 10
+	world_style.content_margin_left = 18
+	world_style.content_margin_right = 18
+	world_style.content_margin_top = 12
+	world_style.content_margin_bottom = 10
+	world_card.add_theme_stylebox_override("panel", world_style)
+	layer.add_child(world_card)
+	var world_box := VBoxContainer.new()
+	world_box.add_theme_constant_override("separation", 4)
+	world_card.add_child(world_box)
 	world_label = Label.new()
-	world_label.position = Vector2(20, 14)
-	world_label.add_theme_font_size_override("font_size", 22)
-	layer.add_child(world_label)
+	world_label.add_theme_font_size_override("font_size", 25)
+	world_label.add_theme_color_override("font_color", Color("#f2dfb7"))
+	world_box.add_child(world_label)
 	hint_label = Label.new()
-	hint_label.position = Vector2(20, 48)
 	hint_label.add_theme_font_size_override("font_size", 16)
-	layer.add_child(hint_label)
+	hint_label.add_theme_color_override("font_color", Color("#e9ece3"))
+	world_box.add_child(hint_label)
+
+	prompt_label = Label.new()
+	prompt_label.position = Vector2(910, 574)
+	prompt_label.custom_minimum_size = Vector2(330, 42)
+	prompt_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	prompt_label.add_theme_font_size_override("font_size", 18)
+	prompt_label.add_theme_color_override("font_color", Color("#f2dfb7"))
+	layer.add_child(prompt_label)
+
 	panel = PanelContainer.new()
-	panel.position = Vector2(690, 100)
-	panel.custom_minimum_size = Vector2(560, 0)
+	panel.position = Vector2(110, 405)
+	panel.custom_minimum_size = Vector2(1060, 0)
+	var dialogue_style := StyleBoxFlat.new()
+	dialogue_style.bg_color = Color(0.04, 0.08, 0.10, 0.93)
+	dialogue_style.border_width_left = 2
+	dialogue_style.border_width_top = 2
+	dialogue_style.border_width_right = 2
+	dialogue_style.border_width_bottom = 2
+	dialogue_style.border_color = Color(0.73, 0.59, 0.34, 0.75)
+	dialogue_style.corner_radius_top_left = 12
+	dialogue_style.corner_radius_top_right = 12
+	dialogue_style.corner_radius_bottom_left = 12
+	dialogue_style.corner_radius_bottom_right = 12
+	dialogue_style.content_margin_left = 20
+	dialogue_style.content_margin_right = 20
+	dialogue_style.content_margin_top = 16
+	dialogue_style.content_margin_bottom = 16
+	panel.add_theme_stylebox_override("panel", dialogue_style)
 	layer.add_child(panel)
 	body = VBoxContainer.new()
 	body.add_theme_constant_override("separation", 9)
 	panel.add_child(body)
+
 	var controls: HBoxContainer = HBoxContainer.new()
-	controls.position = Vector2(20, 600)
+	controls.position = Vector2(18, 626)
+	controls.add_theme_constant_override("separation", 5)
 	layer.add_child(controls)
 	for direction in [Vector2.LEFT, Vector2.UP, Vector2.DOWN, Vector2.RIGHT]:
 		var key: Button = Button.new()
 		key.text = {Vector2.LEFT:"◀",Vector2.UP:"▲",Vector2.DOWN:"▼",Vector2.RIGHT:"▶"}[direction]
-		key.custom_minimum_size = Vector2(64, 64)
+		key.custom_minimum_size = Vector2(52, 52)
 		key.button_down.connect(_move_down.bind(direction))
 		key.button_up.connect(_move_up.bind(direction))
 		controls.add_child(key)
+
 	var interact: Button = Button.new()
-	interact.text = "상호작용 E"
-	interact.custom_minimum_size = Vector2(140, 64)
+	interact.text = "상호작용  E"
+	interact.position = Vector2(1080, 620)
+	interact.custom_minimum_size = Vector2(165, 58)
 	interact.pressed.connect(_interact)
-	controls.add_child(interact)
+	layer.add_child(interact)
+
 	var save: Button = Button.new()
 	save.text = "저장"
-	save.custom_minimum_size = Vector2(72, 64)
+	save.position = Vector2(1090, 22)
+	save.custom_minimum_size = Vector2(70, 44)
 	save.pressed.connect(_save)
-	controls.add_child(save)
+	layer.add_child(save)
 	var load: Button = Button.new()
 	load.text = "이어하기"
-	load.custom_minimum_size = Vector2(100, 64)
+	load.position = Vector2(1164, 22)
+	load.custom_minimum_size = Vector2(98, 44)
 	load.pressed.connect(_load)
-	controls.add_child(load)
+	layer.add_child(load)
 	_refresh()
 
 func _process(_delta: float) -> void:
@@ -95,10 +147,42 @@ func _process(_delta: float) -> void:
 		last_actor = actor_now
 		last_hand_count = hands_now
 		_refresh()
-	world_label.text = "%s  %s  |  %s  |  칩 %d" % [root.state.current_region, root.state.current_anchor, root.state.main_cursor, root.state.chips]
-	hint_label.text = message if not message.is_empty() else "방향키/터치로 걷고 E로 가까운 대상과 상호작용하세요."
+	var region_name := root.state.current_region
+	for region in root.state.manifest.get("regions", []):
+		if str(region.get("id", "")) == root.state.current_region:
+			region_name = str(region.get("name", root.state.current_region))
+			break
+	world_label.text = region_name
+	hint_label.text = message if not message.is_empty() else _world_objective()
+	prompt_label.text = _interaction_prompt() if mode == "WORLD" else ""
 	root.player.set_virtual_move_vector(move_vector if mode == "WORLD" else Vector2.ZERO)
 	root.player.set_physics_process(mode == "WORLD")
+
+func _world_objective() -> String:
+	if root == null or root.state == null:
+		return ""
+	match root.state.main_cursor:
+		"01-M01": return "골목 게시판을 확인하거나 주민에게 길을 물어보세요"
+		"01-M02": return "슈퍼 앞 평상에서 복례와 이야기하세요"
+	var binding: Dictionary = SceneBindingStore.binding_by_id(root.state.main_cursor)
+	if not binding.is_empty():
+		return "목표 · " + str(binding.get("target", ""))
+	return "동네를 둘러보세요"
+
+func _interaction_prompt() -> String:
+	if root == null or root.runtime == null:
+		return ""
+	var nearby: Dictionary = root.inspect_world_interaction()
+	match str(nearby.get("kind", "")):
+		"CURRENT_ANCHOR":
+			var scene_id: String = root.state.main_cursor
+			if nearby.get("scene_ids", []).has(scene_id):
+				return "E  대화 / 확인"
+			return "E  살펴보기"
+		"TRAVEL_CONFIRMABLE": return "E  다음 길로 이동"
+		"ROUTE_CHOICE_REQUIRED": return "E  이동 경로 선택"
+	return ""
+
 
 var _e_was_down := false
 
