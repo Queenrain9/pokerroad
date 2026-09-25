@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "authority": "Notion 15 v4.2 verbatim source; bindings encode runtime semantics only and never rewrite dialogue",
-  "binding_status": "FIRST_TWENTY_FOUR_MAIN_PLAYABLE_BINDINGS",
+  "binding_status": "FIRST_THIRTY_TWO_MAIN_PLAYABLE_BINDINGS",
   "supported_effects": [
     "SET_FLAG",
     "SET_OBSERVATION",
@@ -2962,6 +2962,275 @@
       "replay_dialogue": "돌아오셨네요. 마지막 역행 정기편은 계속 다녀요."
     },
     {
+      "scene_id": "05-M01",
+      "region_id": "05",
+      "kind": "MAIN",
+      "source_section_sha256": "009420ca9e0c027be451c7aed2fdfd418c4d5efecfd50a51de3fa35b6b7bf922",
+      "entry_anchors": [
+        "E2"
+      ],
+      "target": "나래·등록 안내원 / 예선 성적과 임시 계정 예약",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "나래",
+          "text": "제 예선 통과 기록하고 예약을 각각 확인할게요."
+        },
+        {
+          "speaker": "안내원",
+          "text": "예선 성적자 나래 / 임시 계정 예약은 별도입니다. 선수 본인이 이의 신청할 수 있어요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "NARAE_RECORD_REVIEW",
+          "choices": [
+            {
+              "choice_id": "WHO_RESERVED",
+              "label": "누가 예약한 거죠?",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_RECORD_REVIEWED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "NARAE_WON",
+              "label": "나래가 직접 이기지 않았나요?",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_RECORD_REVIEWED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "IAN_LOCATION",
+              "label": "이안은 어디 있어요?",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_RECORD_REVIEWED",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "NARAE_OBJECTION",
+          "choices": [
+            {
+              "choice_id": "LET_NARAE_FILE",
+              "label": "나래 본인 명의로 이의 신청 접수",
+              "requested_mode": "WORLD",
+              "requires": [
+                {
+                  "key": "NARAE_RECORD_REVIEWED",
+                  "value": true
+                }
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "NARAE_OBJECTION_SUBMITTED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "LATER",
+              "label": "지금은 나중에 확인",
+              "requested_mode": "WORLD",
+              "effects": []
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAGS_ALL",
+        "requirements": [
+          {
+            "key": "NARAE_RECORD_REVIEWED",
+            "value": true
+          },
+          {
+            "key": "NARAE_OBJECTION_SUBMITTED",
+            "value": true
+          }
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "이의 신청은 나래 본인이 접수했어요. 밤 경기는 구 회차선입니다."
+    },
+    {
+      "scene_id": "05-M02",
+      "region_id": "05",
+      "kind": "MAIN",
+      "source_section_sha256": "ee1a788702e96dd1f081b2f9b5a037d92f67cd8c022d9945a619527af4127fe3",
+      "entry_anchors": [
+        "E3",
+        "E3B",
+        "E4"
+      ],
+      "target": "도해·역무원 / 막차·B노선·무료 야간 버스",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "이안",
+          "text": "구 회차선 쪽 공개 경기장으로 와. 출전 선수 누군지 확인할 수 있대."
+        },
+        {
+          "speaker": "도해",
+          "text": "시간표와 출구를 보고 막차, 도보 B노선, 무료 야간 버스 중 고르세요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "NIGHT_ROUTE_PLAN",
+          "choices": [
+            {
+              "choice_id": "A_LAST_TRAIN",
+              "label": "A노선 막차+환승",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E3"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_ROUTE_PLAN",
+                  "value": "A_LAST_TRAIN"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_LAST_TRAIN_AVAILABLE",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "B_WALK",
+              "label": "B노선 도보 출구",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E3"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_ROUTE_PLAN",
+                  "value": "B_LINE_WALK"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_LAST_TRAIN_AVAILABLE",
+                  "value": false
+                }
+              ]
+            },
+            {
+              "choice_id": "FREE_BUS",
+              "label": "무료 야간 버스",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E3"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_ROUTE_PLAN",
+                  "value": "FREE_BUS"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_LAST_TRAIN_AVAILABLE",
+                  "value": false
+                }
+              ]
+            },
+            {
+              "choice_id": "MISSED_A",
+              "label": "A노선 막차를 놓침",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E3"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_ROUTE_PLAN",
+                  "value": "MISSED_A"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_LAST_TRAIN_AVAILABLE",
+                  "value": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "NIGHT_BUS_TRANSFER",
+          "choices": [
+            {
+              "choice_id": "BUS_CONFIRMED",
+              "label": "무료 셔틀로 경기장 쪽 이동",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E3B"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_USED_FREE_BUS",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "EVENT_ENTRANCE",
+          "choices": [
+            {
+              "choice_id": "ARRIVED",
+              "label": "구 회차선 경기장 입구 확인",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E4"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_EVENT_ENTRANCE_FOUND",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R05_EVENT_ENTRANCE_FOUND",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "도윤 공개 소개가 곧 시작됩니다."
+    },
+    {
       "scene_id": "05-M03",
       "region_id": "05",
       "kind": "MAIN",
@@ -2969,8 +3238,19 @@
       "entry_anchors": [
         "E4"
       ],
+      "target": "도윤·나래·진행자 / 심야 공개 경기 소개",
       "open_mode": "DIALOGUE",
-      "physical_world_binding_status": "NOT_IMPLEMENTED",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "진행자",
+          "text": "원탁 후원 계정의 본선 임시 추천 예약 선수, 순회 프로 도윤! 최종 출전 명단은 아직 아닙니다."
+        },
+        {
+          "speaker": "도윤",
+          "text": "그 예선은 내가 통과한 게 아니고 후원 계정의 대리 예약입니다."
+        }
+      ],
       "interactions": [
         {
           "interaction_id": "DOYUN_IDENTITY_NOTICE",
@@ -3012,7 +3292,7 @@
             {
               "choice_id": "READ_BOARD",
               "label": "전광판만 확인",
-              "requested_mode": "OBSERVE",
+              "requested_mode": "WORLD",
               "effects": [
                 {
                   "type": "SET_OBSERVATION",
@@ -3042,7 +3322,748 @@
         "DOYUN_PROXY_CANCELLED",
         "PLAYER_Q_CHANGED"
       ],
-      "note": "Only identity/provisional-reservation knowledge is committed; no later reform state is applied."
+      "replay_dialogue": "정식 확정은 장터 발표 이후예요.",
+      "note": "Identity/provisional reservation only; no seat restoration or proxy cancellation."
+    },
+    {
+      "scene_id": "05-M04",
+      "region_id": "05",
+      "kind": "MAIN",
+      "source_section_sha256": "fc53de0768ecd73c6546eb92f9ae8e63302e4288641afd02dc862093d13458d0",
+      "entry_anchors": [
+        "E4"
+      ],
+      "target": "도윤·이안 / 별도 공개 연습 테이블",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "이안",
+          "text": "그 판에선 내가 지난 영상만 봤어. 다음엔 테이블을 볼래."
+        },
+        {
+          "speaker": "도윤",
+          "text": "내 경기 기록은 네 것과 따로 남아요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "DOYUN_DIRECT_05",
+          "choices": [
+            {
+              "choice_id": "PLAY",
+              "label": "도윤과 지금 한 판",
+              "requested_mode": "POKER",
+              "effects": [
+                {
+                  "type": "REQUEST_EVENT",
+                  "event_id": "r05_doyun_individual",
+                  "participants": [
+                    "PLAYER",
+                    "NPC_DOYUN"
+                  ],
+                  "registered_official": false
+                }
+              ]
+            },
+            {
+              "choice_id": "IAN_REVIEW",
+              "label": "이안 복기만 듣기",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "PLAYER_VS_DOYUN_05_RESULT",
+                  "value": "NO_MATCH"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_DOYUN_DECIDED",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "IAN_REVIEW_HEARD",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "LATER",
+              "label": "다음에 붙기",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "PLAYER_VS_DOYUN_05_RESULT",
+                  "value": "NOT_ENTERED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R05_DOYUN_DECIDED",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "external_results": {
+        "r05_doyun_individual": {
+          "WIN": [
+            {
+              "type": "SET_FLAG",
+              "key": "PLAYER_VS_DOYUN_05_RESULT",
+              "value": "WIN"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R05_DOYUN_DECIDED",
+              "value": true
+            }
+          ],
+          "LOSS": [
+            {
+              "type": "SET_FLAG",
+              "key": "PLAYER_VS_DOYUN_05_RESULT",
+              "value": "LOSS"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R05_DOYUN_DECIDED",
+              "value": true
+            }
+          ],
+          "WITHDRAW": [
+            {
+              "type": "SET_FLAG",
+              "key": "PLAYER_VS_DOYUN_05_RESULT",
+              "value": "WITHDRAW"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R05_DOYUN_DECIDED",
+              "value": true
+            }
+          ]
+        }
+      },
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R05_DOYUN_DECIDED",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "차유경 대표와 궁궐행 첫차 안내는 저쪽이에요."
+    },
+    {
+      "scene_id": "05-M05",
+      "region_id": "05",
+      "kind": "MAIN",
+      "source_section_sha256": "653f77458d700f4f58b037af26de955db228df6304f99f21df5d2f4d5dc8e449",
+      "entry_anchors": [
+        "E6",
+        "E4",
+        "E5"
+      ],
+      "target": "차유경·도해 / 공개 테이블과 궁궐행 정기편",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "차유경",
+          "text": "막차는 기다려 줄 수 없어도 재대결 예약은 내일 잡아 줄 수 있어요."
+        },
+        {
+          "speaker": "도해",
+          "text": "궁궐행 정기편은 E6에서 나갑니다."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "CHAYUKYUNG_NEWS",
+          "choices": [
+            {
+              "choice_id": "REPRESENTATIVE",
+              "label": "대표랑 붙을 수 있나요?",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E4"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "CHAYUKYUNG_INTRO",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_NEWS_SEEN",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "PALACE_NEWS",
+              "label": "궁궐 공개 경연은?",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E4"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "CHAYUKYUNG_INTRO",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_NEWS_SEEN",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "NARAE_STATUS",
+              "label": "나래는 어떻게 해요?",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E4"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "CHAYUKYUNG_INTRO",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_NEWS_SEEN",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "PALACE_TRANSIT",
+          "choices": [
+            {
+              "choice_id": "PLAY",
+              "label": "궁궐 공개판에 나도 앉아 볼래",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E6"
+              ],
+              "requires": [
+                {
+                  "key": "R06_NEWS_SEEN",
+                  "value": true
+                }
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_MOTIVE",
+                  "value": "PLAY"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_DEPART_READY",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "WATCH",
+              "label": "궁궐 공개 경연 구경",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E6"
+              ],
+              "requires": [
+                {
+                  "key": "R06_NEWS_SEEN",
+                  "value": true
+                }
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_MOTIVE",
+                  "value": "WATCH"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_DEPART_READY",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "STAY",
+              "label": "역에 더 머물래",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "E6"
+              ],
+              "effects": []
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAGS_ALL",
+        "requirements": [
+          {
+            "key": "CHAYUKYUNG_INTRO",
+            "value": true
+          },
+          {
+            "key": "R06_DEPART_READY",
+            "value": true
+          }
+        ],
+        "advance_main": true,
+        "travel_to": {
+          "region_id": "06",
+          "entry_anchor": "G0"
+        }
+      },
+      "replay_dialogue": "다음 역은 궁궐입니다. 정기편은 다시 와요."
+    },
+    {
+      "scene_id": "06-M01",
+      "region_id": "06",
+      "kind": "MAIN",
+      "source_section_sha256": "ff909af352a8b7ea923e66537b0d50976a08feb98a8352d1b0c855cdb13dec8c",
+      "entry_anchors": [
+        "G0",
+        "G2"
+      ],
+      "target": "은솔·성문 안내원 / 공개 경연 안내",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "안내원",
+          "text": "경연 구경은 왼쪽, 공개 출전은 오른쪽. 본인 기록으로 참가 조건을 확인해요."
+        },
+        {
+          "speaker": "은솔",
+          "text": "난 공개 접수로 붙을 거예요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "PALACE_ENTRY",
+          "choices": [
+            {
+              "choice_id": "APPLY",
+              "label": "나도 공개 신청",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_COURT_INTENT",
+                  "value": "PLAYER"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_COURT_ACCESS",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "SPECTATE",
+              "label": "무료 관전표 받기",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_COURT_INTENT",
+                  "value": "VIEW"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_COURT_ACCESS",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "EUNSOL",
+              "label": "은솔과 얘기",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_COURT_INTENT",
+                  "value": "VIEW"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_COURT_ACCESS",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "LOOK_AROUND",
+              "label": "궁궐 구경부터",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_COURT_INTENT",
+                  "value": "VIEW"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_COURT_ACCESS",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R06_COURT_ACCESS",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "이제 G3에서 공개 경연을 보거나 참가할 수 있어요."
+    },
+    {
+      "scene_id": "06-M02",
+      "region_id": "06",
+      "kind": "MAIN",
+      "source_section_sha256": "a8202aef39f7a84e54bbe1f7af1b5536333f9b19d667364b5a0eab86330a177d",
+      "entry_anchors": [
+        "G3"
+      ],
+      "target": "은솔·추천 명인·진행자 / 낮 공개 경연",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "진행자",
+          "text": "추천받은 명인과 공개 접수 도전자의 경기를 시작합니다."
+        },
+        {
+          "speaker": "안내원",
+          "text": "직접 참가·은솔 경연 관전·결과 요약 중 골라 주세요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "PUBLIC_COURT",
+          "choices": [
+            {
+              "choice_id": "PLAY",
+              "label": "내 별도 공개 경기 참가",
+              "requested_mode": "POKER",
+              "effects": [
+                {
+                  "type": "REQUEST_EVENT",
+                  "event_id": "r06_palace_public",
+                  "participants": [
+                    "PLAYER",
+                    "NPC_COURT_A",
+                    "NPC_COURT_B",
+                    "NPC_COURT_C"
+                  ],
+                  "registered_official": false
+                }
+              ]
+            },
+            {
+              "choice_id": "WATCH_EUNSOL",
+              "label": "은솔 경연 관전",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r06_eunsol_independent",
+                  "status": "VIEWED_FULL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "PUBLIC_COURT_SEEN",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "PLAYER_COURT_MATCH_RESULT",
+                  "value": "WATCH"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_COURT_DECIDED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "SUMMARY",
+              "label": "결과 요약만 확인",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r06_eunsol_independent",
+                  "status": "VIEWED_SUMMARY"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "PUBLIC_COURT_SEEN",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "PLAYER_COURT_MATCH_RESULT",
+                  "value": "NOT_ENTERED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_COURT_DECIDED",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "external_results": {
+        "r06_palace_public": {
+          "WIN": [
+            {
+              "type": "SET_FLAG",
+              "key": "PLAYER_COURT_MATCH_RESULT",
+              "value": "WIN"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "PUBLIC_COURT_SEEN",
+              "value": true
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R06_COURT_DECIDED",
+              "value": true
+            }
+          ],
+          "LOSS": [
+            {
+              "type": "SET_FLAG",
+              "key": "PLAYER_COURT_MATCH_RESULT",
+              "value": "LOSS"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "PUBLIC_COURT_SEEN",
+              "value": true
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R06_COURT_DECIDED",
+              "value": true
+            }
+          ],
+          "WITHDRAW": [
+            {
+              "type": "SET_FLAG",
+              "key": "PLAYER_COURT_MATCH_RESULT",
+              "value": "WITHDRAW"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "PUBLIC_COURT_SEEN",
+              "value": true
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R06_COURT_DECIDED",
+              "value": true
+            }
+          ]
+        }
+      },
+      "completion": {
+        "policy": "FLAGS_ALL",
+        "requirements": [
+          {
+            "key": "PUBLIC_COURT_SEEN",
+            "value": true
+          },
+          {
+            "key": "R06_COURT_DECIDED",
+            "value": true
+          }
+        ],
+        "advance_main": true
+      },
+      "npc_event": "r06_eunsol_independent",
+      "npc_event_effects": [
+        {
+          "type": "SET_FLAG",
+          "key": "EUNSOL_NPC_EVENT_RECORDED",
+          "value": true
+        }
+      ],
+      "replay_dialogue": "월인 대표는 누각 쪽입니다."
+    },
+    {
+      "scene_id": "06-M03",
+      "region_id": "06",
+      "kind": "MAIN",
+      "source_section_sha256": "950d01fbe7ed89340d5a7cb5eb38c87923a526a6685b87d55499358091361013",
+      "entry_anchors": [
+        "G3",
+        "G5"
+      ],
+      "target": "월인·장인 / 공개 시연과 누각 타워 로비",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "월인",
+          "text": "추천받은 분도 공개로 들어온 분도, 내 누각에서는 아래층부터 한 판씩 해 보시죠."
+        },
+        {
+          "speaker": "장인",
+          "text": "기와 수리 계획은 확인했습니다. 로비와 전망대는 열려 있어요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "WOLIN_INTRO",
+          "choices": [
+            {
+              "choice_id": "HARDER",
+              "label": "아까 경연보다 어려워요?",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "G3"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "WOLIN_INTRO",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "VIEW_ONLY",
+              "label": "구경만 하고 가도 돼요?",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "G3"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "WOLIN_INTRO",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "LATER",
+              "label": "나중에 다시 올게요",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "G3"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "WOLIN_INTRO",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "WOLIN_LOBBY",
+          "choices": [
+            {
+              "choice_id": "CHALLENGE",
+              "label": "정상 도전 안내 확인",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "G5"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "WOLIN_LOBBY_VISITED",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R06_T01_AVAILABLE",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "VIEW",
+              "label": "무료 전망대 구경",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "G5"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "WOLIN_LOBBY_VISITED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "RETURN_LATER",
+              "label": "로비만 보고 나중에",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "G5"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "WOLIN_LOBBY_VISITED",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAGS_ALL",
+        "requirements": [
+          {
+            "key": "WOLIN_INTRO",
+            "value": true
+          },
+          {
+            "key": "WOLIN_LOBBY_VISITED",
+            "value": true
+          }
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "이안이 연못 벤치에서 지난 대회 복기 중입니다."
     },
     {
       "scene_id": "08-M03",
