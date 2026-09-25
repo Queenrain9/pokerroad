@@ -2,9 +2,13 @@ extends Node
 
 const Runtime = preload("res://scripts/runtime/game_runtime.gd")
 const RegionHostScript = preload("res://scripts/world/region_host.gd")
+const PlayerScript = preload("res://scripts/world/player_controller.gd")
+const CameraScript = preload("res://scripts/world/camera_rig.gd")
 
 var runtime
 var region_host
+var player
+var camera
 var state
 
 func _ready() -> void:
@@ -13,9 +17,10 @@ func _ready() -> void:
 		push_error("PokerRoad GameState autoload missing")
 		return
 	var problems: Array[String] = state.validate_world_manifest()
+	problems.append_array(SpatialRegistry.validate_against_manifest(state.manifest))
 	if not problems.is_empty():
 		for problem in problems:
-			push_error("PokerRoad world manifest: " + problem)
+			push_error("PokerRoad world manifest/spatial: " + problem)
 		return
 	runtime = Runtime.new(state)
 	add_child(runtime)
@@ -35,19 +40,42 @@ func _ready() -> void:
 	if mounted.has("error"):
 		push_error("PokerRoad region mount: " + str(mounted.error))
 		return
+	player = PlayerScript.new()
+	player.name = "Player"
+	add_child(player)
+	var player_bound: Dictionary = player.bind_region(region_host.current_region_world, state)
+	if player_bound.has("error"):
+		push_error("PokerRoad player bind: " + str(player_bound.error))
+		return
+	camera = CameraScript.new()
+	camera.name = "WorldCamera"
+	player.add_child(camera)
+	camera.make_current()
+	var camera_bound: Dictionary = camera.apply_region(region_host.current_region_world)
+	if camera_bound.has("error"):
+		push_error("PokerRoad camera bind: " + str(camera_bound.error))
+		return
 	if not state.world_changed.is_connected(_on_world_changed):
 		state.world_changed.connect(_on_world_changed)
 	var world: Dictionary = runtime.world_runtime.current_world()
 	if world.has("error"):
 		push_error("PokerRoad current world: " + str(world.error))
 		return
-	print("POKERROAD_P5_RUNTIME_BOOT_OK: 8 region scenes registered / current region mounted / source-backed SceneRunner / poker-result-world runtime ready; physical maps remain unimplemented")
+	print("POKERROAD_P5_SPATIAL_BOOT_OK: 8 region containers + positioned nonvisual anchors + player/camera runtime active; final map geometry/art remains unimplemented")
 
 func _on_world_changed() -> void:
 	if region_host == null or state == null:
 		return
-	if region_host.current_region_id == state.current_region:
-		return
-	var mounted: Dictionary = region_host.mount_region(state.current_region, state)
-	if mounted.has("error"):
-		push_error("PokerRoad region remount: " + str(mounted.error))
+	if region_host.current_region_id != state.current_region:
+		var mounted: Dictionary = region_host.mount_region(state.current_region, state)
+		if mounted.has("error"):
+			push_error("PokerRoad region remount: " + str(mounted.error))
+			return
+		if player != null:
+			var player_bound: Dictionary = player.bind_region(region_host.current_region_world, state)
+			if player_bound.has("error"):
+				push_error("PokerRoad player remount: " + str(player_bound.error))
+		if camera != null:
+			var camera_bound: Dictionary = camera.apply_region(region_host.current_region_world)
+			if camera_bound.has("error"):
+				push_error("PokerRoad camera remount: " + str(camera_bound.error))

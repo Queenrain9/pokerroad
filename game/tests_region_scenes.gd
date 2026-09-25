@@ -31,12 +31,17 @@ func _initialize() -> void:
 		if mounted.has("error"):
 			continue
 		var manifest: Dictionary = manifest_region(region_id)
+		var anchor_count: int = manifest.get("anchors", []).size()
 		must(mounted.get("id", "") == region_id, region_id + " scene identity exact")
-		must(mounted.get("anchor_ids", []).size() == manifest.get("anchors", []).size(), region_id + " scene exposes every manifest anchor identity")
+		must(mounted.get("anchor_ids", []).size() == anchor_count, region_id + " scene exposes every manifest anchor identity")
 		must(not mounted.get("capabilities", []).is_empty(), region_id + " scene carries production capability contract")
-		must(mounted.get("physical_map_status", "") == "NOT_IMPLEMENTED", region_id + " does not claim a physical map")
+		must(mounted.get("navigation_skeleton_status", "") == "ANCHORS_POSITIONED", region_id + " has positioned nonvisual anchors")
+		must(mounted.get("physical_map_status", "") == "NOT_IMPLEMENTED", region_id + " does not claim finished physical map")
 		must(mounted.get("visual_asset_status", "") == "NOT_STARTED", region_id + " does not claim visual assets")
-		must(host.current_region_world.get_child_count() == 0, region_id + " scene contains no disposable placeholder art/geometry")
+		must(host.current_region_world.get_child_count() == anchor_count, region_id + " creates one nonvisual marker per canonical anchor")
+		for child in host.current_region_world.get_children():
+			must(child is Marker2D, region_id + " runtime child is a nonvisual Marker2D")
+			must(child.get_meta("runtime_role", "") == "NON_VISUAL_INTERACTION_ANCHOR", region_id + " marker cannot masquerade as art")
 	gs.current_region = "01"
 	gs.current_anchor = "P0"
 	var first: Dictionary = host.mount_region("01", gs)
