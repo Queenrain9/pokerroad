@@ -37,3 +37,5 @@ jobs:
         run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_headless.gd
       - name: Run P3 regression native suite
         run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_p1_headless.gd
+      - name: Run system-contract native suite
+        run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_system_contracts.gd
