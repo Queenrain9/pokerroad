@@ -18,6 +18,8 @@ func _effective_context(context: Dictionary) -> Dictionary:
 		var tide: String = str(state.story_flags.get("R04_TIDE", "")) if state != null else ""
 		if ["LOW","HIGH"].has(tide):
 			result["tide"] = tide
+	if not result.has("last_train_available") and state != null and state.story_flags.has("R05_LAST_TRAIN_AVAILABLE"):
+		result["last_train_available"] = bool(state.story_flags.get("R05_LAST_TRAIN_AVAILABLE", false))
 	return result
 
 func inspect_nearby(context: Dictionary = {}) -> Dictionary:
