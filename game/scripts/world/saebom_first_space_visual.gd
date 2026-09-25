@@ -137,12 +137,13 @@ func _build_ground_and_walkable() -> void:
 
 	# Canonical non-portal routes remain the navigation skeleton.
 	var seen: Dictionary = {}
-	for source in region_world.anchor_ids():
+	for source_value in region_world.anchor_ids():
+		var source: String = str(source_value)
 		for edge in region_world.route_geometry.outgoing(source):
-			var destination := str(edge.get("to", ""))
+			var destination: String = str(edge.get("to", ""))
 			if region_world.is_portal(source, destination):
 				continue
-			var key := source + ":" + destination if source < destination else destination + ":" + source
+			var key: String = source + ":" + destination if source < destination else destination + ":" + source
 			if seen.has(key):
 				continue
 			seen[key] = true
