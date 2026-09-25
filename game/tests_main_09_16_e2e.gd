@@ -15,11 +15,19 @@ func _initialize() -> void:
 
 func walk_to(position: Vector2) -> void:
 	var steps := 0
+	var start_position: Vector2 = game.player.global_position
+	var first_collider := ""
 	while game.player.global_position.distance_to(position) > 55.0 and steps < 500:
 		game.player.set_virtual_move_vector((position - game.player.global_position).normalized())
 		await physics_frame
+		if first_collider.is_empty() and game.player.get_slide_collision_count() > 0:
+			var collision = game.player.get_slide_collision(0)
+			if collision != null and collision.get_collider() != null:
+				first_collider = str(collision.get_collider().name)
 		steps += 1
 	game.player.clear_virtual_move()
+	if steps >= 500:
+		print("M09-16 WALK FAIL start=", start_position, " target=", position, " final=", game.player.global_position, " collider=", first_collider)
 	must(steps < 500, "physical walking reaches target " + str(position))
 
 func reach(anchor: String, selected_route: String = "") -> void:
