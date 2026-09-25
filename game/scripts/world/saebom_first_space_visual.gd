@@ -147,9 +147,9 @@ func _build_ground_and_walkable() -> void:
 			if seen.has(key):
 				continue
 			seen[key] = true
-			var a: Vector2 = region_world.anchor_position(source)
-			var b: Vector2 = region_world.anchor_position(destination)
-			_poly(_corridor_polygon(a, b, RouteGeometry.CORRIDOR_HALF_WIDTH), C_WALK, 4, ground)
+			var path: PackedVector2Array = region_world.route_geometry.corridor_points(source, destination)
+			for i in range(path.size() - 1):
+				_poly(_corridor_polygon(path[i], path[i + 1], RouteGeometry.CORRIDOR_HALF_WIDTH), C_WALK, 4, ground)
 
 	# Local micro-navigation polygons widen the actual living spaces without
 	# inventing new story anchors.
