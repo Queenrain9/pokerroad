@@ -135,7 +135,7 @@ func run_suite() -> void:
 	complete("04-M03", "04-M04")
 	must(state.story_flags.get("NARAE_PLAYER_MATCH_RESULT", "") == "NOT_ENTERED", "cafe non-entry creates no player win")
 	must(state.story_flags.get("NARAE_NPC_QUALIFIED", false), "Narae independent qualifier evidence stored")
-	var narae_events := state.npc_events.values().filter(func(v): return v.get("event_id", "") == "r04_narae_qualifier")
+	var narae_events: Array = state.npc_events.values().filter(func(v): return v.get("event_id", "") == "r04_narae_qualifier")
 	must(narae_events.size() == 1 and int(narae_events[0].get("final_rank", 0)) == 1, "Narae engine replay satisfies canonical qualifying result")
 
 	print("M17-24 STEP: 04-M04")
@@ -144,7 +144,7 @@ func run_suite() -> void:
 	choose("IAN_DOYUN_VIEW", "BOARD", "WORLD")
 	complete("04-M04", "04-M05")
 	must(state.story_flags.get("IAN_DOYUN_NPC_04_RESULT", "") == "DOYUN_WIN", "invite result is Doyun win")
-	var invite_events := state.npc_events.values().filter(func(v): return v.get("event_id", "") == "r04_doyun_ian_invite")
+	var invite_events: Array = state.npc_events.values().filter(func(v): return v.get("event_id", "") == "r04_doyun_ian_invite")
 	must(invite_events.size() == 1 and int(invite_events[0].get("final_rank", 0)) == 1
 		and invite_events[0].get("participants", []).has("NPC_IAN"), "invite replay uses Doyun and Ian identities")
 
