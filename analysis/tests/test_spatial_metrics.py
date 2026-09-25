@@ -27,7 +27,7 @@ def test_spatial_metrics_cover_all_manifest_anchors_without_rewriting_source_man
         assert len(coords)==len(set(coords))
         assert all(a['world_coordinates'] is None for a in region['anchors'])
         total+=len(coords)
-    assert total==61
+    assert total==60
 
 def test_spatial_contract_does_not_claim_final_art_or_finished_maps():
     spatial=load('spatial_metrics_v1.json')

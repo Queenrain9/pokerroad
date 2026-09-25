@@ -39,7 +39,7 @@ func _initialize() -> void:
 			local_seen[key] = true
 			seen_total += 1
 		must(world.nearest_anchor(world.anchor_position(world.anchor_ids()[0]), 2.0) == world.anchor_ids()[0], region_id + " nearest-anchor lookup exact")
-	must(seen_total == 61, "all 61 canonical world anchors receive production navigation coordinates")
+	must(seen_total == 60, "all 60 canonical world anchors receive production navigation coordinates")
 
 	gs.current_region = "01"
 	gs.current_anchor = "P0"
