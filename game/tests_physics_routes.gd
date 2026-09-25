@@ -48,10 +48,16 @@ func _run() -> void:
 	must(not host.mount_region("02", state).has("error"), "river world mounts for adjacent-gate regression")
 	must(not player.bind_region(host.current_region_world, state).has("error"), "player binds at K3")
 	var river_exit: Vector2 = host.current_region_world.anchor_position("K5")
+	var first_river_collider := ""
 	player.set_virtual_move_vector((river_exit - player.global_position).normalized())
-	for i in range(380):
+	for i in range(420):
 		await physics_frame
+		if first_river_collider.is_empty() and player.get_slide_collision_count() > 0:
+			var collision = player.get_slide_collision(0)
+			if collision != null and collision.get_collider() != null:
+				first_river_collider = str(collision.get_collider().name)
 	player.clear_virtual_move()
+	print("PHYSICS K3-K5 final=", player.global_position, " target=", river_exit, " nearest=", player.nearest_interactable_anchor(), " collider=", first_river_collider)
 	must(player.nearest_interactable_anchor() == "K5", "K3 optional tower gate does not block K3 to K5 public exit")
 
 	for error in errors:
