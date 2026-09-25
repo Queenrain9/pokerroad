@@ -20,5 +20,5 @@ function Run-GodotTest([string]$script) {
 & $GodotExe --headless --editor --path $gameDir --quit 2>&1 | Tee-Object -FilePath $log -Append
 if ($LASTEXITCODE -ne 0) { throw "Godot project import/parser check failed (exit $LASTEXITCODE)" }
 Run-GodotTest "res://tests_headless.gd"
-Run-GodotTest "res://tests_p1_headless.gd"
+Run-GodotTest "res://tests_p1_headless.gd"\nRun-GodotTest "res://tests_system_contracts.gd"
 Write-Host "Godot native QA passed. Log: $log"

@@ -116,3 +116,66 @@ func begin_next_street() -> bool:
 		street_committed[seat] = 0; last_acted_bet[seat] = -1
 		if not folded[seat] and stacks[seat] > 0: pending.append(seat)
 	return true
+
+
+func to_snapshot() -> Dictionary:
+	return {
+		"schema":1,
+		"stacks":stacks.duplicate(),
+		"street_committed":street_committed.duplicate(),
+		"hand_committed":hand_committed.duplicate(),
+		"folded":folded.duplicate(),
+		"last_acted_bet":last_acted_bet.duplicate(),
+		"pending":pending.duplicate(),
+		"current_bet":current_bet,
+		"min_full_raise":min_full_raise,
+		"big_blind":big_blind,
+		"street_index":street_index
+	}
+
+static func from_snapshot(snapshot: Dictionary):
+	if int(snapshot.get("schema", 0)) != 1:
+		return null
+	var raw_stacks = snapshot.get("stacks", [])
+	if typeof(raw_stacks) != TYPE_ARRAY or raw_stacks.size() < 2:
+		return null
+	var bb := int(snapshot.get("big_blind", 0))
+	if bb < 1:
+		return null
+	var restored := BettingRound.new(raw_stacks, bb)
+	var size := raw_stacks.size()
+	for key in ["street_committed","hand_committed","folded","last_acted_bet"]:
+		var value = snapshot.get(key, [])
+		if typeof(value) != TYPE_ARRAY or value.size() != size:
+			return null
+	var raw_pending = snapshot.get("pending", [])
+	if typeof(raw_pending) != TYPE_ARRAY:
+		return null
+	var ints: Array[int] = []
+	for value in raw_stacks: ints.append(int(value))
+	restored.stacks = ints
+	ints = []
+	for value in snapshot.street_committed: ints.append(int(value))
+	restored.street_committed = ints
+	ints = []
+	for value in snapshot.hand_committed: ints.append(int(value))
+	restored.hand_committed = ints
+	var bools: Array[bool] = []
+	for value in snapshot.folded: bools.append(bool(value))
+	restored.folded = bools
+	ints = []
+	for value in snapshot.last_acted_bet: ints.append(int(value))
+	restored.last_acted_bet = ints
+	ints = []
+	for value in raw_pending:
+		var seat := int(value)
+		if seat < 0 or seat >= size:
+			return null
+		ints.append(seat)
+	restored.pending = ints
+	restored.current_bet = int(snapshot.get("current_bet", 0))
+	restored.min_full_raise = int(snapshot.get("min_full_raise", bb))
+	restored.street_index = int(snapshot.get("street_index", 0))
+	if restored.current_bet < 0 or restored.min_full_raise < 1 or restored.street_index < 0 or restored.street_index > 3:
+		return null
+	return restored

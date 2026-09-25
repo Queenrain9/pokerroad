@@ -1,0 +1,56 @@
+{
+  "schema_version": 2,
+  "authority": "P3/P4 runtime persistence contract",
+  "save_modes": [
+    "WORLD",
+    "DIALOGUE",
+    "UNIQUE_INTERACTION",
+    "POKER",
+    "OBSERVE",
+    "RESULT"
+  ],
+  "required_world_fields": [
+    "main_cursor",
+    "current_region",
+    "current_anchor",
+    "world_layer",
+    "return_anchor",
+    "unlocked_regions",
+    "finished_main",
+    "finished_optional",
+    "rewards_paid",
+    "world_phase",
+    "chips",
+    "player_q",
+    "registration_intent",
+    "player_events",
+    "npc_events",
+    "npc_seat_status",
+    "observed_events"
+  ],
+  "dialogue_fields": [
+    "active_scene_id",
+    "dialogue_cursor",
+    "choice_cursor",
+    "return_anchor"
+  ],
+  "poker_fields": [
+    "event_instance_id",
+    "event_id",
+    "tournament_snapshot"
+  ],
+  "interruption_rules": {
+    "WORLD": "resume at saved region/anchor/layer; never advance story merely by loading",
+    "DIALOGUE": "resume exact source scene cursor or restart current utterance only; no duplicate reward",
+    "UNIQUE_INTERACTION": "resume from last safe anchor unless interaction supplies deterministic snapshot",
+    "POKER": "restore exact deck order, board, hole cards, street, pending actors, bets, stacks, blind level and event identity",
+    "OBSERVE": "preserve resolved NPC event separately from whether full view/summary/bulletin was consumed",
+    "RESULT": "result commit is idempotent; loading cannot pay first-time reward twice"
+  },
+  "migration": {
+    "v1_to_v2": "v1 world saves may load as WORLD only; no fabricated active poker/dialogue session",
+    "unknown_future_schema": "reject_without_mutating_runtime"
+  },
+  "atomicity": "write temporary file then replace canonical save",
+  "implementation_status": "STRUCTURAL_CONTRACT"
+}

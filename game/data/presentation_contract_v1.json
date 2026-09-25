@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "authority": "Notion 19-E + 26-B; final art direction still separate",
+  "modes": [
+    "WORLD",
+    "DIALOGUE",
+    "POKER",
+    "OBSERVE",
+    "RESULT"
+  ],
+  "transition_graph": {
+    "WORLD": [
+      "DIALOGUE",
+      "POKER",
+      "OBSERVE"
+    ],
+    "DIALOGUE": [
+      "WORLD",
+      "POKER",
+      "OBSERVE"
+    ],
+    "POKER": [
+      "RESULT"
+    ],
+    "OBSERVE": [
+      "RESULT",
+      "WORLD"
+    ],
+    "RESULT": [
+      "WORLD"
+    ]
+  },
+  "fixed_semantics": {
+    "world_camera_and_poker_hud_are_independent": true,
+    "moving_world_parent_must_not_move_card_hud": true,
+    "touch_actions_require_confirmation_when_spending_currency": true,
+    "route_choice_must_not_be_auto_solved_by_destination_tap": true,
+    "player_and_npc_record_labels_must_be_visually_distinct": true,
+    "hand_result_match_result_event_rank_q_must_not_share_one_label": true
+  },
+  "provisional_layout_reference": {
+    "orientation_preference": "LANDSCAPE",
+    "reference_viewport": [
+      1280,
+      720
+    ],
+    "minimum_touch_target_logical_points": 44,
+    "status": "DEVICE_TEST_REQUIRED_NOT_FINAL"
+  },
+  "poker_information_priority": [
+    "player_hole_cards",
+    "board",
+    "pot",
+    "player_stack",
+    "to_call",
+    "legal_actions",
+    "current_actor",
+    "opponent_stacks",
+    "match_status",
+    "event_rank_or_registration_context"
+  ],
+  "region_capabilities": {
+    "01": [
+      "NEIGHBORHOOD_SCALE",
+      "SEPARATE_GIANT_TOWER",
+      "PUBLIC_BUS_TRANSITION"
+    ],
+    "02": [
+      "MOVING_WORLD_PARENT",
+      "FIXED_POKER_HUD",
+      "DAY_NIGHT_VARIANT"
+    ],
+    "03": [
+      "MULTI_LAYER_VERTICAL_WORLD",
+      "STAIRS_OR_LIFT_ROUTE_CHOICE"
+    ],
+    "04": [
+      "TIDE_DEPENDENT_ROUTE",
+      "SAFE_RETURN_ANCHOR",
+      "LIGHTHOUSE_OBSERVATION"
+    ],
+    "05": [
+      "MULTI_LEVEL_STATION",
+      "LAST_TRAIN_FAILURE",
+      "FREE_NIGHT_BUS"
+    ],
+    "06": [
+      "SAME_WORLD_DAY_NIGHT",
+      "PALACE_LAYERING"
+    ],
+    "07": [
+      "MARKET_ACTIVITY_CLUSTER",
+      "BONUS_ACTIVITY_NOT_MAIN_GATE"
+    ],
+    "08": [
+      "PUBLIC_VS_REGISTERED_ZONES",
+      "EIGHT_SEAT_FINAL",
+      "SEPARATE_BROADCAST_WILDCARD_SHOWMATCH_TOWER"
+    ]
+  },
+  "unresolved_visual_decisions": [
+    "pixel vs non-pixel rendering",
+    "exact camera projection and zoom",
+    "character/building/furniture proportions",
+    "final typography and visual skin",
+    "device-specific poker seat layout"
+  ]
+}

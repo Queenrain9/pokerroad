@@ -155,3 +155,81 @@ func _finish(result:Dictionary)->void:
 	result["total_committed"]=committed; result["board"]=board.duplicate(); result["hole_cards"]=holes.duplicate(true)
 	result["history"]=history.duplicate(true); result["finished"]=true
 	settlement=result; finished=true; current_actor=-1
+
+
+func to_snapshot() -> Dictionary:
+	return {
+		"schema":1,
+		"hand_id":hand_id,
+		"stacks":stacks.duplicate(),
+		"starting_stacks":starting_stacks.duplicate(),
+		"dealer":dealer,
+		"small_blind":small_blind,
+		"big_blind":big_blind,
+		"street":street,
+		"board":board.duplicate(),
+		"holes":holes.duplicate(true),
+		"deck":deck.duplicate(),
+		"round":round.to_snapshot() if round != null else {},
+		"current_actor":current_actor,
+		"finished":finished,
+		"settlement":settlement.duplicate(true),
+		"history":history.duplicate(true),
+		"dealt_seats":dealt_seats.duplicate()
+	}
+
+static func from_snapshot(snapshot: Dictionary):
+	if int(snapshot.get("schema", 0)) != 1:
+		return null
+	var starting = snapshot.get("starting_stacks", [])
+	if typeof(starting) != TYPE_ARRAY or starting.size() < 2:
+		return null
+	var restored := HoldemHand.new(starting, int(snapshot.get("dealer", -1)),
+		int(snapshot.get("small_blind", 0)), int(snapshot.get("big_blind", 0)),
+		str(snapshot.get("hand_id", "")), 0)
+	if restored.settlement.has("error"):
+		return null
+	var round_restored = Betting.from_snapshot(snapshot.get("round", {}))
+	if round_restored == null:
+		return null
+	var count := starting.size()
+	var raw_stacks = snapshot.get("stacks", [])
+	var raw_holes = snapshot.get("holes", [])
+	if typeof(raw_stacks) != TYPE_ARRAY or raw_stacks.size() != count or typeof(raw_holes) != TYPE_ARRAY or raw_holes.size() != count:
+		return null
+	var ints: Array[int] = []
+	for value in raw_stacks: ints.append(int(value))
+	restored.stacks = ints
+	ints = []
+	for value in starting: ints.append(int(value))
+	restored.starting_stacks = ints
+	restored.street = int(snapshot.get("street", 0))
+	restored.board.clear()
+	for value in snapshot.get("board", []): restored.board.append(str(value))
+	restored.holes = raw_holes.duplicate(true)
+	restored.deck.clear()
+	for value in snapshot.get("deck", []): restored.deck.append(str(value))
+	restored.round = round_restored
+	restored.current_actor = int(snapshot.get("current_actor", -1))
+	restored.finished = bool(snapshot.get("finished", false))
+	restored.settlement = snapshot.get("settlement", {}).duplicate(true)
+	restored.history = snapshot.get("history", []).duplicate(true)
+	ints = []
+	for value in snapshot.get("dealt_seats", []): ints.append(int(value))
+	restored.dealt_seats = ints
+	if restored.street < 0 or restored.street > 3:
+		return null
+	if not restored.finished and (restored.current_actor < 0 or not restored.round.pending.has(restored.current_actor)):
+		return null
+	var seen := {}
+	for card in restored.board:
+		if Poker.rank_value(card) < 0 or seen.has(card): return null
+		seen[card] = true
+	for hand in restored.holes:
+		for card in hand:
+			if Poker.rank_value(card) < 0 or seen.has(card): return null
+			seen[card] = true
+	for card in restored.deck:
+		if Poker.rank_value(card) < 0 or seen.has(card): return null
+		seen[card] = true
+	return restored

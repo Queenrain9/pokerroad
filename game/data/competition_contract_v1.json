@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "authority": "Notion 18-5 + 20 + 15 v4.2; numeric balance fields remain adjustable unless marked fixed",
+  "fixed_invariants": {
+    "result_domains": [
+      "HAND_RESULT",
+      "MATCH_RESULT",
+      "OFFICIAL_EVENT_RANK",
+      "PLAYER_Q",
+      "TOWER_CLEAR"
+    ],
+    "q_states": [
+      "NO",
+      "PENDING",
+      "YES"
+    ],
+    "official_registration_requires": [
+      "PLAYER_Q=YES",
+      "intent=OFFICIAL",
+      "registration_window_open",
+      "remaining_capacity>0"
+    ],
+    "player_national_champion_requires": [
+      "event_kind=OFFICIAL_FINAL",
+      "record_owner=PLAYER",
+      "registered_official=true",
+      "event_finished=true",
+      "final_rank=1"
+    ],
+    "mainline_must_survive": [
+      "LOSS",
+      "WITHDRAW",
+      "NOT_ENTERED",
+      "PLAYER_Q=NO",
+      "PLAYER_Q=PENDING",
+      "wallet=0",
+      "tower_not_cleared"
+    ],
+    "tower_clear_requires": "full tower route final boss MATCH_RESULT=WIN; never grants national Q",
+    "npc_results_never_transfer_to_player": true,
+    "single_hand_never_grants_event_rank_or_q": true
+  },
+  "event_lifecycle": {
+    "states": [
+      "UNAVAILABLE",
+      "DISCOVERED",
+      "REGISTRATION_OPEN",
+      "REGISTERED",
+      "SEATED",
+      "IN_PROGRESS",
+      "FINISHED",
+      "REVIEW_PENDING",
+      "VERIFIED",
+      "ARCHIVED"
+    ],
+    "allowed_transitions": {
+      "UNAVAILABLE": [
+        "DISCOVERED"
+      ],
+      "DISCOVERED": [
+        "REGISTRATION_OPEN",
+        "ARCHIVED"
+      ],
+      "REGISTRATION_OPEN": [
+        "REGISTERED",
+        "ARCHIVED"
+      ],
+      "REGISTERED": [
+        "SEATED",
+        "REGISTRATION_OPEN",
+        "ARCHIVED"
+      ],
+      "SEATED": [
+        "IN_PROGRESS",
+        "REGISTRATION_OPEN"
+      ],
+      "IN_PROGRESS": [
+        "FINISHED"
+      ],
+      "FINISHED": [
+        "REVIEW_PENDING",
+        "VERIFIED"
+      ],
+      "REVIEW_PENDING": [
+        "VERIFIED"
+      ],
+      "VERIFIED": [
+        "ARCHIVED"
+      ],
+      "ARCHIVED": []
+    }
+  },
+  "q_resolution": {
+    "source_owner_must_be": "PLAYER",
+    "source_event_requirements": [
+      "sanction_status=OFFICIAL",
+      "national_qualifier=true",
+      "actually_participated=true",
+      "match_status=FINISHED"
+    ],
+    "engine_rank_only": "PENDING",
+    "verified_rank_within_cutoff": "YES",
+    "nonqualifying_verified_rank": "NO",
+    "missing_or_foreign_owner": "NO"
+  },
+  "participation": {
+    "player_confirm_required_for_cost": true,
+    "spectator_access_is_separate_from_registration": true,
+    "withdraw_is_not_win": true,
+    "retry_requires_new_event_instance": true,
+    "event_instance_id_required_for_retries": true
+  },
+  "ai_contract": {
+    "information_boundary": {
+      "allowed": [
+        "own_hole_cards",
+        "public_board",
+        "public_bets",
+        "public_stacks",
+        "seat_position",
+        "blind_level",
+        "prior_public_actions",
+        "legal_actions"
+      ],
+      "forbidden": [
+        "opponent_hole_cards",
+        "future_deck_order",
+        "hidden_rng_state_of_others",
+        "scripted_player_choice",
+        "future_story_result"
+      ]
+    },
+    "profiles": {
+      "BEGINNER": {
+        "mistake_rate_dev": 0.22,
+        "aggression_dev": 0.3,
+        "bluff_dev": 0.04
+      },
+      "BALANCED": {
+        "mistake_rate_dev": 0.08,
+        "aggression_dev": 0.5,
+        "bluff_dev": 0.1
+      },
+      "STRONG": {
+        "mistake_rate_dev": 0.02,
+        "aggression_dev": 0.58,
+        "bluff_dev": 0.14
+      }
+    },
+    "profile_numbers_status": "DEV_TUNING_NOT_FINAL",
+    "deterministic_seed_required_for_replay": true,
+    "legal_action_filter_required": true
+  },
+  "tournament_defaults_status": "DEV_TUNING_NOT_FINAL",
+  "unresolved_tuning": [
+    "field sizes and exact qualifying cutoffs per official event",
+    "blind/ante schedule and event duration",
+    "AI profile assignment per NPC and story phase",
+    "entry fees/prizes/repeat-session economy",
+    "tower floor match structures"
+  ]
+}

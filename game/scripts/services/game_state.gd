@@ -5,12 +5,12 @@ signal world_changed
 
 const MANIFEST_PATH = "res://data/world_manifest.json"
 const SAVE_PATH = "user://poker_road_save_v1.json"
-const SAVE_SCHEMA = 1
+const SAVE_SCHEMA = 1\nconst SESSION_SAVE_PATH = "user://poker_road_save_v2.json"
 
 var manifest: Dictionary = {}
 var main_cursor := "01-M01"
 var current_region := "01"
-var current_anchor := "P0"
+var current_anchor := "P0"\nvar world_layer := 0\nvar return_anchor := "P0"
 var unlocked_regions: Dictionary = {"01": true}
 var finished_main: Dictionary = {}
 var finished_optional: Dictionary = {}
@@ -208,3 +208,84 @@ func load_game() -> bool:
 	observed_events = loaded.observed_events
 	emit_signal("world_changed")
 	return true
+
+
+func world_snapshot_v2() -> Dictionary:
+	return {
+		"main_cursor":main_cursor,
+		"current_region":current_region,
+		"current_anchor":current_anchor,
+		"world_layer":world_layer,
+		"return_anchor":return_anchor,
+		"unlocked_regions":unlocked_regions.duplicate(true),
+		"finished_main":finished_main.duplicate(true),
+		"finished_optional":finished_optional.duplicate(true),
+		"rewards_paid":rewards_paid.duplicate(true),
+		"world_phase":world_phase,
+		"chips":chips,
+		"player_q":player_q,
+		"registration_intent":registration_intent,
+		"player_events":player_events.duplicate(true),
+		"npc_events":npc_events.duplicate(true),
+		"npc_seat_status":npc_seat_status.duplicate(true),
+		"observed_events":observed_events.duplicate(true)
+	}
+
+func apply_world_snapshot_v2(world: Dictionary) -> bool:
+	var contract := SessionSaveService.load_contract()
+	if contract.has("error"):
+		return false
+	for field in contract.get("required_world_fields", []):
+		if not world.has(field):
+			return false
+	if int(world.get("chips", -1)) < 0 or not ["YES","NO","PENDING"].has(str(world.get("player_q", ""))):
+		return false
+	var region := str(world.get("current_region", ""))
+	var anchor := str(world.get("current_anchor", ""))
+	var known_anchor := false
+	for item in manifest.get("regions", []):
+		if item.get("id", "") != region:
+			continue
+		for point in item.get("anchors", []):
+			if point.get("id", "") == anchor:
+				known_anchor = true
+	if not known_anchor:
+		return false
+	if world.get("main_cursor", "") != "STORY_END" and scene_record(str(world.get("main_cursor", ""))).is_empty():
+		return false
+	var unlocked = world.get("unlocked_regions", {})
+	if typeof(unlocked) != TYPE_DICTIONARY or not unlocked.has("01") or not unlocked.has(region):
+		return false
+	main_cursor = str(world.main_cursor)
+	current_region = region
+	current_anchor = anchor
+	world_layer = int(world.world_layer)
+	return_anchor = str(world.return_anchor)
+	unlocked_regions = unlocked.duplicate(true)
+	finished_main = world.finished_main.duplicate(true)
+	finished_optional = world.finished_optional.duplicate(true)
+	rewards_paid = world.rewards_paid.duplicate(true)
+	world_phase = int(world.world_phase)
+	chips = int(world.chips)
+	player_q = str(world.player_q)
+	registration_intent = str(world.registration_intent)
+	player_events = world.player_events.duplicate(true)
+	npc_events = world.npc_events.duplicate(true)
+	npc_seat_status = world.npc_seat_status.duplicate(true)
+	observed_events = world.observed_events.duplicate(true)
+	emit_signal("world_changed")
+	return true
+
+func save_session_v2(mode: String, mode_state: Dictionary = {}) -> bool:
+	var payload := SessionSaveService.build_payload(world_snapshot_v2(), mode, mode_state)
+	if payload.has("error"):
+		return false
+	return SessionSaveService.write_atomic(SESSION_SAVE_PATH, payload)
+
+func load_session_v2() -> Dictionary:
+	var payload := SessionSaveService.read_payload(SESSION_SAVE_PATH)
+	if payload.has("error"):
+		return payload
+	if not apply_world_snapshot_v2(payload.world):
+		return {"error":"world snapshot rejected"}
+	return {"mode":payload.mode, "mode_state":payload.mode_state.duplicate(true)}
