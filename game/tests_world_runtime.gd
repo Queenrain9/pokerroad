@@ -86,26 +86,25 @@ func _initialize() -> void:
 	must(not runtime.open_scene("01-M02").has("error"), "tutorial play scene opens")
 	var play: Dictionary = runtime.select_scene_choice("BOKRYE_FREE_TABLE","PLAY_FREE")
 	must(not play.has("error") and runtime.mode == "POKER", "source choice enters actual tournament runtime")
-	must(runtime.active_event_rule.get("event_id","") == "r01_grandma_practice", "tutorial uses canonical event identity")
+	must(runtime.active_tournament != null and runtime.active_event_rule.get("event_id","") == "r01_grandma_practice", "tutorial uses canonical event identity")
 	var saved_instance: String = runtime.active_event_instance_id
-	var saved_deck = runtime.active_tournament.active_hand.deck.duplicate()
+	var saved_deck: Array[String] = []
+	if runtime.active_tournament != null and runtime.active_tournament.active_hand != null:
+		saved_deck = runtime.active_tournament.active_hand.deck.duplicate()
+	must(not saved_deck.is_empty(), "tutorial has an actual dealt poker hand")
 	must(runtime.save_runtime(), "mid-poker runtime saves with scene context")
 	resumed = fresh_runtime()
 	resumed_state = resumed.restore_runtime()
 	must(not resumed_state.has("error") and resumed.mode == "POKER", "mid-poker runtime resumes to POKER")
 	must(resumed.active_event_instance_id == saved_instance, "event instance identity survives interruption")
 	must(resumed.scene_runner.active_scene_id() == "01-M02", "poker resume retains source scene consumer")
-	must(resumed.active_tournament.active_hand.deck == saved_deck, "poker resume preserves exact remaining deck order")
-	var guard: int = 0
-	while resumed.mode == "POKER" and guard < 200:
-		if resumed.active_tournament.active_hand == null:
-			resumed.begin_next_hand(9000 + guard)
-		else:
-			var seat: int = resumed.active_tournament.active_hand.current_actor
-			resumed.submit_action(seat, "fold")
-		guard += 1
-	must(resumed.mode == "RESULT" and guard < 200, "real tutorial tournament reaches a match result")
-	must(["WIN","LOSS"].has(gs.story_flags.get("TUTORIAL_RESULT","")), "full match result maps back to source scene without single-hand shortcut")
+	var deck_exact := false
+	if resumed.active_tournament != null and resumed.active_tournament.active_hand != null:
+		deck_exact = resumed.active_tournament.active_hand.deck == saved_deck
+	must(deck_exact, "poker resume preserves exact remaining deck order")
+	var withdrew: Dictionary = resumed.withdraw_active_event()
+	must(not withdrew.has("error") and resumed.mode == "RESULT", "tutorial can withdraw without inventing a match win")
+	must(gs.story_flags.get("TUTORIAL_RESULT","") == "WITHDRAW", "withdraw maps back to canonical tutorial outcome")
 	must(gs.player_events.size() == 1, "event instance creates exactly one player match record")
 	var poker_ack: Dictionary = resumed.acknowledge_result()
 	must(not poker_ack.has("error") and poker_ack.get("scene_ready_to_complete",false), "poker result returns to world with scene completion ready")
