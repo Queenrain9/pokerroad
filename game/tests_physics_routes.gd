@@ -40,6 +40,20 @@ func _run() -> void:
 	player.clear_virtual_move()
 	must(host.current_region_world.can_walk_from("P0", player.global_position), "actual movement remains in the P0 to P1 corridor")
 	must(player.nearest_interactable_anchor() == "P1", "walking the corridor reaches the next interaction anchor")
+
+	# Regression: K3 has an optional tower gate next to the legal K3→K5 exit.
+	# The gate collision must never trap the player on the public exit corridor.
+	state.current_region = "02"
+	state.current_anchor = "K3"
+	must(not host.mount_region("02", state).has("error"), "river world mounts for adjacent-gate regression")
+	must(not player.bind_region(host.current_region_world, state).has("error"), "player binds at K3")
+	var river_exit: Vector2 = host.current_region_world.anchor_position("K5")
+	player.set_virtual_move_vector((river_exit - player.global_position).normalized())
+	for i in range(380):
+		await physics_frame
+	player.clear_virtual_move()
+	must(player.nearest_interactable_anchor() == "K5", "K3 optional tower gate does not block K3 to K5 public exit")
+
 	for error in errors:
 		push_error("PHYSICS ROUTES FAILED: " + error)
 	if errors.is_empty():
