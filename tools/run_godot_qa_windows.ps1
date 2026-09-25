@@ -25,4 +25,5 @@ if ($LASTEXITCODE -ne 0) { throw "Godot production main boot failed (exit $LASTE
 Run-GodotTest "res://tests_headless.gd"
 Run-GodotTest "res://tests_p1_headless.gd"\nRun-GodotTest "res://tests_system_contracts.gd"
 Run-GodotTest "res://tests_world_runtime.gd"
+Run-GodotTest "res://tests_region_scenes.gd"
 Write-Host "Godot native QA passed. Log: $log"
