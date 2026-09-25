@@ -1,0 +1,11 @@
+{
+  "scene_id": "03-M03",
+  "source_page_id": "3e5fc392d5b481808a4bee1b4c7bd976",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 03-M03 도윤의 짧은 공개 실전\n**조건/장소:** F4 공개 시범전 장소, 진행자·도윤·상대 NPC. 관전 가능 시간은 플레이어가 도착해야 진행; 지나쳤다면 결과판/짧은 리플레이에서 필수 인물 소개를 확인.\n진행자 \"오늘의 순회 프로 도윤 선수입니다.\" 관객 \"지난번 판에선 콜을 했더라.\" 도윤 \"지난번 사람이 오늘 같은 수를 쓴다는 법 있나요?\"\n**실제 액션/정보:** NPC끼리의 짧은 별도 관전 경기에서 공개된 스택·액션과 마지막 한 번의 중요한 콜/폴드를 표시한다. 카드 리플레이는 후속 엔진에서 유효한 덱/액션으로 구성해야 하며 대본에서 특정 우월 핸드 강제 배분 금지. **선택형 관찰 버튼** \"상대가 블러프한 것 같아\"/\"강한 패일 수도\"/\"그냥 경기 더 보자\"는 대사·도윤의 짧은 반응만 바꾸고 공식 성적·다음 지역 해금 영향 없음.\n도윤 \"구경만 할래요? 옆 테이블은 직접 참가할 수 있어요.\"\n**완료:** DOYUN_FIRST_SEEN=TRUE, MATCH_NPC03_RESULT는 플레이어 조작 전적과 별개→03-M04.\n### 03-M03 선택 후 대사·재대화·복귀 (v4.2)\n**보완:** F4 진행자 “전체 경기/핵심 액션 요약/결과판 중 무엇을 볼래요?” 전체·요약→NPC 별도 경기만 재생, 결과판→“순회 프로 도윤의 오늘 공개전 기록입니다.” 주인공 예측 “콜/폴드/그냥 보기”→진행자 “확인해 보죠/직접 보면 알 수 있겠죠”로 반응만, 승패·지역 개방 영향 없음. 무대를 먼저 지나쳤다면 F3 전광판에서 도윤 이름과 공개 액션 요약 확인 후 FIRST_SEEN. 재대화 미완 “결과판만 보셔도 소개를 확인할 수 있어요”, 완료 “프로와 직접 겨루려면 F3 연습 테이블이에요.” DONE_03_M03→03-M04, 관전 안 한 사용자에게 “내 판을 눈으로 봤잖아” 금지.\n",
+  "source_section_sha256": "633b629ed4c4bbae26bed39cbd9ecb86c9f420de7a60cb97bdcd15ca80678a49",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

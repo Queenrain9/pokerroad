@@ -1,0 +1,11 @@
+{
+  "scene_id": "03-M02",
+  "source_page_id": "3e5fc392d5b481808a4bee1b4c7bd976",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 03-M02 나무의 두 길\n**조건/장소:** F1\\~F3, 미루·상부 주민. **플레이:** 계단을 고르면 뿌리 동굴·나뭇잎 관측지를 조사해 높은 시장 생활 발견, 수레를 고르면 빠르게 F3으로 이동하되 나중에 계단 자유 탐험 가능. 바람길에서 잘못 움직이면 가장 가까운 안전 쉼터로 돌아감.\n미루 \"빨리 올라갈래요, 구경하면서 올라갈래요?\" 주인공 \"수레는 누가 고쳤어요?\" → \"타워 손님 많아져서 후원받아 수리했어요. 주민 다리는 우리가 따로 고치는 중이고요.\"\n**완료:** F3 상부 마을 도착→03-M03. 선택형 주민 다리를 고치지 않아도 정식 우회 계단으로 도착. 탐험 발견 보상은 장소 기록·작은 안전한 게임 재화.\n### 03-M02 선택 후 대사·재대화·복귀 (v4.2)\n**보완:** 계단 선택→미루 “중간 전망대에서 쉴 수 있어요”→F1/F2 경유해 F3, 승강 수레 선택→“그럼 출발할게요”→F3, 산책 중단→“수레도 남아 있어요.” 안전선 오답/바람길 실패→상부 주민 “이쪽 쉼터로 돌아오세요. 안전 계단이 열려 있어요”→F2 재선택, 돈 0에도 수레/계단의 필수 이동 무료. 다리 보수는 03-S01 선택형이고 두 길 중 하나는 항상 개방. F3 도착 시 DONE_03_M02→03-M03. 재대화 “도윤 무대는 전망대에 있어요.”\n",
+  "source_section_sha256": "9e0cdcef83653dea1725af00e54b1914d65298e5b64ccbf087468ad8b0c6b8af",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

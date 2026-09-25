@@ -1,0 +1,11 @@
+{
+  "scene_id": "02-S02",
+  "source_page_id": "3e5fc392d5b481e585c6c3e597640b18",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 02-S02 선착장 표지판의 임시 입구\n**입구:** 안전요원 \"수위가 높아서 관광객 입구만 옆으로 옮겼어요. 표지 하나 부탁해요.\" **실행:** 맞는 임시 입구 방향을 선택해 표지 설치. 틀리면 안전요원이 바로 수정, 정기선 계속 운행. **보상:** 소액 재화·행사 관전석 위치 팁; 메인 승선/숲 이동과 무관.\n**무료 생활·수익:** 자전거 코스 안내/편의점 간식 운반/오후 산책 기록 보상. 도박을 하지 않아도 정기 버스 탈 수 있음.\n### 02-S02 선택 후 대사·조건·복귀 보강 (v4.2)\n**보완:** 안전요원 “임시 선착장 방향을 표시해 줄래요?” 수락 “관광객은 오른쪽, 출전자 접수는 왼쪽이에요”, 정답 표지 설치→“고마워요. 표지판은 제가 확인할게요”·최초 보상, 오답→“반대편이에요. 제가 돌려놓을게요”, 거절/중단→“안내는 저희가 계속하겠습니다.” 수행 여부에 관계없이 02-M03 선착장 입구 두 줄 이용 가능. 재대화 완료 “안내는 잘되고 있어요”, 미완 “입구 위치는 여기서 바로 알려 드릴게요.” 출구는 MAIN_CURSOR.\n",
+  "source_section_sha256": "670affbbae58c47343da040f8d41f063129cc5eed1ffbcf3f576aaba4da0536e",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

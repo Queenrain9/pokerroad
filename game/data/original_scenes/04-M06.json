@@ -1,0 +1,11 @@
+{
+  "scene_id": "04-M06",
+  "source_page_id": "3e5fc392d5b4814aafcdf6bdcc64eab7",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 04-M06 항구 뒤에도 이어지는 일정\n**장소:** H8 철도 출구. 이안이 리플레이를 보며 먼저 떠나고 나래가 등록대로 갈 준비를 한다. 도해 \"마지막 역은 정기편이에요. 심야 공개 경기장도 유명해요.\" 선택 \"이안의 다음 경기 보러\"/\"나래 기록이 궁금해서\"/\"항구 더 둘러볼래\"→앞 두 가지 정기 철도 이동, 세 번째 언제든 다시 출발. **완료:** REGION05_UNLOCKED, 나래의 이의 제기는 **그녀가** 시작. 선박 구조/초청전 결과 정보를 본 뒤에는 박조류 정상 미승리·일감 미완·칩 0 모두 교통 사용 가능.\n**진입·출발 답변:** DONE_04_M05 뒤. \"이안의 다음 경기 보러\"→도해 \"심야 경기장 안내는 마지막 역 E2 등록대 옆에 있어요.\" \"나래 기록이 궁금해서\"→나래 \"등록대에서 제가 질문할게요. 함께 오셔도 좋아요.\" 두 선택 모두 REGION05_UNLOCKED=TRUE, DONE_04_M06, MAIN_CURSOR=05-M01로 저장하고 무료 기본 철도 H8→E0/E2로 이동. \"항구 더 둘러볼래\"→도해 \"표가 없어도 기본 정기편은 이용할 수 있어요. H8로 돌아오세요.\" → REGION05_UNLOCKED만 켜고 MAIN_CURSOR=04-M06 유지. 출발 전 재대화 \"마지막 역으로 지금 출발하시겠어요?\"에서 출발/더 머묾을 다시 선택한다. 출발 후 재대화 \"돌아오셨네요. 지금 여행 중인 곳으로 돌아가는 정기편도 있어요.\" 완료 보상 중복·나래 이의 제기의 선행 확정 없음.\n",
+  "source_section_sha256": "19c6f60486610d6b09183b7ec5ca6782f770ac9eea6d7601551d22a57ce49fb8",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

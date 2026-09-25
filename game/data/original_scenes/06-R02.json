@@ -1,0 +1,11 @@
+{
+  "scene_id": "06-R02",
+  "source_page_id": "3e5fc392d5b48122842cea65f35245e6",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 06-R02 누각·연회의 시간\n월인 타워 정상 승 \"지난번 정상의 승자는 당신이었지\" / 패 \"한 판 더 하시겠소?\" / 미도전 \"로비 전망대는 아직 무료요.\" S02 성공 시 진행자 \"가면 누군지 이제 알겠죠\", 실패 \"오늘은 또 누가 숨었을까요\". 낮 장인과 밤 연회의 방문 동선 지속, 안전 일감·정기 이동 항상 열림.\n### 06-R02 실제 선택 후 대사·조건·복귀 (v4.2)\n**보완:** G5/G4 복귀 때 월인 정상 WIN “지난번 정상은 당신이 가져갔지”, LOSS “그 경기 다시 치르겠소?”, NOT_ENTERED “로비 전망은 무료요.” 연회 퍼즐 DONE→진행자 “그날 목소리는 기억나죠?”, 오답·미참여→“오늘도 가면 손님은 많아요.” “타워 재도전”→T01 새 MATCH_ID, “무료 생활 일”→G1 별도 WORK_ID, “다른 지역”→현재 MAIN_CURSOR. STORY_END 뒤에도 같은 동네 일상 유지, 메인 M01\\~M05의 첫 등장 장면 재연 금지.\n",
+  "source_section_sha256": "ed960be074fa95cce3dcb3055211096e653bacef3cafbb76712bd2cc4282b5c3",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

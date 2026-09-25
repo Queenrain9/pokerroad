@@ -1,0 +1,11 @@
+{
+  "scene_id": "05-S01",
+  "source_page_id": "3e5fc392d5b481cb8387c5e88f38a391",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 05-S01 야간 상가 분실물 배송\n**입구:** E1 식당 주인 \"마지막 손님이 스카프 두고 갔어요. 역무실에 맡겨 줄래요?\" 선택 수락/거절; 역무실 수령함에 넣으면 소액 게임 재화, 중도 포기면 주인이 직접 맡긴다. 재대화 성공 \"분실물 찾아갔다더라\", 거절 \"내가 맡겼어요\"; 밤 식당은 계속 영업.\n### 05-S01 상태·실제 대사·재대화·복귀 (v4.2)\n**보완:** 수락→식당 주인 “파란 스카프예요. 역무실 분실물함에 이름만 확인해 주세요”; 맞게 전달→역무원 “접수됐어요”→주인 “손님이 찾아갈 수 있겠네”·첫 보상 1회. 잘못된 물건→“손님 물건은 파란색이에요”·재시도, 거절/중단→“급한 분량은 제가 맡길게요. 다른 야간 일은 남아요.” 재대화 DONE “오늘은 다 전달됐어요”, PAUSED “다음 물건 부탁드려도 돼요?”→별도 반복 WORK_ID. MAIN_CURSOR 보존하여 E4/궁궐 이동 봉쇄 없음.\n",
+  "source_section_sha256": "f56cc8a62c828ad0890281d5b3e2c5fcad9c955df6e1d519dde60762e81919a9",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

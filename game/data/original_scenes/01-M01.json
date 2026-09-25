@@ -1,0 +1,11 @@
+{
+  "scene_id": "01-M01",
+  "source_page_id": "3e5fc392d5b481058eabc72ff9412b5d",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 01-M01 골목 게시판 — 처음 움직이는 주인공\n**조건/인물:** 새 게임/지역 첫 도착, 아파트 문 밖에 주인공, 슈퍼 손님. **연출·행동:** 이름/외형 선택→걸어서 골목 입구/게시판 조사. 카메라는 주민과 놀이터를 지나 멀리 네온 건물 상단을 잠깐 보여 준다. 게시물 \"오늘 오락실 앞 동네 공개 예선. 처음이면 슈퍼 앞 무료 판부터.\" 퀘스트 UI의 선택지는 ‘무료 연습·예선 접수·동네 둘러보기’ 세 가지.\n슈퍼 손님 \"오늘도 저 할머니가 판 다 끝냈어.\" 주인공 ① \"어디서요?\" → \"슈퍼 평상. 옆에 빈 의자 있어.\" ② \"오락실은 어디예요?\" → \"저기 게임기 소리 나는 골목.\" ③ \"그 건물은 뭐예요?\" → \"동네 타워지. 가까이 가면 보일걸.\"\n**완료/다음:** 게시판 확인 또는 슈퍼 직원 안내 수령→01-M02와 예선 안내 활성. 게시판 무시하고 돌아다녀도 표지가 P1에서 다시 보인다. 아무 경기 기록은 만들지 않음.\n### 01-M01 실제 진행·대사·조건 보완 (v4.2)\n**보완 — 첫 진입/재대화:** NEW_GAME에서 P0 게시판 조사 또는 P1 주민에게 길을 물으면 START_ACK=TRUE, MAIN_CURSOR=01-M02. “동네부터 볼게요”→손님 “그럼 슈퍼 골목에서 다시 봐요.” 재대화·지도 미완→“게시판은 저쪽, 무료 판은 슈퍼 앞이야.” 완료 후→“오락실 가려면 게임기 소리 따라가.” 탐험하다 P3에 먼저 닿아도 접수 가능하며 복례 연습 승리 기록을 만들지 않는다. 선택형 S02/T01 방문·종료 시 현재 MAIN_CURSOR로 복귀.\n",
+  "source_section_sha256": "9bc12ff00ae1fa60a34a0ae9f52a0e369e1705618f345541b985a2ab6622c38b",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

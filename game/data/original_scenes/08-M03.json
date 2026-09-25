@@ -1,0 +1,11 @@
+{
+  "scene_id": "08-M03",
+  "source_page_id": "3e5fc392d5b48187bdf3e91b84c28713",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 08-M03 약속한 방송 회차만 멈춘다\n**장소:** C4 공식 중계 무대, 모연서·감독·관객. 모연서 \"기존 명단대로 그 회차 시작해 주세요. 다른 경기 일정은 그대로입니다.\" 광고된 **지역 예선 성적자 중계 회차**에 원래 성적자 일부가 입장하지 않으며 타워 명의 사용도 불가능해진다. 감독 \"해당 회차는 예정 선수와 방송 조건이 충족되지 않습니다. 편성을 중단합니다.\" 관객은 옆 일반 공개 경기와 그랜드 타워가 계속 운영 중임을 본다.\n**플레이어 조작:** 중단 전광판/빈 공식 테이블 확인, 자기 공식 출전 등록 또는 공개 특별전 예약 상태 재확인. 플레이어가 운영사를 마법적으로 설득하거나 일방적으로 계약을 고치는 선택 없음.\n모연서(담당자의 광고 계약 일정 보고 뒤): \"이대로면 약속한 회차 중계를 못 하겠네요. 원래 성적자 자리 복구안과 정원 안 공개 예선안을 검토합시다. 편성은 줄여야 해요.\"\n**완료:** AFFECTED_BROADCAST_PAUSED=TRUE. **아직 확정 명단 복구 전.** 일반 도시와 다른 카드판 정상. 이후 08-M04.\n### 08-M03 v4.2 중계 파행·본인 회차 연기\n“현장 보기”→감독 “실적자 중계 **이 회차만** 선수가 부족해 중단합니다”; “중단 공지 요약”→수리 “다른 공개 경기와 카지노는 정상입니다”; “내 일정 확인”→접수원은 Q=YES+해당 중단 회차에 배정된 주인공에게 “정식 출전 자격은 그대로예요. 해당 경기 일정만 수정안 이후로 연기됩니다”라고 말하고 MATCH_STATUS=POSTPONED를 저장한다. 다른 정상 조라면 “본인 조 일정은 별도 안내합니다”; Q=NO/PENDING이라면 “공식 출전자가 아니므로 일반 관람/허용된 별도 공개전 안내를 보세요.” 구명단 강행·특정 방송 회차 중단을 실제 화면 또는 짧은 공지로 확인하면 DONE_08_M03/MAIN_CURSOR=08-M04. **명단 복구·도윤 예약 취소는 아직 일어나지 않음.** 재대화 “중단된 회차는 아직 새 편성 대기 중이에요.”\n",
+  "source_section_sha256": "3d6d376121fec71115e6fa1c00c058a24181c914e294c99c7a55a04ffcd28121",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

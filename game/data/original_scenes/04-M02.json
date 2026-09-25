@@ -1,0 +1,11 @@
+{
+  "scene_id": "04-M02",
+  "source_page_id": "3e5fc392d5b4814aafcdf6bdcc64eab7",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 04-M02 갯벌 탐색·구조선 확인\n**조건/인물/장소:** H2-H4, 나래·해상 구조선 선장. 플레이어는 조수표에서 간조/만조의 통로 2개를 확인, 안전 표식 2개와 등대 망원경을 선택해 배의 깃발·구조 요청 위치를 특정. 나래 \"지금 이쪽 길은 물이 들어와요. 돌아서 전망대로 가죠.\" 실패/잘못 선택 시 지도에 **마른 우회로 또는 구조선 셔틀**가 표시, 위험에 빠져 강제 리셋 없음.\n등대 전망대: 주인공 \"저기 깃발 움직여요!\" → 나래(무전) \"등대 서쪽, 노란 부표 쪽입니다. 선원은 갑판 위에 있어요.\" 선장 \"확인했습니다. 구조선이 갑니다.\" 선원 안전 확보 후 시장 상인 \"다들 돌아왔대요. 이거 간식값 하세요.\"\n**완료:** BOAT_FOUND/CREW_SAFE→04-M03, 구조 완료 소액 게임 재화. 물자를 먼저 배송할지 선택은 04-S01로 분리. 타워 보스·등대 수리로 사람을 구하는 게 아님.\n**진입·실패 회수·다음:** DONE_04_M01 뒤 진입. 간조 길 선택→나래 \"마른 표식 두 개를 잇고 전망대로 가요.\" 만조 길 선택→\"아래 길은 잠겼어요. 위쪽 마른 길로 가요.\" 잘못된 표식→\"그건 지난 물때 표시예요. 돌아서도 늦지 않아요.\" 무료 셔틀 선택→선장 \"연락부두까지 태워 드릴게요. 전망대 관측은 구조팀이 이어 받습니다.\" 직접 탐색을 그만두고 상황 확인 선택→나래 \"제가 좌표를 확인했어요. 구조선의 귀환 보고를 같이 들어요.\" 선장 \"전원 안전합니다. 부두로 복귀합니다.\" 따라서 추리 오답·탐색 미완도 안전 보고를 읽으면 CREW_SAFE=TRUE; 직접 찾았을 때만 BOAT_FOUND_BY_PLAYER=TRUE. 미완 재대화 나래 \"현재 물때에 맞는 안전 길을 다시 표시할게요.\" 완료 후 \"모두 돌아왔어요. 이제 카페로 가요.\" → DONE_04_M02, MAIN_CURSOR=04-M03. 최초 구조 완료 보상만 1회 지급하고 보상 수령 여부는 이동 조건으로 쓰지 않는다.\n",
+  "source_section_sha256": "b1eb7c83cb891f2c46eb2d1a3f35857e9b42437f71762b1ff8863864d1a43304",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

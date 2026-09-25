@@ -1,0 +1,11 @@
+{
+  "scene_id": "07-S01",
+  "source_page_id": "3e5fc392d5b481a5bea8c48d4c2ee0cb",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 07-S01 공연자의 조명·소품\n**입구:** N3 공연자 소명 \"다음 곡 조명 부품을 등불 노점에 두고 왔어요. 가져다줄래요?\" 플레이어 수락하면 N1에서 **가방/무대 소품을 시각적으로 구별해 가져온다**, 정답이면 무대 조명 변화와 간식/소액 재화, 오답이면 소명 \"그건 앞 무대 거예요\"라며 재시도. 거절하면 공연 스태프가 자체 운반하여 본편 무대는 계속 진행. 밤거리 지역 발견용 선택.\n### 수락부터 종료까지의 실제 대화\n수락 “어떤 물건이죠?” → 소명 “등불 노점 옆에 노란 손잡이 가방이 있어요. 조명 부품이라고 적혀 있어요.” S01=ACTIVE.\n거절 “지금은 어려워요.” → “괜찮아요. 스태프를 보낼게요.” S01=DECLINED, 메인 그대로.\n진행 중 재대화 “가방을 아직 못 찾았어요.” → “N1 등불 노점 옆이에요. 무대 이름표도 확인해 주세요.”\n잘못된 소품 “이건가요?” → “앞 무대 소품이에요. 돌려놓고 노란 손잡이 가방을 찾아 주세요.” 감점·칩 차감 없이 ACTIVE 유지.\n정답 전달 → “맞아요, 이 조명이에요. 다음 곡에 써 볼게요.” 가방 회수, S01=DONE, 보상 한 번. 완료후 “등불 색이 잘 보이죠? 가져다줘서 고마워요.”\n포기/지역 이탈 → 소명 “스태프가 이번 공연분을 챙길게요. 다시 돕고 싶으면 다음 공연 전에 와요.” 실제 세계 조명은 자체 복구되나 플레이어 완료·보상은 만들지 않는다. DECLINED/PAUSED로 보존. 재방문 재수락 “다음 공연 가방도 같은 노점에 있어요.” → 새 운반 물품 하나만 활성; 최초 완료 보상은 DONE에 대해 한 번만 지급.\n**조건·복귀:** 07-M01 진입 후 선택 가능. 수락·실패·거절·완료·포기 어느 상태에서도 MAIN_CURSOR로 복귀. 07-M01이 아직 미완이면 그 안내, 이후 07-M02\\~07-M06 중 첫 미완, 시티 진행 중이면 저장된 08-M 장면, 엔딩 후에는 07-R01/자유 탐험. 이 사이드 완료를 메인 조건으로 쓰지 않는다.\n",
+  "source_section_sha256": "a569863c2c97f92e3741ace109ae2c4f005dc1afca79a139bda33bdca7c0d895",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

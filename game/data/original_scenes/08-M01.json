@@ -1,0 +1,11 @@
+{
+  "scene_id": "08-M01",
+  "source_page_id": "3e5fc392d5b48187bdf3e91b84c28713",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 08-M01 자기 성적에 맞는 입구\n**조건·장소·인물:** 장터 07-M06 이후 C0/C3, 접수원·이안의 메시지. 전광판에 공식 결승/공개 와일드카드/이안 별도 공개 특별전이 서로 다른 이름으로 안내된다.\n접수원 \"공식 선수는 오른쪽, 관전은 가운데, 공개 특별전은 왼쪽입니다.\" Q=공식 본선 자격 보유 플레이어는 \"내 예선 성적을 확인할게요\"→실제 경기 기록으로 본인 등록. Q=미보유 플레이어는 \"공개 특별전은 신청할 수 있나요?\"→공식 대회와 별도 참가 의사 등록. Q가 판정되지 않은 상태라면 \"성적 확인 후 다시 안내해 드릴게요\"라고 하고 출전권을 임의로 만들어 내지 않는다.\n이안의 문자: \"서로 일정 정해지면 한 판 치자. 정식 경기에서 만나면 거기서, 안 만나면 따로.\" **조작:** 자기 기록 열람·출전 신청 또는 관전표 확인, 나래 대기실/도시 자유 탐험 중 동선 선택. **완료:** PLAYER_CITY_PATH 기록→08-M02. 보스 8인 격파·칩 0 여부와 무관.\n### 08-M01 v4.2 진입 분기·재대화\n07에서 저장한 PLAYER_CITY_ROUTE=OFFICIAL_INTENT/SHOWMATCH_INTENT/VIEW_INTENT, CHECK_PENDING, 실제 공식 자격 Q=YES/NO/PENDING을 각각 읽는다. 접수원 “자기 기록을 다시 확인하거나 무료 관람으로 계속 들어갈 수 있어요.” Q=YES+OFFICIAL_INTENT→“정식 참가 조건이 확인됐어요. 본인 등록을 진행해요.” Q=YES+VIEW_INTENT→“자격은 있지만 오늘 관람을 택했군요. 접수 마감 전이면 출전으로 변경할 수 있어요.” Q=NO+OFFICIAL_INTENT→“정식 자격은 확인되지 않아요. 별도 공개전이나 무료 관전을 선택해 주세요.” Q=NO+SHOWMATCH_INTENT→“이안과의 공개전은 전국 결승과 별도예요.” Q=NO+VIEW_INTENT→“무료 관람석으로 안내할게요.”\nQ=PENDING→직원 “아직 공식 판정이 끝나지 않았어요. 확인 요청은 남겨 두고, 일단 관전으로 진행할 수 있어요.” “기록 재확인”은 **실제 판정값**이 도착했을 때만 YES/NO로 변경, “관전 먼저”는 CITY_ENTRY_MODE=VIEW_PENDING, “공개전 신청”은 공식 경기와 별개 조건을 확인해 SHOWMATCH_PENDING을 저장한다. 판정 대기를 메인 진행의 필수조건으로 만들거나 관전만 했다고 Q=NO로 덮어쓰지 않는다. 선수 대기실 출입은 Q=YES이며 실제 등록했을 때에만 가능; Q=NO/PENDING은 공용 화면에서 같은 스토리 확인. 선택한 입구를 기록하면 DONE_08_M01/MAIN_CURSOR=08-M02. 재대화 “현재 본인 자격과 예약은 여기서 다시 조회할 수 있어요.” 메인·사이드·타워 후 돌아올 때 접수 장면 재연 금지.\n",
+  "source_section_sha256": "e338859ef7538149425f7e8f2e0860ae64e8c03372f529417fcdccc0dbb18716",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

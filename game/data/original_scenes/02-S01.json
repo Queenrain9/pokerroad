@@ -1,0 +1,11 @@
+{
+  "scene_id": "02-S01",
+  "source_page_id": "3e5fc392d5b481e585c6c3e597640b18",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 02-S01 자전거 가게의 반납 소동\n**입구:** K1 자전거 가게 주인 태미 \"다리 건너편에 반납된 자전거 한 대만 이쪽으로 가져와 줄래요?\" 선택 \"할게요\"/\"나중에\". **실행:** 다리 밑 P와 점포 사이의 실제 자전거 이동, 중도 포기 시 주인이 직접 회수하며 메인 영향 없음. **보상:** 안전한 게임 내 수입과 길 확인. 재대화 완료 \"자전거는 오늘 제자리네요\"/미완 \"내가 점검하러 가야겠네.\"\n### 02-S01 선택 후 대사·조건·복귀 보강 (v4.2)\n**보완:** 태미 “다리 끝 주차대에 놓인 자전거 가져올래요?” 수락 “빨간 번호표만 확인해요”→K1\\~다리 반대쪽 실제 이동, 다른 자전거면 “그건 손님이 빌린 거예요. 번호 다시 봐요.” 성공 “이제 점검할 수 있겠네”→SIDE_DONE 최초 보상 1회, 중단/거절 “내가 거둬 올게요”→MAIN_CURSOR 보존·재방문 선택 가능. 재대화 완료 “오늘은 다 들어왔어요. 다른 일 필요해요?”, 미완 “자전거 없어도 배는 타요.” 안전한 자전거 행사 일감은 별도 반복 WORK_ID.\n",
+  "source_section_sha256": "e7040bd07ff18fd6fd27d8dfd6349c391fa51f1ff5ab9cd606c532f380f8b348",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

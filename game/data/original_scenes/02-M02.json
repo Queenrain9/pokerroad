@@ -1,0 +1,11 @@
+{
+  "scene_id": "02-M02",
+  "source_page_id": "3e5fc392d5b481e585c6c3e597640b18",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 02-M02 스크린 속의 이안\n**조건/장소:** K2 방문 또는 K3로 곧장 가면 배의 승선 화면에서 뉴스 확인. 수리 취재 화면: \"이안 선수, 오늘 다른 조의 초청전에서 다음 라운드에 진출했습니다.\" 주인공이 01에서 이안과 실제 맞붙어 이겼다면 \"동네에선 내가 이겼는데 여기도 잘하네\" / 졌다면 \"저번에는 졌으니 이번엔 또 다른 판에서\" / 직접전 없으면 \"오락실에선 못 만났는데 TV에서 보네\"라는 선택지만 노출. 이안 \"저번 판 결과랑 이번 판은 별개야. 유람선에 와서 직접 치든지 구경해.\"\n**행동:** 방송 전체 시청 또는 10초 결과 요약. **완료:** IAN_NPC_RIVER_RESULT=방송 결과, IAN_DIRECT_01 기존 실제 기록 유지→02-M03. 플레이어가 방송 경기에 참가한 것처럼 기록 금지.\n### 02-M02 선택 후 대사·조건·복귀 보강 (v4.2)\n**보완:** K2 뉴스 선택 “전체 볼래”→수리 “이안의 다른 초청 경기예요”→NPC 결과 장면; “결과만”→“이안이 다음 라운드에 올랐습니다”→VIEW=SUMMARY, “나중에”→K3 승선 화면에 동일 결과 게시. 이안을 새봄에서 직접 이겼다면 이안 “그때 네가 이긴 경기는 내 다른 조 방송과 별개야”; 졌다면 “다른 판이었지”, 미대전 “그때는 못 붙었네.” 관전/요약 모두 NPC 경기 ID만, 플레이어의 공식 승패나 오늘 강변 매치 성적 없음. 완료 후 MAIN_CURSOR=02-M03, 재대화 “배를 타려면 선착장에 가.” 미완 “뉴스 전체/요약 중 고르면 돼.”\n",
+  "source_section_sha256": "25adec76a2d60359aaf545d5568e4383dd77552aecad516d210c4fd3be7fc3be",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

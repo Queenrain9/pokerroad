@@ -1,0 +1,11 @@
+{
+  "scene_id": "08-S02",
+  "source_page_id": "3e5fc392d5b48187bdf3e91b84c28713",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 08-S02 공원 분실 관람표\n**입구/장소:** C1 공원 안내인 \"공연 관람표를 떨어뜨린 분이 있나 봐요. 분실물함에서 이름 확인 부탁해요.\" **실행:** 공원 분실물함의 지역 공연 표(공식 선수 출전권과 형태·문구가 다른 일반 관람표)의 이름/날짜를 확인하여 안내인에게 전달. 잘못 집으면 안내인 \"그건 내일 공연 표예요\"→재선택 가능, 거절 시 직원 자체 처리. **완료:** 소액 재화·선택형 공개 공연 관전 좌석, 주인공이 주운 관광표로 전국 공식 본선 참가자가 될 수 없음.\n**반복 수입:** 쇼핑몰 상품 분류·공원 행사 안내·무료 연습 판/도심 작은 카드판. 전체 칩 0이어도 전국 결승 **관전**·이미 적법하게 참가 신청한 공개 특별전 기본 참가 경로·지역 재방문 무료 기본 교통은 막히지 않음.\n### 08-S02 v4.2 직접 대사와 반환\n안내인 “공원 공연표 날짜와 이름만 확인해 줄래요?” 수락→일반 공연표 확인, 오답 “이건 내일 날짜예요. 다시 골라 주세요”·무료 재시도; 정답→“이 표는 주인에게 돌려드릴게요”·최초 보상 1회. 거절 “제가 확인할게요”, 중단 “다음에 도와주셔도 돼요”→현재 MAIN_CURSOR 복귀. 재대화 DONE “관객이 표 찾아갔어요”, 미완 “분실물함은 언제든 열려 있어요.” 일반 관광표로 공식 경기 자격 Q 변경·출전 불가.\n",
+  "source_section_sha256": "98a5370eb7cc666f58017ed311993a72ce190e8e2764cb870f1e3456e0771439",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

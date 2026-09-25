@@ -1,0 +1,11 @@
+{
+  "scene_id": "01-M05",
+  "source_page_id": "3e5fc392d5b481058eabc72ff9412b5d",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 01-M05 이안은 먼저 떠난다\n**장소:** P3 뒷골목. **조건:** 01-M04 종료 또는 결과 게시판 확인. 이안이 여행 가방과 새 강변 초청전 포스터를 들고 나온다.\n이안 \"강변 야간 초청전에 자리가 났어. 나 먼저 간다.\"\n주인공 ① \"나도 그 경기 나갈래.\" → \"현장 오픈 신청은 알아봐. 너도 직접 등록해야 돼.\" ② \"구경하러 갈게.\" → \"배 쪽 관람석에서 보자.\" ③ \"우리 먼저 붙기로 했잖아.\" → \"못 만났으면 거기서 한 판 예약하자.\"\n**직접전 이미 있음:** 이안 \"그때 네가 이겼지\" / \"그때 내가 이겼지\"는 01-M04의 직접 **매치 결과가 있을 때만** 추가. **완료:** IAN_RIVER_SCHEDULE=TRUE; 태도 R01_TRAVEL_MOTIVE 저장. 다음 01-M06, 자유 동네 탐험 가능. 이안의 계약서 장문 설명 없음.\n### 01-M05 실제 진행·대사·조건 보완 (v4.2)\n**보완 — 이안 직접전 조건:** 이안과 실제 같은 매치에서 최종 승/패 기록이 있으면 “그날 네가/내가 이겼지.” 미참여·다른 조→“우리 아직 직접 붙지 않았네.” 중도포기→“그날은 끝까지 못 쳤잖아.” “나도 출전할래”→“공개 신청 조건은 현장에서 확인해. 내 초청 자리는 네 자리가 아니야.” “구경만”→“승선장 관람석에서 보자.” “연습판 약속”→“배 도착하고 따로 앉자.” 재대화 완료→“난 출발할게. 타워는 복례 할머니에게 물어봐.” 모든 선택에 IAN_RIVER_SCHEDULE=TRUE, MAIN_CURSOR=01-M06; 직접전 없는 플레이어에게 과거 승리 언급 금지.\n",
+  "source_section_sha256": "294f75d69819a1578696f372e65df7f2e9e2e32803babadf687bf9921ac7284f",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

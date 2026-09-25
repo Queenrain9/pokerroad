@@ -1,0 +1,11 @@
+{
+  "scene_id": "01-S02",
+  "source_page_id": "3e5fc392d5b481058eabc72ff9412b5d",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 01-S02 분식집 김밥 배달\n**입구:** P2 보미(가칭) \"아파트 끝집에 김밥 좀 가져다줘. 배달비는 따로 줄게.\" 선택 \"갔다 올게요\"/\"나중에요\". **실행:** 골목 지도에서 끝집 P0-2에 전달, 고객 \"따끈하네. 여기 받으세요.\" → 보미에게 돌아오면 소액 재화와 간식 받음. 중도 취소 시 김밥은 가게에 반납, 재도전 가능. **재대화:** 완료 \"다음엔 직접 먹고 가\" / 미완 \"그 집 아직 안 갔지?\" / 지역 08 이후 \"시티 경기는 TV로 봤어. 배달비는 그대로야.\" 게임 재화 0이어도 반복 일감 열림.\n### 01-S02 실제 진행·대사·조건 보완 (v4.2)\n**보완 — 반복 수입과 사이드 보상 분리:** 수락→보미 “끝집 문 앞에서 받는 분 이름을 확인해 줘”→정답 배달 고객 “잘 받았어요”→보미 “이건 오늘 배달비, 간식도 챙겨.” 다른 집에 주면 “끝집은 골목 맨 끝이에요”→재경로. 보류·중단 “다음 번에도 할 수 있어”→퀘스트 상태 PAUSED, 김밥 반환 후 복귀. 첫 SIDE_DONE 보상 중복 지급 금지, 칩 0일 때 선택 가능한 새 정기 배달은 독립 WORK_ID와 반복 소액 수입. 완료 후 “오늘은 여기서 먹을래, 다른 집 배달도 할래?”→쉬기/반복 일감/현재 MAIN_CURSOR. 어느 선택도 다음 버스 필수 아님.\n",
+  "source_section_sha256": "947db9852c11b8483730aa5fc98318e18e2bca24dd0339ba964b76d1d3bbd4c1",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

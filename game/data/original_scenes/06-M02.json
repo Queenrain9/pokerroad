@@ -1,0 +1,11 @@
+{
+  "scene_id": "06-M02",
+  "source_page_id": "3e5fc392d5b48122842cea65f35245e6",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 06-M02 같은 테이블의 실제 경기\n**조건/장소:** G3 낮 경연, 은솔·추천 명인·공개 진행자. 진행자 \"추천받은 명인과 공개 접수 도전자의 경기를 시작합니다.\"\n**NPC 장면:** 은솔과 명인의 별도 NPC 경기에서 정해진 경기 결과는 **이 두 NPC만 참가한 관전 이벤트**로 제공. 1\\~2회 의미 있는 공개 액션과 결과판을 보여 주고, 플레이어가 본인 경기처럼 버튼을 눌러 승패 바꾸게 하지 않는다. 은솔 NPC 승일 땐 \"오늘만큼은 먼저 들어온 사람과 같은 자리였네\", 패일 땐 \"다음 경연엔 또 신청할 거예요\" 정도로 짧게 반응. 결과는 제작 시 실제 유효 포커 리플레이로 구현해야 함.\n**주인공 경기:** 접수된 플레이어는 **다른 조/별도 시간의 정상 포커 매치**에 참가. 최종 경기 승리·패배·중도 포기·관전만 각각 다른 개인 기록. 승리한 플레이어→접수원 \"당신 경기 기록은 여기서 확인해요.\" 패배→\"다음 공개전 일정도 있대요.\" 관전→\"다음에는 원하면 접수하세요.\" 은솔 NPC 결과와 주인공 성적 불일치 오류 금지.\n**완료:** PUBLIC_COURT_SEEN, PLAYER_COURT_MATCH_RESULT 별도→06-M03. 고액 판돈/경기 승리가 다음 지역 해금 필수 아님.\n### 06-M02 실제 선택 후 대사·조건·복귀 (v4.2)\n**보완:** G3 안내원 “직접 참가·은솔 경연 관전·결과 요약 중 골라 주세요.” 플레이어 적격 참가→PLAYER_COURT_MATCH_ID로 실제 독립 포커 매치; 최종 WIN “오늘 경기 성적을 여기서 확인해요”, LOSS “다음 공개전도 접수 가능해요”, WITHDRAW “완료된 라운드만 기록합니다.” 관전/자격 부족/칩 0→“무료 관람석은 열려 있어요”; 요약→“은솔의 별도 NPC 경연 결과는 여기 있어요.” 은솔 NPC 경기 WIN/LOSS는 별도 EVENT_ID, 주인공 버튼/결과와 무관. 은솔 해당 경기 패 “내일도 공개전은 열려 있어요”, 승 “오늘 내 경기 결과는 여기 있네요”, 관전 건너뛴 사람에겐 “게시판에서 결과 봤어요?”라고 묻는다. 경기/요약 확인으로 DONE_06_M02→M03; 미완 재대화 “참가하거나 결과를 확인해 주세요”, 완료 “월인 대표는 누각 쪽입니다.”\n",
+  "source_section_sha256": "a8202aef39f7a84e54bbe1f7af1b5536333f9b19d667364b5a0eab86330a177d",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

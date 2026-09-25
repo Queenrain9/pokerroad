@@ -1,0 +1,11 @@
+{
+  "scene_id": "01-R02",
+  "source_page_id": "3e5fc392d5b481058eabc72ff9412b5d",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 01-R02 평상의 일상\n**조건:** 자유 재방문 P1/P2. 01-T01 정상 승이라면 복례 \"위에선 네가 이겼지. 여기선 새 손님 들어왔네.\" 미격파면 \"타워는 아직 안 가 봤어? 예약은 자유야.\" 슈퍼 손님은 동네 새 판을 시작, 분식집은 계속 영업. 01-S02 완료 여부로 보미의 \"지난번 배달은 고마웠어\" / \"아파트 쪽 배달 남았는데\" 분기. 연습판 무료/일감 반복·새봄 타워 재도전은 언제나 가능.\n### 01-R02 실제 진행·대사·조건 보완 (v4.2)\n**보완 — 상태별 재대화:** 복례 평상 연습 승·패·관전/스킵은 해당 연습판에만, 타워 T01_CLEAR/LOSS/NOT_ENTERED는 별개. 정상 승 복례 “그날 위층은 네 판이었지. 오늘 평상은 다른 손님 차례야”; 정상 패 “정상 도전 예약은 또 열려 있어”; 미도전 “로비부터 구경해도 돼.” 보미 SIDE_DONE “지난 배달 고마웠어. 이번에는 정기 일감 할래?” / 미완 “끝집 배달은 내가 보냈어. 다음 건 남아 있어.” “무료 연습”→별도 신규 훈련 ID, “반복 배달”→WORK_ID, “다른 지역”→현재 MAIN_CURSOR/기본 교통. 재방문으로 원래 M01\\~M07 완료 기록을 지우지 않음.\n",
+  "source_section_sha256": "258377c3845329bc056cde57fbe17e474600b836751916a3dd911f89396a1cea",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

@@ -1,0 +1,11 @@
+{
+  "scene_id": "02-M05",
+  "source_page_id": "3e5fc392d5b481e585c6c3e597640b18",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 02-M05 윤하루·이안과 다시 눈 맞추기\n**장소:** K3 전망대에서 K4 큰 수상 카지노 타워가 보인다. 윤하루 \"배 위 판이랑 타워 최상층 판은 달라요. 위에서 강이 다르게 보여요.\" 이안 \"또 다른 선수 많네.\"\n주인공이 공식 유람선 매치에서 승리했다면 이안 \"방금 그 경기 기록 봤어. 다음엔 나도 나갈게.\" 패했다면 \"아까 경기 끝났지? 나랑 연습판 하나 더?\" 관전만 했다면 \"배 구경은 어땠어?\"로 분기. **선택형 이안 직접 매치**에 참여하면 결과 별도 R02_IAN_DIRECT 기록·실전 카드 조작, 미참여해도 다음 진행.\n**완료:** YUNHARU_TOWER_INTRO, R02_IAN_REUNION→02-M06. 윤하루 타워 보스는 같은 승선 NPC 경기와 분리.\n### 02-M05 선택 후 대사·조건·복귀 보강 (v4.2)\n**보완:** M04 종료/요약 뒤 전망대. 주인공의 강변 **공식 매치** 결과별 이안 “오늘 네 경기 성적 봤어/오늘은 잘 안 풀렸어?/배는 재미있었어?” 중 하나. “이안과 직접 연습”→이안 “이건 방송 경기와 다른 우리 둘의 판이야”→별도 공정 MATCH_ID; 실제 전체 매치 승 “네가 이겼네”, 패 “이번엔 내가 이겼어”, 중단 “다음에 끝내자”, 미참여 “숲 소식은 들었어?” 윤하루 “타워는 저기 커다란 건물이에요. 구경 무료예요.” “타워 가기”→T01, “숲 소식”→M06; T01 복귀 시 MAIN_CURSOR 유지. 완료 후 MAIN_CURSOR=02-M06. 재대화 “숲행 정기 버스 표지 보고 가요.”\n",
+  "source_section_sha256": "dbb5e7ae68520f59b7f6be820bcb726cc32d7735b5ab7a6bb5860c236babf38a",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

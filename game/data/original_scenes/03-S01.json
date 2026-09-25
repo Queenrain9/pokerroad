@@ -1,0 +1,11 @@
+{
+  "scene_id": "03-S01",
+  "source_page_id": "3e5fc392d5b481808a4bee1b4c7bd976",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 03-S01 두 마을 공용 다리\n**입구:** F3 미루 \"공용 다리 공사 중이라 짐 옮기는 날만 한쪽이 막혀요. 순서를 같이 확인해 줄래요?\" 선택 \"도와줄게\"/\"계단으로 돌아갈게\". **실행:** 하부 시장의 운반 시간/상부 작업 시간을 두 표지에 맞춰 선택. 정답이면 주민 \"다음 수레는 이쪽으로\"라며 짧은 지름길 개통·소액 재화. 오답/포기면 미루와 주민이 공사를 계속하며 **정식 우회 계단** 제공. 모든 NPC가 주인공의 공사 결과 없으면 굶는 서사 금지.\n### 03-S01 선택 후 대사·재대화·복귀 (v4.2)\n**보완:** 미루 “작업 시간표 두 개만 맞춰 줄래요?” 수락→“윗마을 물자 때는 다리 안쪽, 아랫마을 수레 때는 바깥쪽을 써요”; 정답→“그럼 안전하게 작업할 수 있겠어요”·첫 보상 1회, 오답→“표를 다시 볼래요? 이 시간엔 통로가 반대예요”, 거절/중단→“우린 정식 우회계단으로 옮길게요.” SIDE=PAUSED이면 다음 방문 재신청, DONE이면 “오늘은 다리 열렸어요.” 항상 메인 MAIN_CURSOR 복귀, 상부 F3과 항구행 교통을 이 일로 잠그지 않음.\n",
+  "source_section_sha256": "0d48877bbc59a196bed6d6b577c7f1d8ca01e6bf7e5788c2fdf38029ca67ca7f",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

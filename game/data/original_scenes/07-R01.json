@@ -1,0 +1,11 @@
+{
+  "scene_id": "07-R01",
+  "source_page_id": "3e5fc392d5b481a5bea8c48d4c2ee0cb",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 07-R01 계속 열리는 장터\n**조건:** 시티 입장 후 N1/N3 재방문. 명단 논란 후에도 공연자와 다온 영업 지속; S01 완료면 무대 조명 변화와 감사, 미완이면 스태프 자체 복구. 이전 스탬프는 기념 간식에만 영향. Q 공식 본선 미진출자도 야시장 카드판/소액 수입이 멈추지 않음.\n### 재방문 대사와 선택\n다온: “시티 다녀왔어요? 여긴 오늘도 장사해요.”\n- S01 DONE: 소명 “가져다준 조명 잘 썼어요. 다음 곡도 듣고 가요.” PAUSED/DECLINED: “지난 공연은 스태프가 챙겼어요. 다음 공연은 도와줄 수 있어요?” → 07-S01 재수락/거절.\n- S02 DONE: 보조 진행자 “지난번 열어 준 통로 그대로 쓰고 있어요.” 미완/미참여: “통로는 저희가 정리했어요. 다음 행사 준비는 여기서 받아요.” → 07-S02.\n- Q=NO: 다온 “본선에 못 갔다고 이 골목 판까지 닫히나요. 원하면 무료 판부터 해요.” Q=PENDING: “확인 소식 기다리는 동안 쉬어 가요.” Q=YES: “네 경기 일정은 챙겼어요? 배편는 계속 있어요.” 공식 성적을 다온이 추정하지 않는다.\n- 칩 0: “돈 안 쓰고 구경해도 돼요. 운반 일감 원하면 말해요.” → 07-W01.\n“시티로 돌아갈게요.” → “도해 씨한테 다음 배편 물어봐요.” → 07-M06의 반복 이동 출구→저장된 시티 MAIN_CURSOR. “더 머물게요.” → “편하게 둘러봐요.” → 장터 자유 활동.\n**재대화:** “공연 시간표는 N3예요. 지난번 부탁은 끝난 상태로 남아 있어요.” 재방문 대화는 보상·스탬프·메인 사건을 다시 실행하지 않는다. STORY_END 전후 모두 가능하며 엔딩 후 이동도 무료.\n",
+  "source_section_sha256": "9019aebddb6cb63d9337846726103f09ebaeed1790c4eeb286e222fe34da6e5e",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

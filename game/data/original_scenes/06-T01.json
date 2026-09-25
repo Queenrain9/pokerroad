@@ -1,0 +1,11 @@
+{
+  "scene_id": "06-T01",
+  "source_page_id": "3e5fc392d5b48122842cea65f35245e6",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 06-T01 월인 최상층 특별전\nG5 기와누각 로비→연못 전망 아래층 공개전→대형 격자창 중층 정식 경기→최상층 월인 특별 포커. 직원 \"정상에 오르는 분은 아래층부터 정식 경기 기록이 있어야 합니다. 관광은 로비까지 무료예요.\" 정상 입장 전 월인 \"구경 끝났으면 카드를 봅시다.\"\n주인공 각 층 매치의 실제 최종 성적에 따라 상층 **선택형** 도전 가능, 실패하면 G1 안전 수입/무료 연습 후 재도전. 정상 승 \"오늘은 당신의 판이네요\"→큰 게임 내 상금·누각 기념품·궁중 주민의 호감 대사, 패 \"다음 경연 때 다시 오시게\"→재도전. 정상 승리가 궁궐행 전철/장터행 행렬, 전국 결승 자격을 열어 주지 않음.\n### 06-T01 실제 선택 후 대사·조건·복귀 (v4.2)\n**보완:** 누각 L 무료 로비→A 연못 공개 매치→B 격자창 중층 정식 매치→C 월인 최상층 별도 실제 경기, 각 층 MATCH_ID. 직원 “정식 신청/무료 관전/경연장 돌아가기 중 고르세요.” 부적격·칩 0→“지금 경기 신청은 어렵지만 무료 전망과 시장 일감, 장터 정기 이동은 열려 있어요.” A/B 실제 매치 WIN에만 다음 층 자격, LOSS→“같은 층 다시 도전하세요”, WITHDRAW→“기존 층 통과 기록은 보존합니다.” C 실제 WIN에만 T06_CLEAR·첫 보상, 패 “다음 경연에도 타워는 열려 있어요”, 미도전 “로비 구경부터.” 출구에서 MAIN_CURSOR 또는 G6 교통, 본편 공식 출전권은 생성하지 않음.\n",
+  "source_section_sha256": "d70ac4a310c067f84b64c9c705fa59ee294b131dfce155cb1a3d7ea53503db2c",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

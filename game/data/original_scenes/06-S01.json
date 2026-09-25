@@ -1,0 +1,11 @@
+{
+  "scene_id": "06-S01",
+  "source_page_id": "3e5fc392d5b48122842cea65f35245e6",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 06-S01 장인의 카드 케이스\n**입구:** G1 장인 \"경기 끝나면 선수들이 자꾸 케이스를 놓고 가네. 이 손질 끝난 것 두 개만 받아줄래요?\" 선택 수락/거절. **행동:** 두 개의 장식 무늬를 맞는 수령 상자에 놓기→장인이 재확인, 틀리면 \"이건 누각에 가는 거예요\" 설명과 무료 재시도, 포기하면 장인이 자체 처리. 보상 소액 재화·무료 장식 배지. 재방문 완료 \"그날 정리해 줘서 고마웠어요\"/미완 \"제가 정리했어요\". 지역 07 해금 영향 없음.\n### 06-S01 실제 선택 후 대사·조건·복귀 (v4.2)\n**보완:** 장인 “왼쪽 케이스는 연못 행사, 오른쪽은 누각 손님 거예요.” 수락→두 케이스 무늬를 수령 상자에 배치, 오답 “이 무늬는 다른 상자예요. 다시 해 보세요”→무료 재시도, 성공 “손질한 걸 제자리 놓았네요”→최초 보상 1회. 거절 “제가 옮기겠습니다”, 중단 “나중에 다시 받아줘도 돼요”→PAUSED. 재대화 DONE “오늘 물건은 모두 정리됐어요”, 미완 “당신 일정 먼저 보세요. 경연은 그대로 열려요.” MAIN_CURSOR 복귀; 칩 0에 연속 장인 정리 WORK_ID로 비도박 수입 제공.\n",
+  "source_section_sha256": "2d511159f20054d9d585eec0a81bb937d2a32d4c1e9e821c40b5203f68a8774a",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

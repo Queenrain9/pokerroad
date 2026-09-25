@@ -1,0 +1,11 @@
+{
+  "scene_id": "03-R02",
+  "source_page_id": "3e5fc392d5b481808a4bee1b4c7bd976",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 03-R02 경기 이후의 솔개·도윤\n**조건:** F4 또는 F5 재방문. 주인공이 도윤과 직접 매치 승이면 관련 방송에 \"전에 내가 졌던 사람\"이라는 도윤 짧은 응답, 패면 \"다음엔 다르게 와\", 미참여면 \"아직 직접 못 붙었네\"로 정확히 구분. 솔개 정상 승 \"지난번 네가 내 정상 가져갔지\" / 패 \"다시 할래?\" / 미도전 \"경기장 위에 아직 자리 있어요.\" 도윤의 항구 NPC 경기 결과를 숲에서 주인공 직접전 결과로 둔갑시키지 않음.\n### 03-R02 선택 후 대사·재대화·복귀 (v4.2)\n**보완:** 도윤 직접전 WIN/LOSS/WITHDRAW/NOT_ENTERED를 별도 조회: “숲에서는 네가/내가 가져갔죠/그때 중간에 멈췄지/아직 직접 붙지 않았죠.” 도윤이 항구에서 이안을 이긴 NPC 사건은 별도 결과로만 말한다. 솔개 정상 WIN→“내 정상에서는 지난번 네가 이겼지”, LOSS→“같은 층 재도전해요”, NOT_ENTERED→“로비 관전부터 해도 돼요.” “다시 붙을래”→별도 새로운 실제 매치/선택형 T01, “지역 이동”→현재 MAIN_CURSOR/교통. DONE 메인과 첫 보상 재지급 금지.\n",
+  "source_section_sha256": "c9d4c73624d8ea78d06ba73ebb7eeb7955753a3ecafa4d0907d0a632cedcaa37",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

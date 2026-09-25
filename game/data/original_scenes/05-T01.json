@@ -1,0 +1,11 @@
+{
+  "scene_id": "05-T01",
+  "source_page_id": "3e5fc392d5b481cb8387c5e88f38a391",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 05-T01 공개 타워와 다른 최상층\n**입구:** E5 지하 회차선의 크고 복잡한 로비, 직원 \"여기선 누구나 구경할 수 있지만 정식 상층은 별도 경기 실적이 필요해요.\" 하층은 짧은 공개 매치, 중층은 진행 시간이 제한된 경쟁 매치, 최상층은 차유경의 정식 포커 특별전. 정상 진입 시 차유경 \"여기선 열차 시간보다 네 카드부터 봐.\" **승리:** \"오늘은 내 시간표가 틀렸네요\"→게임 내 상금·역 기념패·야간 특별전 초청; **패배:** \"내일 새 회차에서 다시 봅시다\"→재도전; **미도전:** E2의 나래 기록·E4 도윤 정보·E6 궁궐 교통 모두 정상.\n### 05-T01 상태·실제 대사·재대화·복귀 (v4.2)\n**보완:** 로비 L은 관광 무료, 저층 A→중층 B→차유경 정상 C는 독립 실제 매치 ID. 직원 “무료 관전·이 층 도전·이야기 계속 중 골라 주세요”, 조건 부족/칩 0 “유료 경기 신청은 어렵지만 무료 연습/야간 식당 일감/궁궐 전철은 열려 있습니다.” 승리→다음 층 자격 기록, 패→“같은 층 예약 다시 할까요?”, WITHDRAW→“기존 통과 기록은 남습니다.” 정상 WIN에서만 T05_CLEAR/최초 상금·기념패; 재대화 승 “새 회차로 다시 붙으시겠어요?”, 패 “도전은 언제든”, 미도전 “로비 먼저 구경하세요.” 모든 출구 MAIN_CURSOR/E6 정기편으로 복귀.\n",
+  "source_section_sha256": "568abc19bbf8dadc875f96f69ae2d2f511dd1d3b40b308481d2bdce20938438d",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

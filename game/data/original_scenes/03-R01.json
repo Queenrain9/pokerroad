@@ -1,0 +1,11 @@
+{
+  "scene_id": "03-R01",
+  "source_page_id": "3e5fc392d5b481808a4bee1b4c7bd976",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 03-R01 위아래 마을의 후일담\n**조건:** 항구 이상 방문 뒤 숲 재입장. 03-S01 성공이면 다리 개통/미완이면 주민 공사 진척과 우회계단 유지. 미루 \"이제 수레도 저녁엔 손님 많아요.\" 견과 보관고와 식당은 대회 논란과 무관하게 영업, 안전 수익 반복 가능.\n### 03-R01 선택 후 대사·재대화·복귀 (v4.2)\n**보완:** REGION04_VISITED 후 F0/F3 복귀. 다리 S01 DONE→미루 “표 맞춰 준 날부터 통행이 좋아졌어요”, 미완·거절→“우리가 교대하며 고쳤어요. 우회계단은 여전히 있어요.” 견과 S02 DONE→식당 “지난번 자루 정리 고마웠어요. 오늘도 일할래요?”, 미참여→“정기 분류 일감은 여전히 열려 있어요.” 선택 “마을 둘러볼래/도윤 소식/여행 계속”→F3/03-R02/현재 MAIN_CURSOR. 재방문으로 S 최초 보상 중복 지급 금지.\n",
+  "source_section_sha256": "2c7c3a1d2662b0eed99f05935b472649e031753f6e9a2e28c25823cf902372b9",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

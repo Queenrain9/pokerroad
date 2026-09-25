@@ -1,0 +1,11 @@
+{
+  "scene_id": "02-R02",
+  "source_page_id": "3e5fc392d5b481e585c6c3e597640b18",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 02-R02 윤하루의 재도전\n**조건:** K4 또는 배의 관객 재입장. T01 정상 승 시 \"지난번엔 내가 졌죠. 오늘은 배 운항부터 보고 올게요\", 패배 \"재도전 예약 아직 열려 있어요\", 미도전 \"상층은 안 가 봤어요?\" 이안 직접전이 있으면 정확한 그 매치 결과만 대사 반영. 안전한 정기버스·무료 연습·일감은 계속 열림.\n### 02-R02 선택 후 대사·조건·복귀 보강 (v4.2)\n**보완:** K4 복귀 시 타워 정상 승/패/미도전으로 윤하루 “지난번 최상층은 당신이 이겼죠/다시 예약하실래요?/로비는 아직 무료예요.” 이안과 강변 개인 연습 매치가 있었다면 정확한 최종 승/패/WITHDRAW 대사만, 미참여라면 “우린 배에서 안 붙었지.” “정상 재도전”→T01 해금층, “배 관전”→K3, “여행 이어가기”→현재 메인/정기 교통. 재도전도 새 매치 ID, 타워 첫 격파 기념품 중복 지급 금지.\n",
+  "source_section_sha256": "9b93a5ec457f6a7ef01e826d1c301672eadde078c22f33ffc42e1559f57dda2c",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

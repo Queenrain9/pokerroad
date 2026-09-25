@@ -1,0 +1,11 @@
+{
+  "scene_id": "01-M04",
+  "source_page_id": "3e5fc392d5b481058eabc72ff9412b5d",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 01-M04 첫 공식 기록\n**장소/인물:** 오락실 앞 천막 아래 공개 토너먼트, 접수원·주민, 이안은 별도 조. **플레이 참가:** 실제 카드와 AI로 경기를 진행해 매치 최종 결과·예선 실적을 저장. 단일 팟 승리만으로 전체 예선 우승/본선 자격을 부여하지 않는다. 경기 종료 후 승/입상 \"이름 남았어요. 다음 공개전도 신청할 수 있어요.\" 탈락 \"오늘 기록은 여기까지. 연습판과 다음 회차는 열려 있어요.\" **관전:** \"어떤 경기인지 봤죠? 다음엔 원하면 직접 신청해요.\" 참가 전적 없음.\n**이안 독립 결과:** 이안은 이전 실적과 **주인공과 별도 NPC 테이블**의 성적으로 스카우트 연락 수령. 주인공이 같은 테이블에서 이안을 직접 이겼다면 그 경기의 실제 결과를 남기고, 스카우트 기준을 이안의 이전 성적으로만 설명. 주인공에게 거짓으로 \"이안도 오늘 무패\"라고 소개하지 않는다.\n**완료:** R01_MATCH_END/VIEWED, RESULT 별도 저장; 다음 01-M05 자동 행사 종료 후 열림. 포커 패배해도 정기 버스와 카지노 로비 입장 가능.\n### 01-M04 실제 진행·대사·조건 보완 (v4.2)\n**보완 — 분기와 경기 결과 반환:** ENTERED→실제 지역 공개전 매치 시작, WIN/LOSS/WITHDRAW/COMPLETE_RANK를 경기 엔진 종료 결과로만 받는다. 경기 진행 중 나감→해찬 “진행 중이던 경기는 기록대로 정산하거나 새 회차를 기다려요”; 미완을 승리 처리하지 않고 공식 종료 또는 대체 관전으로 M05. VIEW→진행자 “오늘은 관람이군요”→결과판 확인, PLAYER_EVENT_RESULT=NOT_ENTERED. 승/입상 “이번 성적표 여기 있어요”, 탈락 “다음 회차는 저기서 접수해요”, 중단 “끝낸 회차만 공식 기록이 됩니다.” 관전 스킵해도 결과판으로 이안 별도 NPC 스카우트 소식 확인. 재대화 완료→“본인 기록 확인했죠? 이안은 뒷골목에 있어요.” MAIN_CURSOR=01-M05; 이안 직접전 여부는 실제 매치 ID만 참조.\n",
+  "source_section_sha256": "870d144b3eb12827eab92d8875841e57b6674c8ced41f9f314c1982c7695adc0",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

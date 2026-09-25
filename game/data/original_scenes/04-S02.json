@@ -1,0 +1,11 @@
+{
+  "scene_id": "04-S02",
+  "source_page_id": "3e5fc392d5b4814aafcdf6bdcc64eab7",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 04-S02 선박 수리장 부품 배송\n**입구:** H1 수리공 \"부두 끝 부품 상자 한 개만 가져다줘요.\" 선택 수락/미루기. H2 안전 길의 상자만 회수, 반납하면 수입; 잘못된 상자 선택하면 수리공이 정정하고 재시도. 미참여 시 수리공이 직접 배송, 정기 철도/구조선 본편 정상.\n**일상 수입:** 어시장 포장·물때에 맞춘 안전 갯벌 조개 관찰/상점 보조·부두 카페 무료 연습; 포커 패배해도 이동 가능.\n**상태·실제 대사:** 04-M01 뒤 안전선이 열린 H1에서 제공. 수락→수리공 \"안전선 안의 파란 부품 상자예요.\" ACTIVE. 미루기/거절→\"급한 분량은 제가 옮길게요. 도울 분량은 따로 둘게요.\" DECLINED/PAUSED, 재방문 재수락. 진행 중 \"파란 표식 상자 하나만요. 물이 차면 무료 셔틀을 타세요.\" 오답→\"그건 식당 상자예요. 제자리 두고 파란 표식을 다시 봐요.\" 퀘스트 물품 회수·무료 재시도, 벌금 없음. 반납 성공→\"부품 맞네요. 품삯 여기 있어요.\" DONE과 보상 1회. 완료 후 \"수리는 잘 끝났어요. 이미 받은 품삯은 정산됐고요.\" 이탈/중도 포기→\"물건은 안전하게 맡겨 둘게요. 돌아오면 이어서 해요.\" PAUSED; 귀환 시 \"맡긴 상자부터 마저 옮길래요?\" → 저장 단계부터. 실패/거절/완료 모두 MAIN_CURSOR 복귀 메뉴와 H8 교통 유지.\n",
+  "source_section_sha256": "64e1538d6c6829d743ced556e775177fb34cee651c05339fa062af644d63a76f",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

@@ -1,0 +1,11 @@
+{
+  "scene_id": "05-R01",
+  "source_page_id": "3e5fc392d5b481cb8387c5e88f38a391",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 05-R01 심야 역의 새 손님\n**조건:** 궁궐 이상 방문 뒤 E1 재입장. 낮에는 퇴근길 점포, 밤에는 야간 식당 손님이 달라지고 05-S01 성공이면 식당 주인 \"스카프 찾으러 왔더라\", 미참여면 \"내가 역무실 맡겼어요.\" 정기 야간버스와 푸드코트 작은 판 계속.\n### 05-R01 상태·실제 대사·재대화·복귀 (v4.2)\n**보완:** REGION06_VISITED 후 E1 복귀. 주인 “낮 식당은 퇴근 손님, 밤엔 기사님이 많아요.” S01 DONE “스카프 찾으러 왔더라”, 거절/미완 “제가 역무실에 맡겼어요.” “오늘도 배달”→별도 WORK_ID, “무료 공개판”→규칙 연습, “궁궐 돌아갈래”→교통/MAIN_CURSOR. 최초 심야 실명 공개 장면은 재생하지 않고 정기 방송만 갱신.\n",
+  "source_section_sha256": "e20a1c84701a746e11b4ab26c80554f6deda6851102058df1d62470854d7c7db",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

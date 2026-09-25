@@ -1,0 +1,11 @@
+{
+  "scene_id": "02-M03",
+  "source_page_id": "3e5fc392d5b481e585c6c3e597640b18",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 02-M03 선착장의 다른 두 줄\n**조건/장소·인물:** K3, 도해·선장/안전요원. 도해 \"공개 경기 관람은 왼쪽, 정식 참가 접수는 오른쪽. 참가 조건이 안 되면 배 안 무료 연습판도 있어요.\" 선택: 조건을 충족한 선수 등록/일반 관전/다음 밤 일정/강변 자유 산책.\n**플레이:** 참가 시 독립 R02_PUBLIC_MATCH_ID 생성. 관전자는 참가 점수 0, 관광객 무료/기본 표로 배에 탑승. 승선장이 수위 때문에 바뀐다면 선장이 공지하고 양쪽 입구가 열린 상태; 고장 난 표지판을 플레이어가 수리해야만 탈 수 있게 하지 않음.\n**완료:** R02_ON_BOAT=TRUE→02-M04. 배 놓친 선택은 다음 정기편/대체 관람 경로로 복구, 공식 참가 기록은 실제 경기 참가했을 때만 생성.\n### 02-M03 선택 후 대사·조건·복귀 보강 (v4.2)\n**보완:** K3 안전요원 “직접 참가·무료 관전·다음 배 중 무엇으로 할까요?” 적격 접수→“이 배 선수석입니다”·별도 EVENT_ID, 조건 미충족/칩 0→“참가 조건은 다음 회차에 맞출 수 있어요. 지금은 관전이나 무료 연습이 가능합니다”, 관전→“갑판 관람석은 이쪽이에요”, 배 놓침→“다음 정기편 또는 이쪽의 짧은 경기 요약을 골라 주세요.” 각 선택에서 무료 승선/배 소개 제공 후 02-M04. K3 방문 중 나왔다면 진행 중 입장/다음 편 안내, 이미 승선했다면 “윤하루 씨는 전망대 쪽이에요.” 주인공 경기 출전권을 관광표로 대체하지 않음. S02 표지판 정리 미완도 안전요원이 입구 안내.\n",
+  "source_section_sha256": "fe48ed6dcf257a7b06f7926852bbc633569a96fe9f14bb60bd9dc1602c933eba",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

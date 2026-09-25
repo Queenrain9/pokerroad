@@ -1,0 +1,11 @@
+{
+  "scene_id": "01-M06",
+  "source_page_id": "3e5fc392d5b481058eabc72ff9412b5d",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 01-M06 큰 타워의 정상에 있는 사람\n**장소:** P4 초입, 높은 타워 건물 전체가 보이고 광장 전광판에 \"최상층 대표 복례\" 광고. **조건:** 01-M05 또는 P4 자율 첫 방문. 복례가 장바구니를 들고 타워 출입 직원과 친숙하게 인사.\n주인공 ① \"아까 슈퍼 앞 할머니예요?\" → 직원 \"네, 최상층 대표세요.\" ② \"지금 붙을 수 있어요?\" → \"로비 관전부터 보시고 정식 도전을 예약해 주세요.\" ③ \"평상에선 제가 이겼는데요?\" (연습판 실제 매치 승 기록 있을 때만) → 복례 \"평상은 평상이고, 위에서는 오래 앉아야 해.\"\n복례 \"예약 시간 확인하고 올라와. 나 장 보고 들어갈게.\"\n**행동:** 카지노 로비 무료 관광·첫 층 관전·층별 경기 보상 확인. 01-T01을 선택해서 계속하면 메인 출발을 나중에 해도 되고, P5 강변행 정기편으로 갈 수도 있음. **완료:** TOWER_INTRO_SEEN. 복례 과거 회상/비밀 조종자 설정 금지.\n### 01-M06 실제 진행·대사·조건 보완 (v4.2)\n**보완 — 조기 방문·표지·로비 복귀:** M05 이전 P4에 먼저 들어오면 직원 “관광은 지금도 가능해요. 최상층 소개는 공개 전광판에서 보세요.” T01 로비를 먼저 열 수 있지만 메인 진행은 이전 MAIN_CURSOR 보존. M05 이후 소개→주인공 “평상에서 보던 분이 여기 대표였구나” 또는 평상 미방문이면 “저분이 대표예요?”→직원 “복례 대표님입니다. 로비 입장은 무료예요.” 정상 도전 예약/로비 구경/나중에 선택→각각 T01/로비 관전/P5 표지. 타워에서 돌아오면 직원 “강변 버스는 저쪽, 타워는 언제든 재예약하세요.” TOWER_INTRO_SEEN과 DONE_01_M06 후 MAIN_CURSOR=01-M07. 타워 정상 미도전·패배에도 출발.\n",
+  "source_section_sha256": "6ab243f7b49c7eb4c9275d011f605809a9b293f03332fe4a490358617126b863",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

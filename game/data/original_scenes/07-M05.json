@@ -1,0 +1,11 @@
+{
+  "scene_id": "07-M05",
+  "source_page_id": "3e5fc392d5b481a5bea8c48d4c2ee0cb",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 07-M05 주인공은 자기 마지막 경기를 선택한다\n**조건/장소:** N5의 주인공 전적 확인 키오스크. 여기서 실제 이전 지역들의 **공식 예선 결과에 따라 외부 공식 판정으로 획득한 본선 자격 Q**를 읽는다. 구체 정원·점수 숫자는 포커 시스템 확정 전 임의 작성 금지.\nQ=YES라면 화면 \"공식 본선 참가 의사 등록\" 선택 → 주인공 \"내 경기 기록으로 신청할게요.\" 직원 \"시티에서 본인 확인하고 실제 대진표를 보세요.\" Q=NO라면 화면 \"시티 공개 특별전 참가 신청\" 선택 → 주인공 \"그럼 이안과 공개전에서 직접 붙고 싶어요.\" 직원 \"공식 본선과 다른 경기로 예약됩니다.\" Q가 미판정이면 \"예선 성적 확인하기/시티 방문\"으로 안내하고 Q를 거짓으로 YES 처리하지 않는다.\n**완료:** PLAYER_CITY_ROUTE=OFFICIAL_INTENT / SHOWMATCH_INTENT / VIEW_INTENT (미판정 확인 요청은 별도 저장), **본선 자격 Q 자체는 건드리지 않음**→07-M06. 플레이어가 나래의 이의 신청을 대신 해결하거나 도윤의 기존 예약을 즉시 취소하는 일이 없음.\n### 자격 확인이 늦거나 경기에 나가지 않는 선택\n직원: “예선 성적과 참가 의사는 따로 확인해요. 성적이 있어도 오늘 출전을 강요하지 않아요.”\n- Q=YES, “공식 본선에 신청해요.” → “본인 성적은 확인됐어요. 시티 등록 창구에서 대진을 받으세요.” OFFICIAL_INTENT.\n- Q=YES, “이번엔 관전할게요.” → “관전 의사로 남길게요. 출전 자격을 지우지는 않아요. 접수 마감 전에 시티에서 바꿀 수 있어요.” VIEW_INTENT.\n- Q=NO, “이안 공개 특별전을 신청해요.” → “전국 본선과 별도로 예약할게요. 기본 참가에 개인 칩을 요구하지 않는 공개전이에요.” SHOWMATCH_INTENT.\n- Q=NO, “경기에는 안 나갈게요.” → “관람 안내만 받아 가세요. 시티로 가는 데 출전권은 필요 없어요.” VIEW_INTENT.\n- Q=PENDING 또는 판정 자료 없음, “기록을 다시 확인해 주세요.” → “확인 요청은 남겼어요. 기다리는 동안 관전 안내로 시티에 갈 수 있어요.” CHECK_PENDING와 VIEW_INTENT를 함께 저장. 자료가 도착할 때만 Q를 갱신; 기다림을 메인 종료 조건으로 삼지 않는다.\n- 어느 상태든 “나중에 정할게요.” → “지금은 관전 예정으로 남길게요. 시티 창구에서 다시 선택해요.” VIEW_INTENT, 미참여 매치 기록 없음.\n재대화: OFFICIAL_INTENT “신청 의사는 받았고 최종 등록은 시티예요.” SHOWMATCH_INTENT “특별전 안내를 시티에 전달했어요.” VIEW_INTENT “관전 통로로 가면 돼요.” CHECK_PENDING “성적 확인 중이에요. 시티 이동은 할 수 있어요.”\n**완료·연결 교정:** 07-M04 완료 후 위 선택 하나를 저장하면 07-M06. PLAYER_CITY_ROUTE는 OFFICIAL_INTENT / SHOWMATCH_INTENT / VIEW_INTENT 중 하나이며 CHECK_PENDING은 별도 상태다. 기존의 두 값만 허용하던 완료 조건을 이 셋으로 확장한다. 공식 참가 미신청·Q 미판정·칩 0·타워 0/8 모두 07-M06을 연다.\n",
+  "source_section_sha256": "0ea6304d3a95652849bf4a0d9815cec69c3056c70fbf829c32811d77111adb19",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

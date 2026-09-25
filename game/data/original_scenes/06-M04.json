@@ -1,0 +1,11 @@
+{
+  "scene_id": "06-M04",
+  "source_page_id": "3e5fc392d5b48122842cea65f35245e6",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 06-M04 이안의 경기 복기와 재협상 시작\n**조건/장소:** G3 연못 벤치 또는 G4 밤 연회 옆 작은 연습 테이블, 이안. 이안은 항구에서 도윤에게 진 **별도 NPC 경기**의 방송 리플레이를 열어 놓고 있다.\n이안 \"그날 난 영상 속 도윤하고만 싸웠더라. 여기서는 내 앞의 사람을 보고 치려고.\" 주인공 ① \"그럼 나랑 연습할래?\" → 실제 별도 공정 매치 등록 ② \"팀에서 나오면 되잖아\" → \"훈련비도 이동 지원도 받았는데 그걸 없던 일로 할 수는 없지.\" ③ \"후원팀이 다른 사람 보낸다며?\" → \"대리 지정 조항은 고쳐 달라고 말할 거야.\"\n**승패:** 이안과 직접 매치 승리 \"오늘은 네가 가져갔어\" / 패 \"이번 판은 내가 가져갈게\" / 미참여 \"장터에서 다시 보자\"; 주인공이 지역 01/02에서 이안과 실제 붙은 기록이 있을 때만 \"그때랑 또 다르네\" 한 줄 추가. 이안은 본인의 판단으로 담당자에게 대리 지정 조항 수정 요청 **신청만** 한다. \"다음 대회 지원은 보장 못 한다\"는 담당자 답변이 도착하지만 최종 동의는 장터 명단 발표 이후에 함.\n**완료:** IAN_RENEGOTIATION_REQUESTED=TRUE, 이안 직접전 RESULT는 별도→06-M05. 주인공의 '팀 나와' 대사만으로 지원 계약 자동 종료 금지.\n### 06-M04 실제 선택 후 대사·조건·복귀 (v4.2)\n**보완:** 이안 “항구에서 도윤에게 진 NPC 초청 경기 복기 중이야.” “나랑 한 판”→“이건 우리 둘의 새 연습 매치야”→별도 PLAYER_IAN_06_MATCH_ID/최종 승 “네가 이번에 가져갔네”, 패 “오늘은 내 판”, WITHDRAW “그럼 나중에 끝내자.” “팀 나오면?”→“훈련 지원을 받은 건 남아 있지. 조건부터 고칠 거야”, “장터에서 보자”→“내가 담당자에게 내 이름으로 요청할게.” 어떤 선택에서도 이안이 스스로 **요청**을 보낸다는 장면 확인 후 DONE_06_M04/MAIN_CURSOR=06-M05, IAN_CONTRACT=REQUESTED만 기록. 장터 이전 최종 승인·탈퇴·정산 완료 대사 금지. 재대화 “지금은 답변 기다려. 장터에서 다시 보자.”\n",
+  "source_section_sha256": "45f76984b36a51991e6c461de242e061c04fa9d1eff7605e10fbec0b2d08f12c",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

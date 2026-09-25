@@ -1,0 +1,11 @@
+{
+  "scene_id": "08-M08",
+  "source_page_id": "3e5fc392d5b48187bdf3e91b84c28713",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 08-M08 이야기가 끝나도 지역은 계속된다\n**장소/인물:** C8 터미널·C1 대도시, 이안·나래·도윤·수리. 나래는 자신의 경기 결과에 맞는 후속 일정, 도윤은 자신의 와일드카드 기록을 정리, 이안은 일부 후원 없이 다음 연습판을 예약, 모연서는 축소 편성의 손익 계산을 하러 떠난다.\n이안 \"다음엔 어디서 볼래?\" 주인공 선택 \"새봄동 돌아가서\"/\"못 올라간 카지노 타워부터\"/\"시티에서 좀 더 치다가\"→각각 자유 여행·선택 보스·재도전 목적지 열림. 복례의 갑작스러운 비극적 유년기 추억·숨은 세계 조종 반전 없음. 새봄동 슈퍼·강변 선박·숲 마을·항구 선원·역 식당·궁궐 경연·밤 장터의 생활 컷이 짧게 이어진다.\n**완료:** STORY_END=TRUE, 전지역 자유 재방문·타워 재도전·정식 새 시즌 예선 재진입 경로는 별도 조건으로 노출. Q=NO 또는 모든 보스 미격파/최종 직접전 패배한 플레이어도 자신의 진짜 기록을 지닌 채 종료.\n### 08-M08 v4.2 모든 자격 상태의 엔딩\n공식 실제 1위→이안 “네 공식 기록도 봤어. 다음 판은 또 다르겠지”; 정식 참가 후 패/다른 순위→“오늘 경기 끝났지? 다른 지역에서도 붙자”; Q=NO/PENDING·관전만→“오늘 공식 선수로 앉진 않았어도 우리 다음 판은 잡을 수 있지”; 이안 직접전 미참여/WITHDRAW→“오늘은 끝을 못 봤네. 다음에 일정 다시 잡자.” 주인공 선택 “새봄동으로 돌아가기”→P0 기본 교통, “남은 타워 도전”→선택한 큰 카지노 로비, “시티에 머물기”→C1 자유 탐험. 모든 선택에서 나래의 본인 좌석/도윤의 별도 경기 결과/이안의 후원 비용은 서로 독립된 후일담으로 남는다. DONE_08_M08 및 STORY_END=TRUE/MAIN_CURSOR=FREE_ROAM, 최초 후일담 보상은 한 번만. Q=PENDING이더라도 엔딩을 위해 허위 YES/NO 판정을 만들지 않고 나중에 도착한 실제 자격 판정은 다음 대회 회차에만 적용. 재대화 “다음 여행지는 네가 정해.” 복례 비극 과거 회상·최상층 보스 의무 클리어 없음.\n",
+  "source_section_sha256": "c6f8a55d1992c3570bb8f3b150fd0ae0dd19055e8c3c66c2986cb44c1d60bcb4",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

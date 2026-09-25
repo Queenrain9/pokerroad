@@ -1,0 +1,11 @@
+{
+  "scene_id": "03-M04",
+  "source_page_id": "3e5fc392d5b481808a4bee1b4c7bd976",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 03-M04 도윤과 솔개 — 다른 방식의 고수\n**조건/장소:** F3 공동 식당·F5 카지노 로비, 도윤·대표 솔개. 도윤 직접전 선택 \"지금 붙을게\"/\"타워 구경부터\"/\"경기는 나중에\". 직접 참가 시 별도 공정 매치; 주인공 승 \"이번 판은 네가 가져갔어\", 패 \"다음에는 다르게 치겠지\", 미참여 \"그때는 구경만 했지?\"가 항구 재회 첫 한 줄의 조건으로 기록.\n솔개는 식당에서 주민과 작은 판을 치며 긴 경기에서 서두르지 않는 태도를 보인다. 솔개 \"수레는 후원으로 고쳤지만 다리는 마을 사람들이 고쳐야죠. 내가 탑에 있어도 위아래 왔다 갔다 해야 해서요.\" 주인공 \"타워 정상에서도 경기해요?\"→\"아래층 거쳐서 올라오면.\"\n**완료:** SOLGAE_INTRO=TRUE, F5 로비 무료 공개, 03-M05 활성. 도윤 직접전 승리를 대표 타워 승리로 기록하지 않음.\n### 03-M04 선택 후 대사·재대화·복귀 (v4.2)\n**보완:** 도윤 “지금 붙을래요, 아니면 솔개 타워부터 볼래요?” 직접전→별도 매치 ID, 전체 WIN “이번 판은 네가 가져갔네”, LOSS “오늘은 내가 가져갈게”, WITHDRAW “중간에 멈췄으니 다음에 새로 하죠”; 관전/미참여 “오늘은 안 붙었죠”→DOYUN_DIRECT_03=NOT_ENTERED. 솔개 식당 시연/타워 로비 먼저→“손님 오면 타워 올라가야 해서요. 공개판은 식당에도 있어요.” 솔개 안내와 도윤 선택 중 어느 순서라도 두 사람 이름/생활 소개 확인 후 DONE_03_M04→03-M05. 재대화 “항구 초청전에서 두 선수가 만날지도 모른대요.” 도윤 직접전 승리로 항구 NPC 경기 결과 변경 금지.\n",
+  "source_section_sha256": "f827374e09528af58db82a024aaaf9df20664c05eaf430205da47004a560858d",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

@@ -1,0 +1,11 @@
+{
+  "scene_id": "06-S02",
+  "source_page_id": "3e5fc392d5b48122842cea65f35245e6",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 06-S02 밤의 가면 연회\n**입구:** G4 연회 진행자 \"누가 누군지 말투로 맞혀 볼래요? 틀려도 연회는 계속돼요.\" 낮에 봤던 은솔/장인을 가면·자세·목소리로 찾는 짧은 관찰 퍼즐, 정답이면 축제 기념 간식·지역 작은 대사, 오답이면 \"오늘은 비밀로 해 둘게요\"와 재시도/관람. 금전 베팅을 하는 가면 뒤 비밀 범죄 이벤트로 확대 금지. **메인 이동과 무관.**\n**반복 소액 수입:** 시장 떡 포장·장인 물건 정리·연회 손님 안내, 무료 규칙 연습판. 포커 칩이 바닥나도 G6 무료 정기 이동과 월인 재도전 계획 가능.\n### 06-S02 실제 선택 후 대사·조건·복귀 (v4.2)\n**보완:** 연회 진행자 “은솔과 장인을 찾아볼래요? 틀려도 괜찮아요.” 은솔 말투 선택→“맞았어요, 오늘은 연회 손님이군요”·기념 간식, 다른 사람 선택→“힌트: 낮 공개 경연에서 말하던 그 목소리예요”→재시도/그만두기. 거절 “연회 구경은 자유예요”, 중단 “내일 밤에도 열려요.” DONE은 최초 보상 1회, 다시 오면 다른 연회 인사만. M05 장터행·전국 예선 자격을 가면 퍼즐에 연결하지 않음. 모든 출구 MAIN_CURSOR.\n",
+  "source_section_sha256": "8659062216ce8a53534fa5ca93bda9af6054f82ee12aa816c958089565aca154",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

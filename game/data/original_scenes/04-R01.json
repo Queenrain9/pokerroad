@@ -1,0 +1,11 @@
+{
+  "scene_id": "04-R01",
+  "source_page_id": "3e5fc392d5b4814aafcdf6bdcc64eab7",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 04-R01 조수가 달라진 같은 길\n05 이상에서 항구 재진입하면 물때에 맞춰 갯벌 통행 안전선과 상점 메뉴가 달라진다. 04-S01 A/B에 따라 식재료/축제 풍경 반영, 무선택이면 선원들이 자체 처리한 평소 모습. 구조 선장 \"그날 깃발 보고 찾아줘서 고마웠어. 오늘은 정상 운항이야.\" 선원이 계속 위험에 묶여 있지 않음.\n**진입·선택·종료:** REGION05_VISITED(05-M01 진입) 뒤 H1 귀환 때 활성, MAIN_CURSOR는 현재 미완 메인 ID 그대로. S01 A→상인 \"식재료 먼저 온 날 만들었던 메뉴예요.\" B→\"천막 올리고 공연하던 자리예요.\" 미수락→\"그날 배 순서는 선원들이 정했어요.\" PAUSED→\"이번 운항은 정상이에요. 남겨 둔 다음 배 일감을 이어 할래요?\" → 수락 04-S01 저장 단계/거절 R01 유지. 직접 BOAT_FOUND_BY_PLAYER가 아니면 선장 대사는 \"그날 구조선 귀환 보고를 함께 들었지. 오늘은 정상 운항이야.\"로 바꾸고 직접 발견 공로를 주장하지 않는다. 안전 길 보기→나래 안내 방송 \"오늘 물때에 열린 표식을 따라 주세요.\" 완료 후 재대화 상인 \"오늘도 같은 안전선이에요.\" 관람 종료는 R_SEEN_04_01만 기록, 메인·구조 보상 재지급 없음; H5 04-R02 또는 H8→저장한 MAIN_CURSOR 지역을 선택한다.\n",
+  "source_section_sha256": "4b4a68e21f8fe8773722222695c1e03c02f3e4064c936f677ff2aaf4d299d928",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

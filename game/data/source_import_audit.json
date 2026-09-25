@@ -1,0 +1,426 @@
+{
+  "source_revision": "15_v4.2",
+  "full_original_source_available": true,
+  "verified_against_remote_notion_audit": true,
+  "source_flag_advanced_in_manifest": true,
+  "scene_source_captured": 88,
+  "scene_game_implemented": 0,
+  "regions": [
+    {
+      "id": "01",
+      "source_page_id": "3e5fc392d5b481058eabc72ff9412b5d",
+      "source_file_sha256": "7167ff0d1aa08ecdecb77fcb145ad4cdec8c939d97b0ad589a4f8bd2601993a0",
+      "scene_count": 12,
+      "scenes": [
+        {
+          "id": "01-M01",
+          "sha256": "9bc12ff00ae1fa60a34a0ae9f52a0e369e1705618f345541b985a2ab6622c38b"
+        },
+        {
+          "id": "01-M02",
+          "sha256": "085d4ef27af4b68f5defa7af6aa3ad42a47cbbe279c0c59c6e296b89b1ad3665"
+        },
+        {
+          "id": "01-M03",
+          "sha256": "a18a7fb166f3f8d21bd85f237c483a9d544b0b42e90ad26f07a7cfed0dfbe6e2"
+        },
+        {
+          "id": "01-M04",
+          "sha256": "870d144b3eb12827eab92d8875841e57b6674c8ced41f9f314c1982c7695adc0"
+        },
+        {
+          "id": "01-M05",
+          "sha256": "294f75d69819a1578696f372e65df7f2e9e2e32803babadf687bf9921ac7284f"
+        },
+        {
+          "id": "01-M06",
+          "sha256": "6ab243f7b49c7eb4c9275d011f605809a9b293f03332fe4a490358617126b863"
+        },
+        {
+          "id": "01-M07",
+          "sha256": "4f47273e2982eea44d9bace8376f61c0ba6101dcde2c960c8f2df3865c5437c7"
+        },
+        {
+          "id": "01-S01",
+          "sha256": "de1a42b764641c7ef0e52a043d938fdf4bb617b692735fc32e7b108b0424a0f1"
+        },
+        {
+          "id": "01-S02",
+          "sha256": "947db9852c11b8483730aa5fc98318e18e2bca24dd0339ba964b76d1d3bbd4c1"
+        },
+        {
+          "id": "01-T01",
+          "sha256": "2b273e53710a451d48e2bfc20b7f72ce5d3b32905e48624fbef7b3646f8cf395"
+        },
+        {
+          "id": "01-R01",
+          "sha256": "5b05fcee2c27a446e2cc5e51050d18b1d02be138aea1fb957c680adad48cfe59"
+        },
+        {
+          "id": "01-R02",
+          "sha256": "258377c3845329bc056cde57fbe17e474600b836751916a3dd911f89396a1cea"
+        }
+      ]
+    },
+    {
+      "id": "02",
+      "source_page_id": "3e5fc392d5b481e585c6c3e597640b18",
+      "source_file_sha256": "a15ea830a6fba453e4b85904991bbd955aca1075c75c179381d6aedfd971fe7b",
+      "scene_count": 11,
+      "scenes": [
+        {
+          "id": "02-M01",
+          "sha256": "bfcdabebd3aa1d60c1ded17277bc19d5ef998ab68c494d31dd3096bb7b665ffa"
+        },
+        {
+          "id": "02-M02",
+          "sha256": "25adec76a2d60359aaf545d5568e4383dd77552aecad516d210c4fd3be7fc3be"
+        },
+        {
+          "id": "02-M03",
+          "sha256": "fe48ed6dcf257a7b06f7926852bbc633569a96fe9f14bb60bd9dc1602c933eba"
+        },
+        {
+          "id": "02-M04",
+          "sha256": "bb63f7b73c13558d7be0fa84264181b12ff8d00bdaca6ac29d22c0b385ccc574"
+        },
+        {
+          "id": "02-M05",
+          "sha256": "dbb5e7ae68520f59b7f6be820bcb726cc32d7735b5ab7a6bb5860c236babf38a"
+        },
+        {
+          "id": "02-M06",
+          "sha256": "5cdbc37361328427d0e8ee1cefacac90984fc290b753309d2be835bfa4964643"
+        },
+        {
+          "id": "02-S01",
+          "sha256": "e7040bd07ff18fd6fd27d8dfd6349c391fa51f1ff5ab9cd606c532f380f8b348"
+        },
+        {
+          "id": "02-S02",
+          "sha256": "670affbbae58c47343da040f8d41f063129cc5eed1ffbcf3f576aaba4da0536e"
+        },
+        {
+          "id": "02-T01",
+          "sha256": "f4d114ba1371b0afe472ea975b8bcb20c6e1ee4d93db0059059e50e71934a08b"
+        },
+        {
+          "id": "02-R01",
+          "sha256": "5f2c5b76b4b274358d7ada51efef5563396aa091d9102fb76f0cab6aaf7dfa60"
+        },
+        {
+          "id": "02-R02",
+          "sha256": "9b93a5ec457f6a7ef01e826d1c301672eadde078c22f33ffc42e1559f57dda2c"
+        }
+      ]
+    },
+    {
+      "id": "03",
+      "source_page_id": "3e5fc392d5b481808a4bee1b4c7bd976",
+      "source_file_sha256": "615452e22597c8fe05f15dd1beb2fc2759649fa665f41a56a97654015b8a3188",
+      "scene_count": 10,
+      "scenes": [
+        {
+          "id": "03-M01",
+          "sha256": "77f8d930aa02f1d58aefad7edb9d77ae6b17e6f5a8de6c345fb6afb5e18634a1"
+        },
+        {
+          "id": "03-M02",
+          "sha256": "9e0cdcef83653dea1725af00e54b1914d65298e5b64ccbf087468ad8b0c6b8af"
+        },
+        {
+          "id": "03-M03",
+          "sha256": "633b629ed4c4bbae26bed39cbd9ecb86c9f420de7a60cb97bdcd15ca80678a49"
+        },
+        {
+          "id": "03-M04",
+          "sha256": "f827374e09528af58db82a024aaaf9df20664c05eaf430205da47004a560858d"
+        },
+        {
+          "id": "03-M05",
+          "sha256": "c6bc2412b185ec6bd1046e81d988b65dd46731f5dc36768acf9922026fd6a379"
+        },
+        {
+          "id": "03-S01",
+          "sha256": "0d48877bbc59a196bed6d6b577c7f1d8ca01e6bf7e5788c2fdf38029ca67ca7f"
+        },
+        {
+          "id": "03-S02",
+          "sha256": "bdab5fa3b8e39486ff0bb1d4745f063a0ceb224abd9eeaafade79b740e191d21"
+        },
+        {
+          "id": "03-T01",
+          "sha256": "fc306f35b1cfe65640ee4bf1e05278e8dc922ecf76eb0b2d23c7520871e9c0f5"
+        },
+        {
+          "id": "03-R01",
+          "sha256": "2c7c3a1d2662b0eed99f05935b472649e031753f6e9a2e28c25823cf902372b9"
+        },
+        {
+          "id": "03-R02",
+          "sha256": "c9d4c73624d8ea78d06ba73ebb7eeb7955753a3ecafa4d0907d0a632cedcaa37"
+        }
+      ]
+    },
+    {
+      "id": "04",
+      "source_page_id": "3e5fc392d5b4814aafcdf6bdcc64eab7",
+      "source_file_sha256": "531712d6f2522196562cfd5c024f0cd18fdc342895f1ddd3f9a00f125e82baa9",
+      "scene_count": 11,
+      "scenes": [
+        {
+          "id": "04-M01",
+          "sha256": "f558a3d5362f32a40b5bc99fef2b908a084bff044c640fa5f5bd5e8fdcbd8c72"
+        },
+        {
+          "id": "04-M02",
+          "sha256": "b1eb7c83cb891f2c46eb2d1a3f35857e9b42437f71762b1ff8863864d1a43304"
+        },
+        {
+          "id": "04-M03",
+          "sha256": "a8aae076b4a6a23e395917fa96cb1723c55aa4c3a418dc03a6cc9957f7817ec5"
+        },
+        {
+          "id": "04-M04",
+          "sha256": "dcc8a830abb88896f154b9f0a878de97f67b5f68e1f6b5efc52160b576760c3b"
+        },
+        {
+          "id": "04-M05",
+          "sha256": "7d0a295a9c247e845f448f44f87947e451d3dff499ef4a4572cc18fd1a1e255e"
+        },
+        {
+          "id": "04-M06",
+          "sha256": "19c6f60486610d6b09183b7ec5ca6782f770ac9eea6d7601551d22a57ce49fb8"
+        },
+        {
+          "id": "04-S01",
+          "sha256": "e52691740654ed875132f7e77c953cb055463efc1026d9dec325e9aff70f5573"
+        },
+        {
+          "id": "04-S02",
+          "sha256": "64e1538d6c6829d743ced556e775177fb34cee651c05339fa062af644d63a76f"
+        },
+        {
+          "id": "04-T01",
+          "sha256": "593dc4b254076b32e93e34dabb00573e773953a5089f15497cf60b57db1b63c7"
+        },
+        {
+          "id": "04-R01",
+          "sha256": "4b4a68e21f8fe8773722222695c1e03c02f3e4064c936f677ff2aaf4d299d928"
+        },
+        {
+          "id": "04-R02",
+          "sha256": "38229b49e3ead5d85484e46b497b1e09a52b658406f6360bd857d8c21a410032"
+        }
+      ]
+    },
+    {
+      "id": "05",
+      "source_page_id": "3e5fc392d5b481cb8387c5e88f38a391",
+      "source_file_sha256": "c27bac87027bfdcd4c0a31acf957ce938a07d2b3f3eeb5b425449804b5853355",
+      "scene_count": 10,
+      "scenes": [
+        {
+          "id": "05-M01",
+          "sha256": "009420ca9e0c027be451c7aed2fdfd418c4d5efecfd50a51de3fa35b6b7bf922"
+        },
+        {
+          "id": "05-M02",
+          "sha256": "ee1a788702e96dd1f081b2f9b5a037d92f67cd8c022d9945a619527af4127fe3"
+        },
+        {
+          "id": "05-M03",
+          "sha256": "b2884739914b14ff8a6d79b2ebab7250e23fcfc4b8eb4fa31697835089703bdf"
+        },
+        {
+          "id": "05-M04",
+          "sha256": "fc53de0768ecd73c6546eb92f9ae8e63302e4288641afd02dc862093d13458d0"
+        },
+        {
+          "id": "05-M05",
+          "sha256": "653f77458d700f4f58b037af26de955db228df6304f99f21df5d2f4d5dc8e449"
+        },
+        {
+          "id": "05-S01",
+          "sha256": "f56cc8a62c828ad0890281d5b3e2c5fcad9c955df6e1d519dde60762e81919a9"
+        },
+        {
+          "id": "05-S02",
+          "sha256": "0245831e05ed842b7d61161b94262eb0984b25cfc74e22d9d04254d7bf39d39a"
+        },
+        {
+          "id": "05-T01",
+          "sha256": "568abc19bbf8dadc875f96f69ae2d2f511dd1d3b40b308481d2bdce20938438d"
+        },
+        {
+          "id": "05-R01",
+          "sha256": "e20a1c84701a746e11b4ab26c80554f6deda6851102058df1d62470854d7c7db"
+        },
+        {
+          "id": "05-R02",
+          "sha256": "2e9706d9d376db39c32a2ebb00742dafe376a576872d6cd8d0f920e1131a4261"
+        }
+      ]
+    },
+    {
+      "id": "06",
+      "source_page_id": "3e5fc392d5b48122842cea65f35245e6",
+      "source_file_sha256": "eb4a149ba172e924c66bf52129cf61d65c5881d9bd6f304836b17c85e88880bf",
+      "scene_count": 10,
+      "scenes": [
+        {
+          "id": "06-M01",
+          "sha256": "ff909af352a8b7ea923e66537b0d50976a08feb98a8352d1b0c855cdb13dec8c"
+        },
+        {
+          "id": "06-M02",
+          "sha256": "a8202aef39f7a84e54bbe1f7af1b5536333f9b19d667364b5a0eab86330a177d"
+        },
+        {
+          "id": "06-M03",
+          "sha256": "950d01fbe7ed89340d5a7cb5eb38c87923a526a6685b87d55499358091361013"
+        },
+        {
+          "id": "06-M04",
+          "sha256": "45f76984b36a51991e6c461de242e061c04fa9d1eff7605e10fbec0b2d08f12c"
+        },
+        {
+          "id": "06-M05",
+          "sha256": "792414da2cef19c1999e9e88d3548b65b456e0a5997df797f28d0495386a9820"
+        },
+        {
+          "id": "06-S01",
+          "sha256": "2d511159f20054d9d585eec0a81bb937d2a32d4c1e9e821c40b5203f68a8774a"
+        },
+        {
+          "id": "06-S02",
+          "sha256": "8659062216ce8a53534fa5ca93bda9af6054f82ee12aa816c958089565aca154"
+        },
+        {
+          "id": "06-T01",
+          "sha256": "d70ac4a310c067f84b64c9c705fa59ee294b131dfce155cb1a3d7ea53503db2c"
+        },
+        {
+          "id": "06-R01",
+          "sha256": "5172659734d2d953aa64e470c3ff9675de0b1c7679e36396c9615f2523e99497"
+        },
+        {
+          "id": "06-R02",
+          "sha256": "ed960be074fa95cce3dcb3055211096e653bacef3cafbb76712bd2cc4282b5c3"
+        }
+      ]
+    },
+    {
+      "id": "07",
+      "source_page_id": "3e5fc392d5b481a5bea8c48d4c2ee0cb",
+      "source_file_sha256": "dbb496f33ffa8ad46a8a90e31068ad835acc5de1032f8ee0d4c50716c79c7e43",
+      "scene_count": 11,
+      "scenes": [
+        {
+          "id": "07-M01",
+          "sha256": "6295fba33ea30bc9e1122bff118a3fd009606416286422d5786a0ea0773f08fb"
+        },
+        {
+          "id": "07-M02",
+          "sha256": "a5098b612aa89b122cdd2aaa5acfde98aa3631c95de2ca24ca3930d3c3e091fc"
+        },
+        {
+          "id": "07-M03",
+          "sha256": "eb52b7f0015391d90e41b800c2ac8396253284d46f25a41dffe6afb0cb44c06c"
+        },
+        {
+          "id": "07-M04",
+          "sha256": "980d3f083411f12d6a440208e6b069edf2d4f97beed4a49497552b5563de5dbc"
+        },
+        {
+          "id": "07-M05",
+          "sha256": "0ea6304d3a95652849bf4a0d9815cec69c3056c70fbf829c32811d77111adb19"
+        },
+        {
+          "id": "07-M06",
+          "sha256": "dff04c88b19e7d44264691634247b38482507fc22e3f96ca2437c1834216d206"
+        },
+        {
+          "id": "07-S01",
+          "sha256": "a569863c2c97f92e3741ace109ae2c4f005dc1afca79a139bda33bdca7c0d895"
+        },
+        {
+          "id": "07-S02",
+          "sha256": "1115d727f3569f80c6e59fcaa72eac2427eb302456a41f7f018a859c4b028902"
+        },
+        {
+          "id": "07-T01",
+          "sha256": "d72054c619d009362db445ebe7baf398ca0183ee770bcf6f30ad1b1d3fe9c769"
+        },
+        {
+          "id": "07-R01",
+          "sha256": "9019aebddb6cb63d9337846726103f09ebaeed1790c4eeb286e222fe34da6e5e"
+        },
+        {
+          "id": "07-R02",
+          "sha256": "4b9c99cc31e6c8bc9be4eafe5e4e03f74fd4975339247bc826dccf5ea956c803"
+        }
+      ]
+    },
+    {
+      "id": "08",
+      "source_page_id": "3e5fc392d5b48187bdf3e91b84c28713",
+      "source_file_sha256": "f7bad474d4459dbb971b3a64d24e81445901552789bed227d17968cfc611d887",
+      "scene_count": 13,
+      "scenes": [
+        {
+          "id": "08-M01",
+          "sha256": "e338859ef7538149425f7e8f2e0860ae64e8c03372f529417fcdccc0dbb18716"
+        },
+        {
+          "id": "08-M02",
+          "sha256": "bb21d13b18726b157e41c655cedbc52ebba555687839d105b92babd302ec0d2a"
+        },
+        {
+          "id": "08-M03",
+          "sha256": "3d6d376121fec71115e6fa1c00c058a24181c914e294c99c7a55a04ffcd28121"
+        },
+        {
+          "id": "08-M04",
+          "sha256": "d183e06b4425777bfeb74196866beaa92211c8edb56b5ba9280f21464be66c96"
+        },
+        {
+          "id": "08-M05",
+          "sha256": "19e03ec1f608a4e6e4bf18b20cbbddc1e5c8bcc26a7e34cda2ad5616735ce813"
+        },
+        {
+          "id": "08-M06",
+          "sha256": "404f6b28d8aa0aef38269066e56f1afdd6121b1263ef425e4c1724d531130cd6"
+        },
+        {
+          "id": "08-M07",
+          "sha256": "5eee70d80eebe6a9c42d0fd6332d10810c59c93467a3701d6e4bb0887f4443f5"
+        },
+        {
+          "id": "08-M08",
+          "sha256": "c6f8a55d1992c3570bb8f3b150fd0ae0dd19055e8c3c66c2986cb44c1d60bcb4"
+        },
+        {
+          "id": "08-S01",
+          "sha256": "a95b0dc69cd7bfd1dd9e9d974c4b6724ce753a6783d8726c67c0c5c0a6e1363b"
+        },
+        {
+          "id": "08-S02",
+          "sha256": "98a5370eb7cc666f58017ed311993a72ce190e8e2764cb870f1e3456e0771439"
+        },
+        {
+          "id": "08-T01",
+          "sha256": "23540a2f576d7417cd6abe181aa900dcfbc7fe65fcfc60dd9945582a068887c0"
+        },
+        {
+          "id": "08-R01",
+          "sha256": "2fca2a7bfa17f242f064526a6bdb9d2c0b958080edff84d2372f41c29772547a"
+        },
+        {
+          "id": "08-R02",
+          "sha256": "c0e1d9910c7eeaa9a1254094d43b0945c03a1208a81615659345bca61438c75a"
+        }
+      ]
+    }
+  ]
+}

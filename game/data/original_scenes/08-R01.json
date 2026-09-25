@@ -1,0 +1,11 @@
+{
+  "scene_id": "08-R01",
+  "source_page_id": "3e5fc392d5b48187bdf3e91b84c28713",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 08-R01 수정된 방송표와 도시 일상\n**조건:** STORY_END 이후 C2 또는 C1 방문. 전광판은 방송 중단됐던 **특정 회차**와 이후 개최된 수정 결승을 분리 표시, 주인공이 공식 참가자인 경우 실제 전국 순위만, 자격 없었다면 공개 특별전/일반 관전 정보만 보여 준다. 상점/공원/무료 작은 카드판은 계속 운영. 08-S01 완료면 상점 직원 \"지도 전달 고마웠어요\", 미참여면 \"제가 보내 뒀어요\". 원탁은 사업 정산을 진행하지만 시티 전체가 멈추지는 않음.\n### 08-R01 v4.2 전광판 대사·복귀\nSTORY_END 이후 공식 참가·실제 순위가 있으면 “당신 공식 순위는 이 표에 있어요”, Q=NO/PENDING 또는 Q=YES 관전만이면 “이번 공식 대회의 개인 참가 기록은 없습니다.” 이안 공개 특별전/서지완 정상 결과는 각각 옆의 **별도 기록**. “상가 일감/이안 보러/다른 지역”→WORK_ID/R02/기본 교통. 중단된 특정 방송 회차와 재개된 수정 결승은 함께 표시하지만 과거 명단을 초기화하지 않음. 이미 획득한 사이드/공식 보상 재지급 금지.\n",
+  "source_section_sha256": "2fca2a7bfa17f242f064526a6bdb9d2c0b958080edff84d2372f41c29772547a",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

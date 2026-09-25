@@ -1,0 +1,11 @@
+{
+  "scene_id": "02-M06",
+  "source_page_id": "3e5fc392d5b481e585c6c3e597640b18",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 02-M06 다음은 나무 위에서\n**장소:** K5 버스 정류장. 도해 \"상류에 나무 꼭대기까지 마을이 올라간 숲이 있어요. 거기서 순회 프로 도윤의 시범전이 열릴 거래요.\" 주인공 선택 \"나무 꼭대기를 보고 싶어\"/\"도윤이라는 사람하고 붙어 보고 싶어\"/\"강변 더 있을래\". 앞의 2개는 숲 첫 코멘트에만 반영. 숲행 공공 버스는 유람선 경기 패배·관전·타워 미도전·칩 0 상태에서 무료 기본 이동.\n**완료:** R03_REGION_UNLOCKED; K1\\~K4 재방문 허용. 강변 주민은 도윤의 숨은 계약 정체를 이 시점에 아무도 확언하지 않는다.\n### 02-M06 선택 후 대사·조건·복귀 보강 (v4.2)\n**보완:** K5에서 도해 “숲의 높은 나무를 보고 싶어요, 도윤의 공개 시범전을 보고 싶어요?” 경관→“수레와 계단이 있어요”, 프로→“무료 관람석도 있어요”, 더 머무르기→“다음 버스도 출발해요.” 앞 둘 선택하면 방문 이유 R03_MOTIVE 기록·REGION03_UNLOCKED/MAIN_CURSOR=03-M01, 마지막은 02-M06 미완으로 남겨 K1\\~K4 자유 탐험. 승선 못했음/강변 경기 LOSS·WITHDRAW/관전만·T01 미격파·칩 0도 무료 기본 버스 가능. 재대화 출발 전 “이제 탈래요?”, 출발 후 재방문 “숲 가는 버스는 여전히 있어요”로 메인 재연 없이 이동.\n",
+  "source_section_sha256": "5cdbc37361328427d0e8ee1cefacac90984fc290b753309d2be835bfa4964643",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

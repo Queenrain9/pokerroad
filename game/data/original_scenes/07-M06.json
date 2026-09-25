@@ -1,0 +1,11 @@
+{
+  "scene_id": "07-M06",
+  "source_page_id": "3e5fc392d5b481a5bea8c48d4c2ee0cb",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 07-M06 장터에 남을지 도시로 갈지\n**조건/장소:** N7 야간 정기선, 다온·도해. 다온 \"밤배 아직 있어요. 더 구경해도 되고요.\" 주인공 \"내 경기 확인하러 시티 갈래\"/\"조금 더 장터 돌아볼래\" 중 선택. 전자는 정기 무료 기본 이동으로 08-M01, 후자는 N1\\~N6 자유 탐험과 다음 배편 표출.\n**완료:** CITY_UNLOCKED=TRUE. 야시장 모든 스탬프·노점 안전 통로·봉희 정상·도윤 직접전 승리가 필요하지 않음. 임시 명단 상태를 확정으로 바꾸는 이벤트를 여기에 배치하지 않는다.\n### 출발·남기·돌아왔을 때\n“내 경기 확인하러 시티 갈래.” → 다온: “안내문 챙겨요. 돌아오면 간식은 또 있어요.” 도해: “기본 배편은 칩 없이 탈 수 있어요. 시티행 선착장으로 가세요.” 08-M01로 이동.\n“조금 더 장터 돌아볼래.” → 다온: “그럼 다녀와요. 다음 배편도 있어요.” 07-S01/07-S02/07-T01 또는 자유 탐험, 출발 안내는 계속 유지.\n재대화 미출발: 도해 “시티행 탈까요, 장터에 더 있을까요?” 출발 후 재방문: “시티까지 다시 가요? 이미 확인한 등록 안내는 그대로 갖고 가세요.”\n**연결:** 07-M05의 참가·관전 의사 확인 후 CITY_UNLOCKED를 한 번 설정. 남기 선택은 07-M06에 복귀하며 퀘스트·경기 마감이 자동으로 스토리를 잠그지 않는다. 08-M01을 이미 완료했다면 이후 시티행은 MAIN_CURSOR가 가리키는 시티 미완 장면으로 돌아가고 08-M01을 재등록하지 않는다. STORY_END 뒤에는 07-R01/07-R02와 자유 여행으로 연결.\n",
+  "source_section_sha256": "dff04c88b19e7d44264691634247b38482507fc22e3f96ca2437c1834216d206",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

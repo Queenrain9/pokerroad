@@ -1,0 +1,11 @@
+{
+  "scene_id": "02-T01",
+  "source_page_id": "3e5fc392d5b481e585c6c3e597640b18",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 02-T01 수상 타워\n**로비:** K4 수면 위 투명 승강로와 중층 전망 경기장, 직원 \"로비 구경은 자유고 정식 특별전은 이쪽입니다.\" **저층:** 공개 워밍업 매치, **중층:** 더 길고 큰 별도 정식 포커 경기, **최상층:** 윤하루 직접 도전. 윤하루 \"유람선보다 전망은 좋죠. 끝날 때까지 자리 지켜 보세요.\" 각 층의 실제 매치 최종 결과가 후속 층 도전 요건; 지면 재도전과 일상 수입. 정상 승 \"오늘 이 층은 당신이 가져갔네요\"→큰 게임 재화·강변 기념품·특별 야간 대회 초청; 패 \"다음 배 들어올 때 다시 오세요\"; 미도전해도 숲행 버스와 공식 지역 기록 영향 없음.\n### 02-T01 선택 후 대사·조건·복귀 보강 (v4.2)\n**보완:** 내부 L 무료 로비/A 저층/B 중층/C 윤하루 정상 별도 매치. 직원 “무료 관전/정식 신청/이야기 계속 중 고르세요.” 선수 조건 적격→현재 층 MATCH_ID 발급, 실제 전체 매치 WIN일 때만 상층 자격, LOSS→“이 층 재도전하거나 강변으로 돌아가요”, WITHDRAW→“이전 통과 기록은 남습니다”, 칩 0→“관전 무료, 자전거 가게 일감이나 숲 버스는 열려 있어요.” 정상 WIN 윤하루 “이 층에서 당신이 이겼네요”→T02_CLEAR 최초 보상만, LOSS “다음 배 들어올 때 다시 도전하세요”; 관전만 정상 격파 처리 금지. 모든 출구 MAIN_CURSOR에 따라 현재 M/다른 지역 자유 이동으로 복귀.\n",
+  "source_section_sha256": "f4d114ba1371b0afe472ea975b8bcb20c6e1ee4d93db0059059e50e71934a08b",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

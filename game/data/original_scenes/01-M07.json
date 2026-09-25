@@ -1,0 +1,11 @@
+{
+  "scene_id": "01-M07",
+  "source_page_id": "3e5fc392d5b481058eabc72ff9412b5d",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 01-M07 다음 판의 불빛\n**장소/조건:** P5 편의점 TV와 강변 정기 버스 정류장, 01-M04 결과 확인(관전 포함)·01-M05 일정 인지. **연출:** 화면에 동네보다 커다란 강변 야경·움직이는 배 경기장.\n다온 \"저녁 배에서는 카드도 친대요. 버스 아직 있어요.\" 직원 \"관전만 가도 되고, 참가 조건은 현장에 물어보세요.\"\n주인공 선택 ① \"직접 해 보겠어.\" → R01_TRAVEL_MOTIVE=CHALLENGE ② \"오늘은 구경부터.\" → OBSERVE ③ \"이안 만나러.\" → RIVAL ④ \"동네에 더 있을래.\" → 출발 연기.\n**완료:** ①\\~③ 선택하면 무료 기본 교통/지역 02 해금. ④ 선택해도 다음 정기편 계속 존재. 01-T01 미격파, 01-S01/02 미완, 예선 패배/관전·칩 0 모두 이동 가능. 강변 초입은 이 동기에 맞는 한 줄로 반응.\n### 01-M07 실제 진행·대사·조건 보완 (v4.2)\n**보완 — 출발과 재입장:** M04 결과판 확인·M05 이안 일정 인지·M06 타워 소개 후 P5. 직접 도전 선택→도해 “강의 현장 접수 조건은 도착해서 확인하세요.” 관전→“무료 관람석 안내가 있어요.” 이안 추적→“이안의 별도 경기 일정은 선착장 전광판에서 보세요.” 남기→“다음 버스도 와요”→P0\\~P4 자유 탐험, 재대화 “이제 탈래요?”→동일 4선택. 버스 탑승에만 DONE_01_M07/REGION02_UNLOCKED 및 MAIN_CURSOR=02-M01 설정; 먼저 타워/사이드를 돌다 다시 P5에 오면 이안 출발 장면 재생하지 않음. 돈 0/예선 미참여·패/복례 미격파도 기본 교통 무료.\n",
+  "source_section_sha256": "4f47273e2982eea44d9bace8376f61c0ba6101dcde2c960c8f2df3865c5437c7",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

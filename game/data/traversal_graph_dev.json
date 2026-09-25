@@ -1,0 +1,929 @@
+{
+  "schema_version": 1,
+  "all_8_regions_required": true,
+  "travel_fee": 0,
+  "scene_navigation_is_not_world_exploration": true,
+  "regions": [
+    {
+      "id": "01",
+      "name": "새봄동",
+      "entry_anchor": "P0",
+      "public_exit_anchor": "P5",
+      "optional_tower_anchor": "P4",
+      "anchors": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4",
+        "P5"
+      ],
+      "edges": [
+        {
+          "from": "P0",
+          "to": "P1",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "P1",
+          "to": "P0",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "P1",
+          "to": "P2",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "P2",
+          "to": "P1",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "P2",
+          "to": "P3",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "P3",
+          "to": "P2",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "P3",
+          "to": "P5",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "P5",
+          "to": "P3",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "P3",
+          "to": "P4",
+          "kind": "OPTIONAL_TOWER_ENTRY",
+          "fee": 0,
+          "requires_player_route_choice": true
+        },
+        {
+          "from": "P4",
+          "to": "P3",
+          "kind": "OPTIONAL_TOWER_EXIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        }
+      ],
+      "full_spatial_map_status": "NOT_IMPLEMENTED",
+      "note": "Logical routes only. Original scenes and physical movement still NOT_IMPLEMENTED."
+    },
+    {
+      "id": "02",
+      "name": "한강",
+      "entry_anchor": "K0",
+      "public_exit_anchor": "K5",
+      "optional_tower_anchor": "K4",
+      "anchors": [
+        "K0",
+        "K1",
+        "K2",
+        "K3",
+        "K4",
+        "K5"
+      ],
+      "edges": [
+        {
+          "from": "K0",
+          "to": "K1",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "K1",
+          "to": "K0",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "K1",
+          "to": "K2",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "K2",
+          "to": "K1",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "K2",
+          "to": "K3",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "K3",
+          "to": "K2",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "K3",
+          "to": "K5",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "K5",
+          "to": "K3",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "K3",
+          "to": "K4",
+          "kind": "OPTIONAL_TOWER_ENTRY",
+          "fee": 0,
+          "requires_player_route_choice": true
+        },
+        {
+          "from": "K4",
+          "to": "K3",
+          "kind": "OPTIONAL_TOWER_EXIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        }
+      ],
+      "full_spatial_map_status": "NOT_IMPLEMENTED",
+      "note": "Logical routes only. Original scenes and physical movement still NOT_IMPLEMENTED."
+    },
+    {
+      "id": "03",
+      "name": "도토리들의 숲",
+      "entry_anchor": "F0",
+      "public_exit_anchor": "F6",
+      "optional_tower_anchor": "F5",
+      "anchors": [
+        "F0",
+        "F1",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6"
+      ],
+      "edges": [
+        {
+          "from": "F0",
+          "to": "F1",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "F1",
+          "to": "F0",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "F1",
+          "to": "F2",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "F2",
+          "to": "F1",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "F2",
+          "to": "F3",
+          "kind": "VERTICAL_RIDE_OR_STAIRS",
+          "fee": 0,
+          "requires_player_route_choice": true,
+          "choices": [
+            "WORK_LIFT",
+            "EXTERNAL_STAIRS"
+          ]
+        },
+        {
+          "from": "F3",
+          "to": "F2",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "F3",
+          "to": "F4",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "F4",
+          "to": "F3",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "F4",
+          "to": "F6",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "F6",
+          "to": "F4",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "F4",
+          "to": "F5",
+          "kind": "OPTIONAL_TOWER_ENTRY",
+          "fee": 0,
+          "requires_player_route_choice": true
+        },
+        {
+          "from": "F5",
+          "to": "F4",
+          "kind": "OPTIONAL_TOWER_EXIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        }
+      ],
+      "full_spatial_map_status": "NOT_IMPLEMENTED",
+      "note": "Logical routes only. Original scenes and physical movement still NOT_IMPLEMENTED."
+    },
+    {
+      "id": "04",
+      "name": "갈매기항",
+      "entry_anchor": "H0",
+      "public_exit_anchor": "H8",
+      "optional_tower_anchor": "H7",
+      "anchors": [
+        "H0",
+        "H1",
+        "H2",
+        "H3",
+        "H4",
+        "H5",
+        "H6",
+        "H7",
+        "H8"
+      ],
+      "edges": [
+        {
+          "from": "H0",
+          "to": "H1",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H1",
+          "to": "H0",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H1",
+          "to": "H2",
+          "kind": "TIDE_ROUTE",
+          "fee": 0,
+          "requires_player_route_choice": true,
+          "choices": [
+            "LOW_TIDE_MARKER_PATH",
+            "HIGH_TIDE_SAFE_PATH"
+          ]
+        },
+        {
+          "from": "H2",
+          "to": "H1",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H2",
+          "to": "H3",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H3",
+          "to": "H2",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H3",
+          "to": "H4",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H4",
+          "to": "H3",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H4",
+          "to": "H5",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H5",
+          "to": "H4",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H5",
+          "to": "H6",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H6",
+          "to": "H5",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H6",
+          "to": "H8",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H8",
+          "to": "H6",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "H6",
+          "to": "H7",
+          "kind": "OPTIONAL_TOWER_ENTRY",
+          "fee": 0,
+          "requires_player_route_choice": true
+        },
+        {
+          "from": "H7",
+          "to": "H6",
+          "kind": "OPTIONAL_TOWER_EXIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        }
+      ],
+      "full_spatial_map_status": "NOT_IMPLEMENTED",
+      "note": "Logical routes only. Original scenes and physical movement still NOT_IMPLEMENTED."
+    },
+    {
+      "id": "05",
+      "name": "마지막 역",
+      "entry_anchor": "E0",
+      "public_exit_anchor": "E6",
+      "optional_tower_anchor": "E5",
+      "anchors": [
+        "E0",
+        "E1",
+        "E2",
+        "E3",
+        "E3B",
+        "E4",
+        "E5",
+        "E6"
+      ],
+      "edges": [
+        {
+          "from": "E0",
+          "to": "E1",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "E1",
+          "to": "E0",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "E1",
+          "to": "E2",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "E2",
+          "to": "E1",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "E2",
+          "to": "E3",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "E3",
+          "to": "E2",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "E3",
+          "to": "E4",
+          "kind": "LAST_TRAIN_ONLY",
+          "fee": 0,
+          "requires_player_route_choice": true,
+          "requires_last_train_available": true,
+          "choices": [
+            "TAKE_LAST_TRAIN"
+          ]
+        },
+        {
+          "from": "E4",
+          "to": "E3",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "E4",
+          "to": "E6",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "E6",
+          "to": "E4",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "E4",
+          "to": "E5",
+          "kind": "OPTIONAL_TOWER_ENTRY",
+          "fee": 0,
+          "requires_player_route_choice": true
+        },
+        {
+          "from": "E5",
+          "to": "E4",
+          "kind": "OPTIONAL_TOWER_EXIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "E3",
+          "to": "E3B",
+          "kind": "FREE_NIGHT_BUS",
+          "fee": 0,
+          "requires_player_route_choice": true,
+          "choices": [
+            "BOARD_FREE_NIGHT_BUS"
+          ]
+        },
+        {
+          "from": "E3B",
+          "to": "E4",
+          "kind": "FREE_NIGHT_BUS",
+          "fee": 0,
+          "requires_player_route_choice": true,
+          "choices": [
+            "RIDE_FREE_NIGHT_BUS_TO_EVENT"
+          ]
+        },
+        {
+          "from": "E4",
+          "to": "E3B",
+          "kind": "RETURN_BY_FREE_NIGHT_BUS",
+          "fee": 0,
+          "requires_player_route_choice": false
+        }
+      ],
+      "full_spatial_map_status": "NOT_IMPLEMENTED",
+      "note": "Logical routes only. Original scenes and physical movement still NOT_IMPLEMENTED."
+    },
+    {
+      "id": "06",
+      "name": "달 아래 궁궐",
+      "entry_anchor": "G0",
+      "public_exit_anchor": "G6",
+      "optional_tower_anchor": "G5",
+      "anchors": [
+        "G0",
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6"
+      ],
+      "edges": [
+        {
+          "from": "G0",
+          "to": "G1",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "G1",
+          "to": "G0",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "G1",
+          "to": "G2",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "G2",
+          "to": "G1",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "G2",
+          "to": "G3",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "G3",
+          "to": "G2",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "G3",
+          "to": "G4",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "G4",
+          "to": "G3",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "G4",
+          "to": "G6",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "G6",
+          "to": "G4",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "G4",
+          "to": "G5",
+          "kind": "OPTIONAL_TOWER_ENTRY",
+          "fee": 0,
+          "requires_player_route_choice": true
+        },
+        {
+          "from": "G5",
+          "to": "G4",
+          "kind": "OPTIONAL_TOWER_EXIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        }
+      ],
+      "full_spatial_map_status": "NOT_IMPLEMENTED",
+      "note": "Logical routes only. Original scenes and physical movement still NOT_IMPLEMENTED."
+    },
+    {
+      "id": "07",
+      "name": "잠들지 않는 장터",
+      "entry_anchor": "N0",
+      "public_exit_anchor": "N7",
+      "optional_tower_anchor": "N6",
+      "anchors": [
+        "N0",
+        "N1",
+        "N2",
+        "N3",
+        "N4",
+        "N5",
+        "N6",
+        "N7"
+      ],
+      "edges": [
+        {
+          "from": "N0",
+          "to": "N1",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N1",
+          "to": "N0",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N1",
+          "to": "N2",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N2",
+          "to": "N1",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N2",
+          "to": "N3",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N3",
+          "to": "N2",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N3",
+          "to": "N4",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N4",
+          "to": "N3",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N4",
+          "to": "N5",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N5",
+          "to": "N4",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N5",
+          "to": "N7",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N7",
+          "to": "N5",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "N5",
+          "to": "N6",
+          "kind": "OPTIONAL_TOWER_ENTRY",
+          "fee": 0,
+          "requires_player_route_choice": true
+        },
+        {
+          "from": "N6",
+          "to": "N5",
+          "kind": "OPTIONAL_TOWER_EXIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        }
+      ],
+      "full_spatial_map_status": "NOT_IMPLEMENTED",
+      "note": "Logical routes only. Original scenes and physical movement still NOT_IMPLEMENTED."
+    },
+    {
+      "id": "08",
+      "name": "센트럴시티",
+      "entry_anchor": "C0",
+      "public_exit_anchor": "C8",
+      "optional_tower_anchor": "C7",
+      "anchors": [
+        "C0",
+        "C1",
+        "C2",
+        "C3",
+        "C4",
+        "C5",
+        "C6",
+        "C7",
+        "C8"
+      ],
+      "edges": [
+        {
+          "from": "C0",
+          "to": "C1",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C1",
+          "to": "C0",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C1",
+          "to": "C2",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C2",
+          "to": "C1",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C2",
+          "to": "C3",
+          "kind": "PUBLIC_OR_APPROVED_PLAYER_ENTRY",
+          "fee": 0,
+          "requires_player_route_choice": true,
+          "choices": [
+            "PUBLIC_SPECTATOR",
+            "REGISTERED_PLAYER_ONLY"
+          ]
+        },
+        {
+          "from": "C3",
+          "to": "C2",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C3",
+          "to": "C4",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C4",
+          "to": "C3",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C4",
+          "to": "C5",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C5",
+          "to": "C4",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C5",
+          "to": "C6",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C6",
+          "to": "C5",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C6",
+          "to": "C8",
+          "kind": "WALK_OR_ORIGINAL_TRANSIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C8",
+          "to": "C6",
+          "kind": "RETURN",
+          "fee": 0,
+          "requires_player_route_choice": false
+        },
+        {
+          "from": "C6",
+          "to": "C7",
+          "kind": "OPTIONAL_TOWER_ENTRY",
+          "fee": 0,
+          "requires_player_route_choice": true
+        },
+        {
+          "from": "C7",
+          "to": "C6",
+          "kind": "OPTIONAL_TOWER_EXIT",
+          "fee": 0,
+          "requires_player_route_choice": false
+        }
+      ],
+      "full_spatial_map_status": "NOT_IMPLEMENTED",
+      "note": "Logical routes only. Original scenes and physical movement still NOT_IMPLEMENTED."
+    }
+  ]
+}

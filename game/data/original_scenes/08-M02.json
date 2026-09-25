@@ -1,0 +1,11 @@
+{
+  "scene_id": "08-M02",
+  "source_page_id": "3e5fc392d5b48187bdf3e91b84c28713",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 08-M02 아직 바뀌지 않은 대리 명단\n**장소:** C3 대기실, 나래·도윤·일부 예선 실적자·수리. 장터에서 본 **임시 대리 예약 명단이 그대로** 걸려 있다.\n나래 \"제가 통과한 기록은 있는데 좌석 예약은 다른 사람이에요. 이 명단으로는 약속한 경기에 못 들어가요.\" 다른 일부 예선 성적자도 본인 의사로 해당 중계 회차 입장 거부. 몇몇 지역 대표는 대리 명단을 '지역 실적자들의 경기'로 홍보한다면 자기 타워 이름 사용을 허락하지 않겠다고 통보한다. 8인 대표 전원이 같은 뜻으로 집단 행동하지 않음.\n도윤 \"공개 와일드카드가 정식으로 열리면 그걸 치고, 지금 예약을 내리겠어요. 아직 승인됐다는 소식은 없잖아요.\" 주인공 선택 \"나래와 함께 기다리기\"→나래 \"내 신청은 내가 할게요\" / \"내 경기 준비하기\"→직원 \"본인 기록으로 등록 확인하세요\" / \"이안 경기 확인\"→\"공식 일정 정해지면 알려 준대요.\"\n**완료:** NARAE_SEAT_RESTORED=FALSE, DOYUN_RESERVATION=ACTIVE, PROTEST_ACTIVE=TRUE→08-M03. 기존 구판처럼 나래를 먼저 복구하거나 도윤 예약을 먼저 취소하면 안 됨.\n### 08-M02 v4.2 대기실·공용 관전·재대화\nQ=YES이며 선수로 등록했다면 대기실, Q=NO/PENDING/관전 전용이면 공용 게시판과 수리의 짧은 공개 인터뷰에서 **동일한 임시 명단**을 확인한다. 직원 “등록 선수만 대기실로 들어갈 수 있어요. 명단 발표는 바깥 화면에서도 볼 수 있습니다.” “나래에게 묻기”→나래 “이의는 제 이름으로 접수했어요. 아직 명단은 그대로예요”; “도윤에게 묻기”→도윤 “새 공개전이 공식 승인되면 그때 지금 예약을 내릴게요”; “내 경기 준비하기”→직원 “본인 등록 상태만 확인해 주세요.” 각 선택으로 나래의 독립 항의·일부 대표의 명의 철회 의사가 공개된 뒤 DONE_08_M02, MAIN_CURSOR=08-M03. **이때 나래 복구 FALSE·도윤 예약 ACTIVE.** 재대화 “현재는 임시 명단입니다. 다음 공식 방송 회차를 확인해 주세요.”\n",
+  "source_section_sha256": "bb21d13b18726b157e41c655cedbc52ebba555687839d105b92babd302ec0d2a",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

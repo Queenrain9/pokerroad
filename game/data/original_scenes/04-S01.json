@@ -1,0 +1,11 @@
+{
+  "scene_id": "04-S01",
+  "source_page_id": "3e5fc392d5b4814aafcdf6bdcc64eab7",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 04-S01 시장 식재료와 행사 자재\n**입구:** H4 귀환 뒤 상인 \"다음 배 화물칸 한 곳만 먼저 실을 수 있어요. 시장 식재료냐, 축제 자재냐?\" 선택 A 식재료→해당 저녁 식당 새 메뉴/감사 대사, B 자재→축제 천막/공연 대사 변화, C 보류→선원들이 자체 순서 결정. 화물 우선순위로 구조선 탑승/나래 공식 예선 성적 조작 금지. 보상은 소액 재화·생활 UI 변경, 반대 가게를 영구 폐업시키지 않음.\n**상태·실제 대사:** 04-M02 뒤 H4에서 수락하면 ACTIVE, MAIN_CURSOR는 그대로 저장. 수락→상인 \"우선 실을 화물을 골라서 부두 표식에 알려 주세요.\" 거절→\"오늘은 선원들이 정할게요. 다음 배 일감은 남겨 둘게요.\" DECLINED 후 재방문 수락 가능. A 선택→식당 주인 \"식재료부터 왔네요. 오늘 저녁 새 메뉴를 내겠어요.\" B 선택→축제 담당 \"자재가 먼저라 천막을 일찍 세웠어요.\" C 보류→선원 \"이번 배는 우리가 정하고, 당신 일감은 다음 배까지 보류할게요.\" ACTIVE 진행 중 재대화 \"선적 순서를 아직 안 골랐어요. 식재료나 자재, 아니면 다음 배로 미뤄도 돼요.\" 잘못된 화물 표식→\"그건 이미 실은 짐이에요. 남은 두 화물 중 골라 주세요.\" 무료 재시도.\n**완료·복귀:** 선택한 적재 확인 뒤 DONE, 생활 변화 및 최초 보상 1회. 완료 후 \"먼저 실을 걸 정해 줘서 고마워요. 다음 배는 평소 순서로 갑니다.\" 떠남/중도 취소는 PAUSED, NPC 자체 물류는 진행하며 재방문 \"남겨 둔 다음 배 순서를 정할래요?\"로 동일 퀘스트 재개. 완료 시나 도중 \"본래 일정으로\"를 누르면 저장한 MAIN_CURSOR로 복귀; 현재 메인이 05-M01 이후면 H8 정기편으로 현재 지역 복귀. 반대 선택을 다시 눌러 중복 보상이나 풍경 누적 없음.\n",
+  "source_section_sha256": "e52691740654ed875132f7e77c953cb055463efc1026d9dec325e9aff70f5573",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

@@ -1,0 +1,11 @@
+{
+  "scene_id": "03-M01",
+  "source_page_id": "3e5fc392d5b481808a4bee1b4c7bd976",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 03-M01 높이를 처음 보다\n**조건:** 02-M06 이후 F0, 주민 견과상 미루(가칭)·다온. **행동/연출:** 거목 뿌리 사이로 공중 수레가 올라가는 장면과 높은 타워 실루엣. 미루 \"뿌리시장은 아랫마을. 시범전은 줄기 지나 저 위예요.\" 한강에서 '경기'를 택했으면 주인공 \"도윤 시범전은 어디서 하죠?\"→\"상부 전망대\"; '숲 풍경' 택했으면 \"올라가는 길은 몇 개예요?\"→\"수레와 계단 둘 다요.\" 기본은 \"위로 올라가 볼래요.\"\n**완료/다음:** F2 표지/안전 지도 갱신→03-M02. 아래 마을 무료 카드 규칙 학습/견과 수집은 선택. 추락 재난 연출과 타워 격파 선행 금지.\n### 03-M01 선택 후 대사·재대화·복귀 (v4.2)\n**보완:** 02-M06 이후 F0 도착 MAIN_CURSOR=03-M01. 강변에서 숲 경관을 택했으면 미루 “전망은 높은 가지에서 더 좋아요”, 프로를 택했으면 “도윤 경기는 상부 무대예요”, 선택 미기록이면 “수레와 계단 중 골라 보세요.” “먼저 시장 볼게”→미루 “보관고도 자유로워요”; “수레 탈래”→“정류장은 F2”, “직접 올라갈래”→“안전 계단은 저쪽.” 길 표지 조사하면 DONE_03_M01→03-M02, 재대화 미완 “오를 길 먼저 정하세요”, 완료 “위쪽 마을을 지나 시범전이 열려요.” 선택형 S/T/R 조기 방문은 MAIN_CURSOR 저장·복귀, 공식 참가 기록 생성 안 함.\n",
+  "source_section_sha256": "77f8d930aa02f1d58aefad7edb9d77ae6b17e6f5a8de6c345fb6afb5e18634a1",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

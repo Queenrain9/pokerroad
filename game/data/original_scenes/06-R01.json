@@ -1,0 +1,11 @@
+{
+  "scene_id": "06-R01",
+  "source_page_id": "3e5fc392d5b48122842cea65f35245e6",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 06-R01 은솔의 다음 경기\n**조건:** 장터 이후 G2/G3 재입장, 은솔은 다른 공개전에 다시 등록한다. 06-M02 은솔 NPC 관전 결과를 알고 있다면 승/패에 맞춰 \"그날은 내가 이겼지만 오늘은 다시 시작\"/\"그날 졌어도 공개전은 계속 열리잖아\", 스킵 관전이면 \"저번 공개전 결과판 봤어요?\"로 시작. 주인공 개인 경연 승/패/관전 기록은 별도 안내원 대사만 바꿈. 일상 공개 경연 계속 운영.\n### 06-R01 실제 선택 후 대사·조건·복귀 (v4.2)\n**보완:** REGION07_VISITED 이후 G3 재방문. 은솔의 NPC 공개전 승/패는 별도 경기 ID로 “그날은 내가 이겼지만 다시 도전해요/그날은 졌지만 오늘도 공개전이 있죠.” 관전 스킵→“그날 결과판 봤어요?” 플레이어 직접 경연 WIN/LOSS/WITHDRAW/VIEW는 안내원 자신의 기록 대사만 달라짐. “다른 공개전 참여”→새 실제 경기 ID, “연회 구경”→G4, “장터 돌아가기”→현재 MAIN_CURSOR/정기편. 이전 보상을 재지급·경기 우승을 강제하지 않음.\n",
+  "source_section_sha256": "5172659734d2d953aa64e470c3ff9675de0b1c7679e36396c9615f2523e99497",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}

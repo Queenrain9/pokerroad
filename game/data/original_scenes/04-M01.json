@@ -1,0 +1,11 @@
+{
+  "scene_id": "04-M01",
+  "source_page_id": "3e5fc392d5b4814aafcdf6bdcc64eab7",
+  "source_revision": "15_v4.2",
+  "verbatim_source_markdown": "## 04-M01 나래와 물때 표식\n**조건/장소·인물:** 03-M05 완료 뒤 H1, 어시장 상인·나래. **연출/행동:** 갯벌이 넓게 드러난 시간대, 섬 사이 배 한 척의 위치가 보이지 않는다는 선원 무전. 상인 \"지금 물 빠졌을 때 길은 넓어도 아무 데로나 가면 안 돼.\" 나래 \"선원들 연락은 되는데 좌표가 안 맞아요. 등대 전망대에서 신호 같이 확인할래요?\"\n주인공 ① \"같이 갈게요\" → \"제가 안전한 길 앞에서 갈게요.\" ② \"나 여기 경기 보러 왔는데…\" → \"나도 오늘 예선 있어요. 배 신호만 확인하면 갈 수 있어요.\" ③ \"혼자 다녀올게요\" → \"혼자는 안 돼요. 안전 표식 따라가요.\"\n**완료:** 나래와 안전 H2 탐색 활성→04-M02. 플레이어가 바로 H7 카지노 관광을 먼저 가도 구조 사건은 안전한 상태로 대기, 주민들이 생사 위기에 영구 묶이지 않음.\n**진입·선택 후·재대화:** 최초 진입은 03-M05의 이동 선택 완료, MAIN_CURSOR=04-M01. ① 나래 \"표식 밖은 제가 먼저 확인할게요. 당신은 보이는 깃발을 알려 주세요.\" ② 주인공 \"확인하고 경기장으로 가죠.\" → 나래 \"좋아요. 구조선 연락부터 끝내요.\" ③ 주인공 \"그럼 안전선 안에서만 볼게요.\" → 나래 \"전망대에서 합류해요.\" 세 선택 모두 안전 안내 확인 후 DONE_04_M01=TRUE, MAIN_CURSOR=04-M02. 조작을 미루면 나래 \"전망대나 연락부두로 오면 지금 상황을 알려 줄게요.\" → 같은 장면 대기. 완료 후 재대화 나래 \"안전 표식은 지도에 표시했어요. 연락은 계속 되고 있어요.\" → 04-M02. H7로 먼저 나가면 MAIN_CURSOR를 보존하고 복귀 시 04-M02를 안내하며 구조 보상은 지급하지 않는다.\n",
+  "source_section_sha256": "f558a3d5362f32a40b5bc99fef2b908a084bff044c640fa5f5bd5e8fdcbd8c72",
+  "source_import_status": "ORIGINAL_TEXT_CAPTURED",
+  "game_implementation_status": "NOT_IMPLEMENTED",
+  "game_qa_status": "QA_NOT_RUN",
+  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+}
