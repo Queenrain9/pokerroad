@@ -8,6 +8,10 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: godot-native-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   godot-native:
     runs-on: ubuntu-latest
@@ -34,8 +38,8 @@ jobs:
       - name: Import project and parse scripts
         run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --editor --path game --quit
       - name: Run core native suite
-        run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_headless.gd
+        run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_headless.gd
       - name: Run P3 regression native suite
-        run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_p1_headless.gd
+        run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_p1_headless.gd
       - name: Run system-contract native suite
-        run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_system_contracts.gd
+        run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_system_contracts.gd
