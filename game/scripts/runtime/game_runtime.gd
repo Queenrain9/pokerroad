@@ -4,6 +4,7 @@ extends Node
 const Tournament = preload("res://scripts/core/tournament_director.gd")
 const AI = preload("res://scripts/core/poker_ai.gd")
 
+var state
 var mode := "WORLD"
 var scene_runner
 var world_runtime
@@ -14,12 +15,30 @@ var active_registered_official := false
 var current_result: Dictionary = {}
 var pending_paid_event: Dictionary = {}
 
-func _init() -> void:
-	scene_runner = SceneRunner.new()
-	world_runtime = WorldRuntime.new(scene_runner)
+func _init(p_state = null) -> void:
+	state = p_state
+	if state != null:
+		_build_services()
+
+func _ready() -> void:
+	if state == null:
+		state = get_node_or_null("/root/GameState")
+	_build_services()
+
+func _build_services() -> void:
+	if state == null:
+		return
+	if scene_runner == null:
+		scene_runner = SceneRunner.new(state)
+	if world_runtime == null:
+		world_runtime = WorldRuntime.new(state, scene_runner)
 
 func validate_runtime() -> Array[String]:
-	var errors: Array[String] = SceneBindingStore.validate_catalog()
+	var errors: Array[String] = []
+	if state == null or scene_runner == null or world_runtime == null:
+		errors.append("runtime has no GameState service")
+		return errors
+	errors.append_array(SceneBindingStore.validate_catalog())
 	errors.append_array(PresentationContract.validate_all_regions())
 	var descriptors: Array[Dictionary] = world_runtime.all_region_descriptors()
 	if descriptors.size() != 8:
@@ -89,9 +108,9 @@ func start_event(event_id: String, participants: Array, registered_official: boo
 		pending_paid_event = {"event_id":event_id,"participants":participants.duplicate(),
 			"registered_official":registered_official,"fee":fee}
 		return {"requires_confirmation":true,"event_id":event_id,"fee":fee}
-	if fee > 0 and not GameState.pay_entry_fee(fee):
+	if fee > 0 and not state.pay_entry_fee(fee):
 		return {"error":"insufficient wallet for confirmed entry fee"}
-	var instance_id: String = GameState.allocate_event_instance_id(event_id)
+	var instance_id: String = state.allocate_event_instance_id(event_id)
 	var bb: int = int(event.get("start_big_blind_dev", 0))
 	var stack: int = int(event.get("start_tournament_stack_dev", 0))
 	var blind_hands: int = int(event.get("blind_level_every_completed_hands_dev", 6))
@@ -196,9 +215,9 @@ func _finalize_event(status: String) -> Dictionary:
 		"hand_count":active_tournament.completed_hands
 	}
 	if has_player:
-		GameState.record_player_event(active_event_instance_id, result)
+		state.record_player_event(active_event_instance_id, result)
 	else:
-		GameState.record_npc_event(active_event_instance_id, result)
+		state.record_npc_event(active_event_instance_id, result)
 	if scene_runner.has_active_scene():
 		var consumed: Dictionary = scene_runner.apply_external_result(str(active_event_rule.get("event_id", "")), outcome)
 		if consumed.has("error") and status != "WITHDRAW":
@@ -245,10 +264,10 @@ func save_runtime() -> bool:
 		mode_state = scene_runner.snapshot()
 	elif mode == "OBSERVE" or mode == "RESULT":
 		mode_state = {"runtime_result":current_result.duplicate(true),"active_scene":scene_runner.snapshot()}
-	return GameState.save_session_v2(mode, mode_state)
+	return state.save_session_v2(mode, mode_state)
 
 func restore_runtime() -> Dictionary:
-	var loaded: Dictionary = GameState.load_session_v2()
+	var loaded: Dictionary = state.load_session_v2()
 	if loaded.has("error"):
 		return loaded
 	var loaded_mode: String = str(loaded.get("mode", "WORLD"))

@@ -1,10 +1,14 @@
 class_name SceneRunner
 extends RefCounted
 
+var state
 var active_binding: Dictionary = {}
 var active_source: Dictionary = {}
 var selected_interaction := ""
 var last_choice := ""
+
+func _init(p_state) -> void:
+	state = p_state
 
 func has_active_scene() -> bool:
 	return not active_binding.is_empty()
@@ -16,13 +20,13 @@ func open_scene(scene_id: String, anchor_id: String) -> Dictionary:
 	var binding: Dictionary = SceneBindingStore.binding_by_id(scene_id)
 	if binding.is_empty():
 		return {"error":"scene has no authored runtime binding"}
-	if binding.get("region_id", "") != GameState.current_region:
+	if binding.get("region_id", "") != state.current_region:
 		return {"error":"scene belongs to another region"}
 	if not binding.get("entry_anchors", []).has(anchor_id):
 		return {"error":"scene cannot start at this anchor"}
-	if binding.get("kind", "") == "MAIN" and GameState.main_cursor != scene_id and not GameState.finished_main.has(scene_id):
+	if binding.get("kind", "") == "MAIN" and state.main_cursor != scene_id and not state.finished_main.has(scene_id):
 		return {"error":"main scene is not the current cursor"}
-	var source: Dictionary = GameState.scene_source_record(scene_id)
+	var source: Dictionary = state.scene_source_record(scene_id)
 	if source.has("error"):
 		return source
 	if source.get("source_section_sha256", "") != binding.get("source_section_sha256", ""):
@@ -85,17 +89,17 @@ func choose(interaction_id: String, choice_id: String) -> Dictionary:
 func _apply_effect(effect: Dictionary) -> Dictionary:
 	match str(effect.get("type", "")):
 		"SET_FLAG":
-			if not GameState.set_story_flag(str(effect.get("key", "")), effect.get("value")):
+			if not state.set_story_flag(str(effect.get("key", "")), effect.get("value")):
 				return {"error":"failed to set story flag"}
 		"SET_OBSERVATION":
-			if not GameState.record_observation(str(effect.get("event_id", "")), str(effect.get("status", ""))):
+			if not state.record_observation(str(effect.get("event_id", "")), str(effect.get("status", ""))):
 				return {"error":"failed to record observation"}
 		"SET_REGISTRATION_INTENT":
 			var value: String = str(effect.get("value", ""))
 			if not ["VIEW","OFFICIAL"].has(value):
 				return {"error":"invalid registration intent"}
-			GameState.registration_intent = value
-			GameState.world_changed.emit()
+			state.registration_intent = value
+			state.world_changed.emit()
 		"REQUEST_EVENT":
 			return {"request":{
 				"type":"START_EVENT",
@@ -129,7 +133,7 @@ func ready_to_complete() -> bool:
 	var completion: Dictionary = active_binding.get("completion", {})
 	match str(completion.get("policy", "")):
 		"FLAG_IN":
-			var value = GameState.story_flags.get(str(completion.get("key", "")))
+			var value = state.story_flags.get(str(completion.get("key", "")))
 			return completion.get("values", []).has(value)
 	return false
 
@@ -139,11 +143,11 @@ func commit_completion() -> Dictionary:
 	if active_binding.get("kind", "") != "MAIN":
 		return {"error":"optional completion path not implemented in common runner yet"}
 	if active_binding.get("completion", {}).get("advance_main", false):
-		if not GameState.complete_main_scene(active_scene_id()):
+		if not state.complete_main_scene(active_scene_id()):
 			return {"error":"physical scene implementation gate not satisfied","ready":true}
 		var completed: String = active_scene_id()
 		clear()
-		return {"completed":completed,"main_cursor":GameState.main_cursor}
+		return {"completed":completed,"main_cursor":state.main_cursor}
 	return {"error":"binding has no completion transition"}
 
 func snapshot() -> Dictionary:
@@ -153,7 +157,7 @@ func snapshot() -> Dictionary:
 		"active_scene_id":active_scene_id(),
 		"dialogue_cursor":0,
 		"choice_cursor":last_choice,
-		"return_anchor":GameState.return_anchor,
+		"return_anchor":state.return_anchor,
 		"selected_interaction":selected_interaction
 	}
 
@@ -161,7 +165,7 @@ func restore(snapshot: Dictionary) -> Dictionary:
 	var scene_id: String = str(snapshot.get("active_scene_id", ""))
 	if scene_id.is_empty():
 		return {"error":"dialogue save has no active scene"}
-	var opened: Dictionary = open_scene(scene_id, GameState.current_anchor)
+	var opened: Dictionary = open_scene(scene_id, state.current_anchor)
 	if opened.has("error"):
 		return opened
 	selected_interaction = str(snapshot.get("selected_interaction", ""))
