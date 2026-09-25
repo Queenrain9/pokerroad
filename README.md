@@ -9,11 +9,14 @@ Godot mobile poker RPG production repository.
 
 ## Current verified state — 2026-09-25
 
+- Structural production contracts now exist for **competition/tournament/Q/AI**, **save/interruption recovery**, and **8-region camera/space/control/poker-UI semantics**. These lock interfaces/invariants, not final balance numbers or final art.
+- Mid-hand tournament snapshots restore deck order, board, hole cards, current actor, betting state, stacks and event identity; POKER save round-trip is native-tested.
+
 - Canonical Notion v4.2 mirror: **8/8 region files**, **88 unique scene IDs** (M48 / S16 / T8 / R16).
 - Generated source records: **88/88 imported and fingerprint-verified**.
 - Playable Godot scene implementation: **0/88**. Source capture is not gameplay implementation.
 - GitHub Core QA: Python/structural/source checks + exact **2,598,960** five-card exhaustive classification.
-- Godot Native QA: **Godot 4.4.1 Linux headless PASSED** — core suite 31 checks + P3 regression suite 48 checks.
+- Godot Native QA: **Godot 4.4.1 Linux headless PASSED** — core 31 + P3 regression 48 + P4 system-contract 37 checks.
 - **Windows/iPhone/Android: NOT TESTED**. Physical maps, final visual assets, NPC poker AI, full tournament/save implementation, and mobile builds remain incomplete.
 
 The canonical script files live under source/original_notion_v4_2. Automation imports them into game/data/original_scenes while preserving provenance and keeping game_implementation_status=NOT_IMPLEMENTED.
