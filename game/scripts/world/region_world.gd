@@ -87,6 +87,8 @@ func descriptor() -> Dictionary:
 		"world_bounds":world_bounds(),
 		"navigation_skeleton_status":"ANCHORS_POSITIONED",
 		"physical_map_status":"ROUTE_GEOMETRY_ACTIVE",
+		"micro_navigation_status":"LOCAL_WALKABLE_ZONES_ACTIVE" if route_geometry.local_zone_count() > 0 else "NONE",
+		"micro_navigation_zone_count":route_geometry.local_zone_count(),
 		"route_edge_count":route_geometry.edges.size(),
 		"portal_count":portal_markers.size(),
 		"visual_asset_status":"FIRST_SPACE_3_4_PROTOTYPE" if region_id == "01" else "NOT_STARTED"
@@ -168,7 +170,13 @@ func _build_route_geometry() -> void:
 			if not route_geometry.is_portal(source, destination):
 				var pair_key: String = source + ":" + destination if source < destination else destination + ":" + source
 				if not built_corridors.has(pair_key):
-					_build_corridor_walls(physical, source, destination)
+					# Region 01 now has owner-scoped local walkable polygons around the
+					# canonical route skeleton. Side walls would physically seal those
+					# pockets off, so its authoritative boundary is can_walk_from().
+					# Other regions keep corridor side walls until their own local
+					# navigation geometry is authored.
+					if route_geometry.local_zone_count() == 0:
+						_build_corridor_walls(physical, source, destination)
 					built_corridors[pair_key] = true
 				continue
 			var position: Vector2 = route_geometry.portal_position(source, destination)
