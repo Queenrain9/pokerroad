@@ -21,7 +21,7 @@ Godot mobile poker RPG production repository.
 - Playable fully implemented story scenes: **0/88**. Source capture/runtime binding is not the same as physical scene implementation.
 - GitHub Core QA: **104 passed** + exact **2,598,960** five-card exhaustive classification.
 - Godot 4.4.1 Windows headless: production main boot PASS; core **31**, P3 regression **48**, P4 system-contract **37**, P5 world-runtime **56**, eight-region scene **142**, spatial-runtime **153**, world-interaction **30**, route geometry **441**, physical movement **7** checks PASS. Linux CI runs the same native suites after push.
-- **Windows/iPhone/Android: NOT TESTED**. Final map geometry/collision, final art, final per-NPC AI tuning, complete 88-scene bindings and mobile builds remain incomplete.
+- **Windows device play QA and iPhone/Android builds: NOT TESTED**. Final environment details, art, per-NPC AI tuning, complete 88-scene bindings and mobile builds remain incomplete.
 
 The canonical script files live under `source/original_notion_v4_2`. Runtime bindings live in `game/data/scene_bindings_v1.json` and are rejected if the stored source hash no longer matches the canonical imported scene.
 
