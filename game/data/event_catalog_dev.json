@@ -142,8 +142,8 @@
       "kind": "REGIONAL_QUALIFIER",
       "seat_count_dev": 4,
       "start_big_blind_dev": 2,
-      "start_tournament_stack_dev": 60,
-      "blind_level_every_completed_hands_dev": 6,
+      "start_tournament_stack_dev": 20,
+      "blind_level_every_completed_hands_dev": 4,
       "wallet_entry_fee_dev": 0,
       "wallet_and_tournament_chips_are_separate": true,
       "sanction_status": "OFFICIAL",
@@ -151,7 +151,14 @@
       "qualifying_places_dev": 0,
       "record_owner": "NPC_NARAE",
       "npc_narrative_result": "NARAE_HAS_INDEPENDENT_VALID_EVIDENCE",
-      "npc_card_action_replay_status": "NOT_IMPLEMENTED"
+      "npc_card_action_replay_status": "ENGINE_REPLAY",
+      "npc_required_final_rank_dev": 1,
+      "npc_participants_dev": [
+        "NPC_NARAE",
+        "NPC_QUAL_A",
+        "NPC_QUAL_B",
+        "NPC_QUAL_C"
+      ]
     },
     {
       "event_id": "r04_player_qualifier",
@@ -176,8 +183,8 @@
       "kind": "NPC_INVITATIONAL",
       "seat_count_dev": 2,
       "start_big_blind_dev": 2,
-      "start_tournament_stack_dev": 60,
-      "blind_level_every_completed_hands_dev": 6,
+      "start_tournament_stack_dev": 20,
+      "blind_level_every_completed_hands_dev": 4,
       "wallet_entry_fee_dev": 0,
       "wallet_and_tournament_chips_are_separate": true,
       "sanction_status": "EXHIBITION",
@@ -185,7 +192,12 @@
       "qualifying_places_dev": 0,
       "record_owner": "NPC_DOYUN",
       "npc_narrative_result": "DOYUN_DEFEATS_IAN",
-      "npc_card_action_replay_status": "NOT_IMPLEMENTED"
+      "npc_card_action_replay_status": "ENGINE_REPLAY",
+      "npc_required_final_rank_dev": 1,
+      "npc_participants_dev": [
+        "NPC_DOYUN",
+        "NPC_IAN"
+      ]
     },
     {
       "event_id": "r05_doyun_individual",
