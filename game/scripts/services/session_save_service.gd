@@ -67,12 +67,23 @@ static func migrate_v1_world_only(old: Dictionary) -> Dictionary:
 		world["world_layer"] = 0
 	if not world.has("return_anchor"):
 		world["return_anchor"] = world.get("current_anchor", "")
+	if not world.has("story_flags"):
+		world["story_flags"] = {}
+	if not world.has("event_serial"):
+		world["event_serial"] = 0
 	return build_payload(world, "WORLD", {})
 
-static func tournament_mode_state(event_instance_id: String, tournament: TournamentDirector) -> Dictionary:
+static func tournament_mode_state(event_instance_id: String, tournament: TournamentDirector,
+		registered_official: bool = false, source_scene_snapshot: Dictionary = {}) -> Dictionary:
 	if event_instance_id.is_empty() or tournament == null:
 		return {"error":"missing event instance or tournament"}
-	return {"event_instance_id":event_instance_id,"event_id":tournament.event_id,"tournament_snapshot":tournament.to_snapshot()}
+	return {
+		"event_instance_id":event_instance_id,
+		"event_id":tournament.event_id,
+		"registered_official":registered_official,
+		"source_scene_snapshot":source_scene_snapshot.duplicate(true),
+		"tournament_snapshot":tournament.to_snapshot()
+	}
 
 static func restore_tournament(mode_state: Dictionary):
 	if mode_state.get("event_instance_id", "").is_empty():
