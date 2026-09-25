@@ -142,7 +142,15 @@ static func from_snapshot(snapshot: Dictionary):
 	var bb := int(snapshot.get("big_blind", 0))
 	if bb < 1:
 		return null
-	var restored := BettingRound.new(raw_stacks, bb)
+	var normalized_stacks: Array[int] = []
+	for value in raw_stacks:
+		if not [TYPE_INT, TYPE_FLOAT].has(typeof(value)):
+			return null
+		var normalized := int(value)
+		if normalized < 0 or float(value) != float(normalized):
+			return null
+		normalized_stacks.append(normalized)
+	var restored := BettingRound.new(normalized_stacks, bb)
 	var size: int = raw_stacks.size()
 	for key in ["street_committed","hand_committed","folded","last_acted_bet"]:
 		var value = snapshot.get(key, [])

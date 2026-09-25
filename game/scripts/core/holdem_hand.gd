@@ -184,7 +184,15 @@ static func from_snapshot(snapshot: Dictionary):
 	var starting = snapshot.get("starting_stacks", [])
 	if typeof(starting) != TYPE_ARRAY or starting.size() < 2:
 		return null
-	var restored := HoldemHand.new(starting, int(snapshot.get("dealer", -1)),
+	var normalized_start: Array[int] = []
+	for value in starting:
+		if not [TYPE_INT, TYPE_FLOAT].has(typeof(value)):
+			return null
+		var normalized := int(value)
+		if normalized < 0 or float(value) != float(normalized):
+			return null
+		normalized_start.append(normalized)
+	var restored := HoldemHand.new(normalized_start, int(snapshot.get("dealer", -1)),
 		int(snapshot.get("small_blind", 0)), int(snapshot.get("big_blind", 0)),
 		str(snapshot.get("hand_id", "")), 0)
 	if restored.settlement.has("error"):
