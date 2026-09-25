@@ -779,11 +779,18 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
-      "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "RIVER_BROADCAST",
+          "target": "강변 대형 스크린 / 승선 뉴스 화면"
+        }
+      ],
+      "npc_independent_event_ids": [
+        "r02_ian_river_broadcast"
+      ],
+      "location_anchor_id": "K2",
       "next_main_scene_id": "02-M03"
     },
     {
@@ -794,11 +801,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "BOAT_ACCESS",
+          "target": "도해·안전요원 / 선착장"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "K3",
       "next_main_scene_id": "02-M04"
     },
     {
@@ -809,11 +821,18 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
-      "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "BOAT_EVENT",
+          "target": "윤하루·진행자 / 유람선 실전 테이블"
+        }
+      ],
+      "npc_independent_event_ids": [
+        "r02_yunharu_boat_demo"
+      ],
+      "location_anchor_id": "K3",
       "next_main_scene_id": "02-M05"
     },
     {
@@ -824,11 +843,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "REUNION",
+          "target": "윤하루·이안 / 유람선 전망대"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "K3",
       "next_main_scene_id": "02-M06"
     },
     {
@@ -839,11 +863,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "FOREST_BUS",
+          "target": "도해 / 숲행 정기 버스"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "K5",
       "next_main_scene_id": "03-M01"
     },
     {
@@ -924,11 +953,20 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "MIRO_GUIDE",
+          "target": "미루 / 뿌리시장과 상부길 표지"
+        },
+        {
+          "interaction_id": "PATH_SIGN",
+          "target": "미루 / 뿌리시장과 상부길 표지"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "F0",
       "next_main_scene_id": "03-M02"
     },
     {
@@ -939,11 +977,20 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "ASCENT",
+          "target": "미루·상부 주민 / 승강 수레와 안전 계단"
+        },
+        {
+          "interaction_id": "ARRIVAL",
+          "target": "미루·상부 주민 / 승강 수레와 안전 계단"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "F2",
       "next_main_scene_id": "03-M03"
     },
     {
@@ -954,11 +1001,22 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
-      "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "SHOWCASE_VIEW",
+          "target": "진행자·도윤 / 공개 시범전 전망대"
+        },
+        {
+          "interaction_id": "SHOWCASE_READ",
+          "target": "진행자·도윤 / 공개 시범전 전망대"
+        }
+      ],
+      "npc_independent_event_ids": [
+        "r03_doyun_showcase"
+      ],
+      "location_anchor_id": "F4",
       "next_main_scene_id": "03-M04"
     },
     {
