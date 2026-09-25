@@ -81,19 +81,19 @@ func _initialize() -> void:
 	var loaded := Save.read_payload(path)
 	must(not loaded.has("error") and loaded.mode == "POKER", "saved payload reads and validates")
 	var loaded_tour = Save.restore_tournament(loaded.mode_state if not loaded.has("error") else {})
-	var persisted_exact: bool = loaded_tour != null \
-		and loaded_tour.event_id == restored.event_id \
-		and loaded_tour.stacks == restored.stacks \
-		and loaded_tour.completed_hands == restored.completed_hands \
-		and loaded_tour.dealer == restored.dealer \
-		and loaded_tour.active_hand != null \
-		and restored.active_hand != null \
-		and loaded_tour.active_hand.deck == restored.active_hand.deck \
-		and loaded_tour.active_hand.board == restored.active_hand.board \
-		and loaded_tour.active_hand.holes == restored.active_hand.holes \
-		and loaded_tour.active_hand.current_actor == restored.active_hand.current_actor \
-		and loaded_tour.active_hand.round.to_snapshot() == restored.active_hand.round.to_snapshot()
-	must(persisted_exact, "saved tournament restores exact execution state")
+	must(loaded_tour != null, "saved tournament object restores")
+	if loaded_tour != null:
+		must(loaded_tour.event_id == restored.event_id, "saved event id exact")
+		must(loaded_tour.stacks == restored.stacks, "saved tournament stacks exact")
+		must(loaded_tour.completed_hands == restored.completed_hands, "saved hand count exact")
+		must(loaded_tour.dealer == restored.dealer, "saved dealer exact")
+		must(loaded_tour.active_hand != null and restored.active_hand != null, "saved active hand exists")
+		if loaded_tour.active_hand != null and restored.active_hand != null:
+			must(loaded_tour.active_hand.deck == restored.active_hand.deck, "saved deck order exact")
+			must(loaded_tour.active_hand.board == restored.active_hand.board, "saved board exact")
+			must(loaded_tour.active_hand.holes == restored.active_hand.holes, "saved hole cards exact")
+			must(loaded_tour.active_hand.current_actor == restored.active_hand.current_actor, "saved actor exact")
+			must(loaded_tour.active_hand.round.to_snapshot() == restored.active_hand.round.to_snapshot(), "saved betting state exact")
 	if FileAccess.file_exists(path):
 		DirAccess.remove_absolute(ProjectSettings.globalize_path(path))
 
