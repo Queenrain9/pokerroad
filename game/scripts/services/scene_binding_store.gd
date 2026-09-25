@@ -2,7 +2,7 @@ class_name SceneBindingStore
 extends RefCounted
 
 const PATH = "res://data/scene_bindings_v1.json"
-const ALLOWED_EFFECTS = ["SET_FLAG","SET_OBSERVATION","SET_REGISTRATION_INTENT","RESERVE_EVENT","REQUEST_EVENT"]
+const ALLOWED_EFFECTS = ["SET_FLAG","SET_OBSERVATION","SET_REGISTRATION_INTENT","RESERVE_EVENT","GRANT_REWARD","REQUEST_EVENT"]
 
 static func catalog() -> Dictionary:
 	var f: FileAccess = FileAccess.open(PATH, FileAccess.READ)
@@ -103,4 +103,11 @@ static func validate_catalog() -> Array[String]:
 						errors.append(scene_id + ": unknown requested event " + str(effect.get("event_id", "")))
 					if effect_type == "RESERVE_EVENT" and EventRegistry.event_by_id(str(effect.get("event_id", ""))).is_empty():
 						errors.append(scene_id + ": unknown reserved event " + str(effect.get("event_id", "")))
+		var npc_event: String = str(binding.get("npc_event", ""))
+		if not npc_event.is_empty() and EventRegistry.event_by_id(npc_event).is_empty():
+			errors.append(scene_id + ": unknown independent NPC event " + npc_event)
+		for effect in binding.get("npc_event_effects", []):
+			var effect_type: String = str(effect.get("type", ""))
+			if not ALLOWED_EFFECTS.has(effect_type) or effect_type == "REQUEST_EVENT":
+				errors.append(scene_id + ": unsupported NPC completion effect " + effect_type)
 	return errors
