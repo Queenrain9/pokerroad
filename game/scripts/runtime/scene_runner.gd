@@ -119,6 +119,13 @@ func _apply_effect(effect: Dictionary) -> Dictionary:
 				return {"error":"invalid event reservation"}
 			if not state.story_flags.has(key):
 				state.set_story_flag(key, state.allocate_event_instance_id(event_id))
+		"GRANT_REWARD":
+			var reward_id: String = str(effect.get("reward_id", ""))
+			var amount: int = int(effect.get("amount", 0))
+			if reward_id.is_empty() or amount < 0:
+				return {"error":"invalid one-time reward"}
+			if not state.rewards_paid.has(reward_id) and not state.grant_one_time_reward(reward_id, amount):
+				return {"error":"failed to grant one-time reward"}
 		"REQUEST_EVENT":
 			return {"request":{
 				"type":"START_EVENT",
@@ -132,6 +139,13 @@ func _apply_effect(effect: Dictionary) -> Dictionary:
 			return {"error":"unsupported scene effect"}
 	return {"ok":true}
 
+func apply_effect_list(effects: Array) -> Dictionary:
+	for effect in effects:
+		var result: Dictionary = _apply_effect(effect)
+		if result.has("error"):
+			return result
+	return {"ready_to_complete":ready_to_complete()}
+
 func apply_external_result(event_id: String, outcome: String) -> Dictionary:
 	if active_binding.is_empty():
 		return {"error":"no active scene"}
@@ -141,11 +155,7 @@ func apply_external_result(event_id: String, outcome: String) -> Dictionary:
 	var by_outcome: Dictionary = mappings[event_id]
 	if not by_outcome.has(outcome):
 		return {"error":"unmapped external event outcome"}
-	for effect in by_outcome[outcome]:
-		var result: Dictionary = _apply_effect(effect)
-		if result.has("error"):
-			return result
-	return {"ready_to_complete":ready_to_complete()}
+	return apply_effect_list(by_outcome[outcome])
 
 func ready_to_complete() -> bool:
 	if active_binding.is_empty():
