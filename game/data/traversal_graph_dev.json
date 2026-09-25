@@ -495,7 +495,8 @@
           "requires_player_route_choice": true,
           "requires_last_train_available": true,
           "choices": [
-            "TAKE_LAST_TRAIN"
+            "TAKE_LAST_TRAIN",
+            "B_LINE_WALK"
           ]
         },
         {
