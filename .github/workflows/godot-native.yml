@@ -37,6 +37,8 @@ jobs:
           ./Godot_v4.4.1-stable_linux.x86_64 --version
       - name: Import project and parse scripts
         run: ./Godot_v4.4.1-stable_linux.x86_64 --headless --editor --path game --quit
+      - name: Boot production main scene
+        run: timeout 20s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --quit-after 1
       - name: Run core native suite
         run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_headless.gd
       - name: Run P3 regression native suite
