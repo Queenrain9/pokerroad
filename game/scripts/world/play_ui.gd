@@ -145,6 +145,9 @@ func _refresh() -> void:
 				for requirement in option.get("requires", []):
 					if root.state.story_flags.get(str(requirement.get("key", ""))) != requirement.get("value"):
 						enabled = false
+				var required_anchors: Array = option.get("requires_anchor", [])
+				if not required_anchors.is_empty() and not required_anchors.has(root.state.current_anchor):
+					enabled = false
 				if enabled:
 					_button(str(option.get("label", "")), _choose.bind(str(interaction.get("interaction_id", "")), str(option.get("choice_id", ""))))
 	elif mode == "OBSERVE":
