@@ -5,7 +5,7 @@
   "verbatim_source_markdown": "## 02-M01 강변 낮에 첫 발\n**조건·장소/인물:** 01-M07 이동, K0/K1, 편의점 직원·도해. **행동:** 강변 자유 산책, 자전거길/다리 전망대/배가 움직이는 강가 중 하나 발견하면 저녁 유람선 일정 표시. 직원 \"낮에는 자전거 타는 사람 많고, 밤에는 배에서 경기 구경 많이 해요.\" 주인공 지난 지역 여행 동기 CHALLENGE \"참가할 판 있나요?\"→\"공개 신청은 선착장에 물어봐요\"; OBSERVE \"밤 배 타려면?\"→\"일반 관람도 가능해요\"; RIVAL \"이안 선수는 어디에?\"→\"저기 중계 화면에 출연 일정 있어요.\"\n**선택:** 지금 선착장/낮 동네 산책/무료 강변 판. **완료:** R02_RIVER_SEEN 및 K3 위치 지도 해금→02-M02. 참가를 강요하거나 유료 표가 없어 진행 중단하지 않음.\n### 02-M01 선택 후 대사·조건·복귀 보강 (v4.2)\n**보완:** 01-M07 뒤 K0 진입 시 MAIN_CURSOR=02-M01. 무료 산책·선착장 바로 가기·일감 먼저 중 선택→도해 “먼저 강을 둘러봐도, 바로 배 타러 가도 돼요.” R01_TRAVEL_MOTIVE=CHALLENGE/OBSERVE/RIVAL에 맞는 기존 세 대사만 표시하고 없으면 “오늘 밤 배 구경하러 왔어요.” “지금 선착장”→도해 “K3 표지 따라가요”, “산책”→“K1과 K2도 열려 있어요”, “무료 연습”→“완료하고 돌아오면 K2 뉴스도 보세요.” 첫 경로 발견으로 R02_RIVER_SEEN/DONE, MAIN_CURSOR=02-M02. 재대화 미완 “배 소식은 K2”, 완료 “스크린에 이안 경기 뉴스 있어요.” 사이드·타워 조기 방문 후 본 메인 커서 복귀.\n",
   "source_section_sha256": "bfcdabebd3aa1d60c1ded17277bc19d5ef998ab68c494d31dd3096bb7b665ffa",
   "source_import_status": "ORIGINAL_TEXT_CAPTURED",
-  "game_implementation_status": "NOT_IMPLEMENTED",
-  "game_qa_status": "QA_NOT_RUN",
-  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+  "game_implementation_status": "IMPLEMENTED",
+  "game_qa_status": "PASS",
+  "note": "Canonical source preserved; playable binding, physical reach, runtime action, save/exit verified by first-eight native E2E."
 }

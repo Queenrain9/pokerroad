@@ -2,7 +2,7 @@ class_name SceneBindingStore
 extends RefCounted
 
 const PATH = "res://data/scene_bindings_v1.json"
-const ALLOWED_EFFECTS = ["SET_FLAG","SET_OBSERVATION","SET_REGISTRATION_INTENT","REQUEST_EVENT"]
+const ALLOWED_EFFECTS = ["SET_FLAG","SET_OBSERVATION","SET_REGISTRATION_INTENT","RESERVE_EVENT","REQUEST_EVENT"]
 
 static func catalog() -> Dictionary:
 	var f: FileAccess = FileAccess.open(PATH, FileAccess.READ)
@@ -83,6 +83,9 @@ static func validate_catalog() -> Array[String]:
 		for anchor in binding.get("entry_anchors", []):
 			if not anchors_by_region.get(region_id, []).has(anchor):
 				errors.append(scene_id + ": unknown entry anchor " + str(anchor))
+		if binding.get("physical_world_binding_status", "") == "PLAYABLE":
+			if binding.get("entry_anchors", []).is_empty() or str(binding.get("target", "")).is_empty():
+				errors.append(scene_id + ": playable binding needs anchor and target")
 		var open_mode: String = str(binding.get("open_mode", ""))
 		for interaction in binding.get("interactions", []):
 			for choice in interaction.get("choices", []):
@@ -95,4 +98,6 @@ static func validate_catalog() -> Array[String]:
 						errors.append(scene_id + ": unsupported effect " + effect_type)
 					if effect_type == "REQUEST_EVENT" and EventRegistry.event_by_id(str(effect.get("event_id", ""))).is_empty():
 						errors.append(scene_id + ": unknown requested event " + str(effect.get("event_id", "")))
+					if effect_type == "RESERVE_EVENT" and EventRegistry.event_by_id(str(effect.get("event_id", ""))).is_empty():
+						errors.append(scene_id + ": unknown reserved event " + str(effect.get("event_id", "")))
 	return errors

@@ -27,4 +27,4 @@ static func get_original(scene_id: String, manifest_record: Dictionary) -> Dicti
 	return {"scene_id": scene_id, "source_page_id": parsed.source_page_id,
 		"verbatim_source_markdown": source, "source_section_sha256": actual_hash,
 		"source_import_status": "ORIGINAL_TEXT_CAPTURED",
-		"game_implementation_status": "NOT_IMPLEMENTED"}
+		"game_implementation_status": manifest_record.get("game_implementation_status", "NOT_IMPLEMENTED")}

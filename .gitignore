@@ -1,4 +1,6 @@
 .godot/
+/Godot/
+*.gd.uid
 .import/
 .DS_Store
 Thumbs.db

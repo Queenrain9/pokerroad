@@ -59,8 +59,8 @@ func _initialize() -> void:
 	must(not ack.has("error") and runtime.mode == "WORLD", "01-M01 source-authored choice returns to world")
 	must(gs.story_flags.get("START_ACK",false) == true, "01-M01 sets START_ACK only")
 	must(runtime.scene_runner.ready_to_complete(), "01-M01 runtime completion condition is satisfied")
-	var blocked: Dictionary = runtime.commit_active_scene()
-	must(blocked.has("error") and gs.main_cursor == "01-M01", "runtime binding cannot masquerade as physical scene implementation")
+	var completed: Dictionary = runtime.commit_active_scene()
+	must(not completed.has("error") and gs.main_cursor == "01-M02", "01-M01 completes and unlocks the tutorial")
 
 	runtime.queue_free()
 	reset_world("01","P1","01-M02")

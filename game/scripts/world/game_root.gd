@@ -5,6 +5,7 @@ const RegionHostScript = preload("res://scripts/world/region_host.gd")
 const PlayerScript = preload("res://scripts/world/player_controller.gd")
 const CameraScript = preload("res://scripts/world/camera_rig.gd")
 const InteractionScript = preload("res://scripts/world/world_interaction_controller.gd")
+const PlayUIScript = preload("res://scripts/world/play_ui.gd")
 
 var runtime
 var region_host
@@ -12,6 +13,7 @@ var player
 var camera
 var interaction_controller
 var state
+var play_ui
 
 func _ready() -> void:
 	state = get_node_or_null("/root/GameState")
@@ -58,6 +60,9 @@ func _ready() -> void:
 		push_error("PokerRoad camera bind: " + str(camera_bound.error))
 		return
 	interaction_controller = InteractionScript.new(state, runtime, region_host, player)
+	play_ui = PlayUIScript.new()
+	play_ui.setup(self)
+	add_child(play_ui)
 	if not state.world_changed.is_connected(_on_world_changed):
 		state.world_changed.connect(_on_world_changed)
 	var world: Dictionary = runtime.world_runtime.current_world()

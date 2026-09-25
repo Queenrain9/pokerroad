@@ -83,10 +83,11 @@ func _handle_external_request(request: Dictionary) -> Dictionary:
 	if request.get("type", "") != "START_EVENT":
 		return {"error":"unsupported external request"}
 	return start_event(str(request.get("event_id", "")), request.get("participants", []),
-		bool(request.get("registered_official", false)), false)
+		bool(request.get("registered_official", false)), false,
+		str(request.get("reserved_instance_key", "")))
 
 func start_event(event_id: String, participants: Array, registered_official: bool = false,
-		cost_confirmed: bool = false) -> Dictionary:
+		cost_confirmed: bool = false, reserved_instance_key: String = "") -> Dictionary:
 	if not ["WORLD","DIALOGUE"].has(mode):
 		return {"error":"event can only start from world/dialogue"}
 	var event: Dictionary = EventRegistry.event_by_id(event_id)
@@ -110,7 +111,13 @@ func start_event(event_id: String, participants: Array, registered_official: boo
 		return {"requires_confirmation":true,"event_id":event_id,"fee":fee}
 	if fee > 0 and not state.pay_entry_fee(fee):
 		return {"error":"insufficient wallet for confirmed entry fee"}
-	var instance_id: String = state.allocate_event_instance_id(event_id)
+	var instance_id: String = str(state.story_flags.get(reserved_instance_key, "")) if not reserved_instance_key.is_empty() else ""
+	if not instance_id.is_empty() and not instance_id.begins_with(event_id + "#"):
+		return {"error":"reserved event identity does not match event"}
+	if instance_id.is_empty():
+		instance_id = state.allocate_event_instance_id(event_id)
+	if state.player_events.has(instance_id) or state.npc_events.has(instance_id):
+		return {"error":"event instance already has a final record"}
 	var bb: int = int(event.get("start_big_blind_dev", 0))
 	var stack: int = int(event.get("start_tournament_stack_dev", 0))
 	var blind_hands: int = int(event.get("blind_level_every_completed_hands_dev", 6))
@@ -251,7 +258,73 @@ func acknowledge_result() -> Dictionary:
 func commit_active_scene() -> Dictionary:
 	if mode != "WORLD":
 		return {"error":"scene completion commits only from world"}
+	var npc_event: String = str(scene_runner.active_binding.get("npc_event", ""))
+	if not npc_event.is_empty() and scene_runner.ready_to_complete():
+		var replay: Dictionary = run_independent_npc_event(npc_event)
+		if replay.has("error"):
+			return replay
 	return scene_runner.commit_completion()
+
+func close_completed_scene() -> Dictionary:
+	if mode != "DIALOGUE" or not scene_runner.has_active_scene() or not state.finished_main.has(scene_runner.active_scene_id()):
+		return {"error":"no completed dialogue to close"}
+	var scene_id: String = scene_runner.active_scene_id()
+	scene_runner.clear()
+	if not _transition("WORLD"):
+		return {"error":"completed dialogue cannot return to world"}
+	return {"closed":scene_id,"mode":mode}
+
+func run_independent_npc_event(event_id: String) -> Dictionary:
+	for previous in state.npc_events.values():
+		if previous.get("event_id", "") == event_id:
+			return {"already_recorded":true}
+	var rule: Dictionary = EventRegistry.event_by_id(event_id)
+	if rule.is_empty() or str(rule.get("record_owner", "")).begins_with("PLAYER"):
+		return {"error":"independent NPC event rule missing"}
+	var names: Array[String] = [str(rule.get("record_owner", ""))]
+	for index in range(1, int(rule.get("seat_count_dev", 0))):
+		names.append("NPC_LOCAL_%d" % index)
+	var bb: int = int(rule.get("start_big_blind_dev", 0))
+	var tournament = Tournament.new(event_id, names, int(rule.get("start_tournament_stack_dev", 0)),
+		maxi(1, int(bb / 2)), bb, int(rule.get("blind_level_every_completed_hands_dev", 6)))
+	var actions := 0
+	while not tournament.finished and actions < 20000:
+		if tournament.active_hand == null:
+			var started: Dictionary = tournament.begin_hand(10000 + tournament.completed_hands)
+			if started.has("error"):
+				return started
+			continue
+		var hand = tournament.active_hand
+		var seat: int = hand.current_actor
+		if seat < 0:
+			return {"error":"NPC replay has no current actor"}
+		var legal: Dictionary = hand.current_options()
+		var context: Dictionary = {
+			"own_hole_cards":hand.holes[seat].duplicate(), "public_board":hand.board.duplicate(),
+			"public_bets":hand.round.street_committed.duplicate(),
+			"public_stacks":hand.round.stacks.duplicate(), "seat_position":seat,
+			"blind_level":int(floor(float(tournament.completed_hands) / float(tournament.blind_level_hands))),
+			"prior_public_actions":hand.history.duplicate(true), "legal_actions":legal.duplicate(true),
+			"strength_hint":0.5
+		}
+		var action: Dictionary = AI.choose_action(legal, context, "BALANCED", 20000 + actions)
+		if action.has("error") or not tournament.act(seat, str(action.get("choice", "")), int(action.get("total_bet", -1))):
+			return {"error":"NPC replay action failed"}
+		actions += 1
+	if not tournament.finished:
+		return {"error":"NPC replay exceeded action limit"}
+	var instance_id: String = state.allocate_event_instance_id(event_id)
+	var result: Dictionary = {
+		"event_id":event_id,"event_instance_id":instance_id,
+		"source_scene_id":scene_runner.active_scene_id(),"owner_id":str(rule.get("record_owner", "")),
+		"actually_participated":true,"match_status":"FINISHED",
+		"final_rank":int(tournament.final_ranks.get(str(rule.get("record_owner", "")), 0)),
+		"review_status":"ENGINE_RANK_ONLY", "hand_count":tournament.completed_hands,
+		"engine_verified":true
+	}
+	if not state.record_npc_event(instance_id, result):
+		return {"error":"NPC replay record could not be saved"}
+	return result
 
 func save_runtime() -> bool:
 	var mode_state: Dictionary = {}

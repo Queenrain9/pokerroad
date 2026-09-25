@@ -8,6 +8,11 @@ var move_speed := 260.0
 var world_bounds := Rect2()
 var interaction_radius := 82.0
 
+func _draw() -> void:
+	draw_circle(Vector2.ZERO, 21.0, Color(0.93, 0.76, 0.38))
+	draw_arc(Vector2.ZERO, 22.0, 0.0, TAU, 36, Color(0.12, 0.18, 0.20), 3.0)
+	draw_circle(Vector2(0, -5), 5.0, Color(0.12, 0.18, 0.20))
+
 func _ready() -> void:
 	var metrics: Dictionary = SpatialRegistry.player_metrics()
 	move_speed = float(metrics.get("move_speed_units_per_sec", 260))

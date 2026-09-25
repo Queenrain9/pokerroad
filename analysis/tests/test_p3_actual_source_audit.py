@@ -19,7 +19,8 @@ def test_p3_director_cannot_claim_external_review():
     assert '"review_status":"ENGINE_RANK_ONLY"' in s and '"national_qualification_granted":false' in s
 def test_verified_source_is_imported_without_fabricating_playable_implementation():
     m=json.loads((ROOT/'game/data/world_manifest.json').read_text(encoding='utf8'))
-    assert all(s['source_import_status']=='IMPORTED' for s in m['scenes']) and all(s['game_implementation_status']=='NOT_IMPLEMENTED' for s in m['scenes'])
+    assert all(s['source_import_status']=='IMPORTED' for s in m['scenes'])
+    assert sum(s['game_implementation_status']=='IMPLEMENTED' for s in m['scenes'])==8
     records=list((ROOT/'game/data/original_scenes').glob('*.json'));assert len(records)==88
     assert all(json.loads(p.read_text(encoding='utf8'))['source_import_status']=='ORIGINAL_TEXT_CAPTURED' for p in records)
 def test_qualification_needs_qualifier_flag_and_external_review():

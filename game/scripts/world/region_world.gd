@@ -34,7 +34,39 @@ func initialize_from_state(p_state) -> Dictionary:
 		return {"error":"region has no physical route geometry"}
 	_build_anchor_markers()
 	_build_route_geometry()
+	_build_wayfinding()
 	return descriptor()
+
+func _draw() -> void:
+	if route_geometry == null:
+		return
+	for source in anchor_ids():
+		for edge in route_geometry.outgoing(source):
+			var target: String = str(edge.get("to", ""))
+			if source < target and not route_geometry.is_portal(source, target):
+				draw_line(anchor_position(source), anchor_position(target), Color(0.21, 0.43, 0.44, 0.6), 90.0)
+		var point: Vector2 = anchor_position(source)
+		draw_circle(point, 42.0, Color(0.14, 0.30, 0.32))
+		draw_arc(point, 42.0, 0.0, TAU, 40, Color(0.93, 0.77, 0.45), 5.0)
+	for marker in portal_markers.values():
+		draw_circle(marker.position, 25.0, Color(0.86, 0.46, 0.25))
+
+func _build_wayfinding() -> void:
+	for anchor in region_record.get("anchors", []):
+		var id: String = str(anchor.get("id", ""))
+		var label: Label = Label.new()
+		label.text = id + "  " + str(anchor.get("description", ""))
+		label.position = anchor_position(id) + Vector2(-60, -92)
+		label.add_theme_font_size_override("font_size", 19)
+		add_child(label)
+		for binding in SceneBindingStore.bindings_for(region_id, id):
+			if binding.get("physical_world_binding_status", "") == "PLAYABLE":
+				var target_label: Label = Label.new()
+				target_label.text = "E  " + str(binding.get("target", ""))
+				target_label.position = anchor_position(id) + Vector2(-60, 50)
+				target_label.add_theme_font_size_override("font_size", 16)
+				add_child(target_label)
+	queue_redraw()
 
 func descriptor() -> Dictionary:
 	if region_record.is_empty():

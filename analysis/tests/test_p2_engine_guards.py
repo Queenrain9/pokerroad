@@ -28,5 +28,5 @@ def test_native_regression_sources_exist_but_native_execution_not_claimed():
 def test_real_source_mirror_generates_88_records_without_marking_playable():
     m=json.loads((ROOT/'game/data/world_manifest.json').read_text(encoding='utf-8'))
     assert all(s['source_import_status']=='IMPORTED' for s in m['scenes'])
-    assert all(s['game_implementation_status']=='NOT_IMPLEMENTED' for s in m['scenes'])
+    assert sum(s['game_implementation_status']=='IMPLEMENTED' for s in m['scenes'])==8
     assert len(list((ROOT/'game/data/original_scenes').glob('*.json')))==88

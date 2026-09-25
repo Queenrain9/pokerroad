@@ -4,6 +4,13 @@ import pytest
 ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT/'tools'));import ingest_notion_bundle as INGEST;import import_original_scenes as IMPORT;sys.path.remove(str(ROOT/'tools'))
 def fixture_bundle(tmp_path):
     m=json.loads((ROOT/'game/data/world_manifest.json').read_text(encoding='utf8'));pages=[];audit=[]
+    # Recreate the pre-implementation manifest: the importer intentionally
+    # refuses to overwrite scenes that are now playable in the live project.
+    for scene in m['scenes']:
+        scene['game_implementation_status']='NOT_IMPLEMENTED'
+        scene['qa_status']='NOT_RUN'
+        scene['player_action_bindings']=[]
+        scene['location_anchor_id']=None
     for r in m['regions']:
         body='# 지역 요약과 실제 지도 - 원본 문서 전체 보존\n'
         for scene in r['scene_ids']:

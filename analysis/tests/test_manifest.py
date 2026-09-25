@@ -11,11 +11,13 @@ def test_source_anchors_are_real_region_logic_not_made_up_coordinates():
     assert all(len(r['anchors'])>=6 for r in M['regions'])
     assert all(a['world_coordinates'] is None for r in M['regions'] for a in r['anchors'])
     assert len(set(a['id'] for r in M['regions'] for a in r['anchors']))==sum(len(r['anchors']) for r in M['regions'])
-def test_original_source_is_imported_but_playable_scenes_are_not_falsely_claimed():
+def test_original_source_and_first_eight_playable_status_are_distinct():
     assert all(s['original_dialogue'] is None for s in M['scenes'])
     assert all(s['source_import_status']=='IMPORTED' for s in M['scenes'])
-    assert all(s['game_implementation_status']=='NOT_IMPLEMENTED' for s in M['scenes'])
-    assert all(s['qa_status']=='NOT_RUN' for s in M['scenes'])
+    implemented={s['id'] for s in M['scenes'] if s['game_implementation_status']=='IMPLEMENTED'}
+    assert implemented=={'01-M01','01-M02','01-M03','01-M04','01-M05','01-M06','01-M07','02-M01'}
+    assert all(s['qa_status']=='PASS' for s in M['scenes'] if s['id'] in implemented)
+    assert all(s['qa_status']=='NOT_RUN' for s in M['scenes'] if s['id'] not in implemented)
     assert len(list((ROOT/'game/data/original_scenes').glob('??-?*.json')))==88
 def test_main_order_through_all_eight_regions_and_end():
     mains=[s for s in M['scenes'] if s['kind']=='MAIN'];assert len(mains)==48 and mains[0]['id']=='01-M01' and mains[-1]['id']=='08-M08'

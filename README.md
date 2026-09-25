@@ -13,19 +13,19 @@ Godot mobile poker RPG production repository.
 - Generated source records: **88/88 imported and fingerprint-verified**.
 - Structural contracts are implemented for **competition/tournament/Q/AI**, **save/interruption recovery**, and **8-region camera/space/control/poker-UI semantics**.
 - **P5 common runtime now boots in Godot**: source-backed SceneRunner, WorldRuntime, poker-event→RESULT→WORLD flow, observation flow, and runtime save/resume are connected.
-- Production runtime bindings authored against canonical source: **4/88** (`01-M01`, `01-M02`, `05-M03`, `08-M03`). These are semantic bindings, not claims that physical scenes are finished.
+- Production runtime bindings authored against canonical source: **10/88**. The first eight main scenes (`01-M01`–`01-M07`, `02-M01`) now have physical targets, choices, and completion paths; `05-M03` and `08-M03` remain semantic bindings only.
 - Production region PackedScene containers: **8/8 registered and mountable** from the actual main entrypoint.
 - P5 spatial baseline: **8/8 region bounds + 60/60 canonical anchor coordinates**, shared CharacterBody2D player runtime, Camera2D limits/smoothing, nonvisual interaction markers, and mobile virtual-move input API are connected to the real main boot.
 - P5 world interaction baseline: physical proximity is now required before anchor travel or source-scene opening; direct-route validation, explicit forest/tide/bus/city gate choices, safe-return behavior and no-teleport guards are wired through the existing TraversalService.
 - P5 route geometry: **8/8 regions active**. All canonical direct edges have nonvisual walk corridors or explicit physical transit portals, with collision walls at corridors, gates, and world bounds. The player is constrained to the current anchor's walkable route. Final buildings, environment details, and art remain unfinished.
-- Playable fully implemented story scenes: **0/88**. Source capture/runtime binding is not the same as physical scene implementation.
-- GitHub Core QA: **104 passed** + exact **2,598,960** five-card exhaustive classification.
-- Godot 4.4.1 Windows headless: production main boot PASS; core **31**, P3 regression **48**, P4 system-contract **37**, P5 world-runtime **56**, eight-region scene **142**, spatial-runtime **153**, world-interaction **30**, route geometry **441**, physical movement **7** checks PASS. Linux CI runs the same native suites after push.
+- Playable implemented story scenes: **8/88**. The first eight have Godot reach/interact/action/state/exit E2E coverage, save/resume checks, and a source-backed dialogue and action interface. Final art and device layout are separate work.
+- GitHub Core QA: **104 passed** + exact **2,598,960** five-card exhaustive classification. See `docs/P5_M01_M08_PLAYABLE.md` for the scene contract and native QA evidence.
+- Godot 4.4.1 Windows headless: production main boot PASS; core **31**, P3 regression **48**, P4 system-contract **37**, P5 world-runtime **56**, eight-region scene **211**, spatial-runtime **153**, world-interaction **30**, route geometry **441**, physical movement **7**, first-eight physical E2E **116**, first-eight poker **17** checks PASS (**1,147** total). Linux CI runs the native suites after push.
 - **Windows device play QA and iPhone/Android builds: NOT TESTED**. Final environment details, art, per-NPC AI tuning, complete 88-scene bindings and mobile builds remain incomplete.
 
 The canonical script files live under `source/original_notion_v4_2`. Runtime bindings live in `game/data/scene_bindings_v1.json` and are rejected if the stored source hash no longer matches the canonical imported scene.
 
-The eight production region scene containers live under `game/scenes/regions/`. They still contain no disposable placeholder art. Navigation coordinates are centralized in `game/data/spatial_metrics_v1.json`; source-manifest `world_coordinates` remain untouched. `RouteGeometry` derives the physical corridor and transit layout from the canonical traversal graph at runtime.
+The eight production region scene containers live under `game/scenes/regions/`. The first playable slice renders basic wayfinding and a player marker; final art is still pending. Navigation coordinates are centralized in `game/data/spatial_metrics_v1.json`; source-manifest `world_coordinates` remain untouched. `RouteGeometry` derives the physical corridor and transit layout from the canonical traversal graph at runtime.
 
 Use `tools/run_godot_qa_windows.ps1` on a Windows machine with Godot 4 installed for the next native environment gate.
 

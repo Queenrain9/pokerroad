@@ -10,12 +10,12 @@ def load(name):
 def test_authored_runtime_bindings_match_canonical_source_hashes():
     cat=load('scene_bindings_v1.json')
     assert cat['schema_version']==1
-    assert {b['scene_id'] for b in cat['scenes']}=={'01-M01','01-M02','05-M03','08-M03'}
+    assert {b['scene_id'] for b in cat['scenes']}=={'01-M01','01-M02','01-M03','01-M04','01-M05','01-M06','01-M07','02-M01','05-M03','08-M03'}
     for b in cat['scenes']:
         src=load(f"original_scenes/{b['scene_id']}.json")
         assert src['source_section_sha256']==b['source_section_sha256']
         assert hashlib.sha256(src['verbatim_source_markdown'].encode()).hexdigest()==b['source_section_sha256']
-        assert b['physical_world_binding_status']=='NOT_IMPLEMENTED'
+        assert b['physical_world_binding_status']==('PLAYABLE' if b['scene_id'].startswith('01-') or b['scene_id']=='02-M01' else 'NOT_IMPLEMENTED')
 
 def test_binding_anchors_exist_and_do_not_invent_coordinates():
     manifest=load('world_manifest.json')
@@ -40,10 +40,10 @@ def test_cross_region_bindings_do_not_smuggle_later_story_state():
     serialized=json.dumps(bindings['08-M03']['interactions'],ensure_ascii=False)
     assert 'NARAE_SEAT_RESTORED' not in serialized and 'DOYUN_PROXY_CANCELLED' not in serialized
 
-def test_runtime_foundation_does_not_falsely_mark_any_scene_playable():
+def test_runtime_foundation_only_marks_first_eight_playable():
     manifest=load('world_manifest.json')
-    assert sum(s['game_implementation_status']=='IMPLEMENTED' for s in manifest['scenes'])==0
-    assert len(load('scene_bindings_v1.json')['scenes'])==4
+    assert sum(s['game_implementation_status']=='IMPLEMENTED' for s in manifest['scenes'])==8
+    assert len(load('scene_bindings_v1.json')['scenes'])==10
 
 def test_runtime_scripts_exist_and_cover_world_dialogue_poker_result_loop():
     runtime=(ROOT/'game/scripts/runtime/game_runtime.gd').read_text(encoding='utf8')

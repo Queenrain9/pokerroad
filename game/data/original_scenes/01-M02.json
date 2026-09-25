@@ -5,7 +5,7 @@
   "verbatim_source_markdown": "## 01-M02 복례와 첫 무료 판\n**조건/인물:** P1 진입, 복례·슈퍼 손님. 복례는 평상에서 동네 손님과 실제 작은 카드판을 접고 컵을 한쪽에 밀어 둔다.\n손님 \"어떻게 자꾸 내 패를 알아요?\" 복례 \"네가 말 다 했잖아.\"\n주인공 ① \"저도 앉아도 돼요?\" → \"저기 빈자리. 돈 안 걸어도 돼.\" ② \"구경할게요.\" → \"내 컵만 안 쏟으면 돼.\" ③ \"처음이라…\" → \"그럼 버튼부터 봐.\"\n**조작:** 무료 규칙 튜토리얼의 가능한 행동과 스택/팟을 실제 조작. 숙련자 도움 건너뛰기는 관전/규칙 도움 확인으로 처리, **복례를 이겼다는 기록 생성 금지**. 이겼다면 \"어? 이번엔 네가 가져갔네. 난 슈퍼 문 닫기 전에 장 좀 봐야겠다.\" 졌다면 \"한 판 졌다고 끝은 아니지. 연습판은 무료야.\" 관전만 했다면 \"오락실 가서 직접 해 봐. 여기서 구경만 해도 재미는 있고.\"\n**완료·다음:** TUTORIAL_SEEN 또는 TUTORIAL_SKIPPED 기록, P3 예선 접수 안내 열림. 패배·돈 0·도움 건너뛰기가 지역 이동을 막지 않음.\n### 01-M02 실제 진행·대사·조건 보완 (v4.2)\n**보완 — 선택 직후부터 출구까지:** 최초 P1 진입은 M01 안내 또는 자율 발견. “앉아 볼래요”→복례 “돈 안 걸어도 괜찮아. 버튼부터 보자”→실제 무료 튜토리얼 매치, 결과 WIN/LOSS/WITHDRAW만 튜토리얼 ID에 기록. “구경할게요”→손님 “저쪽에서 카드가 보여”→VIEWED, 개인 승패 없음. “나중에”→복례 “접수 먼저 하고 와”→SKIPPED; M03 접수와 버스 개방은 어느 선택에도 유지. 승 “연습에선 네 판이지”, 패 “버튼 다시 볼래?”, 중단 “그럼 여기까지 하자.” 재대화 미완 “오늘도 무료야. 직접 칠래, 구경할래?”, 완료 “오락실 접수 끝나기 전에 가.” 완료 시 MAIN_CURSOR=01-M03, P3 경로 표시. 평상 연습판과 정상전은 독립.\n",
   "source_section_sha256": "085d4ef27af4b68f5defa7af6aa3ad42a47cbbe279c0c59c6e296b89b1ad3665",
   "source_import_status": "ORIGINAL_TEXT_CAPTURED",
-  "game_implementation_status": "NOT_IMPLEMENTED",
-  "game_qa_status": "QA_NOT_RUN",
-  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+  "game_implementation_status": "IMPLEMENTED",
+  "game_qa_status": "PASS",
+  "note": "Canonical source preserved; playable binding, physical reach, runtime action, save/exit verified by first-eight native E2E."
 }

@@ -57,11 +57,16 @@ func _initialize() -> void:
 	must(manifest_file != null, "world manifest exists")
 	var m = JSON.parse_string(manifest_file.get_as_text())
 	must(m.regions.size() == 8 and m.scenes.size() == 88, "all original scene IDs reserved")
-	var all_pending := true
+	var implemented := 0
+	var invalid := false
 	for scene in m.scenes:
-		if scene.original_dialogue != null or scene.game_implementation_status != "NOT_IMPLEMENTED":
-			all_pending = false
-	must(all_pending, "no fake scenes marked implemented")
+		if scene.original_dialogue != null:
+			invalid = true
+		if scene.game_implementation_status == "IMPLEMENTED":
+			implemented += 1
+			if scene.player_action_bindings.is_empty() or scene.qa_status != "PASS":
+				invalid = true
+	must(not invalid and implemented == 8, "only eight QA-backed scenes marked implemented")
 	if not failures.is_empty():
 		for problem in failures:
 			push_error(problem)

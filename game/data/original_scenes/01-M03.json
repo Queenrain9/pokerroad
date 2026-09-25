@@ -5,7 +5,7 @@
   "verbatim_source_markdown": "## 01-M03 오락실에서 이안을 만나다\n**조건/인물:** P3 입구, 오락실 접수원 해찬(가칭)·이안. 이안은 참가자 공개 기록표를 보지만 주인공 손패를 훔쳐보지 않음.\n이안 \"그렇게 봐도 내 카드는 안 보여.\" 주인공 ① \"기록 보고 있었는데?\" → \"그건 내가 올린 거니까 보든지.\" ② \"너도 처음이야?\" → \"세 번째. 그래도 떨려.\" ③ \"후원 테스트 붙었다며?\" → \"붙었어. 오늘 판도 본다더라.\"\n해찬 \"예선은 이쪽. 구경은 저쪽. 둘 다 동네 사람 환영이에요.\"\n**조작:** 무료 첫 참가권으로 P3 지역 오픈 경기 접수, 또는 공개석 관전. ‘첫 참가권’은 현금 과금/고액 칩 요구 아님. 참가 시 실제 독립 MATCH_ID 부여, 이안이 같은 대진에 나오면 그 직접 결과로만 이안의 이후 대사를 판정. 기본 원고는 이안 별도 조의 NPC 공식 경기. **완료·다음:** 참가→01-M04-P, 관전→01-M04-V. 마감 시간 놓치면 다음 짧은 회차 또는 관전 경로가 있어 주요 이야기를 못 보게 하지 않음.\n### 01-M03 실제 진행·대사·조건 보완 (v4.2)\n**보완 — 등록·거절·마감:** M02 완료/스킵 또는 P3 선발견 시 해찬 “첫 참가권 쓸래요, 구경할래요?” 직접 신청→“참가자 이름을 확인할게요”→REGISTRATION=ENTERED, 별도 PLAYER_EVENT_ID. 관전→“표는 여기요”→REGISTRATION=VIEW. 조건 부족·마감→“다음 짧은 회차 신청이나 오늘 관전 중 골라요”; 기다림/관전 중 하나를 택하면 바로 M04. 이안과 같은 조가 아닐 때 “우리 조 다르네. 네 판 끝나고 얘기하자.” 재대화 접수 전→“신청/관전 어느 쪽이에요?”, 접수 후→“선수석/관람석으로 가세요”; M04 완료 뒤→“강변 소식은 이안한테 들어 봐.” MAIN_CURSOR=01-M04로 진행하며 S01을 무시해도 참가 명단은 직원이 정상 관리.\n",
   "source_section_sha256": "a18a7fb166f3f8d21bd85f237c483a9d544b0b42e90ad26f07a7cfed0dfbe6e2",
   "source_import_status": "ORIGINAL_TEXT_CAPTURED",
-  "game_implementation_status": "NOT_IMPLEMENTED",
-  "game_qa_status": "QA_NOT_RUN",
-  "note": "Captured original scene prose and all same-ID supplementary sections; not parsed into runnable dialogue/actions."
+  "game_implementation_status": "IMPLEMENTED",
+  "game_qa_status": "PASS",
+  "note": "Canonical source preserved; playable binding, physical reach, runtime action, save/exit verified by first-eight native E2E."
 }

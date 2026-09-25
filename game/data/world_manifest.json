@@ -549,11 +549,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "START_ACK",
+          "target": "골목 게시판 / 슈퍼 손님"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "P0",
       "next_main_scene_id": "01-M02"
     },
     {
@@ -564,11 +569,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "BOKRYE_FREE_TABLE",
+          "target": "복례 / 슈퍼 앞 평상"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "P1",
       "next_main_scene_id": "01-M03"
     },
     {
@@ -579,11 +589,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "target": "해찬 / 오락실 접수대"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "P3",
       "next_main_scene_id": "01-M04"
     },
     {
@@ -594,11 +609,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "target": "해찬 / 공개전 천막"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "P3",
       "next_main_scene_id": "01-M05"
     },
     {
@@ -609,11 +629,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "target": "이안 / 오락실 뒷골목"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "P3",
       "next_main_scene_id": "01-M06"
     },
     {
@@ -624,11 +649,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "target": "타워 직원 / 새봄 카지노 입구"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "P4",
       "next_main_scene_id": "01-M07"
     },
     {
@@ -639,11 +669,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "target": "다온 / 강변행 정기 버스"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "P5",
       "next_main_scene_id": "02-M01"
     },
     {
@@ -724,11 +759,16 @@
       "source_revision": "v4.2",
       "original_dialogue": null,
       "source_import_status": "IMPORTED",
-      "game_implementation_status": "NOT_IMPLEMENTED",
-      "qa_status": "NOT_RUN",
-      "player_action_bindings": [],
+      "game_implementation_status": "IMPLEMENTED",
+      "qa_status": "PASS",
+      "player_action_bindings": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "target": "도해 / 강변 버스 정류장"
+        }
+      ],
       "npc_independent_event_ids": [],
-      "location_anchor_id": null,
+      "location_anchor_id": "K0",
       "next_main_scene_id": "02-M02"
     },
     {

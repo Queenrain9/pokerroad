@@ -39,12 +39,18 @@ func _initialize() -> void:
 		must(mounted.get("physical_map_status", "") == "ROUTE_GEOMETRY_ACTIVE", region_id + " has active nonvisual route geometry")
 		must(int(mounted.get("route_edge_count", 0)) > 0, region_id + " has traversable route edges")
 		must(mounted.get("visual_asset_status", "") == "NOT_STARTED", region_id + " does not claim visual assets")
-		must(host.current_region_world.get_child_count() == anchor_count + 1, region_id + " creates anchors plus physical routes")
+		var marker_count := 0
+		var route_count := 0
 		for child in host.current_region_world.get_children():
 			if child is Marker2D:
+				marker_count += 1
 				must(child.get_meta("runtime_role", "") == "NON_VISUAL_INTERACTION_ANCHOR", region_id + " marker cannot masquerade as art")
+			elif child is Label:
+				must(not child.text.is_empty(), region_id + " wayfinding label is readable")
 			else:
+				route_count += 1
 				must(child.name == "PhysicalRoutes" and child.get_meta("runtime_role", "") == "NON_VISUAL_ROUTE_GEOMETRY", region_id + " physical collision root is present")
+		must(marker_count == anchor_count and route_count == 1, region_id + " creates every anchor and physical route root")
 	gs.current_region = "01"
 	gs.current_anchor = "P0"
 	var first: Dictionary = host.mount_region("01", gs)

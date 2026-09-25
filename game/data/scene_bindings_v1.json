@@ -1,12 +1,13 @@
 {
   "schema_version": 1,
   "authority": "Notion 15 v4.2 verbatim source; bindings encode runtime semantics only and never rewrite dialogue",
-  "binding_status": "PRODUCTION_RUNTIME_BINDINGS_WITHOUT_PHYSICAL_MAPS",
+  "binding_status": "FIRST_EIGHT_MAIN_PLAYABLE_BINDINGS",
   "supported_effects": [
     "SET_FLAG",
     "SET_OBSERVATION",
     "SET_REGISTRATION_INTENT",
-    "REQUEST_EVENT"
+    "REQUEST_EVENT",
+    "RESERVE_EVENT"
   ],
   "scenes": [
     {
@@ -19,7 +20,7 @@
         "P1"
       ],
       "open_mode": "DIALOGUE",
-      "physical_world_binding_status": "NOT_IMPLEMENTED",
+      "physical_world_binding_status": "PLAYABLE",
       "interactions": [
         {
           "interaction_id": "START_ACK",
@@ -52,13 +53,7 @@
               "choice_id": "EXPLORE_FIRST",
               "label": "동네부터 둘러보기",
               "requested_mode": "WORLD",
-              "effects": [
-                {
-                  "type": "SET_FLAG",
-                  "key": "START_ACK",
-                  "value": true
-                }
-              ]
+              "effects": []
             }
           ]
         }
@@ -71,7 +66,19 @@
         ],
         "advance_main": true
       },
-      "note": "Runtime meaning authored from the canonical source. No poker record is created here."
+      "note": "Runtime meaning authored from the canonical source. No poker record is created here.",
+      "target": "골목 게시판 / 슈퍼 손님",
+      "dialogue": [
+        {
+          "speaker": "게시판",
+          "text": "오늘 오락실 앞 동네 공개 예선. 처음이면 슈퍼 앞 무료 판부터."
+        },
+        {
+          "speaker": "슈퍼 손님",
+          "text": "오늘도 저 할머니가 판 다 끝냈어."
+        }
+      ],
+      "replay_dialogue": "오락실 가려면 게임기 소리를 따라가."
     },
     {
       "scene_id": "01-M02",
@@ -82,7 +89,7 @@
         "P1"
       ],
       "open_mode": "DIALOGUE",
-      "physical_world_binding_status": "NOT_IMPLEMENTED",
+      "physical_world_binding_status": "PLAYABLE",
       "interactions": [
         {
           "interaction_id": "BOKRYE_FREE_TABLE",
@@ -172,7 +179,595 @@
         ],
         "advance_main": true
       },
-      "note": "Tutorial result is independent from official/tower records and may be skipped without blocking mainline."
+      "note": "Tutorial result is independent from official/tower records and may be skipped without blocking mainline.",
+      "target": "복례 / 슈퍼 앞 평상",
+      "dialogue": [
+        {
+          "speaker": "손님",
+          "text": "어떻게 자꾸 내 패를 알아요?"
+        },
+        {
+          "speaker": "복례",
+          "text": "네가 말 다 했잖아."
+        },
+        {
+          "speaker": "복례",
+          "text": "돈 안 걸어도 괜찮아. 버튼부터 보자."
+        }
+      ],
+      "replay_dialogue": "오락실 접수 끝나기 전에 가."
+    },
+    {
+      "scene_id": "01-M03",
+      "region_id": "01",
+      "kind": "MAIN",
+      "source_section_sha256": "a18a7fb166f3f8d21bd85f237c483a9d544b0b42e90ad26f07a7cfed0dfbe6e2",
+      "entry_anchors": [
+        "P3"
+      ],
+      "target": "해찬 / 오락실 접수대",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "이안",
+          "text": "그렇게 봐도 내 카드는 안 보여."
+        },
+        {
+          "speaker": "해찬",
+          "text": "예선은 이쪽. 구경은 저쪽. 둘 다 동네 사람 환영이에요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "choices": [
+            {
+              "choice_id": "ENTER",
+              "label": "무료 첫 참가권으로 접수",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_REGISTRATION_INTENT",
+                  "value": "OFFICIAL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R01_REGISTRATION",
+                  "value": "ENTERED"
+                },
+                {
+                  "type": "RESERVE_EVENT",
+                  "event_id": "r01_arcade_local_record",
+                  "key": "R01_PLAYER_EVENT_ID"
+                }
+              ]
+            },
+            {
+              "choice_id": "VIEW",
+              "label": "관람석 접수",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_REGISTRATION_INTENT",
+                  "value": "VIEW"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R01_REGISTRATION",
+                  "value": "VIEW"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R01_REGISTRATION",
+        "values": [
+          "ENTERED",
+          "VIEW"
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "선수석과 관람석은 저쪽이에요. 강변 소식은 이안한테 들어 봐."
+    },
+    {
+      "scene_id": "01-M04",
+      "region_id": "01",
+      "kind": "MAIN",
+      "source_section_sha256": "870d144b3eb12827eab92d8875841e57b6674c8ced41f9f314c1982c7695adc0",
+      "entry_anchors": [
+        "P3"
+      ],
+      "target": "해찬 / 공개전 천막",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "해찬",
+          "text": "선수석은 이쪽, 관람석은 저쪽이에요."
+        },
+        {
+          "speaker": "진행자",
+          "text": "오늘 기록은 전체 경기가 끝난 뒤 확정됩니다."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "choices": [
+            {
+              "choice_id": "PLAY_MATCH",
+              "label": "등록한 공개전 참가",
+              "requested_mode": "POKER",
+              "effects": [
+                {
+                  "type": "REQUEST_EVENT",
+                  "event_id": "r01_arcade_local_record",
+                  "participants": [
+                    "PLAYER",
+                    "NPC_LOCAL_A",
+                    "NPC_LOCAL_B",
+                    "NPC_LOCAL_C"
+                  ],
+                  "registered_official": true,
+                  "reserved_instance_key": "R01_PLAYER_EVENT_ID"
+                }
+              ],
+              "requires": [
+                {
+                  "key": "R01_REGISTRATION",
+                  "value": "ENTERED"
+                }
+              ]
+            },
+            {
+              "choice_id": "WATCH_BOARD",
+              "label": "공개전과 결과판 관전",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r01_arcade_local_record",
+                  "status": "VIEWED_FULL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R01_MATCH_RESULT",
+                  "value": "NOT_ENTERED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "IAN_SCOUT_NEWS_KNOWN",
+                  "value": true
+                }
+              ],
+              "requires": [
+                {
+                  "key": "R01_REGISTRATION",
+                  "value": "VIEW"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R01_MATCH_RESULT",
+        "values": [
+          "WIN",
+          "LOSS",
+          "WITHDRAW",
+          "NOT_ENTERED"
+        ],
+        "advance_main": true
+      },
+      "external_results": {
+        "r01_arcade_local_record": {
+          "WIN": [
+            {
+              "type": "SET_FLAG",
+              "key": "R01_MATCH_RESULT",
+              "value": "WIN"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "IAN_SCOUT_NEWS_KNOWN",
+              "value": true
+            }
+          ],
+          "LOSS": [
+            {
+              "type": "SET_FLAG",
+              "key": "R01_MATCH_RESULT",
+              "value": "LOSS"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "IAN_SCOUT_NEWS_KNOWN",
+              "value": true
+            }
+          ],
+          "WITHDRAW": [
+            {
+              "type": "SET_FLAG",
+              "key": "R01_MATCH_RESULT",
+              "value": "WITHDRAW"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "IAN_SCOUT_NEWS_KNOWN",
+              "value": true
+            }
+          ]
+        }
+      },
+      "npc_event": "r01_ian_separate_local",
+      "replay_dialogue": "본인 기록 확인했죠? 이안은 뒷골목에 있어요."
+    },
+    {
+      "scene_id": "01-M05",
+      "region_id": "01",
+      "kind": "MAIN",
+      "source_section_sha256": "294f75d69819a1578696f372e65df7f2e9e2e32803babadf687bf9921ac7284f",
+      "entry_anchors": [
+        "P3"
+      ],
+      "target": "이안 / 오락실 뒷골목",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "이안",
+          "text": "강변 야간 초청전에 자리가 났어. 나 먼저 간다."
+        },
+        {
+          "speaker": "이안",
+          "text": "우리 아직 직접 붙지 않았네."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "choices": [
+            {
+              "choice_id": "CHALLENGE",
+              "label": "나도 출전할래",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "IAN_RIVER_SCHEDULE",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R01_TRAVEL_MOTIVE",
+                  "value": "CHALLENGE"
+                }
+              ]
+            },
+            {
+              "choice_id": "OBSERVE",
+              "label": "구경만 갈게",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "IAN_RIVER_SCHEDULE",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R01_TRAVEL_MOTIVE",
+                  "value": "OBSERVE"
+                }
+              ]
+            },
+            {
+              "choice_id": "RIVAL",
+              "label": "거기서 연습판 약속",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "IAN_RIVER_SCHEDULE",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R01_TRAVEL_MOTIVE",
+                  "value": "RIVAL"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "IAN_RIVER_SCHEDULE",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "난 출발할게. 타워는 복례 할머니에게 물어봐."
+    },
+    {
+      "scene_id": "01-M06",
+      "region_id": "01",
+      "kind": "MAIN",
+      "source_section_sha256": "6ab243f7b49c7eb4c9275d011f605809a9b293f03332fe4a490358617126b863",
+      "entry_anchors": [
+        "P4"
+      ],
+      "target": "타워 직원 / 새봄 카지노 입구",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "직원",
+          "text": "복례 대표님입니다. 로비 입장은 무료예요."
+        },
+        {
+          "speaker": "복례",
+          "text": "예약 시간 확인하고 올라와. 나 장 보고 들어갈게."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "choices": [
+            {
+              "choice_id": "LOBBY",
+              "label": "로비와 공개 관전",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r01_tower_summit",
+                  "status": "LOBBY_VIEWED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "TOWER_INTRO_SEEN",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "RESERVE",
+              "label": "정상 도전 예약 안내 확인",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "TOWER_INTRO_SEEN",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "TOWER_RESERVATION_INTEREST",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "LATER",
+              "label": "나중에 도전",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "TOWER_INTRO_SEEN",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "TOWER_INTRO_SEEN",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "강변 버스는 저쪽, 타워는 언제든 재예약하세요."
+    },
+    {
+      "scene_id": "01-M07",
+      "region_id": "01",
+      "kind": "MAIN",
+      "source_section_sha256": "4f47273e2982eea44d9bace8376f61c0ba6101dcde2c960c8f2df3865c5437c7",
+      "entry_anchors": [
+        "P5"
+      ],
+      "target": "다온 / 강변행 정기 버스",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "다온",
+          "text": "저녁 배에서는 카드도 친대요. 버스 아직 있어요."
+        },
+        {
+          "speaker": "직원",
+          "text": "관전만 가도 되고, 참가 조건은 현장에 물어보세요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "choices": [
+            {
+              "choice_id": "CHALLENGE",
+              "label": "직접 해 보겠어",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R01_TRAVEL_MOTIVE",
+                  "value": "CHALLENGE"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "BUS_BOARDING_READY",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "OBSERVE",
+              "label": "오늘은 구경부터",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R01_TRAVEL_MOTIVE",
+                  "value": "OBSERVE"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "BUS_BOARDING_READY",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "RIVAL",
+              "label": "이안 만나러",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R01_TRAVEL_MOTIVE",
+                  "value": "RIVAL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "BUS_BOARDING_READY",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "STAY",
+              "label": "동네에 더 있을래",
+              "requested_mode": "WORLD",
+              "effects": []
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "BUS_BOARDING_READY",
+        "values": [
+          true
+        ],
+        "advance_main": true,
+        "travel_to": {
+          "region_id": "02",
+          "entry_anchor": "K0"
+        }
+      },
+      "replay_dialogue": "다음 버스도 와요."
+    },
+    {
+      "scene_id": "02-M01",
+      "region_id": "02",
+      "kind": "MAIN",
+      "source_section_sha256": "bfcdabebd3aa1d60c1ded17277bc19d5ef998ab68c494d31dd3096bb7b665ffa",
+      "entry_anchors": [
+        "K0"
+      ],
+      "target": "도해 / 강변 버스 정류장",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "편의점 직원",
+          "text": "낮에는 자전거 타는 사람 많고, 밤에는 배에서 경기 구경 많이 해요."
+        },
+        {
+          "speaker": "도해",
+          "text": "먼저 강을 둘러봐도, 바로 배 타러 가도 돼요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "STORY_ACTION",
+          "choices": [
+            {
+              "choice_id": "PIER",
+              "label": "지금 선착장으로",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_RIVER_SEEN",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_FIRST_ROUTE",
+                  "value": "PIER"
+                }
+              ]
+            },
+            {
+              "choice_id": "WALK",
+              "label": "낮 강변 산책",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_RIVER_SEEN",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_FIRST_ROUTE",
+                  "value": "WALK"
+                }
+              ]
+            },
+            {
+              "choice_id": "WORK",
+              "label": "무료 연습과 일감부터",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_RIVER_SEEN",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_FIRST_ROUTE",
+                  "value": "WORK"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R02_RIVER_SEEN",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "스크린에 이안 경기 뉴스 있어요."
     },
     {
       "scene_id": "05-M03",

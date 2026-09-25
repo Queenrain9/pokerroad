@@ -29,8 +29,9 @@ def test_all_88_generated_records_verify_their_own_sha256_and_filename():
 def test_import_status_and_playable_status_are_independent():
     assert len(MANIFEST['scenes'])==88
     assert all(s['source_import_status']=='IMPORTED' for s in MANIFEST['scenes'])
-    assert all(s['game_implementation_status']=='NOT_IMPLEMENTED' for s in MANIFEST['scenes'])
-    assert all(s['player_action_bindings']==[] for s in MANIFEST['scenes'])
+    implemented=[s for s in MANIFEST['scenes'] if s['game_implementation_status']=='IMPLEMENTED']
+    assert len(implemented)==8 and all(s['player_action_bindings'] for s in implemented)
+    assert all(s['player_action_bindings']==[] for s in MANIFEST['scenes'] if s not in implemented)
 
 def test_verbatim_source_page_copies_equal_canonical_mirror():
     copies=ROOT/'game/data/source_pages_verbatim'

@@ -23,9 +23,14 @@ if ($LASTEXITCODE -ne 0) { throw "Godot project import/parser check failed (exit
 & $GodotExe --headless --path $gameDir --quit-after 1 2>&1 | Tee-Object -FilePath $log -Append
 if ($LASTEXITCODE -ne 0) { throw "Godot production main boot failed (exit $LASTEXITCODE)" }
 Run-GodotTest "res://tests_headless.gd"
-Run-GodotTest "res://tests_p1_headless.gd"\nRun-GodotTest "res://tests_system_contracts.gd"
+Run-GodotTest "res://tests_p1_headless.gd"
+Run-GodotTest "res://tests_system_contracts.gd"
 Run-GodotTest "res://tests_world_runtime.gd"
 Run-GodotTest "res://tests_region_scenes.gd"
 Run-GodotTest "res://tests_spatial_runtime.gd"
 Run-GodotTest "res://tests_world_interactions.gd"
+Run-GodotTest "res://tests_route_geometry.gd"
+Run-GodotTest "res://tests_physics_routes.gd"
+Run-GodotTest "res://tests_first_eight_e2e.gd"
+Run-GodotTest "res://tests_first_eight_poker.gd"
 Write-Host "Godot native QA passed. Log: $log"

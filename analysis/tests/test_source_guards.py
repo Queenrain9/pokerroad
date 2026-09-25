@@ -7,7 +7,7 @@ def test_persistent_main_cursor_never_skips_original_scene_import():
     world=(ROOT/'game/scripts/services/game_state.gd').read_text(encoding='utf-8')
     assert 'scene_is_implemented(scene_id)' in world and 'if scene_id != main_cursor or not scene_is_implemented(scene_id):' in world and 'rewards_paid.has(reward_id)' in world
 def test_godot_tests_are_provided_but_not_misreported_as_executed():
-    assert (ROOT/'game/tests_headless.gd').is_file();readme=(ROOT/'README.md').read_text(encoding='utf-8');assert 'NOT TESTED' in readme and '0/88' in readme
+    assert (ROOT/'game/tests_headless.gd').is_file();readme=(ROOT/'README.md').read_text(encoding='utf-8');assert 'NOT TESTED' in readme and '8/88' in readme
 def test_no_old_style_invalid_const_inference():
     scripts=list((ROOT/'game').rglob('*.gd'));assert scripts
     for path in scripts: assert not any(line.lstrip().startswith('const ') and ':=' in line for line in path.read_text(encoding='utf-8').splitlines()),path
