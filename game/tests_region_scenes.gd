@@ -39,13 +39,14 @@ func _initialize() -> void:
 		must(mounted.get("physical_map_status", "") == "ROUTE_GEOMETRY_ACTIVE", region_id + " has active nonvisual route geometry")
 		must(int(mounted.get("route_edge_count", 0)) > 0, region_id + " has traversable route edges")
 		if region_id == "01":
-			must(mounted.get("visual_asset_status", "") == "FIRST_SPACE_3_4_PROTOTYPE", "01 reports first-space visual prototype honestly")
+			must(mounted.get("visual_asset_status", "") == "SAEBOM_DATA_DRIVEN_3_4_BLOCKOUT", "01 reports data-driven 3/4 blockout honestly")
 			must(mounted.get("micro_navigation_status", "") == "LOCAL_WALKABLE_ZONES_ACTIVE", "01 reports active local micro-navigation")
 			must(int(mounted.get("micro_navigation_zone_count", 0)) == 12, "01 exposes the authored 12 local walkable zones")
 			must(mounted.get("level_geometry_status", "") == "PROVISIONAL_BLOCKOUT_GEOMETRY_VALIDATED_NOT_FINAL_ART", "01 reports validated blockout geometry honestly")
 			must(int(mounted.get("level_building_count", 0)) == 8, "01 exposes 8 blockout building footprints")
 			must(int(mounted.get("level_interaction_slot_count", 0)) == 12, "01 exposes 12 interaction slots")
 			must(int(mounted.get("level_occlusion_candidate_count", 0)) == 5, "01 exposes 5 non-colliding occlusion candidates")
+			must(int(mounted.get("level_collision_count", 0)) == 8, "01 instantiates all 8 validated building collisions")
 		else:
 			must(mounted.get("visual_asset_status", "") == "NOT_STARTED", region_id + " does not claim visual assets")
 			must(mounted.get("micro_navigation_status", "") == "NONE", region_id + " does not claim unauthored local micro-navigation")
