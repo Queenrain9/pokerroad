@@ -180,11 +180,11 @@ func _build_route_geometry() -> void:
 			var a: Vector2 = anchor_position(source)
 			var b: Vector2 = anchor_position(destination)
 			var normal: Vector2 = (b - a).normalized()
-			# Keep the solid threshold narrow enough that an optional/transit gate
-			# cannot cut across another legal corridor leaving the same plaza.
-			# RouteGeometry.is_walkable remains the authoritative no-bypass guard.
+			# Use a compact collision sentinel at the gate so a nearby optional portal
+			# cannot form a wall across another legal corridor from the same plaza.
+			# RouteGeometry.is_walkable is the authoritative no-bypass boundary.
 			_add_wall(physical, "GateWall_" + source + "_" + destination,
-				a + normal * 188.0, Vector2(16.0, 96.0), normal.angle())
+				a + normal * 188.0, Vector2(16.0, 16.0), normal.angle())
 
 func _build_corridor_walls(physical: Node2D, source: String, destination: String) -> void:
 	var a: Vector2 = anchor_position(source)
