@@ -4,11 +4,13 @@ const Runtime = preload("res://scripts/runtime/game_runtime.gd")
 const RegionHostScript = preload("res://scripts/world/region_host.gd")
 const PlayerScript = preload("res://scripts/world/player_controller.gd")
 const CameraScript = preload("res://scripts/world/camera_rig.gd")
+const InteractionScript = preload("res://scripts/world/world_interaction_controller.gd")
 
 var runtime
 var region_host
 var player
 var camera
+var interaction_controller
 var state
 
 func _ready() -> void:
@@ -55,6 +57,7 @@ func _ready() -> void:
 	if camera_bound.has("error"):
 		push_error("PokerRoad camera bind: " + str(camera_bound.error))
 		return
+	interaction_controller = InteractionScript.new(state, runtime, region_host, player)
 	if not state.world_changed.is_connected(_on_world_changed):
 		state.world_changed.connect(_on_world_changed)
 	var world: Dictionary = runtime.world_runtime.current_world()
@@ -79,3 +82,19 @@ func _on_world_changed() -> void:
 			var camera_bound: Dictionary = camera.apply_region(region_host.current_region_world)
 			if camera_bound.has("error"):
 				push_error("PokerRoad camera remount: " + str(camera_bound.error))
+
+
+func inspect_world_interaction(context: Dictionary = {}) -> Dictionary:
+	if interaction_controller == null:
+		return {"error":"world interaction controller unavailable"}
+	return interaction_controller.inspect_nearby(context)
+
+func confirm_world_interaction(selected_route: String = "", context: Dictionary = {}) -> Dictionary:
+	if interaction_controller == null:
+		return {"error":"world interaction controller unavailable"}
+	return interaction_controller.enter_nearby_anchor(selected_route, context)
+
+func open_nearby_scene(scene_id: String) -> Dictionary:
+	if interaction_controller == null:
+		return {"error":"world interaction controller unavailable"}
+	return interaction_controller.open_nearby_scene(scene_id)
