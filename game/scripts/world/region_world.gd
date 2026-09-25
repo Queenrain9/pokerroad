@@ -33,6 +33,9 @@ func initialize_from_state(p_state) -> Dictionary:
 	route_geometry = RouteGeometry.new(region_id)
 	if route_geometry.edges.is_empty():
 		return {"error":"region has no physical route geometry"}
+	var level_errors: Array[String] = LevelGeometryRegistry.validate_region(region_id)
+	if not level_errors.is_empty():
+		return {"error":"level geometry invalid: " + "; ".join(level_errors)}
 	_build_anchor_markers()
 	_build_route_geometry()
 	if region_id == "01":
@@ -78,6 +81,7 @@ func _build_wayfinding() -> void:
 func descriptor() -> Dictionary:
 	if region_record.is_empty():
 		return {"error":"region scene is not initialized"}
+	var level_summary: Dictionary = LevelGeometryRegistry.summary(region_id)
 	return {
 		"id":region_id,
 		"name":region_record.get("name", ""),
@@ -89,6 +93,10 @@ func descriptor() -> Dictionary:
 		"physical_map_status":"ROUTE_GEOMETRY_ACTIVE",
 		"micro_navigation_status":"LOCAL_WALKABLE_ZONES_ACTIVE" if route_geometry.local_zone_count() > 0 else "NONE",
 		"micro_navigation_zone_count":route_geometry.local_zone_count(),
+		"level_geometry_status":level_summary.get("status", "NONE"),
+		"level_building_count":int(level_summary.get("building_count", 0)),
+		"level_interaction_slot_count":int(level_summary.get("interaction_slot_count", 0)),
+		"level_occlusion_candidate_count":int(level_summary.get("occlusion_candidate_count", 0)),
 		"route_edge_count":route_geometry.edges.size(),
 		"portal_count":portal_markers.size(),
 		"visual_asset_status":"FIRST_SPACE_3_4_PROTOTYPE" if region_id == "01" else "NOT_STARTED"
