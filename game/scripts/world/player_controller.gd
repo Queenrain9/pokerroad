@@ -13,7 +13,8 @@ var facing := Vector2.DOWN
 func _draw() -> void:
 	# Prototype 3/4 player sprite drawn from simple shapes. It is intentionally
 	# asset-free so scale/readability can be validated before final character art.
-	draw_ellipse(Vector2(0, 17), Vector2(24, 9), Color(0.05,0.09,0.10,0.22))
+	var shadow := PackedVector2Array([Vector2(-24,17),Vector2(-16,10),Vector2(0,8),Vector2(16,10),Vector2(24,17),Vector2(16,24),Vector2(0,26),Vector2(-16,24)])
+	draw_colored_polygon(shadow, Color(0.05,0.09,0.10,0.22))
 	var flip := 1.0 if facing.x >= 0.0 else -1.0
 	# legs / shoes
 	draw_rect(Rect2(Vector2(-13, 5), Vector2(9, 24)), Color("#293b42"))
