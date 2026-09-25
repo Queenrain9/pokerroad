@@ -39,6 +39,8 @@
   "poker_fields": [
     "event_instance_id",
     "event_id",
+    "registered_official",
+    "source_scene_snapshot",
     "tournament_snapshot"
   ],
   "interruption_rules": {
