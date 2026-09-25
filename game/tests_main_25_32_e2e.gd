@@ -107,7 +107,8 @@ func run_suite() -> void:
 
 	print("M25-32 STEP: 05-M03")
 	open_current("05-M03")
-	choose("DOYUN_IDENTITY_NOTICE", "READ_BOARD", "WORLD")
+	choose("DOYUN_IDENTITY_NOTICE", "READ_BOARD", "OBSERVE")
+	observe_and_return("05-M03")
 	complete("05-M03", "05-M04")
 	must(state.story_flags.get("DOYUN_RESERVED_ID_KNOWN", false), "Doyun provisional reservation identity learned")
 	must(not state.story_flags.has("NARAE_SEAT_RESTORED") and not state.story_flags.has("DOYUN_PROXY_CANCELLED"),
