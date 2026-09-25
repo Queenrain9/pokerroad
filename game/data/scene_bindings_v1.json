@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "authority": "Notion 15 v4.2 verbatim source; bindings encode runtime semantics only and never rewrite dialogue",
-  "binding_status": "FIRST_EIGHT_MAIN_PLAYABLE_BINDINGS",
+  "binding_status": "FIRST_SIXTEEN_MAIN_PLAYABLE_BINDINGS",
   "supported_effects": [
     "SET_FLAG",
     "SET_OBSERVATION",
@@ -768,6 +768,979 @@
         "advance_main": true
       },
       "replay_dialogue": "스크린에 이안 경기 뉴스 있어요."
+    },
+    {
+      "scene_id": "02-M02",
+      "region_id": "02",
+      "kind": "MAIN",
+      "source_section_sha256": "25adec76a2d60359aaf545d5568e4383dd77552aecad516d210c4fd3be7fc3be",
+      "entry_anchors": [
+        "K2",
+        "K3"
+      ],
+      "target": "강변 대형 스크린 / 승선 뉴스 화면",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "수리",
+          "text": "이안의 다른 초청 경기예요. 오늘 다음 라운드에 진출했습니다."
+        },
+        {
+          "speaker": "이안",
+          "text": "저번 판 결과랑 이번 판은 별개야. 유람선에 와서 직접 치든지 구경해."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "RIVER_BROADCAST",
+          "choices": [
+            {
+              "choice_id": "FULL",
+              "label": "방송 전체 보기",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r02_ian_river_broadcast",
+                  "status": "VIEWED_FULL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "IAN_NPC_RIVER_RESULT",
+                  "value": "ADVANCED"
+                }
+              ]
+            },
+            {
+              "choice_id": "SUMMARY",
+              "label": "10초 결과 요약",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r02_ian_river_broadcast",
+                  "status": "SUMMARY"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "IAN_NPC_RIVER_RESULT",
+                  "value": "ADVANCED"
+                }
+              ]
+            },
+            {
+              "choice_id": "LATER",
+              "label": "나중에 선착장에서 확인",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "K2"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "IAN_RIVER_NEWS_POSTPONED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "PIER_SUMMARY",
+              "label": "승선 화면에서 결과 확인",
+              "requested_mode": "OBSERVE",
+              "requires_anchor": [
+                "K3"
+              ],
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r02_ian_river_broadcast",
+                  "status": "SUMMARY_AT_PIER"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "IAN_NPC_RIVER_RESULT",
+                  "value": "ADVANCED"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "IAN_NPC_RIVER_RESULT",
+        "values": [
+          "ADVANCED"
+        ],
+        "advance_main": true
+      },
+      "npc_event": "r02_ian_river_broadcast",
+      "replay_dialogue": "배를 타려면 선착장에 가."
+    },
+    {
+      "scene_id": "02-M03",
+      "region_id": "02",
+      "kind": "MAIN",
+      "source_section_sha256": "fe48ed6dcf257a7b06f7926852bbc633569a96fe9f14bb60bd9dc1602c933eba",
+      "entry_anchors": [
+        "K3"
+      ],
+      "target": "도해·안전요원 / 선착장",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "도해",
+          "text": "공개 경기 관람은 왼쪽, 정식 참가 접수는 오른쪽이에요."
+        },
+        {
+          "speaker": "안전요원",
+          "text": "직접 참가·무료 관전·다음 배 중 무엇으로 할까요?"
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "BOAT_ACCESS",
+          "choices": [
+            {
+              "choice_id": "ENTER",
+              "label": "선수석 참가 접수",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_REGISTRATION_INTENT",
+                  "value": "OFFICIAL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_REGISTRATION",
+                  "value": "ENTERED"
+                },
+                {
+                  "type": "RESERVE_EVENT",
+                  "event_id": "r02_boat_open",
+                  "key": "R02_PUBLIC_MATCH_ID"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_ON_BOAT",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "VIEW",
+              "label": "무료 관전으로 승선",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_REGISTRATION_INTENT",
+                  "value": "VIEW"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_REGISTRATION",
+                  "value": "VIEW"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_ON_BOAT",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "NEXT_BOAT",
+              "label": "다음 정기편으로 승선",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_REGISTRATION_INTENT",
+                  "value": "VIEW"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_REGISTRATION",
+                  "value": "VIEW"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_NEXT_BOAT_USED",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_ON_BOAT",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R02_ON_BOAT",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "윤하루 씨는 전망대 쪽이에요."
+    },
+    {
+      "scene_id": "02-M04",
+      "region_id": "02",
+      "kind": "MAIN",
+      "source_section_sha256": "bb63f7b73c13558d7be0fa84264181b12ff8d00bdaca6ac29d22c0b385ccc574",
+      "entry_anchors": [
+        "K3"
+      ],
+      "target": "윤하루·진행자 / 유람선 실전 테이블",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "윤하루",
+          "text": "배는 움직여도 순서는 지켜요. 내 차례라고 서두르진 마요."
+        },
+        {
+          "speaker": "진행자",
+          "text": "참가 기록과 관람 기록은 따로 남습니다."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "BOAT_EVENT",
+          "choices": [
+            {
+              "choice_id": "PLAY_MATCH",
+              "label": "등록한 유람선 경기 참가",
+              "requested_mode": "POKER",
+              "requires": [
+                {
+                  "key": "R02_REGISTRATION",
+                  "value": "ENTERED"
+                }
+              ],
+              "effects": [
+                {
+                  "type": "REQUEST_EVENT",
+                  "event_id": "r02_boat_open",
+                  "participants": [
+                    "PLAYER",
+                    "NPC_RIVER_A",
+                    "NPC_RIVER_B",
+                    "NPC_RIVER_C"
+                  ],
+                  "registered_official": false,
+                  "reserved_instance_key": "R02_PUBLIC_MATCH_ID"
+                }
+              ]
+            },
+            {
+              "choice_id": "WATCH_YUNHARU",
+              "label": "윤하루 공개 경기 관전",
+              "requested_mode": "OBSERVE",
+              "requires": [
+                {
+                  "key": "R02_REGISTRATION",
+                  "value": "VIEW"
+                }
+              ],
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r02_yunharu_boat_demo",
+                  "status": "VIEWED_KEY_ACTION"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_MATCH_RESULT",
+                  "value": "VIEW"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_BOAT_EVENT_SEEN",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "external_results": {
+        "r02_boat_open": {
+          "WIN": [
+            {
+              "type": "SET_FLAG",
+              "key": "R02_MATCH_RESULT",
+              "value": "WIN"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R02_BOAT_EVENT_SEEN",
+              "value": true
+            }
+          ],
+          "LOSS": [
+            {
+              "type": "SET_FLAG",
+              "key": "R02_MATCH_RESULT",
+              "value": "LOSS"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R02_BOAT_EVENT_SEEN",
+              "value": true
+            }
+          ],
+          "WITHDRAW": [
+            {
+              "type": "SET_FLAG",
+              "key": "R02_MATCH_RESULT",
+              "value": "WITHDRAW"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R02_BOAT_EVENT_SEEN",
+              "value": true
+            }
+          ]
+        }
+      },
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R02_BOAT_EVENT_SEEN",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "npc_event": "r02_yunharu_boat_demo",
+      "replay_dialogue": "오늘 배 기록은 이미 확인했습니다. 전망대에서 이안과 윤하루를 만날 수 있어요."
+    },
+    {
+      "scene_id": "02-M05",
+      "region_id": "02",
+      "kind": "MAIN",
+      "source_section_sha256": "dbb5e7ae68520f59b7f6be820bcb726cc32d7735b5ab7a6bb5860c236babf38a",
+      "entry_anchors": [
+        "K3"
+      ],
+      "target": "윤하루·이안 / 유람선 전망대",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "윤하루",
+          "text": "배 위 판이랑 타워 최상층 판은 달라요. 위에서 강이 다르게 보여요."
+        },
+        {
+          "speaker": "이안",
+          "text": "이건 방송 경기와 다른 우리 둘의 판이야."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "REUNION",
+          "choices": [
+            {
+              "choice_id": "IAN_PRACTICE",
+              "label": "이안과 직접 연습",
+              "requested_mode": "POKER",
+              "effects": [
+                {
+                  "type": "REQUEST_EVENT",
+                  "event_id": "r02_ian_direct_practice",
+                  "participants": [
+                    "PLAYER",
+                    "NPC_IAN"
+                  ],
+                  "registered_official": false
+                }
+              ]
+            },
+            {
+              "choice_id": "FOREST_NEWS",
+              "label": "숲 소식 듣기",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_IAN_DIRECT_RESULT",
+                  "value": "NOT_ENTERED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "YUNHARU_TOWER_INTRO",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_IAN_REUNION",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "TOWER_LOOK",
+              "label": "수상 타워 위치 확인",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_IAN_DIRECT_RESULT",
+                  "value": "NOT_ENTERED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "YUNHARU_TOWER_INTRO",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R02_IAN_REUNION",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "external_results": {
+        "r02_ian_direct_practice": {
+          "WIN": [
+            {
+              "type": "SET_FLAG",
+              "key": "R02_IAN_DIRECT_RESULT",
+              "value": "WIN"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "YUNHARU_TOWER_INTRO",
+              "value": true
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R02_IAN_REUNION",
+              "value": true
+            }
+          ],
+          "LOSS": [
+            {
+              "type": "SET_FLAG",
+              "key": "R02_IAN_DIRECT_RESULT",
+              "value": "LOSS"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "YUNHARU_TOWER_INTRO",
+              "value": true
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R02_IAN_REUNION",
+              "value": true
+            }
+          ],
+          "WITHDRAW": [
+            {
+              "type": "SET_FLAG",
+              "key": "R02_IAN_DIRECT_RESULT",
+              "value": "WITHDRAW"
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "YUNHARU_TOWER_INTRO",
+              "value": true
+            },
+            {
+              "type": "SET_FLAG",
+              "key": "R02_IAN_REUNION",
+              "value": true
+            }
+          ]
+        }
+      },
+      "completion": {
+        "policy": "FLAGS_ALL",
+        "requirements": [
+          {
+            "key": "YUNHARU_TOWER_INTRO",
+            "value": true
+          },
+          {
+            "key": "R02_IAN_REUNION",
+            "value": true
+          }
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "숲행 정기 버스 표지 보고 가요."
+    },
+    {
+      "scene_id": "02-M06",
+      "region_id": "02",
+      "kind": "MAIN",
+      "source_section_sha256": "5cdbc37361328427d0e8ee1cefacac90984fc290b753309d2be835bfa4964643",
+      "entry_anchors": [
+        "K5"
+      ],
+      "target": "도해 / 숲행 정기 버스",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "도해",
+          "text": "상류에 나무 꼭대기까지 마을이 올라간 숲이 있어요. 도윤의 시범전도 열릴 거래요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "FOREST_BUS",
+          "choices": [
+            {
+              "choice_id": "LANDSCAPE",
+              "label": "나무 꼭대기를 보고 싶어",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_MOTIVE",
+                  "value": "LANDSCAPE"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_REGION_UNLOCKED",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_BUS_BOARDING_READY",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "PRO",
+              "label": "도윤 공개전을 보고 싶어",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_MOTIVE",
+                  "value": "PRO"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_REGION_UNLOCKED",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_BUS_BOARDING_READY",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "STAY",
+              "label": "강변에 더 있을래",
+              "requested_mode": "WORLD",
+              "effects": []
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "R03_BUS_BOARDING_READY",
+        "values": [
+          true
+        ],
+        "advance_main": true,
+        "travel_to": {
+          "region_id": "03",
+          "entry_anchor": "F0"
+        }
+      },
+      "replay_dialogue": "숲 가는 버스는 여전히 있어요."
+    },
+    {
+      "scene_id": "03-M01",
+      "region_id": "03",
+      "kind": "MAIN",
+      "source_section_sha256": "77f8d930aa02f1d58aefad7edb9d77ae6b17e6f5a8de6c345fb6afb5e18634a1",
+      "entry_anchors": [
+        "F0",
+        "F2"
+      ],
+      "target": "미루 / 뿌리시장과 상부길 표지",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "미루",
+          "text": "뿌리시장은 아랫마을. 시범전은 줄기 지나 저 위예요."
+        },
+        {
+          "speaker": "미루",
+          "text": "수레와 계단 둘 다 올라갈 수 있어요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "MIRO_GUIDE",
+          "choices": [
+            {
+              "choice_id": "MARKET",
+              "label": "먼저 시장 볼게",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F0"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_GUIDE_SEEN",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_APPROACH_ROUTE",
+                  "value": "MARKET"
+                }
+              ]
+            },
+            {
+              "choice_id": "LIFT",
+              "label": "수레 타는 길 묻기",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F0"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_GUIDE_SEEN",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_APPROACH_ROUTE",
+                  "value": "WORK_LIFT"
+                }
+              ]
+            },
+            {
+              "choice_id": "STAIRS",
+              "label": "안전 계단 길 묻기",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F0"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_GUIDE_SEEN",
+                  "value": true
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_APPROACH_ROUTE",
+                  "value": "EXTERNAL_STAIRS"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "PATH_SIGN",
+          "choices": [
+            {
+              "choice_id": "CONFIRM",
+              "label": "F2 상부길 표지 확인",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F2"
+              ],
+              "requires": [
+                {
+                  "key": "R03_GUIDE_SEEN",
+                  "value": true
+                }
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_PATH_SIGN_SEEN",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAGS_ALL",
+        "requirements": [
+          {
+            "key": "R03_GUIDE_SEEN",
+            "value": true
+          },
+          {
+            "key": "R03_PATH_SIGN_SEEN",
+            "value": true
+          }
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "위쪽 마을을 지나 시범전이 열려요."
+    },
+    {
+      "scene_id": "03-M02",
+      "region_id": "03",
+      "kind": "MAIN",
+      "source_section_sha256": "9e0cdcef83653dea1725af00e54b1914d65298e5b64ccbf087468ad8b0c6b8af",
+      "entry_anchors": [
+        "F2",
+        "F3"
+      ],
+      "target": "미루·상부 주민 / 승강 수레와 안전 계단",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "미루",
+          "text": "빨리 올라갈래요, 구경하면서 올라갈래요?"
+        },
+        {
+          "speaker": "상부 주민",
+          "text": "두 길 모두 무료예요. 위험하면 안전 쉼터로 돌아오세요."
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "ASCENT",
+          "choices": [
+            {
+              "choice_id": "WORK_LIFT",
+              "label": "승강 수레로 올라가기",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F2"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_ASCENT_ROUTE",
+                  "value": "WORK_LIFT"
+                }
+              ]
+            },
+            {
+              "choice_id": "EXTERNAL_STAIRS",
+              "label": "외부 안전 계단으로 올라가기",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F2"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_ASCENT_ROUTE",
+                  "value": "EXTERNAL_STAIRS"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "ARRIVAL",
+          "choices": [
+            {
+              "choice_id": "CONFIRM_F3",
+              "label": "상부 마을 도착 확인",
+              "requested_mode": "WORLD",
+              "requires_anchor": [
+                "F3"
+              ],
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_ASCENT_DONE",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAGS_ALL",
+        "requirements": [
+          {
+            "key": "R03_ASCENT_DONE",
+            "value": true
+          }
+        ],
+        "advance_main": true
+      },
+      "replay_dialogue": "도윤 무대는 전망대에 있어요."
+    },
+    {
+      "scene_id": "03-M03",
+      "region_id": "03",
+      "kind": "MAIN",
+      "source_section_sha256": "633b629ed4c4bbae26bed39cbd9ecb86c9f420de7a60cb97bdcd15ca80678a49",
+      "entry_anchors": [
+        "F4"
+      ],
+      "target": "진행자·도윤 / 공개 시범전 전망대",
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "PLAYABLE",
+      "dialogue": [
+        {
+          "speaker": "진행자",
+          "text": "오늘의 순회 프로 도윤 선수입니다."
+        },
+        {
+          "speaker": "도윤",
+          "text": "지난번 사람이 오늘 같은 수를 쓴다는 법 있나요?"
+        }
+      ],
+      "interactions": [
+        {
+          "interaction_id": "SHOWCASE_VIEW",
+          "choices": [
+            {
+              "choice_id": "FULL",
+              "label": "전체 경기 보기",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r03_doyun_showcase",
+                  "status": "VIEWED_FULL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "MATCH_NPC03_RESULT",
+                  "value": "ENGINE_REPLAY"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "DOYUN_FIRST_SEEN",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "SUMMARY",
+              "label": "핵심 액션 요약",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r03_doyun_showcase",
+                  "status": "SUMMARY"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "MATCH_NPC03_RESULT",
+                  "value": "ENGINE_REPLAY"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "DOYUN_FIRST_SEEN",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "BOARD",
+              "label": "결과판만 보기",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r03_doyun_showcase",
+                  "status": "RESULT_BOARD"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "MATCH_NPC03_RESULT",
+                  "value": "RESULT_BOARD"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "DOYUN_FIRST_SEEN",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "interaction_id": "SHOWCASE_READ",
+          "choices": [
+            {
+              "choice_id": "BLUFF",
+              "label": "상대가 블러프한 것 같아",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_SHOWCASE_READ",
+                  "value": "BLUFF"
+                }
+              ]
+            },
+            {
+              "choice_id": "STRONG",
+              "label": "강한 패일 수도",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_SHOWCASE_READ",
+                  "value": "STRONG"
+                }
+              ]
+            },
+            {
+              "choice_id": "WATCH",
+              "label": "그냥 경기 더 보자",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "R03_SHOWCASE_READ",
+                  "value": "WATCH"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAGS_ALL",
+        "requirements": [
+          {
+            "key": "DOYUN_FIRST_SEEN",
+            "value": true
+          },
+          {
+            "key": "R03_SHOWCASE_READ",
+            "value": "WATCH"
+          }
+        ],
+        "advance_main": true
+      },
+      "npc_event": "r03_doyun_showcase",
+      "replay_dialogue": "프로와 직접 겨루려면 F3 연습 테이블이에요."
     },
     {
       "scene_id": "05-M03",
