@@ -40,6 +40,7 @@ func fresh_runtime():
 
 func _initialize() -> void:
 	gs = get_root().get_node("GameState")
+	gs._ready()
 	must(BindingStore.validate_catalog().is_empty(), "source-backed binding catalog validates")
 
 	reset_world("01","P0","01-M01")
