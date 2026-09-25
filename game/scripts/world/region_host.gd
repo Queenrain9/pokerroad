@@ -63,8 +63,8 @@ func validate_all_region_scenes(state) -> Array[String]:
 		else:
 			if initialized.get("id", "") != region_id:
 				errors.append(region_id + ": identity mismatch")
-			if initialized.get("physical_map_status", "") != "NOT_IMPLEMENTED":
-				errors.append(region_id + ": physical map status is dishonest")
+			if initialized.get("physical_map_status", "") != "ROUTE_GEOMETRY_ACTIVE":
+				errors.append(region_id + ": route geometry is not active")
 			if initialized.get("anchor_ids", []).is_empty():
 				errors.append(region_id + ": no manifest anchors")
 			if initialized.get("capabilities", []).is_empty():

@@ -50,7 +50,7 @@ func _initialize() -> void:
 	var regions: Array[Dictionary] = runtime.world_runtime.all_region_descriptors()
 	must(regions.size() == 8, "all eight region runtime descriptors exist")
 	for region in regions:
-		must(region.get("physical_map_status","") == "NOT_IMPLEMENTED", "runtime does not fake a finished physical map")
+		must(region.get("physical_map_status","") == "ROUTE_GEOMETRY_ACTIVE", "runtime reports active route geometry without claiming final art")
 		must(not region.get("capabilities", []).is_empty(), "each region carries production capabilities")
 	var opened: Dictionary = runtime.open_scene("01-M01")
 	must(not opened.has("error") and runtime.mode == "DIALOGUE", "01-M01 opens from real source at P0")

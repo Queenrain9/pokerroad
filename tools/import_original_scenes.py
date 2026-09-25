@@ -24,6 +24,9 @@ def audit_verbatim_source(region:str,raw:bytes,audit_by_region:dict)->None:
 def sha256_utf8(s:str)->str: return hashlib.sha256(s.encode("utf-8")).hexdigest()
 
 def extract_sections(text:str,expected:list[str],region:str)->dict[str,str]:
+    # Fixtures and local Windows editors may use CRLF. Canonical source byte
+    # fingerprints are checked before this parse-only normalization.
+    text=text.replace("\r\n","\n")
     matches=list(HEADING.finditer(text))
     if not matches: raise ValueError(f"region {region}: no actual markdown scene headings")
     result={}; order=[]; top_levels=[m.start() for m in TOP_LEVEL.finditer(text)]

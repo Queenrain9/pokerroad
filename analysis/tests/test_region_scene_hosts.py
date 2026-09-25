@@ -33,6 +33,6 @@ def test_region_host_registers_every_region_and_game_root_mounts_it():
 
 def test_region_world_keeps_physical_and_visual_status_honest():
     script=(ROOT/'game/scripts/world/region_world.gd').read_text(encoding='utf8')
-    assert '"physical_map_status":"NOT_IMPLEMENTED"' in script
+    assert '"physical_map_status":"ROUTE_GEOMETRY_ACTIVE"' in script
     assert '"visual_asset_status":"NOT_STARTED"' in script
     assert 'world_coordinates' not in script

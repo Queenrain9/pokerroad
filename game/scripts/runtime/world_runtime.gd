@@ -17,7 +17,7 @@ func region_descriptor(region_id: String) -> Dictionary:
 				"boss":region.get("boss", ""),
 				"anchors":region.get("anchors", []).duplicate(true),
 				"capabilities":PresentationContract.region_capabilities(region_id),
-				"physical_map_status":"NOT_IMPLEMENTED"
+				"physical_map_status":"ROUTE_GEOMETRY_ACTIVE"
 			}
 	return {"error":"unknown region"}
 

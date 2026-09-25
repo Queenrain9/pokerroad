@@ -28,6 +28,8 @@ static func plan_step(graph: Dictionary, region_id: String, source: String, dest
 		if int(edge.get("fee", -1)) != 0:
 			return {"error": "basic spatial route unexpectedly charges chips"}
 		var route_choices: Array = edge.get("choices", [])
+		if edge.get("requires_player_route_choice", false) and route_choices.is_empty():
+			route_choices = [str(edge.get("kind", ""))]
 		if edge.get("requires_player_route_choice", false) and chosen_route.is_empty():
 			return {"error": "player must explicitly choose route", "choices": route_choices,
 				"safe_return_anchor": source}

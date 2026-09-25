@@ -64,7 +64,7 @@ func _ready() -> void:
 	if world.has("error"):
 		push_error("PokerRoad current world: " + str(world.error))
 		return
-	print("POKERROAD_P5_SPATIAL_BOOT_OK: 8 region containers + positioned nonvisual anchors + player/camera runtime active; final map geometry/art remains unimplemented")
+	print("POKERROAD_P5_ROUTE_BOOT_OK: 8 region route geometries, gates, anchors and player/camera active; final environment art remains unimplemented")
 
 func _on_world_changed() -> void:
 	if region_host == null or state == null:
@@ -82,6 +82,11 @@ func _on_world_changed() -> void:
 			var camera_bound: Dictionary = camera.apply_region(region_host.current_region_world)
 			if camera_bound.has("error"):
 				push_error("PokerRoad camera remount: " + str(camera_bound.error))
+	elif player != null and player.active_region != null:
+		var anchor_position: Vector2 = region_host.current_region_world.anchor_position(state.current_anchor)
+		if anchor_position != Vector2.INF and not region_host.current_region_world.can_walk_from(state.current_anchor, player.global_position):
+			player.global_position = anchor_position
+			player.velocity = Vector2.ZERO
 
 
 func inspect_world_interaction(context: Dictionary = {}) -> Dictionary:

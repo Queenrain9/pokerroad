@@ -44,6 +44,9 @@ func make_stack(region_id: String):
 func move_player(stack: Dictionary, anchor_id: String) -> void:
 	stack.player.global_position = stack.host.current_region_world.anchor_position(anchor_id)
 
+func move_player_to_portal(stack: Dictionary, source: String, destination: String) -> void:
+	stack.player.global_position = stack.host.current_region_world.route_geometry.portal_position(source, destination)
+
 func dispose(stack: Dictionary) -> void:
 	stack.player.queue_free()
 	stack.host.queue_free()
@@ -78,16 +81,19 @@ func _initialize() -> void:
 	reset_world("03","F2","03-M03")
 	stack = make_stack("03")
 	move_player(stack,"F3")
+	must(stack.controller.enter_nearby_anchor("EXTERNAL_STAIRS").has("error") and gs.current_anchor == "F2", "forest upper floor cannot be reached by skipping its physical entrance")
+	move_player_to_portal(stack,"F2","F3")
 	inspect = stack.controller.inspect_nearby()
 	must(inspect.get("kind","") == "ROUTE_CHOICE_REQUIRED", "forest vertical transfer requires explicit player route choice")
 	must(set_from_array(inspect.get("choices", [])) == {"WORK_LIFT":true,"EXTERNAL_STAIRS":true}, "forest exposes both canonical vertical choices")
 	var stairs: Dictionary = stack.controller.enter_nearby_anchor("EXTERNAL_STAIRS")
 	must(not stairs.has("error") and gs.current_anchor == "F3", "chosen forest stairs route commits physical anchor")
+	must(stack.player.global_position == stack.host.current_region_world.anchor_position("F3"), "forest transfer places player on upper floor")
 	dispose(stack)
 
 	reset_world("04","H1","04-M02")
 	stack = make_stack("04")
-	move_player(stack,"H2")
+	move_player_to_portal(stack,"H1","H2")
 	var wrong_tide: Dictionary = stack.controller.enter_nearby_anchor("LOW_TIDE_MARKER_PATH", {"tide":"HIGH"})
 	must(wrong_tide.has("error") and gs.current_anchor == "H1", "wrong tide route cannot commit anchor")
 	var high_tide: Dictionary = stack.controller.enter_nearby_anchor("HIGH_TIDE_SAFE_PATH", {"tide":"HIGH"})
@@ -96,7 +102,7 @@ func _initialize() -> void:
 
 	reset_world("05","E3","05-M02")
 	stack = make_stack("05")
-	move_player(stack,"E3B")
+	move_player_to_portal(stack,"E3","E3B")
 	inspect = stack.controller.inspect_nearby({"last_train_available":false})
 	must(inspect.get("kind","") == "ROUTE_CHOICE_REQUIRED" and inspect.get("choices", []).has("BOARD_FREE_NIGHT_BUS"), "missed-train branch exposes explicit free night bus boarding")
 	var bus: Dictionary = stack.controller.enter_nearby_anchor("BOARD_FREE_NIGHT_BUS", {"last_train_available":false})
@@ -105,7 +111,7 @@ func _initialize() -> void:
 
 	reset_world("08","C2","08-M02")
 	stack = make_stack("08")
-	move_player(stack,"C3")
+	move_player_to_portal(stack,"C2","C3")
 	var blocked_gate: Dictionary = stack.controller.enter_nearby_anchor("REGISTERED_PLAYER_ONLY", {"player_q":"NO","registered_official":false})
 	must(blocked_gate.has("error") and gs.current_anchor == "C2", "unqualified player cannot commit registered-player gate")
 	var public_gate: Dictionary = stack.controller.enter_nearby_anchor("PUBLIC_SPECTATOR", {"player_q":"NO","registered_official":false})

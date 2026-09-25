@@ -17,15 +17,15 @@ Godot mobile poker RPG production repository.
 - Production region PackedScene containers: **8/8 registered and mountable** from the actual main entrypoint.
 - P5 spatial baseline: **8/8 region bounds + 60/60 canonical anchor coordinates**, shared CharacterBody2D player runtime, Camera2D limits/smoothing, nonvisual interaction markers, and mobile virtual-move input API are connected to the real main boot.
 - P5 world interaction baseline: physical proximity is now required before anchor travel or source-scene opening; direct-route validation, explicit forest/tide/bus/city gate choices, safe-return behavior and no-teleport guards are wired through the existing TraversalService.
-- Final physical environment geometry/collision/art: **0/8 complete**. The committed spatial layer is a navigation engineering baseline, not a claim that finished maps or visuals exist.
+- P5 route geometry: **8/8 regions active**. All canonical direct edges have nonvisual walk corridors or explicit physical transit portals, with collision walls at corridors, gates, and world bounds. The player is constrained to the current anchor's walkable route. Final buildings, environment details, and art remain unfinished.
 - Playable fully implemented story scenes: **0/88**. Source capture/runtime binding is not the same as physical scene implementation.
 - GitHub Core QA: **104 passed** + exact **2,598,960** five-card exhaustive classification.
-- Godot 4.4.1 Linux headless: production main boot PASS; core **31**, P3 regression **48**, P4 system-contract **37**, P5 world-runtime **56**, eight-region scene **186**, spatial-runtime **153**, world-interaction **28** checks PASS.
+- Godot 4.4.1 Windows headless: production main boot PASS; core **31**, P3 regression **48**, P4 system-contract **37**, P5 world-runtime **56**, eight-region scene **142**, spatial-runtime **153**, world-interaction **30**, route geometry **441**, physical movement **7** checks PASS. Linux CI runs the same native suites after push.
 - **Windows/iPhone/Android: NOT TESTED**. Final map geometry/collision, final art, final per-NPC AI tuning, complete 88-scene bindings and mobile builds remain incomplete.
 
 The canonical script files live under `source/original_notion_v4_2`. Runtime bindings live in `game/data/scene_bindings_v1.json` and are rejected if the stored source hash no longer matches the canonical imported scene.
 
-The eight production region scene containers live under `game/scenes/regions/`. They still contain no disposable placeholder art. Navigation coordinates are now centralized in `game/data/spatial_metrics_v1.json`; source-manifest `world_coordinates` remain untouched, and final art composition is still explicitly unclaimed.
+The eight production region scene containers live under `game/scenes/regions/`. They still contain no disposable placeholder art. Navigation coordinates are centralized in `game/data/spatial_metrics_v1.json`; source-manifest `world_coordinates` remain untouched. `RouteGeometry` derives the physical corridor and transit layout from the canonical traversal graph at runtime.
 
 Use `tools/run_godot_qa_windows.ps1` on a Windows machine with Godot 4 installed for the next native environment gate.
 

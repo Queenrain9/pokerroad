@@ -55,7 +55,11 @@ func _physics_process(_delta: float) -> void:
 		keyboard.y += 1.0
 	var direction: Vector2 = virtual_move if virtual_move.length_squared() > 0.0001 else keyboard.normalized()
 	velocity = direction * move_speed
+	var previous_position: Vector2 = global_position
 	move_and_slide()
+	if active_region != null and state != null and not active_region.can_walk_from(state.current_anchor, global_position):
+		global_position = previous_position
+		velocity = Vector2.ZERO
 	if world_bounds.size != Vector2.ZERO:
 		var r: float = float(SpatialRegistry.player_metrics().get("collision_radius", 18))
 		global_position.x = clampf(global_position.x, world_bounds.position.x + r, world_bounds.end.x - r)
