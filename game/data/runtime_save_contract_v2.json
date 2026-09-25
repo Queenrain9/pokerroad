@@ -26,7 +26,9 @@
     "player_events",
     "npc_events",
     "npc_seat_status",
-    "observed_events"
+    "observed_events",
+    "story_flags",
+    "event_serial"
   ],
   "dialogue_fields": [
     "active_scene_id",

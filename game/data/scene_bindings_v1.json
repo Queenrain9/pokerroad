@@ -1,0 +1,344 @@
+{
+  "schema_version": 1,
+  "authority": "Notion 15 v4.2 verbatim source; bindings encode runtime semantics only and never rewrite dialogue",
+  "binding_status": "PRODUCTION_RUNTIME_BINDINGS_WITHOUT_PHYSICAL_MAPS",
+  "supported_effects": [
+    "SET_FLAG",
+    "SET_OBSERVATION",
+    "SET_REGISTRATION_INTENT",
+    "REQUEST_EVENT"
+  ],
+  "scenes": [
+    {
+      "scene_id": "01-M01",
+      "region_id": "01",
+      "kind": "MAIN",
+      "source_section_sha256": "9bc12ff00ae1fa60a34a0ae9f52a0e369e1705618f345541b985a2ab6622c38b",
+      "entry_anchors": [
+        "P0",
+        "P1"
+      ],
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "NOT_IMPLEMENTED",
+      "interactions": [
+        {
+          "interaction_id": "START_ACK",
+          "choices": [
+            {
+              "choice_id": "BOARD_CONFIRM",
+              "label": "게시판 확인",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "START_ACK",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "ASK_DIRECTIONS",
+              "label": "길 묻기",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "START_ACK",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "EXPLORE_FIRST",
+              "label": "동네부터 둘러보기",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "START_ACK",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "START_ACK",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "note": "Runtime meaning authored from the canonical source. No poker record is created here."
+    },
+    {
+      "scene_id": "01-M02",
+      "region_id": "01",
+      "kind": "MAIN",
+      "source_section_sha256": "085d4ef27af4b68f5defa7af6aa3ad42a47cbbe279c0c59c6e296b89b1ad3665",
+      "entry_anchors": [
+        "P1"
+      ],
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "NOT_IMPLEMENTED",
+      "interactions": [
+        {
+          "interaction_id": "BOKRYE_FREE_TABLE",
+          "choices": [
+            {
+              "choice_id": "PLAY_FREE",
+              "label": "무료 연습판 직접 하기",
+              "requested_mode": "POKER",
+              "effects": [
+                {
+                  "type": "REQUEST_EVENT",
+                  "event_id": "r01_grandma_practice",
+                  "participants": [
+                    "PLAYER",
+                    "NPC_BOKRYE"
+                  ],
+                  "registered_official": false
+                }
+              ]
+            },
+            {
+              "choice_id": "WATCH",
+              "label": "관전하기",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r01_grandma_practice",
+                  "status": "VIEWED_FULL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "TUTORIAL_RESULT",
+                  "value": "WATCH"
+                }
+              ]
+            },
+            {
+              "choice_id": "SKIP",
+              "label": "나중에 하기",
+              "requested_mode": "WORLD",
+              "effects": [
+                {
+                  "type": "SET_FLAG",
+                  "key": "TUTORIAL_RESULT",
+                  "value": "SKIPPED"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "external_results": {
+        "r01_grandma_practice": {
+          "WIN": [
+            {
+              "type": "SET_FLAG",
+              "key": "TUTORIAL_RESULT",
+              "value": "WIN"
+            }
+          ],
+          "LOSS": [
+            {
+              "type": "SET_FLAG",
+              "key": "TUTORIAL_RESULT",
+              "value": "LOSS"
+            }
+          ],
+          "WITHDRAW": [
+            {
+              "type": "SET_FLAG",
+              "key": "TUTORIAL_RESULT",
+              "value": "WITHDRAW"
+            }
+          ]
+        }
+      },
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "TUTORIAL_RESULT",
+        "values": [
+          "WIN",
+          "LOSS",
+          "WITHDRAW",
+          "WATCH",
+          "SKIPPED"
+        ],
+        "advance_main": true
+      },
+      "note": "Tutorial result is independent from official/tower records and may be skipped without blocking mainline."
+    },
+    {
+      "scene_id": "05-M03",
+      "region_id": "05",
+      "kind": "MAIN",
+      "source_section_sha256": "b2884739914b14ff8a6d79b2ebab7250e23fcfc4b8eb4fa31697835089703bdf",
+      "entry_anchors": [
+        "E4"
+      ],
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "NOT_IMPLEMENTED",
+      "interactions": [
+        {
+          "interaction_id": "DOYUN_IDENTITY_NOTICE",
+          "choices": [
+            {
+              "choice_id": "WATCH_FULL",
+              "label": "현장 관전",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r05_doyun_identity",
+                  "status": "VIEWED_FULL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "DOYUN_RESERVED_ID_KNOWN",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "WATCH_SUMMARY",
+              "label": "소개 영상 요약",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r05_doyun_identity",
+                  "status": "VIEWED_SUMMARY"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "DOYUN_RESERVED_ID_KNOWN",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "READ_BOARD",
+              "label": "전광판만 확인",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r05_doyun_identity",
+                  "status": "LEARNED_BULLETIN"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "DOYUN_RESERVED_ID_KNOWN",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "DOYUN_RESERVED_ID_KNOWN",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "forbidden_side_effects": [
+        "NARAE_SEAT_RESTORED",
+        "DOYUN_PROXY_CANCELLED",
+        "PLAYER_Q_CHANGED"
+      ],
+      "note": "Only identity/provisional-reservation knowledge is committed; no later reform state is applied."
+    },
+    {
+      "scene_id": "08-M03",
+      "region_id": "08",
+      "kind": "MAIN",
+      "source_section_sha256": "3d6d376121fec71115e6fa1c00c058a24181c914e294c99c7a55a04ffcd28121",
+      "entry_anchors": [
+        "C4"
+      ],
+      "open_mode": "DIALOGUE",
+      "physical_world_binding_status": "NOT_IMPLEMENTED",
+      "interactions": [
+        {
+          "interaction_id": "AFFECTED_BROADCAST_PAUSE",
+          "choices": [
+            {
+              "choice_id": "ON_SITE",
+              "label": "현장 보기",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r08_affected_broadcast_round",
+                  "status": "VIEWED_FULL"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "AFFECTED_BROADCAST_PAUSED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "NOTICE",
+              "label": "중단 공지 요약",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r08_affected_broadcast_round",
+                  "status": "VIEWED_SUMMARY"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "AFFECTED_BROADCAST_PAUSED",
+                  "value": true
+                }
+              ]
+            },
+            {
+              "choice_id": "MY_SCHEDULE",
+              "label": "내 일정 확인",
+              "requested_mode": "OBSERVE",
+              "effects": [
+                {
+                  "type": "SET_OBSERVATION",
+                  "event_id": "r08_affected_broadcast_round",
+                  "status": "SCHEDULE_CHECKED"
+                },
+                {
+                  "type": "SET_FLAG",
+                  "key": "AFFECTED_BROADCAST_PAUSED",
+                  "value": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "completion": {
+        "policy": "FLAG_IN",
+        "key": "AFFECTED_BROADCAST_PAUSED",
+        "values": [
+          true
+        ],
+        "advance_main": true
+      },
+      "forbidden_side_effects": [
+        "NARAE_SEAT_RESTORED",
+        "DOYUN_PROXY_CANCELLED",
+        "WILDCARD_GRANTED"
+      ],
+      "note": "Only the advertised affected round is paused; other city matches and the tower remain open."
+    }
+  ]
+}

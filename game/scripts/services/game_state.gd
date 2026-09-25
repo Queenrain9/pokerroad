@@ -26,6 +26,8 @@ var player_events: Dictionary = {}
 var npc_events: Dictionary = {}
 var npc_seat_status: Dictionary = {}
 var observed_events: Dictionary = {}
+var story_flags: Dictionary = {}
+var event_serial := 0
 
 func _ready() -> void:
 	var file := FileAccess.open(MANIFEST_PATH, FileAccess.READ)
@@ -153,6 +155,27 @@ func record_npc_event(event_id: String, event: Dictionary) -> bool:
 	emit_signal("world_changed")
 	return true
 
+func set_story_flag(key: String, value) -> bool:
+	if key.is_empty():
+		return false
+	story_flags[key] = value
+	emit_signal("world_changed")
+	return true
+
+func record_observation(event_id: String, status: String) -> bool:
+	if event_id.is_empty() or status.is_empty():
+		return false
+	observed_events[event_id] = status
+	emit_signal("world_changed")
+	return true
+
+func allocate_event_instance_id(event_id: String) -> String:
+	if event_id.is_empty():
+		return ""
+	event_serial += 1
+	emit_signal("world_changed")
+	return "%s#%06d" % [event_id, event_serial]
+
 func _save_payload() -> Dictionary:
 	return {"schema": SAVE_SCHEMA, "main_cursor": main_cursor, "current_region": current_region,
 		"current_anchor": current_anchor, "unlocked_regions": unlocked_regions, "finished_main": finished_main,
@@ -160,7 +183,7 @@ func _save_payload() -> Dictionary:
 		"world_phase": world_phase, "chips": chips, "player_q": player_q,
 		"registration_intent": registration_intent, "player_events": player_events,
 		"npc_events": npc_events, "npc_seat_status": npc_seat_status,
-		"observed_events": observed_events}
+		"observed_events": observed_events, "story_flags": story_flags, "event_serial": event_serial}
 
 func save_game() -> bool:
 	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
@@ -209,6 +232,8 @@ func load_game() -> bool:
 	npc_events = loaded.npc_events
 	npc_seat_status = loaded.npc_seat_status
 	observed_events = loaded.observed_events
+	story_flags = loaded.get("story_flags", {}).duplicate(true)
+	event_serial = int(loaded.get("event_serial", 0))
 	emit_signal("world_changed")
 	return true
 
@@ -231,7 +256,9 @@ func world_snapshot_v2() -> Dictionary:
 		"player_events":player_events.duplicate(true),
 		"npc_events":npc_events.duplicate(true),
 		"npc_seat_status":npc_seat_status.duplicate(true),
-		"observed_events":observed_events.duplicate(true)
+		"observed_events":observed_events.duplicate(true),
+		"story_flags":story_flags.duplicate(true),
+		"event_serial":event_serial
 	}
 
 func apply_world_snapshot_v2(world: Dictionary) -> bool:
@@ -276,6 +303,8 @@ func apply_world_snapshot_v2(world: Dictionary) -> bool:
 	npc_events = world.npc_events.duplicate(true)
 	npc_seat_status = world.npc_seat_status.duplicate(true)
 	observed_events = world.observed_events.duplicate(true)
+	story_flags = world.story_flags.duplicate(true)
+	event_serial = int(world.event_serial)
 	emit_signal("world_changed")
 	return true
 
