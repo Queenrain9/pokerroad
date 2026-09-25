@@ -8,7 +8,7 @@ def test_event_ids_unique_and_bound_to_original_scene():
 def test_solo_npc_events_are_not_player_qualifiers():
     npc=[e for e in E['events'] if e['record_owner']!='PLAYER']
     assert {e['event_id'] for e in npc}=={'r01_ian_separate_local','r02_ian_river_broadcast','r02_yunharu_boat_demo','r03_doyun_showcase','r04_narae_qualifier','r04_doyun_ian_invite','r06_eunsol_independent','r08_doyun_wildcard'}
-    replay={'r01_ian_separate_local','r02_ian_river_broadcast','r02_yunharu_boat_demo','r03_doyun_showcase','r04_narae_qualifier','r04_doyun_ian_invite'}
+    replay={'r01_ian_separate_local','r02_ian_river_broadcast','r02_yunharu_boat_demo','r03_doyun_showcase','r04_narae_qualifier','r04_doyun_ian_invite','r06_eunsol_independent'}
     assert all(e['npc_card_action_replay_status']=='ENGINE_REPLAY' for e in npc if e['event_id'] in replay)
     assert all(e['npc_card_action_replay_status']=='NOT_IMPLEMENTED' for e in npc if e['event_id'] not in replay)
 def test_only_official_personal_qualifier_creates_player_q():
@@ -32,5 +32,5 @@ def test_extra_npc_matches_from_the_original_script_do_not_force_player_record()
     assert len(new)==3 and all(e['record_owner'] in ('NPC_IAN','NPC_EUNSOL') for e in new.values())
     assert new['r01_ian_separate_local']['npc_card_action_replay_status']=='ENGINE_REPLAY'
     assert new['r02_ian_river_broadcast']['npc_card_action_replay_status']=='ENGINE_REPLAY'
-    assert new['r06_eunsol_independent']['npc_card_action_replay_status']=='NOT_IMPLEMENTED'
+    assert new['r06_eunsol_independent']['npc_card_action_replay_status']=='ENGINE_REPLAY'
     assert not any(e['national_qualifier'] for e in new.values())
