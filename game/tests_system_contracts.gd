@@ -33,7 +33,9 @@ func _world_fixture() -> Dictionary:
 		"player_events":{},
 		"npc_events":{"r04_narae_qualifier":{"owner":"NPC_NARAE"}},
 		"npc_seat_status":{},
-		"observed_events":{"r04_narae_qualifier":"LEARNED_BULLETIN"}
+		"observed_events":{"r04_narae_qualifier":"LEARNED_BULLETIN"},
+		"story_flags":{},
+		"event_serial":0
 	}
 
 func _initialize() -> void:

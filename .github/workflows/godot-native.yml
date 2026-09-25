@@ -43,3 +43,5 @@ jobs:
         run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_p1_headless.gd
       - name: Run system-contract native suite
         run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_system_contracts.gd
+      - name: Run world-runtime native suite
+        run: timeout 90s ./Godot_v4.4.1-stable_linux.x86_64 --headless --path game --script res://tests_world_runtime.gd

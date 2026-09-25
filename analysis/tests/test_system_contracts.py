@@ -29,7 +29,7 @@ def test_ai_contract_forbids_omniscience_and_keeps_tuning_provisional():
 def test_save_contract_requires_exact_mid_hand_state():
     c=read('runtime_save_contract_v2.json')
     assert c['schema_version']==2 and 'POKER' in c['save_modes']
-    assert c['poker_fields']==['event_instance_id','event_id','tournament_snapshot']
+    assert c['poker_fields']==['event_instance_id','event_id','registered_official','source_scene_snapshot','tournament_snapshot']
     assert 'exact deck order' in c['interruption_rules']['POKER']
     assert 'no duplicate reward' in c['interruption_rules']['DIALOGUE']
 
